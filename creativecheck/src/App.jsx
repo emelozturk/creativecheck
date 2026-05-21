@@ -34,7 +34,16 @@ export default function App() {
         </section>
 
         <section id="resources">
-          <AddProfilePage />
+          <div className="max-w-5xl mx-auto px-8 py-20">
+            <div className="bg-white rounded-3xl shadow-xl p-10 border border-gray-100">
+              <h2 className="text-4xl font-extrabold mb-4">
+                Resources
+              </h2>
+              <p className="text-gray-500">
+                CreativeCheck resources, public information guidance and platform updates will appear here.
+              </p>
+            </div>
+          </div>
         </section>
 
         <section id="add-profile">
