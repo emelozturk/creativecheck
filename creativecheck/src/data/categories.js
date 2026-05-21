@@ -1,0 +1,32 @@
+export const MAIN_CATEGORIES = [
+  { id: 'all', label: 'All', icon: 'all' },
+  { id: 'photography', label: 'Photography', icon: 'camera' },
+  { id: 'film', label: 'Film & Video', icon: 'film' },
+  { id: 'models', label: 'Models & Talent', icon: 'user' },
+  { id: 'styling', label: 'Styling & Beauty', icon: 'sparkles' },
+  { id: 'performance', label: 'Performance', icon: 'theater' },
+  { id: 'music', label: 'Music', icon: 'music' },
+  { id: 'design', label: 'Design', icon: 'pen' },
+  { id: 'content', label: 'Content Creators', icon: 'play' },
+  { id: 'studios', label: 'Studios', icon: 'building' },
+  { id: 'agencies', label: 'Agencies', icon: 'users' },
+  { id: 'production', label: 'Production Companies', icon: 'clapperboard' },
+]
+
+export const ALL_CATEGORIES = {
+  'Visual Arts': ['Painters','Illustrators','Contemporary Artists','Sculptors','Street Artists','Fine Artists','Digital Artists'],
+  'Photography': ['Fashion Photographers','Editorial Photographers','Portrait Photographers','Documentary Photographers','Commercial Photographers','Event Photographers'],
+  'Film & Video': ['Filmmakers','Directors','Producers','Cinematographers','Editors','Videographers','Screenwriters','Film Crew','Colorists','Assistant Directors'],
+  'Music & Audio': ['Musicians','DJs','Music Producers','Composers','Sound Designers','Audio Engineers'],
+  'Performance': ['Actors','Dancers','Theatre Artists','Performance Artists','Choreographers'],
+  'Fashion & Beauty': ['Models','Stylists','Makeup Artists','Hair Stylists','Fashion Designers','Wardrobe Stylists'],
+  'Design': ['Graphic Designers','UI/UX Designers','Art Directors','Creative Directors','Motion Designers','Set Designers','Product Designers'],
+  'Writing & Literature': ['Writers','Authors','Journalists','Poets','Script Writers','Copywriters'],
+  'Digital Creators': ['Influencers','Content Creators','YouTubers','Streamers','Podcasters','Social Media Creators'],
+  'Creative Technology': ['AI Artists','XR Creators','Interactive Designers','New Media Artists','Digital Installations'],
+  'Studios': ['Photography Studios','Film Studios','Recording Studios','Creative Studios','Design Studios','Multimedia Studios'],
+  'Production Companies': ['Film Production','Video Production','Media Production','Creative Production Houses'],
+  'Agencies': ['Creative Agencies','Branding Agencies','Advertising Agencies','Talent Agencies','Casting Agencies','PR Agencies','Model Agencies'],
+  'Media & Culture': ['Media Companies','Art Galleries','Creative Collectives','Cultural Organisations'],
+  'Multidisciplinary': ['Experimental Artists','Hybrid Creators','Interdisciplinary Artists'],
+}
