@@ -10,24 +10,41 @@ import AddProfilePage from './components/AddProfilePage'
 export default function App() {
   return (
     <div
-      className="min-h-screen bg-[#fdf8f8]"
-      style={{ fontFamily:"'Plus Jakarta Sans', sans-serif" }}
+      className="min-h-screen bg-[#fdf8f8] scroll-smooth"
+      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
-
       <Navbar />
 
       <main>
-        <Hero />
-        <SearchBar />
-        <CategoryChips />
-        <ExploreSection />
-        <FeatureStrip />
+        <section id="discover">
+          <Hero />
+          <SearchBar />
+        </section>
 
-        <AddProfilePage />
+        <section id="categories">
+          <CategoryChips />
+        </section>
+
+        <section id="studios">
+          <ExploreSection />
+        </section>
+
+        <section id="agencies">
+          <FeatureStrip />
+        </section>
+
+        <section id="resources">
+          <AddProfilePage />
+        </section>
+
+        <section id="add-profile">
+          <AddProfilePage />
+        </section>
       </main>
 
-      <Footer />
-
+      <section id="about">
+        <Footer />
+      </section>
     </div>
   )
 }
