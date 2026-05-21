@@ -50,6 +50,7 @@ export default function AddProfileModal({ isOpen, onClose }) {
       <div className="w-full max-w-xl rounded-3xl bg-white p-8 shadow-2xl">
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-bold">Add Your Profile</h2>
+
           <button onClick={onClose}>
             <X />
           </button>
