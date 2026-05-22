@@ -9,7 +9,7 @@ export default function Hero() {
           fontWeight: 900
         }}
       >
-        MEGA TEST
+        MEGA TEST 2
       </h1>
     </section>
   )
