@@ -4,6 +4,55 @@ import LogoIcon from './LogoIcon'
 export default function Footer() {
   const [openContact, setOpenContact] = useState(false)
 
+  const [contactLoading, setContactLoading] = useState(false)
+  const [contactMessage, setContactMessage] = useState('')
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault()
+
+    setContactLoading(true)
+    setContactMessage('')
+
+    const formData = new FormData(e.target)
+
+    try {
+      const response = await fetch(
+        'https://formspree.io/f/mkoebgly',
+        {
+          method: 'POST',
+          mode: 'cors',
+          body: formData,
+          headers: {
+            Accept: 'application/json'
+          }
+        }
+      )
+
+      if (response.ok) {
+        setContactMessage('Message sent successfully.')
+
+        e.target.reset()
+
+        setTimeout(() => {
+          setOpenContact(false)
+          setContactMessage('')
+        }, 1500)
+
+      } else {
+        setContactMessage(
+          'Something went wrong.'
+        )
+      }
+
+    } catch (error) {
+      setContactMessage(
+        'Something went wrong.'
+      )
+    }
+
+    setContactLoading(false)
+  }
+
   return (
     <>
       <footer id="about" className="bg-[#0b1220] text-gray-300 px-8 py-14">
@@ -189,6 +238,7 @@ export default function Footer() {
 
       {openContact && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-6">
+
           <div className="w-full max-w-lg rounded-3xl bg-white p-8 shadow-2xl relative">
 
             <button
@@ -207,8 +257,7 @@ export default function Footer() {
             </p>
 
             <form
-              action="https://formspree.io/f/mkoebgly"
-              method="POST"
+              onSubmit={handleContactSubmit}
               className="space-y-5"
             >
 
@@ -256,14 +305,22 @@ export default function Footer() {
 
               <button
                 type="submit"
-                className="w-full rounded-2xl bg-violet-600 text-white py-4 font-semibold hover:bg-violet-700 transition"
+                disabled={contactLoading}
+                className="w-full rounded-2xl bg-violet-600 text-white py-4 font-semibold hover:bg-violet-700 transition disabled:opacity-50"
               >
-                Send Message
+                {contactLoading ? 'Sending...' : 'Send Message'}
               </button>
+
+              {contactMessage && (
+                <p className="text-sm text-gray-600">
+                  {contactMessage}
+                </p>
+              )}
 
             </form>
 
           </div>
+
         </div>
       )}
     </>
