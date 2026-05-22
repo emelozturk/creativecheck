@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import SearchBar from './components/SearchBar'
@@ -8,6 +9,8 @@ import Footer from './components/Footer'
 import AddProfilePage from './components/AddProfilePage'
 
 export default function App() {
+  const [searchQuery, setSearchQuery] = useState('')
+
   return (
     <div
       className="min-h-screen bg-[#fdf8f8] scroll-smooth"
@@ -18,7 +21,10 @@ export default function App() {
       <main>
         <section id="discover">
           <Hero />
-          <SearchBar />
+          <SearchBar
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
         </section>
 
         <section id="categories">
@@ -26,7 +32,7 @@ export default function App() {
         </section>
 
         <section id="studios">
-          <ExploreSection />
+          <ExploreSection searchQuery={searchQuery} />
         </section>
 
         <section id="agencies">
@@ -39,6 +45,7 @@ export default function App() {
               <h2 className="text-4xl font-extrabold mb-4">
                 Resources
               </h2>
+
               <p className="text-gray-500">
                 CreativeCheck resources, public information guidance and platform updates will appear here.
               </p>
