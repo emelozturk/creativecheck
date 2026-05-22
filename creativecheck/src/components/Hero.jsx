@@ -1,145 +1,105 @@
+/* PREMIUM HERO STYLE — CreativeCheck */
+/* src/components/Hero.jsx */
+
 import HeroBackground from './HeroBackground'
 import LogoIcon from './LogoIcon'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[720px] flex flex-col items-center justify-center overflow-hidden pt-24 pb-16 px-6">
+    <section className="relative overflow-hidden min-h-[720px] flex flex-col items-center justify-center px-6 pt-24 pb-16 bg-[#f7f4ff]">
 
+      {/* PREMIUM BACKGROUND */}
       <HeroBackground />
 
-      {/* GRADIENT GLOW */}
+      {/* LEFT GRADIENT */}
       <div
-        className="absolute top-[120px] w-[520px] h-[520px] rounded-full blur-3xl opacity-30"
+        className="absolute left-[-180px] top-[120px] w-[420px] h-[420px] rounded-full blur-3xl opacity-40"
         style={{
           background:
-            'radial-gradient(circle, rgba(124,58,237,0.55), transparent 70%)'
+            'linear-gradient(135deg,#ff4fd8 0%,#7c3aed 45%,#38bdf8 100%)'
         }}
       />
 
+      {/* RIGHT GRADIENT */}
+      <div
+        className="absolute right-[-160px] top-[60px] w-[380px] h-[380px] rounded-full blur-3xl opacity-40"
+        style={{
+          background:
+            'linear-gradient(135deg,#ff7a18 0%,#ff3d81 45%,#8b5cf6 100%)'
+        }}
+      />
+
+      {/* FLOATING ORBS */}
+      <div className="absolute top-[180px] right-[18%] w-6 h-6 rounded-full bg-violet-400 opacity-60 blur-[1px]" />
+      <div className="absolute top-[320px] left-[18%] w-4 h-4 rounded-full bg-pink-400 opacity-70" />
+      <div className="absolute bottom-[180px] right-[24%] w-5 h-5 rounded-full bg-cyan-400 opacity-60" />
+
       {/* TRUST BADGE */}
       <div
-        className="relative z-10 flex items-center gap-2 rounded-full px-5 py-2 mb-8"
+        className="relative z-10 mb-8 px-5 py-2 rounded-full border border-white/50 backdrop-blur-md"
         style={{
-          background: 'rgba(255,255,255,0.72)',
-          backdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255,255,255,0.45)',
-          boxShadow: '0 8px 30px rgba(0,0,0,0.08)'
+          background: 'rgba(255,255,255,0.55)',
+          boxShadow: '0 8px 40px rgba(124,58,237,0.12)'
         }}
       >
-        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-
-        <span className="text-[12px] font-bold text-gray-700 tracking-wide">
-          TRUSTED CREATIVE DISCOVERY PLATFORM
+        <span className="text-[12px] font-bold tracking-[1.8px] uppercase text-violet-700">
+          Trusted Creative Discovery Platform
         </span>
       </div>
 
-      {/* HERO LOGO */}
+      {/* LOGO */}
       <div
-        className="relative z-10 mb-7"
+        className="relative z-10 mb-5"
         style={{
           filter:
-            'drop-shadow(0 18px 60px rgba(124,58,237,0.25))'
+            'drop-shadow(0 20px 60px rgba(124,58,237,0.25))'
         }}
       >
-        <LogoIcon size={190} />
+        <LogoIcon size={170} />
       </div>
 
-      {/* HEADLINE */}
+      {/* TITLE */}
       <h1
-        className="relative z-10 font-extrabold text-center leading-[0.95] tracking-tight mb-6"
+        className="relative z-10 text-center font-black tracking-[-3px] leading-[0.95]"
         style={{
-          fontSize: 'clamp(58px,10vw,104px)'
+          fontSize: 'clamp(64px,10vw,112px)',
+          fontFamily: "'Plus Jakarta Sans', sans-serif"
         }}
       >
-        <span className="text-gray-900">
-          Creative
-        </span>
+        <span className="text-[#0f172a]">Creative</span>
 
-        <span className="gradient-check">
+        <span
+          style={{
+            background:
+              'linear-gradient(90deg,#7c3aed 0%,#ec4899 30%,#f97316 65%,#14b8a6 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}
+        >
           Check
         </span>
       </h1>
 
       {/* SUBTITLE */}
       <p
-        className="relative z-10 text-center max-w-[860px] text-gray-600 leading-relaxed font-medium mb-10"
+        className="relative z-10 text-center max-w-[860px] text-gray-600 leading-relaxed font-medium mt-6"
         style={{
-          fontSize: 'clamp(16px,2vw,22px)'
+          fontSize: 'clamp(18px,2vw,24px)'
         }}
       >
         Discover creative professionals through public
-        professional visibility, portfolio presence and trusted
-        creative discovery.
+        professional visibility, portfolio presence and
+        trusted creative discovery.
       </p>
 
-      {/* CTA BUTTONS */}
-      <div className="relative z-10 flex flex-wrap items-center justify-center gap-4 mb-14">
-
-        <a
-          href="#studios"
-          className="h-[56px] px-8 rounded-2xl bg-violet-600 text-white font-bold text-[14px] flex items-center justify-center hover:scale-[1.03] transition-all"
-          style={{
-            boxShadow:
-              '0 10px 30px rgba(124,58,237,0.35)'
-          }}
-        >
-          Explore Profiles
-        </a>
-
-        <a
-          href="#add-profile"
-          className="h-[56px] px-8 rounded-2xl bg-white border border-gray-200 text-gray-800 font-bold text-[14px] flex items-center justify-center hover:border-violet-300 hover:bg-violet-50 transition-all"
-        >
-          Submit Your Profile
-        </a>
-
-      </div>
-
-      {/* LIVE STATS */}
-      <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl w-full">
-
-        <div className="bg-white/75 backdrop-blur-xl border border-white/50 rounded-3xl p-6 text-center shadow-xl">
-          <h3 className="text-3xl font-extrabold text-gray-900">
-            2.4K+
-          </h3>
-
-          <p className="text-[12px] font-semibold tracking-wide text-gray-500 mt-2">
-            PUBLIC CREATIVE PROFILES
-          </p>
-        </div>
-
-        <div className="bg-white/75 backdrop-blur-xl border border-white/50 rounded-3xl p-6 text-center shadow-xl">
-          <h3 className="text-3xl font-extrabold text-gray-900">
-            850+
-          </h3>
-
-          <p className="text-[12px] font-semibold tracking-wide text-gray-500 mt-2">
-            VERIFIED CREATIVES
-          </p>
-        </div>
-
-        <div className="bg-white/75 backdrop-blur-xl border border-white/50 rounded-3xl p-6 text-center shadow-xl">
-          <h3 className="text-3xl font-extrabold text-gray-900">
-            72
-          </h3>
-
-          <p className="text-[12px] font-semibold tracking-wide text-gray-500 mt-2">
-            CREATIVE CATEGORIES
-          </p>
-        </div>
-
-        <div className="bg-white/75 backdrop-blur-xl border border-white/50 rounded-3xl p-6 text-center shadow-xl">
-          <h3 className="text-3xl font-extrabold text-gray-900">
-            31
-          </h3>
-
-          <p className="text-[12px] font-semibold tracking-wide text-gray-500 mt-2">
-            COUNTRIES DISCOVERED
-          </p>
-        </div>
-
-      </div>
-
+      {/* PREMIUM GLOW */}
+      <div
+        className="absolute bottom-[-120px] w-[900px] h-[300px] rounded-full blur-3xl opacity-30"
+        style={{
+          background:
+            'linear-gradient(90deg,#8b5cf6,#ec4899,#38bdf8)'
+        }}
+      />
     </section>
   )
 }
