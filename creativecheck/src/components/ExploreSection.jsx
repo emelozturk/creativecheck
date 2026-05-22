@@ -1,46 +1,89 @@
-import { useRef } from 'react'
-import ProfileCard from './ProfileCard'
-import { PROFILES } from '../data/profiles'
+import { useEffect, useState } from 'react'
+import { supabase } from '../supabase'
 
 export default function ExploreSection() {
-  const rowRef = useRef(null)
-  const scroll = dir => rowRef.current?.scrollBy({ left: dir * 250, behavior: 'smooth' })
+  const [profiles, setProfiles] = useState([])
+
+  useEffect(() => {
+    fetchProfiles()
+  }, [])
+
+  async function fetchProfiles() {
+    const { data, error } = await supabase
+      .from('creator_profiles')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (!error) {
+      setProfiles(data)
+    }
+  }
 
   return (
-    <section className="max-w-[1300px] mx-auto px-8 pb-20">
-      {/* Section header */}
-      <div className="flex items-end justify-between mb-6">
+    <section
+      id="discover"
+      className="max-w-7xl mx-auto px-8 py-20"
+    >
+      <div className="flex items-center justify-between mb-10">
         <div>
-          <h2 className="text-[24px] font-extrabold text-gray-900 tracking-tight mb-1">
-            Explore the Creative World
+          <h2 className="text-4xl font-extrabold">
+            Discover Creators
           </h2>
-          <p className="text-[13.5px] text-gray-500">
-            Browse professionals and companies across the global creative ecosystem.
+
+          <p className="text-gray-500 mt-2">
+            Explore creative professionals from around the world.
           </p>
         </div>
-        <a href="#" className="flex items-center gap-1 text-[13.5px] font-semibold text-violet-600 hover:text-violet-800 transition-colors whitespace-nowrap ml-6">
-          View all
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
       </div>
 
-      {/* Scrollable card row */}
-      <div className="relative">
-        <div ref={rowRef} className="scroll-hide flex gap-[18px] overflow-x-auto pb-2">
-          {PROFILES.map(p => <ProfileCard key={p.id} profile={p}/>)}
+      {profiles.length === 0 ? (
+        <div className="text-gray-400">
+          No creator profiles yet.
         </div>
-        {/* Scroll arrow */}
-        <button
-          onClick={() => scroll(1)}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white rounded-full border border-gray-200 flex items-center justify-center z-10 hover:border-violet-300 transition-colors"
-          style={{ boxShadow:'0 4px 16px rgba(0,0,0,0.12)', transform:'translateY(-50%)' }}>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="2.5" strokeLinecap="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </button>
-      </div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {profiles.map(profile => (
+            <div
+              key={profile.id}
+              className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 hover:shadow-xl transition"
+            >
+              <div className="flex items-center gap-4 mb-5">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-400 to-pink-400" />
+
+                <div>
+                  <h3 className="text-xl font-bold">
+                    {profile.full_name}
+                  </h3>
+
+                  <p className="text-gray-500">
+                    {profile.profession}
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-2 mb-5">
+                <p>
+                  <span className="font-semibold">
+                    Category:
+                  </span>{' '}
+                  {profile.category}
+                </p>
+
+                <p>
+                  <span className="font-semibold">
+                    Location:
+                  </span>{' '}
+                  {profile.city}, {profile.country}
+                </p>
+              </div>
+
+              <p className="text-gray-600 leading-relaxed">
+                {profile.bio}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   )
 }
