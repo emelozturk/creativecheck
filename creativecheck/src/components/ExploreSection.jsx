@@ -12,7 +12,9 @@ const profiles = [
     portfolio: '#',
     score: '92',
     links: '14',
-    activity: 'High'
+    activity: 'High',
+    image:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop'
   },
   {
     name: 'Alex Rivera',
@@ -25,7 +27,9 @@ const profiles = [
     portfolio: '#',
     score: '88',
     links: '11',
-    activity: 'High'
+    activity: 'High',
+    image:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop'
   },
   {
     name: 'Sara Kim',
@@ -38,7 +42,9 @@ const profiles = [
     portfolio: '#',
     score: '84',
     links: '9',
-    activity: 'Medium'
+    activity: 'Medium',
+    image:
+      'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop'
   },
   {
     name: 'Marcus Stone',
@@ -51,7 +57,9 @@ const profiles = [
     portfolio: '#',
     score: '81',
     links: '8',
-    activity: 'Medium'
+    activity: 'Medium',
+    image:
+      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop'
   },
   {
     name: 'Elena Petrova',
@@ -64,7 +72,9 @@ const profiles = [
     portfolio: '#',
     score: '79',
     links: '6',
-    activity: 'Growing'
+    activity: 'Growing',
+    image:
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop'
   },
   {
     name: 'Studio Parallel',
@@ -77,7 +87,9 @@ const profiles = [
     portfolio: '#',
     score: '95',
     links: '22',
-    activity: 'Very High'
+    activity: 'Very High',
+    image:
+      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop'
   }
 ]
 
@@ -108,7 +120,13 @@ export default function ExploreSection() {
             key={profile.name}
             className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 hover:-translate-y-1 hover:shadow-2xl transition"
           >
-            <div className="relative h-44 rounded-2xl bg-gradient-to-br from-violet-400 via-pink-400 to-orange-300 mb-6 overflow-hidden">
+            <div className="relative h-44 rounded-2xl mb-6 overflow-hidden">
+              <img
+                src={profile.image}
+                alt={profile.name}
+                className="w-full h-full object-cover"
+              />
+
               <span className="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-gray-700 shadow">
                 {profile.badge}
               </span>
@@ -131,6 +149,7 @@ export default function ExploreSection() {
                 <p className="text-xl font-extrabold">
                   {profile.score}
                 </p>
+
                 <p className="text-xs text-gray-400">
                   Score
                 </p>
@@ -140,6 +159,7 @@ export default function ExploreSection() {
                 <p className="text-xl font-extrabold">
                   {profile.links}
                 </p>
+
                 <p className="text-xs text-gray-400">
                   Links
                 </p>
@@ -149,6 +169,7 @@ export default function ExploreSection() {
                 <p className="text-sm font-bold">
                   {profile.activity}
                 </p>
+
                 <p className="text-xs text-gray-400">
                   Activity
                 </p>
@@ -208,7 +229,11 @@ export default function ExploreSection() {
               </button>
             </div>
 
-            <div className="mt-8 h-48 rounded-2xl bg-gradient-to-br from-violet-400 via-pink-400 to-orange-300" />
+            <img
+              src={selectedProfile.image}
+              alt={selectedProfile.name}
+              className="mt-8 h-48 w-full rounded-2xl object-cover"
+            />
 
             <div className="mt-6 grid grid-cols-3 gap-3">
               <div className="rounded-2xl bg-gray-50 p-4 text-center">
