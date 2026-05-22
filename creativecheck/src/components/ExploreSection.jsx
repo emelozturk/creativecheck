@@ -1,39 +1,13 @@
-import ProfileCard from './ProfileCard'
-
-const profiles = [
-  {
-    name: 'Lina Moreau',
-    role: 'Photographer',
-    location: 'Paris, France'
-  },
-  {
-    name: 'Alex Rivera',
-    role: 'Filmmaker',
-    location: 'Los Angeles, USA'
-  },
-  {
-    name: 'Sara Kim',
-    role: 'Model',
-    location: 'Seoul, South Korea'
-  },
-  {
-    name: 'Marcus Stone',
-    role: 'Stylist',
-    location: 'London, UK'
-  },
-  {
-    name: 'Elena Petrova',
-    role: 'Dancer',
-    location: 'Berlin, Germany'
-  },
-  {
-    name: 'Studio Parallel',
-    role: 'Creative Agency',
-    location: 'Amsterdam, Netherlands'
-  }
-]
-
 export default function ExploreSection() {
+  const profiles = [
+    { name: 'Lina Moreau', role: 'Photographer', location: 'Paris, France' },
+    { name: 'Alex Rivera', role: 'Filmmaker', location: 'Los Angeles, USA' },
+    { name: 'Sara Kim', role: 'Model', location: 'Seoul, South Korea' },
+    { name: 'Marcus Stone', role: 'Stylist', location: 'London, UK' },
+    { name: 'Elena Petrova', role: 'Dancer', location: 'Berlin, Germany' },
+    { name: 'Studio Parallel', role: 'Creative Agency', location: 'Amsterdam, Netherlands' }
+  ]
+
   return (
     <section id="studios" className="max-w-7xl mx-auto px-8 py-20">
       <div className="flex items-center justify-between mb-10">
@@ -53,12 +27,24 @@ export default function ExploreSection() {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {profiles.map((profile) => (
-          <ProfileCard
+          <div
             key={profile.name}
-            name={profile.name}
-            role={profile.role}
-            location={profile.location}
-          />
+            className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6"
+          >
+            <div className="w-full h-40 rounded-2xl bg-gradient-to-br from-violet-400 via-pink-400 to-orange-300 mb-5" />
+
+            <h3 className="text-xl font-bold">
+              {profile.name}
+            </h3>
+
+            <p className="text-gray-600 mt-1">
+              {profile.role}
+            </p>
+
+            <p className="text-gray-400 mt-2">
+              {profile.location}
+            </p>
+          </div>
         ))}
       </div>
     </section>
