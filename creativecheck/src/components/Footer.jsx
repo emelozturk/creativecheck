@@ -137,14 +137,6 @@ export default function Footer() {
                   Help Centre
                 </button>
 
-                <p className="text-sm text-gray-500 pt-2">
-                  Support Email:
-                </p>
-
-                <p className="text-sm text-white">
-                  oztremel@gmail.com
-                </p>
-
               </div>
             </div>
 
