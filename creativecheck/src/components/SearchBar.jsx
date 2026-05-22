@@ -1,11 +1,9 @@
-import { useState } from 'react'
-
-export default function SearchBar() {
-  const [q, setQ] = useState('')
+export default function SearchBar({
+  searchQuery,
+  setSearchQuery
+}) {
 
   const handleSearch = () => {
-    if (!q.trim()) return
-
     const section = document.getElementById('studios')
 
     if (section) {
@@ -40,13 +38,11 @@ export default function SearchBar() {
 
         <input
           type="text"
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleSearch()
-            }
-          }}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={(e) =>
+            e.key === 'Enter' && handleSearch()
+          }
           placeholder="Search creatives, artists, studios, agencies, production companies…"
           className="flex-1 border-none outline-none bg-transparent text-[14.5px] text-gray-700 font-medium placeholder-gray-400 py-3"
           style={{
