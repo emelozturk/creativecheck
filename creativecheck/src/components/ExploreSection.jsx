@@ -1,13 +1,53 @@
+import { useState } from 'react'
+
 const profiles = [
-  { name: 'Lina Moreau', role: 'Photographer', location: 'Paris, France', badge: 'Verified' },
-  { name: 'Alex Rivera', role: 'Filmmaker', location: 'Los Angeles, USA', badge: 'Featured' },
-  { name: 'Sara Kim', role: 'Model', location: 'Seoul, South Korea', badge: 'Talent' },
-  { name: 'Marcus Stone', role: 'Stylist', location: 'London, UK', badge: 'Creative' },
-  { name: 'Elena Petrova', role: 'Dancer', location: 'Berlin, Germany', badge: 'Performance' },
-  { name: 'Studio Parallel', role: 'Creative Agency', location: 'Amsterdam, Netherlands', badge: 'Agency' }
+  {
+    name: 'Lina Moreau',
+    role: 'Photographer',
+    location: 'Paris, France',
+    badge: 'Verified',
+    bio: 'Fashion and editorial photographer with a public portfolio and professional online presence.'
+  },
+  {
+    name: 'Alex Rivera',
+    role: 'Filmmaker',
+    location: 'Los Angeles, USA',
+    badge: 'Featured',
+    bio: 'Independent filmmaker focused on commercial, music video and documentary projects.'
+  },
+  {
+    name: 'Sara Kim',
+    role: 'Model',
+    location: 'Seoul, South Korea',
+    badge: 'Talent',
+    bio: 'Model with public portfolio visibility and professional creative collaborations.'
+  },
+  {
+    name: 'Marcus Stone',
+    role: 'Stylist',
+    location: 'London, UK',
+    badge: 'Creative',
+    bio: 'Creative stylist working across fashion, editorial and production styling.'
+  },
+  {
+    name: 'Elena Petrova',
+    role: 'Dancer',
+    location: 'Berlin, Germany',
+    badge: 'Performance',
+    bio: 'Performance artist and dancer with public creative presence.'
+  },
+  {
+    name: 'Studio Parallel',
+    role: 'Creative Agency',
+    location: 'Amsterdam, Netherlands',
+    badge: 'Agency',
+    bio: 'Creative agency with public business visibility, portfolio links and brand collaborations.'
+  }
 ]
 
 export default function ExploreSection() {
+  const [selectedProfile, setSelectedProfile] = useState(null)
+
   return (
     <section id="studios" className="max-w-7xl mx-auto px-8 py-20">
       <div className="flex items-center justify-between mb-10">
@@ -44,12 +84,12 @@ export default function ExploreSection() {
             </p>
 
             <div className="mt-6 flex gap-3">
-              <a
-                href="#"
+              <button
+                onClick={() => setSelectedProfile(profile)}
                 className="flex-1 rounded-full bg-gray-900 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-gray-700 transition"
               >
                 View Profile
-              </a>
+              </button>
 
               <a
                 href="#"
@@ -61,6 +101,49 @@ export default function ExploreSection() {
           </div>
         ))}
       </div>
+
+      {selectedProfile && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-6">
+          <div className="max-w-xl w-full rounded-3xl bg-white p-8 shadow-2xl">
+            <div className="flex items-start justify-between gap-6">
+              <div>
+                <span className="inline-block rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700 mb-4">
+                  {selectedProfile.badge}
+                </span>
+
+                <h3 className="text-3xl font-extrabold">
+                  {selectedProfile.name}
+                </h3>
+
+                <p className="text-gray-600 mt-1">
+                  {selectedProfile.role}
+                </p>
+
+                <p className="text-gray-400 mt-1">
+                  {selectedProfile.location}
+                </p>
+              </div>
+
+              <button
+                onClick={() => setSelectedProfile(null)}
+                className="rounded-full bg-gray-100 px-3 py-1 text-gray-500 hover:bg-gray-200"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="mt-8 h-48 rounded-2xl bg-gradient-to-br from-violet-400 via-pink-400 to-orange-300" />
+
+            <p className="mt-6 text-gray-600 leading-relaxed">
+              {selectedProfile.bio}
+            </p>
+
+            <div className="mt-6 rounded-2xl bg-gray-50 p-5 text-sm text-gray-500">
+              CreativeCheck provides informational summaries based on publicly available professional information.
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
