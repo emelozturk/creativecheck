@@ -13,13 +13,17 @@ export default function App() {
 
   return (
     <div
-      className="min-h-screen bg-[#fdf8f8] scroll-smooth"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+      className="min-h-screen scroll-smooth overflow-hidden"
+      style={{
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        background:
+          'radial-gradient(circle at 0% 25%, rgba(236,72,153,0.22), transparent 28%), radial-gradient(circle at 100% 20%, rgba(249,115,22,0.25), transparent 30%), radial-gradient(circle at 100% 55%, rgba(6,182,212,0.22), transparent 28%), linear-gradient(135deg,#fff7fb 0%,#f5f3ff 45%,#ecfeff 100%)'
+      }}
     >
       <Navbar />
 
       <main>
-        <section id="discover">
+        <section id="discover" className="relative">
           <Hero />
           <SearchBar
             searchQuery={searchQuery}
@@ -41,7 +45,7 @@ export default function App() {
 
         <section id="resources">
           <div className="max-w-5xl mx-auto px-8 py-20">
-            <div className="bg-white rounded-3xl shadow-xl p-10 border border-gray-100">
+            <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl p-10 border border-white/60">
               <h2 className="text-4xl font-extrabold mb-4">
                 Resources
               </h2>
