@@ -13,8 +13,7 @@ const profiles = [
     score: '92',
     links: '14',
     activity: 'High',
-    image:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop'
   },
   {
     name: 'Alex Rivera',
@@ -28,8 +27,7 @@ const profiles = [
     score: '88',
     links: '11',
     activity: 'High',
-    image:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop'
   },
   {
     name: 'Sara Kim',
@@ -43,8 +41,7 @@ const profiles = [
     score: '84',
     links: '9',
     activity: 'Medium',
-    image:
-      'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop'
   },
   {
     name: 'Marcus Stone',
@@ -58,8 +55,7 @@ const profiles = [
     score: '81',
     links: '8',
     activity: 'Medium',
-    image:
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop'
   },
   {
     name: 'Elena Petrova',
@@ -73,8 +69,7 @@ const profiles = [
     score: '79',
     links: '6',
     activity: 'Growing',
-    image:
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop'
   },
   {
     name: 'Studio Parallel',
@@ -88,8 +83,7 @@ const profiles = [
     score: '95',
     links: '22',
     activity: 'Very High',
-    image:
-      'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop'
   }
 ]
 
@@ -100,10 +94,7 @@ export default function ExploreSection() {
     <section id="studios" className="max-w-7xl mx-auto px-8 py-20">
       <div className="flex items-center justify-between mb-10">
         <div>
-          <h2 className="text-3xl font-extrabold">
-            Explore the Creative World
-          </h2>
-
+          <h2 className="text-3xl font-extrabold">Explore the Creative World</h2>
           <p className="text-gray-500 mt-2">
             Browse professionals and companies across the global creative ecosystem.
           </p>
@@ -121,58 +112,30 @@ export default function ExploreSection() {
             className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 hover:-translate-y-1 hover:shadow-2xl transition"
           >
             <div className="relative h-44 rounded-2xl mb-6 overflow-hidden">
-              <img
-                src={profile.image}
-                alt={profile.name}
-                className="w-full h-full object-cover"
-              />
-
+              <img src={profile.image} alt={profile.name} className="w-full h-full object-cover" />
               <span className="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-gray-700 shadow">
                 {profile.badge}
               </span>
             </div>
 
-            <h3 className="text-xl font-bold">
-              {profile.name}
-            </h3>
-
-            <p className="text-gray-600">
-              {profile.role}
-            </p>
-
-            <p className="text-gray-400 mt-2">
-              {profile.location}
-            </p>
+            <h3 className="text-xl font-bold">{profile.name}</h3>
+            <p className="text-gray-600">{profile.role}</p>
+            <p className="text-gray-400 mt-2">{profile.location}</p>
 
             <div className="mt-5 grid grid-cols-3 gap-3">
               <div className="rounded-2xl bg-gray-50 p-3 text-center">
-                <p className="text-xl font-extrabold">
-                  {profile.score}
-                </p>
-
-                <p className="text-xs text-gray-400">
-                  Score
-                </p>
+                <p className="text-xl font-extrabold">{profile.score}</p>
+                <p className="text-xs text-gray-400">Score</p>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-3 text-center">
-                <p className="text-xl font-extrabold">
-                  {profile.links}
-                </p>
-
-                <p className="text-xs text-gray-400">
-                  Links
-                </p>
+                <p className="text-xl font-extrabold">{profile.links}</p>
+                <p className="text-xs text-gray-400">Links</p>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-3 text-center">
-                <p className="text-sm font-bold">
-                  {profile.activity}
-                </p>
-
-                <p className="text-xs text-gray-400">
-                  Activity
-                </p>
+                <p className="text-sm font-bold">{profile.activity}</p>
+                <p className="text-xs text-gray-400">Activity</p>
               </div>
             </div>
 
@@ -201,7 +164,7 @@ export default function ExploreSection() {
 
       {selectedProfile && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-6">
-          <div className="max-w-xl w-full rounded-3xl bg-white p-8 shadow-2xl">
+          <div className="max-w-xl w-full rounded-3xl bg-white p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-start justify-between gap-6">
               <div>
                 <span className="inline-block rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700 mb-4">
@@ -237,39 +200,68 @@ export default function ExploreSection() {
 
             <div className="mt-6 grid grid-cols-3 gap-3">
               <div className="rounded-2xl bg-gray-50 p-4 text-center">
-                <p className="text-2xl font-extrabold">
-                  {selectedProfile.score}
-                </p>
-
-                <p className="text-xs text-gray-400">
-                  Public Score
-                </p>
+                <p className="text-2xl font-extrabold">{selectedProfile.score}</p>
+                <p className="text-xs text-gray-400">Public Score</p>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-4 text-center">
-                <p className="text-2xl font-extrabold">
-                  {selectedProfile.links}
-                </p>
-
-                <p className="text-xs text-gray-400">
-                  Public Links
-                </p>
+                <p className="text-2xl font-extrabold">{selectedProfile.links}</p>
+                <p className="text-xs text-gray-400">Public Links</p>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-4 text-center">
-                <p className="text-sm font-bold">
-                  {selectedProfile.activity}
-                </p>
-
-                <p className="text-xs text-gray-400">
-                  Activity
-                </p>
+                <p className="text-sm font-bold">{selectedProfile.activity}</p>
+                <p className="text-xs text-gray-400">Activity</p>
               </div>
             </div>
 
             <p className="mt-6 text-gray-600 leading-relaxed">
               {selectedProfile.bio}
             </p>
+
+            <div className="mt-6">
+              <h4 className="text-sm font-bold text-gray-800 mb-4">
+                Public Presence Timeline
+              </h4>
+
+              <div className="space-y-4">
+                <div className="flex gap-4">
+                  <div className="mt-1 w-3 h-3 rounded-full bg-violet-500 flex-shrink-0" />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">
+                      Public Portfolio Activity
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Public creative portfolio visibility detected across professional platforms.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="mt-1 w-3 h-3 rounded-full bg-pink-500 flex-shrink-0" />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">
+                      Social Presence
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Public-facing creative social and brand activity available.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="mt-1 w-3 h-3 rounded-full bg-orange-400 flex-shrink-0" />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">
+                      Professional Visibility
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      Public references and creative ecosystem visibility identified.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div className="mt-6 grid grid-cols-2 gap-3">
               <a
