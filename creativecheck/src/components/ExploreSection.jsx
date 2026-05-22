@@ -70,7 +70,10 @@ export default function ExploreSection() {
     <section id="studios" className="max-w-7xl mx-auto px-8 py-20">
       <div className="flex items-center justify-between mb-10">
         <div>
-          <h2 className="text-3xl font-extrabold">Explore the Creative World</h2>
+          <h2 className="text-3xl font-extrabold">
+            Explore the Creative World
+          </h2>
+
           <p className="text-gray-500 mt-2">
             Browse professionals and companies across the global creative ecosystem.
           </p>
@@ -93,9 +96,17 @@ export default function ExploreSection() {
               </span>
             </div>
 
-            <h3 className="text-xl font-bold">{profile.name}</h3>
-            <p className="text-gray-600">{profile.role}</p>
-            <p className="text-gray-400 mt-2">{profile.location}</p>
+            <h3 className="text-xl font-bold">
+              {profile.name}
+            </h3>
+
+            <p className="text-gray-600">
+              {profile.role}
+            </p>
+
+            <p className="text-gray-400 mt-2">
+              {profile.location}
+            </p>
 
             <p className="mt-4 text-sm text-gray-500">
               Public professional presence available.
@@ -191,7 +202,17 @@ export default function ExploreSection() {
             </div>
 
             <div className="mt-6 rounded-2xl bg-gray-50 p-5 text-sm text-gray-500">
-              CreativeCheck provides informational summaries based on publicly available professional information.
+              <p className="font-semibold text-gray-700 mb-2">
+                Source Transparency
+              </p>
+
+              <p>
+                CreativeCheck provides informational summaries based on publicly available professional information, public links and portfolio visibility.
+              </p>
+
+              <p className="mt-3 text-xs text-gray-400">
+                CreativeCheck does not verify, endorse or guarantee any individual, company or organisation listed on the platform.
+              </p>
             </div>
           </div>
         </div>
