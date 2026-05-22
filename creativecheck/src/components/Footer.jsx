@@ -9,7 +9,7 @@ export default function Footer() {
       <footer id="about" className="bg-[#0b1220] text-gray-300 px-8 py-14">
         <div className="max-w-7xl mx-auto">
 
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-4 gap-12">
 
             <div>
               <div className="flex items-center gap-3 mb-5">
@@ -21,8 +21,9 @@ export default function Footer() {
               </div>
 
               <p className="text-sm leading-relaxed text-gray-400 max-w-sm">
-                CreativeCheck is a public creative directory for discovering creative professionals,
-                studios, agencies and production companies with confidence.
+                CreativeCheck is a public creative directory designed to help users
+                discover creative professionals, agencies, studios and production companies
+                through public professional visibility and portfolio presence.
               </p>
             </div>
 
@@ -52,7 +53,58 @@ export default function Footer() {
 
             <div>
               <h4 className="text-sm font-bold tracking-[0.2em] text-gray-400 mb-6">
-                LEGAL & SUPPORT
+                LEGAL
+              </h4>
+
+              <div className="space-y-4 text-sm leading-relaxed">
+
+                <div>
+                  <p className="font-semibold text-white mb-1">
+                    Privacy Policy
+                  </p>
+
+                  <p className="text-gray-400">
+                    CreativeCheck only displays informational summaries based on publicly available professional information and public links.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-semibold text-white mb-1">
+                    Disclaimer
+                  </p>
+
+                  <p className="text-gray-400">
+                    CreativeCheck does not verify, endorse or guarantee any listed individual,
+                    organisation or company.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-semibold text-white mb-1">
+                    Information Accuracy
+                  </p>
+
+                  <p className="text-gray-400">
+                    If information is inaccurate, outdated or incomplete, users may request corrections or removal.
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-semibold text-white mb-1">
+                    Copyright Notice
+                  </p>
+
+                  <p className="text-gray-400">
+                    All trademarks, logos, images and references belong to their respective owners.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-bold tracking-[0.2em] text-gray-400 mb-6">
+                SUPPORT
               </h4>
 
               <div className="space-y-4">
@@ -85,25 +137,41 @@ export default function Footer() {
                   Help Centre
                 </button>
 
+                <p className="text-sm text-gray-500 pt-2">
+                  Support Email:
+                </p>
+
+                <p className="text-sm text-white">
+                  oztremel@gmail.com
+                </p>
+
               </div>
             </div>
 
           </div>
 
           <div className="border-t border-white/10 mt-12 pt-8 text-xs text-gray-500 leading-relaxed">
+
             <p>
-              CreativeCheck provides informational summaries based on publicly available professional
-              information, public links and portfolio visibility.
+              CreativeCheck provides informational summaries based on publicly
+              available professional information, portfolio visibility,
+              public links and public-facing references.
             </p>
 
             <p className="mt-3">
-              CreativeCheck does not verify, endorse or guarantee any individual,
-              company or organisation listed on the platform.
+              CreativeCheck is an informational platform only and does not provide
+              legal conclusions, verification services, endorsements or accusations.
+            </p>
+
+            <p className="mt-3">
+              Listed individuals or organisations may contact CreativeCheck to request
+              information correction, clarification or removal.
             </p>
 
             <p className="mt-3">
               © 2026 CreativeCheck. All rights reserved.
             </p>
+
           </div>
 
         </div>
@@ -125,7 +193,7 @@ export default function Footer() {
             </h3>
 
             <p className="text-gray-500 mt-2 mb-8">
-              Send your request, support question or profile update.
+              Send your support request, correction request or message.
             </p>
 
             <form
