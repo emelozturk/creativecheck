@@ -67,8 +67,7 @@ export default function Hero() {
           fontSize: 'clamp(16px,2vw,22px)'
         }}
       >
-        Discover photographers, filmmakers, studios, agencies,
-        models and creative professionals through public
+        Discover creative professionals through public
         professional visibility, portfolio presence and trusted
         creative discovery.
       </p>
