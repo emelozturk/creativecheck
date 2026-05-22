@@ -2,7 +2,6 @@ export default function AddProfilePage() {
   return (
     <section id="add-profile" className="max-w-3xl mx-auto px-8 py-24">
       <div className="bg-white rounded-3xl shadow-xl p-10 border border-gray-100">
-        
         <h2 className="text-4xl font-extrabold mb-3">
           Add Your Profile
         </h2>
@@ -14,6 +13,7 @@ export default function AddProfilePage() {
         <form
           action="https://formspree.io/f/mkoebgly"
           method="POST"
+          target="_blank"
           className="grid gap-5"
         >
           <input
@@ -76,7 +76,6 @@ export default function AddProfilePage() {
             Submit Profile
           </button>
         </form>
-
       </div>
     </section>
   )
