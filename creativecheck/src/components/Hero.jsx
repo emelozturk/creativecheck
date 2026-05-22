@@ -1,109 +1,227 @@
+/* REPLACE ENTIRE FILE */
+/* src/components/Hero.jsx */
+
 export default function Hero() {
   return (
     <section
-      className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center px-6"
+      className="relative overflow-hidden min-h-screen bg-[#f7f5ff]"
       style={{
-        background:
-          'linear-gradient(135deg,#fdf2ff 0%,#eef2ff 35%,#ecfeff 100%)'
+        fontFamily: "'Plus Jakarta Sans', sans-serif"
       }}
     >
 
-      {/* BIG GRADIENT BLOBS */}
+      {/* LEFT COLOR SPLASH */}
       <div
-        className="absolute top-[-120px] left-[-120px] w-[500px] h-[500px] rounded-full blur-3xl opacity-50"
+        className="absolute left-[-180px] top-[120px] w-[480px] h-[480px] rounded-full blur-3xl opacity-70"
         style={{
           background:
-            'linear-gradient(135deg,#ff00cc,#7c3aed,#06b6d4)'
+            'linear-gradient(135deg,#8b5cf6 0%,#ff00cc 45%,#ff7a18 100%)'
         }}
       />
 
+      {/* RIGHT COLOR SPLASH */}
       <div
-        className="absolute bottom-[-150px] right-[-100px] w-[520px] h-[520px] rounded-full blur-3xl opacity-40"
+        className="absolute right-[-180px] top-[80px] w-[500px] h-[500px] rounded-full blur-3xl opacity-70"
         style={{
           background:
-            'linear-gradient(135deg,#ff7a18,#ec4899,#8b5cf6)'
+            'linear-gradient(135deg,#ff4fd8 0%,#ff7a18 50%,#06b6d4 100%)'
         }}
       />
 
-      {/* GLASS CARD */}
-      <div
-        className="relative z-10 max-w-5xl w-full rounded-[42px] border border-white/50 p-14 md:p-20 text-center"
-        style={{
-          background: 'rgba(255,255,255,0.45)',
-          backdropFilter: 'blur(24px)',
-          boxShadow:
-            '0 25px 90px rgba(15,23,42,0.12)'
-        }}
-      >
+      {/* CONTENT */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
 
-        {/* TRUST BADGE */}
-        <div className="inline-flex items-center gap-2 rounded-full px-5 py-2 bg-white/70 border border-white/60 mb-8">
-          <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+        {/* NAVBAR */}
+        <div className="flex items-center justify-between pt-8">
 
-          <span className="text-[12px] font-black tracking-[2px] uppercase text-violet-700">
-            Trusted Creative Discovery Platform
-          </span>
+          {/* LOGO */}
+          <div className="flex items-center gap-4">
+
+            <div
+              className="w-[64px] h-[64px] rounded-full flex items-center justify-center"
+              style={{
+                background:
+                  'linear-gradient(135deg,#7c3aed,#ec4899,#06b6d4)',
+                boxShadow:
+                  '0 15px 40px rgba(124,58,237,0.35)'
+              }}
+            >
+              <div className="w-[42px] h-[42px] rounded-full bg-white flex items-center justify-center text-[22px] font-black">
+                ✓
+              </div>
+            </div>
+
+            <h2
+              className="font-black tracking-[-2px]"
+              style={{
+                fontSize: '42px'
+              }}
+            >
+              <span className="text-[#0f172a]">
+                Creative
+              </span>
+
+              <span
+                style={{
+                  background:
+                    'linear-gradient(90deg,#7c3aed,#ec4899,#ff7a18,#06b6d4)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
+                Check
+              </span>
+            </h2>
+
+          </div>
+
+          {/* NAV */}
+          <div className="hidden lg:flex items-center gap-12 text-[15px] font-semibold text-gray-700">
+            <a href="#">Discover</a>
+            <a href="#">Categories</a>
+            <a href="#">Studios</a>
+            <a href="#">Agencies</a>
+            <a href="#">Resources</a>
+            <a href="#">About</a>
+          </div>
+
+          {/* BUTTON */}
+          <button
+            className="h-[52px] px-8 rounded-full text-white font-bold text-[14px]"
+            style={{
+              background:
+                'linear-gradient(90deg,#0f172a,#111827)',
+              boxShadow:
+                '0 15px 40px rgba(15,23,42,0.2)'
+            }}
+          >
+            + Add Your Profile
+          </button>
+
         </div>
 
-        {/* TITLE */}
-        <h1
-          className="font-black tracking-[-5px] leading-[0.9]"
-          style={{
-            fontSize: 'clamp(70px,11vw,140px)',
-            fontFamily: "'Plus Jakarta Sans', sans-serif"
-          }}
-        >
-          <span className="text-[#0f172a]">
-            Creative
-          </span>
+        {/* HERO CENTER */}
+        <div className="flex flex-col items-center text-center pt-24">
 
-          <span
+          {/* TRUST BADGE */}
+          <div
+            className="px-6 py-3 rounded-full border border-white/60 mb-10"
             style={{
-              background:
-                'linear-gradient(90deg,#7c3aed 0%,#ec4899 30%,#ff7a18 65%,#06b6d4 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
-            }}
-          >
-            Check
-          </span>
-        </h1>
-
-        {/* SUBTITLE */}
-        <p
-          className="max-w-[760px] mx-auto text-gray-600 leading-relaxed mt-8"
-          style={{
-            fontSize: 'clamp(18px,2vw,24px)',
-            fontWeight: 500
-          }}
-        >
-          Discover creative professionals through public
-          professional visibility, portfolio presence and
-          trusted creative discovery.
-        </p>
-
-        {/* BUTTONS */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mt-12">
-
-          <a
-            href="#studios"
-            className="h-[60px] px-9 rounded-2xl text-white font-bold text-[14px] flex items-center justify-center transition-all hover:scale-[1.03]"
-            style={{
-              background:
-                'linear-gradient(90deg,#7c3aed,#ec4899)',
+              background: 'rgba(255,255,255,0.5)',
+              backdropFilter: 'blur(16px)',
               boxShadow:
-                '0 18px 45px rgba(124,58,237,0.35)'
+                '0 12px 40px rgba(124,58,237,0.12)'
             }}
           >
-            Explore Profiles
-          </a>
+            <span className="text-[12px] font-black tracking-[2px] uppercase text-violet-700">
+              Trusted Creative Discovery Platform
+            </span>
+          </div>
 
-          <a
-            href="#add-profile"
-            className="h-[60px] px-9 rounded-2xl bg-white/80 border border-white/70 text-gray-800 font-bold text-[14px] flex items-center justify-center hover:bg-white transition-all"
+          {/* TITLE */}
+          <h1
+            className="font-black leading-[0.9] tracking-[-6px] max-w-5xl"
+            style={{
+              fontSize: 'clamp(82px,12vw,150px)'
+            }}
           >
-            Submit Your Profile
-          </a>
+            <span className="text-[#0f172a]">
+              Discover Creatives
+            </span>
+
+            <br />
+
+            <span className="text-[#0f172a]">
+              with
+            </span>
+
+            <span
+              style={{
+                background:
+                  'linear-gradient(90deg,#7c3aed,#ec4899,#ff7a18,#14b8a6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
+            >
+              {' '}Confidence
+            </span>
+          </h1>
+
+          {/* SUBTITLE */}
+          <p
+            className="max-w-3xl text-gray-600 mt-10 leading-relaxed"
+            style={{
+              fontSize: '24px',
+              fontWeight: 500
+            }}
+          >
+            Explore verified creative professionals through
+            public visibility, portfolio presence and trusted
+            creative discovery.
+          </p>
+
+          {/* SEARCH */}
+          <div
+            className="w-full max-w-5xl h-[88px] rounded-full mt-14 flex items-center px-8"
+            style={{
+              background: 'rgba(255,255,255,0.78)',
+              backdropFilter: 'blur(18px)',
+              boxShadow:
+                '0 20px 70px rgba(15,23,42,0.12)'
+            }}
+          >
+
+            <input
+              type="text"
+              placeholder="Search creatives, artists, studios, agencies, production companies..."
+              className="flex-1 bg-transparent outline-none text-[20px] text-gray-700"
+            />
+
+            <button
+              className="w-[66px] h-[66px] rounded-full text-white text-[24px] font-bold"
+              style={{
+                background:
+                  'linear-gradient(135deg,#7c3aed,#9333ea)',
+                boxShadow:
+                  '0 15px 40px rgba(124,58,237,0.35)'
+              }}
+            >
+              ⌕
+            </button>
+
+          </div>
+
+          {/* CATEGORY PILLS */}
+          <div className="flex flex-wrap justify-center gap-4 mt-10 max-w-6xl">
+
+            {[
+              'Photography',
+              'Film & Video',
+              'Models & Talent',
+              'Styling & Beauty',
+              'Performance',
+              'Music',
+              'Design',
+              'Content Creators',
+              'Studios',
+              'Agencies',
+              'Production Companies'
+            ].map((item) => (
+              <div
+                key={item}
+                className="px-7 h-[54px] rounded-full flex items-center justify-center text-[15px] font-semibold"
+                style={{
+                  background: 'rgba(255,255,255,0.75)',
+                  backdropFilter: 'blur(12px)',
+                  boxShadow:
+                    '0 10px 25px rgba(15,23,42,0.06)'
+                }}
+              >
+                {item}
+              </div>
+            ))}
+
+          </div>
 
         </div>
 
