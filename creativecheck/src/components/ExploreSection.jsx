@@ -6,42 +6,60 @@ const profiles = [
     role: 'Photographer',
     location: 'Paris, France',
     badge: 'Verified',
-    bio: 'Fashion and editorial photographer with a public portfolio and professional online presence.'
+    bio: 'Fashion and editorial photographer with a public portfolio and professional online presence.',
+    website: '#',
+    instagram: '#',
+    portfolio: '#'
   },
   {
     name: 'Alex Rivera',
     role: 'Filmmaker',
     location: 'Los Angeles, USA',
     badge: 'Featured',
-    bio: 'Independent filmmaker focused on commercial, music video and documentary projects.'
+    bio: 'Independent filmmaker focused on commercial, music video and documentary projects.',
+    website: '#',
+    instagram: '#',
+    portfolio: '#'
   },
   {
     name: 'Sara Kim',
     role: 'Model',
     location: 'Seoul, South Korea',
     badge: 'Talent',
-    bio: 'Model with public portfolio visibility and professional creative collaborations.'
+    bio: 'Model with public portfolio visibility and professional creative collaborations.',
+    website: '#',
+    instagram: '#',
+    portfolio: '#'
   },
   {
     name: 'Marcus Stone',
     role: 'Stylist',
     location: 'London, UK',
     badge: 'Creative',
-    bio: 'Creative stylist working across fashion, editorial and production styling.'
+    bio: 'Creative stylist working across fashion, editorial and production styling.',
+    website: '#',
+    instagram: '#',
+    portfolio: '#'
   },
   {
     name: 'Elena Petrova',
     role: 'Dancer',
     location: 'Berlin, Germany',
     badge: 'Performance',
-    bio: 'Performance artist and dancer with public creative presence.'
+    bio: 'Performance artist and dancer with public creative presence.',
+    website: '#',
+    instagram: '#',
+    portfolio: '#'
   },
   {
     name: 'Studio Parallel',
     role: 'Creative Agency',
     location: 'Amsterdam, Netherlands',
     badge: 'Agency',
-    bio: 'Creative agency with public business visibility, portfolio links and brand collaborations.'
+    bio: 'Creative agency with public business visibility, portfolio links and brand collaborations.',
+    website: '#',
+    instagram: '#',
+    portfolio: '#'
   }
 ]
 
@@ -92,7 +110,7 @@ export default function ExploreSection() {
               </button>
 
               <a
-                href="#"
+                href={profile.website}
                 className="rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 hover:border-violet-300 transition"
               >
                 Website
@@ -137,6 +155,40 @@ export default function ExploreSection() {
             <p className="mt-6 text-gray-600 leading-relaxed">
               {selectedProfile.bio}
             </p>
+
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <a
+                href={selectedProfile.website}
+                target="_blank"
+                className="rounded-full bg-gray-900 px-4 py-3 text-center text-sm font-semibold text-white"
+              >
+                Website
+              </a>
+
+              <a
+                href={selectedProfile.instagram}
+                target="_blank"
+                className="rounded-full border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-700"
+              >
+                Instagram
+              </a>
+
+              <a
+                href={selectedProfile.portfolio}
+                target="_blank"
+                className="rounded-full border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-700"
+              >
+                Portfolio
+              </a>
+
+              <a
+                href="#add-profile"
+                onClick={() => setSelectedProfile(null)}
+                className="rounded-full bg-violet-600 px-4 py-3 text-center text-sm font-semibold text-white"
+              >
+                Contact / Submit
+              </a>
+            </div>
 
             <div className="mt-6 rounded-2xl bg-gray-50 p-5 text-sm text-gray-500">
               CreativeCheck provides informational summaries based on publicly available professional information.
