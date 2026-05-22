@@ -9,7 +9,10 @@ const profiles = [
     bio: 'Fashion and editorial photographer with a public portfolio and professional online presence.',
     website: '#',
     instagram: '#',
-    portfolio: '#'
+    portfolio: '#',
+    score: '92',
+    links: '14',
+    activity: 'High'
   },
   {
     name: 'Alex Rivera',
@@ -19,7 +22,10 @@ const profiles = [
     bio: 'Independent filmmaker focused on commercial, music video and documentary projects.',
     website: '#',
     instagram: '#',
-    portfolio: '#'
+    portfolio: '#',
+    score: '88',
+    links: '11',
+    activity: 'High'
   },
   {
     name: 'Sara Kim',
@@ -29,7 +35,10 @@ const profiles = [
     bio: 'Model with public portfolio visibility and professional creative collaborations.',
     website: '#',
     instagram: '#',
-    portfolio: '#'
+    portfolio: '#',
+    score: '84',
+    links: '9',
+    activity: 'Medium'
   },
   {
     name: 'Marcus Stone',
@@ -39,7 +48,10 @@ const profiles = [
     bio: 'Creative stylist working across fashion, editorial and production styling.',
     website: '#',
     instagram: '#',
-    portfolio: '#'
+    portfolio: '#',
+    score: '81',
+    links: '8',
+    activity: 'Medium'
   },
   {
     name: 'Elena Petrova',
@@ -49,7 +61,10 @@ const profiles = [
     bio: 'Performance artist and dancer with public creative presence.',
     website: '#',
     instagram: '#',
-    portfolio: '#'
+    portfolio: '#',
+    score: '79',
+    links: '6',
+    activity: 'Growing'
   },
   {
     name: 'Studio Parallel',
@@ -59,7 +74,10 @@ const profiles = [
     bio: 'Creative agency with public business visibility, portfolio links and brand collaborations.',
     website: '#',
     instagram: '#',
-    portfolio: '#'
+    portfolio: '#',
+    score: '95',
+    links: '22',
+    activity: 'Very High'
   }
 ]
 
@@ -108,7 +126,36 @@ export default function ExploreSection() {
               {profile.location}
             </p>
 
-            <p className="mt-4 text-sm text-gray-500">
+            <div className="mt-5 grid grid-cols-3 gap-3">
+              <div className="rounded-2xl bg-gray-50 p-3 text-center">
+                <p className="text-xl font-extrabold">
+                  {profile.score}
+                </p>
+                <p className="text-xs text-gray-400">
+                  Score
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-gray-50 p-3 text-center">
+                <p className="text-xl font-extrabold">
+                  {profile.links}
+                </p>
+                <p className="text-xs text-gray-400">
+                  Links
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-gray-50 p-3 text-center">
+                <p className="text-sm font-bold">
+                  {profile.activity}
+                </p>
+                <p className="text-xs text-gray-400">
+                  Activity
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-5 text-sm text-gray-500">
               Public professional presence available.
             </p>
 
@@ -162,6 +209,38 @@ export default function ExploreSection() {
             </div>
 
             <div className="mt-8 h-48 rounded-2xl bg-gradient-to-br from-violet-400 via-pink-400 to-orange-300" />
+
+            <div className="mt-6 grid grid-cols-3 gap-3">
+              <div className="rounded-2xl bg-gray-50 p-4 text-center">
+                <p className="text-2xl font-extrabold">
+                  {selectedProfile.score}
+                </p>
+
+                <p className="text-xs text-gray-400">
+                  Public Score
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-gray-50 p-4 text-center">
+                <p className="text-2xl font-extrabold">
+                  {selectedProfile.links}
+                </p>
+
+                <p className="text-xs text-gray-400">
+                  Public Links
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-gray-50 p-4 text-center">
+                <p className="text-sm font-bold">
+                  {selectedProfile.activity}
+                </p>
+
+                <p className="text-xs text-gray-400">
+                  Activity
+                </p>
+              </div>
+            </div>
 
             <p className="mt-6 text-gray-600 leading-relaxed">
               {selectedProfile.bio}
