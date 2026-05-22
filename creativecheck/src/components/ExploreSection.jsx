@@ -87,14 +87,23 @@ const profiles = [
   }
 ]
 
-export default function ExploreSection() {
+export default function ExploreSection({ searchQuery = '' }) {
   const [selectedProfile, setSelectedProfile] = useState(null)
+
+  const filteredProfiles = profiles.filter((profile) =>
+    `${profile.name} ${profile.role} ${profile.location} ${profile.badge}`
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase())
+  )
 
   return (
     <section id="studios" className="max-w-7xl mx-auto px-8 py-20">
       <div className="flex items-center justify-between mb-10">
         <div>
-          <h2 className="text-3xl font-extrabold">Explore the Creative World</h2>
+          <h2 className="text-3xl font-extrabold">
+            Explore the Creative World
+          </h2>
+
           <p className="text-gray-500 mt-2">
             Browse professionals and companies across the global creative ecosystem.
           </p>
@@ -105,37 +114,77 @@ export default function ExploreSection() {
         </a>
       </div>
 
+      {filteredProfiles.length === 0 && (
+        <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-12 text-center">
+          <h3 className="text-2xl font-bold text-gray-900">
+            No profiles found
+          </h3>
+
+          <p className="text-gray-500 mt-3">
+            Try searching with another keyword.
+          </p>
+        </div>
+      )}
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {profiles.map((profile) => (
+        {filteredProfiles.map((profile) => (
           <div
             key={profile.name}
             className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 hover:-translate-y-1 hover:shadow-2xl transition"
           >
             <div className="relative h-44 rounded-2xl mb-6 overflow-hidden">
-              <img src={profile.image} alt={profile.name} className="w-full h-full object-cover" />
+              <img
+                src={profile.image}
+                alt={profile.name}
+                className="w-full h-full object-cover"
+              />
+
               <span className="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-gray-700 shadow">
                 {profile.badge}
               </span>
             </div>
 
-            <h3 className="text-xl font-bold">{profile.name}</h3>
-            <p className="text-gray-600">{profile.role}</p>
-            <p className="text-gray-400 mt-2">{profile.location}</p>
+            <h3 className="text-xl font-bold">
+              {profile.name}
+            </h3>
+
+            <p className="text-gray-600">
+              {profile.role}
+            </p>
+
+            <p className="text-gray-400 mt-2">
+              {profile.location}
+            </p>
 
             <div className="mt-5 grid grid-cols-3 gap-3">
               <div className="rounded-2xl bg-gray-50 p-3 text-center">
-                <p className="text-xl font-extrabold">{profile.score}</p>
-                <p className="text-xs text-gray-400">Score</p>
+                <p className="text-xl font-extrabold">
+                  {profile.score}
+                </p>
+
+                <p className="text-xs text-gray-400">
+                  Score
+                </p>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-3 text-center">
-                <p className="text-xl font-extrabold">{profile.links}</p>
-                <p className="text-xs text-gray-400">Links</p>
+                <p className="text-xl font-extrabold">
+                  {profile.links}
+                </p>
+
+                <p className="text-xs text-gray-400">
+                  Links
+                </p>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-3 text-center">
-                <p className="text-sm font-bold">{profile.activity}</p>
-                <p className="text-xs text-gray-400">Activity</p>
+                <p className="text-sm font-bold">
+                  {profile.activity}
+                </p>
+
+                <p className="text-xs text-gray-400">
+                  Activity
+                </p>
               </div>
             </div>
 
@@ -165,6 +214,7 @@ export default function ExploreSection() {
       {selectedProfile && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-6">
           <div className="max-w-xl w-full rounded-3xl bg-white p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+
             <div className="flex items-start justify-between gap-6">
               <div>
                 <span className="inline-block rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700 mb-4">
@@ -200,18 +250,33 @@ export default function ExploreSection() {
 
             <div className="mt-6 grid grid-cols-3 gap-3">
               <div className="rounded-2xl bg-gray-50 p-4 text-center">
-                <p className="text-2xl font-extrabold">{selectedProfile.score}</p>
-                <p className="text-xs text-gray-400">Public Score</p>
+                <p className="text-2xl font-extrabold">
+                  {selectedProfile.score}
+                </p>
+
+                <p className="text-xs text-gray-400">
+                  Public Score
+                </p>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-4 text-center">
-                <p className="text-2xl font-extrabold">{selectedProfile.links}</p>
-                <p className="text-xs text-gray-400">Public Links</p>
+                <p className="text-2xl font-extrabold">
+                  {selectedProfile.links}
+                </p>
+
+                <p className="text-xs text-gray-400">
+                  Public Links
+                </p>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-4 text-center">
-                <p className="text-sm font-bold">{selectedProfile.activity}</p>
-                <p className="text-xs text-gray-400">Activity</p>
+                <p className="text-sm font-bold">
+                  {selectedProfile.activity}
+                </p>
+
+                <p className="text-xs text-gray-400">
+                  Activity
+                </p>
               </div>
             </div>
 
@@ -225,12 +290,15 @@ export default function ExploreSection() {
               </h4>
 
               <div className="space-y-4">
+
                 <div className="flex gap-4">
                   <div className="mt-1 w-3 h-3 rounded-full bg-violet-500 flex-shrink-0" />
+
                   <div>
                     <p className="text-sm font-semibold text-gray-800">
                       Public Portfolio Activity
                     </p>
+
                     <p className="text-sm text-gray-500">
                       Public creative portfolio visibility detected across professional platforms.
                     </p>
@@ -239,10 +307,12 @@ export default function ExploreSection() {
 
                 <div className="flex gap-4">
                   <div className="mt-1 w-3 h-3 rounded-full bg-pink-500 flex-shrink-0" />
+
                   <div>
                     <p className="text-sm font-semibold text-gray-800">
                       Social Presence
                     </p>
+
                     <p className="text-sm text-gray-500">
                       Public-facing creative social and brand activity available.
                     </p>
@@ -251,19 +321,23 @@ export default function ExploreSection() {
 
                 <div className="flex gap-4">
                   <div className="mt-1 w-3 h-3 rounded-full bg-orange-400 flex-shrink-0" />
+
                   <div>
                     <p className="text-sm font-semibold text-gray-800">
                       Professional Visibility
                     </p>
+
                     <p className="text-sm text-gray-500">
                       Public references and creative ecosystem visibility identified.
                     </p>
                   </div>
                 </div>
+
               </div>
             </div>
 
             <div className="mt-6 grid grid-cols-2 gap-3">
+
               <a
                 href={selectedProfile.website}
                 target="_blank"
@@ -295,6 +369,7 @@ export default function ExploreSection() {
               >
                 Contact / Submit
               </a>
+
             </div>
 
             <div className="mt-6 rounded-2xl bg-gray-50 p-5 text-sm text-gray-500">
@@ -310,6 +385,7 @@ export default function ExploreSection() {
                 CreativeCheck does not verify, endorse or guarantee any individual, company or organisation listed on the platform.
               </p>
             </div>
+
           </div>
         </div>
       )}
