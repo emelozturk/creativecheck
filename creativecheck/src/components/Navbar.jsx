@@ -1,155 +1,68 @@
-{/* NAVIGATION */}
-<nav
-  className="
-    hidden
-    lg:flex
-    items-center
-    gap-10
-    bg-white/80
-    backdrop-blur-xl
-    px-8
-    py-3
-    rounded-full
-    border
-    border-white/70
-    shadow-lg
-  "
->
+import LogoIcon from './LogoIcon'
 
-  {/* DISCOVER */}
-  <a
-    href="#discover"
-    className="
-      flex
-      flex-col
-      items-center
-      group
-      transition
-    "
-  >
-    <span
-      className="
-        text-[15px]
-        font-bold
-        text-[#0f172a]
-        group-hover:text-violet-600
-        transition
-      "
+export default function Hero() {
+  return (
+    <section
+      id="discover"
+      className="relative overflow-hidden min-h-screen"
+      style={{
+        background:
+          'linear-gradient(135deg,#fff8fb 0%,#f8f5ff 45%,#f3fdff 100%)'
+      }}
     >
-      Discover
-    </span>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-6">
 
-    <span
-      className="
-        text-[10px]
-        text-gray-500
-        mt-1
-      "
-    >
-      Explore creatives
-    </span>
-  </a>
+        <div className="flex items-center justify-between">
+          <a href="#discover" className="flex items-center gap-4">
+            <LogoIcon size={62} />
 
-  {/* CATEGORIES */}
-  <a
-    href="#categories"
-    className="
-      flex
-      flex-col
-      items-center
-      group
-      transition
-    "
-  >
-    <span
-      className="
-        text-[15px]
-        font-bold
-        text-[#0f172a]
-        group-hover:text-violet-600
-        transition
-      "
-    >
-      Categories
-    </span>
+            <h1 className="text-[48px] font-black tracking-[-3px] leading-none">
+              <span className="text-[#0f172a]">Creative</span>
+              <span className="gradient-check">Check</span>
+            </h1>
+          </a>
 
-    <span
-      className="
-        text-[10px]
-        text-gray-500
-        mt-1
-      "
-    >
-      Creative fields
-    </span>
-  </a>
+          <nav className="hidden lg:flex items-center gap-10 text-[14px] font-bold text-[#111827]">
+            <a href="#discover">Discover</a>
+            <a href="#categories">Categories</a>
+            <a href="#resources">Resources</a>
+            <a href="#about">About</a>
+          </nav>
 
-  {/* RESOURCES */}
-  <a
-    href="#resources"
-    className="
-      flex
-      flex-col
-      items-center
-      group
-      transition
-    "
-  >
-    <span
-      className="
-        text-[15px]
-        font-bold
-        text-[#0f172a]
-        group-hover:text-violet-600
-        transition
-      "
-    >
-      Resources
-    </span>
+          <a
+            href="#add-profile"
+            className="hidden md:flex h-12 px-7 rounded-full items-center justify-center text-white font-bold shadow-2xl bg-[#0f172a]"
+          >
+            + Add Your Profile
+          </a>
+        </div>
 
-    <span
-      className="
-        text-[10px]
-        text-gray-500
-        mt-1
-      "
-    >
-      Public guides
-    </span>
-  </a>
+        <div className="flex flex-col items-center text-center pt-20 pb-24">
+          <h2
+            className="font-black leading-[0.9] tracking-[-5px] text-[#0f172a]"
+            style={{ fontSize: 'clamp(58px,9vw,118px)' }}
+          >
+            Discover Creatives
+            <br />
+            with{' '}
+            <span
+              style={{
+                background:
+                  'linear-gradient(90deg,#7c3aed,#ec4899,#ff7a18,#14b8a6)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
+            >
+              Confidence
+            </span>
+          </h2>
 
-  {/* ABOUT */}
-  <a
-    href="#about"
-    className="
-      flex
-      flex-col
-      items-center
-      group
-      transition
-    "
-  >
-    <span
-      className="
-        text-[15px]
-        font-bold
-        text-[#0f172a]
-        group-hover:text-violet-600
-        transition
-      "
-    >
-      About
-    </span>
-
-    <span
-      className="
-        text-[10px]
-        text-gray-500
-        mt-1
-      "
-    >
-      Platform info
-    </span>
-  </a>
-
-</nav>
+          <p className="max-w-3xl mt-8 text-[19px] md:text-[22px] leading-relaxed text-gray-600 font-medium">
+            Discover creative professionals through public visibility,
+            portfolio presence and trusted creative discovery.
+          </p>
+        </div>
+      </div>
+    </section>
+  )
+}
