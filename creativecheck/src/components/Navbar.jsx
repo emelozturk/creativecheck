@@ -12,39 +12,84 @@ export default function Hero() {
     >
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-6">
 
+        {/* NAVBAR */}
         <div className="flex items-center justify-between">
+
+          {/* LOGO */}
           <a href="#discover" className="flex items-center gap-4">
             <LogoIcon size={62} />
 
             <h1 className="text-[48px] font-black tracking-[-3px] leading-none">
-              <span className="text-[#0f172a]">Creative</span>
-              <span className="gradient-check">Check</span>
+              <span className="text-[#0f172a]">
+                Creative
+              </span>
+
+              <span
+                style={{
+                  background:
+                    'linear-gradient(90deg,#7c3aed,#ec4899,#ff7a18,#14b8a6)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
+                Check
+              </span>
             </h1>
           </a>
 
+          {/* NAVIGATION */}
           <nav className="hidden lg:flex items-center gap-10 text-[14px] font-bold text-[#111827]">
-            <a href="#discover">Discover</a>
-            <a href="#categories">Categories</a>
-            <a href="#resources">Resources</a>
-            <a href="#about">About</a>
+
+            <a href="#discover">
+              Discover
+            </a>
+
+            <a href="#categories">
+              Categories
+            </a>
+
+            <a href="#resources">
+              Resources
+            </a>
+
+            <a href="#about">
+              About
+            </a>
+
           </nav>
 
+          {/* BUTTON */}
           <a
             href="#add-profile"
-            className="hidden md:flex h-12 px-7 rounded-full items-center justify-center text-white font-bold shadow-2xl bg-[#0f172a]"
+            className="
+              hidden
+              md:flex
+              h-12
+              px-7
+              rounded-full
+              items-center
+              justify-center
+              text-white
+              font-bold
+              shadow-2xl
+              bg-[#0f172a]
+            "
           >
             + Add Your Profile
           </a>
+
         </div>
 
+        {/* HERO CONTENT */}
         <div className="flex flex-col items-center text-center pt-20 pb-24">
+
           <h2
             className="font-black leading-[0.9] tracking-[-5px] text-[#0f172a]"
             style={{ fontSize: 'clamp(58px,9vw,118px)' }}
           >
             Discover Creatives
             <br />
-            with{' '}
+
             <span
               style={{
                 background:
@@ -53,7 +98,7 @@ export default function Hero() {
                 WebkitTextFillColor: 'transparent'
               }}
             >
-              Confidence
+              with Confidence
             </span>
           </h2>
 
@@ -61,7 +106,9 @@ export default function Hero() {
             Discover creative professionals through public visibility,
             portfolio presence and trusted creative discovery.
           </p>
+
         </div>
+
       </div>
     </section>
   )
