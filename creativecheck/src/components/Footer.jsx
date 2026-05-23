@@ -1,326 +1,147 @@
 import { useState } from 'react'
 import LogoIcon from './LogoIcon'
 
-export default function Footer() {
-  const [openContact, setOpenContact] = useState(false)
-
-  const [contactLoading, setContactLoading] = useState(false)
-  const [contactMessage, setContactMessage] = useState('')
-
-  const handleContactSubmit = async (e) => {
-    e.preventDefault()
-
-    setContactLoading(true)
-    setContactMessage('')
-
-    const formData = new FormData(e.target)
-
-    try {
-      const response = await fetch(
-        'https://formspree.io/f/mkoebgly',
-        {
-          method: 'POST',
-          mode: 'cors',
-          body: formData,
-          headers: {
-            Accept: 'application/json'
-          }
-        }
-      )
-
-      if (response.ok) {
-        setContactMessage('Message sent successfully.')
-
-        e.target.reset()
-
-        setTimeout(() => {
-          setOpenContact(false)
-          setContactMessage('')
-        }, 1500)
-
-      } else {
-        setContactMessage(
-          'Something went wrong.'
-        )
-      }
-
-    } catch (error) {
-      setContactMessage(
-        'Something went wrong.'
-      )
-    }
-
-    setContactLoading(false)
+const info = {
+  about: {
+    title: 'About CreativeCheck',
+    text: 'CreativeCheck is a public creative discovery platform that helps users explore creative professionals through public professional visibility, portfolio presence and trusted discovery signals.'
+  },
+  privacy: {
+    title: 'Privacy Policy',
+    text: 'CreativeCheck only collects information submitted by users or publicly available professional information. Users may request correction or removal of their profile information.'
+  },
+  terms: {
+    title: 'Terms of Service',
+    text: 'Users are responsible for submitting accurate information that belongs to them. CreativeCheck may review, reject, update or remove profiles where necessary.'
+  },
+  disclaimer: {
+    title: 'Disclaimer',
+    text: 'CreativeCheck is an informational discovery platform. It does not provide legal conclusions, official certification, endorsements, guarantees or background checks.'
+  },
+  copyright: {
+    title: 'Copyright Notice',
+    text: 'All images, logos, names, trademarks and creative works remain the property of their respective owners. Copyright concerns can be submitted for review.'
+  },
+  removal: {
+    title: 'Profile Removal',
+    text: 'If you want your profile removed or corrected, you can contact CreativeCheck and request profile removal, clarification or information correction.'
   }
+}
+
+export default function Footer() {
+  const [active, setActive] = useState(null)
 
   return (
     <>
-      <footer id="about" className="bg-[#0b1220] text-gray-300 px-8 py-14">
+      <footer
+        id="about"
+        className="bg-[#0b1220] text-gray-300 px-8 py-16"
+      >
         <div className="max-w-7xl mx-auto">
 
-          <div className="grid md:grid-cols-4 gap-12">
+          <div className="grid md:grid-cols-3 gap-14">
 
             <div>
               <div className="flex items-center gap-3 mb-5">
-                <LogoIcon size={40} />
+                <LogoIcon size={42} />
 
-                <span className="text-xl font-extrabold text-white">
+                <span className="text-2xl font-extrabold text-white">
                   Creative<span className="gradient-check">Check</span>
                 </span>
               </div>
 
               <p className="text-sm leading-relaxed text-gray-400 max-w-sm">
-                CreativeCheck is a public creative directory designed to help users
-                discover creative professionals, agencies, studios and production companies
-                through public professional visibility and portfolio presence.
+                A public creative discovery platform focused on professional visibility,
+                portfolio presence and trusted creative discovery.
               </p>
             </div>
 
             <div>
-              <h4 className="text-sm font-bold tracking-[0.2em] text-gray-400 mb-6">
+              <h4 className="text-sm font-bold tracking-[0.25em] text-gray-500 mb-6">
                 COMPANY
               </h4>
 
               <div className="space-y-4">
+                <button onClick={() => setActive(info.about)} className="block hover:text-white transition text-left">
+                  About
+                </button>
 
-                <a href="#about" className="block hover:text-white transition">
-                  About CreativeCheck
+                <a href="#discover" className="block hover:text-white transition">
+                  Discover
                 </a>
-
-                <div className="text-sm leading-relaxed text-gray-400">
-                  <p>
-                    CreativeCheck is a modern public creative directory designed to help users discover photographers,
-                    filmmakers, models, agencies, studios and creative professionals through public professional visibility.
-                  </p>
-
-                  <p className="mt-4">
-                    The platform focuses on transparency, portfolio presence, public-facing references and creative ecosystem discovery.
-                  </p>
-
-                  <p className="mt-4">
-                    CreativeCheck helps creatives showcase their public work while allowing users, brands and collaborators
-                    to explore talent with confidence.
-                  </p>
-                </div>
 
                 <a href="#resources" className="block hover:text-white transition">
                   Resources
                 </a>
-
-                <a href="#categories" className="block hover:text-white transition">
-                  Creative Categories
-                </a>
-
-                <a href="#add-profile" className="block hover:text-white transition">
-                  Submit Your Profile
-                </a>
-
               </div>
             </div>
 
             <div>
-              <h4 className="text-sm font-bold tracking-[0.2em] text-gray-400 mb-6">
-                LEGAL
-              </h4>
-
-              <div className="space-y-4 text-sm leading-relaxed">
-
-                <div>
-                  <p className="font-semibold text-white mb-1">
-                    Privacy Policy
-                  </p>
-
-                  <p className="text-gray-400">
-                    CreativeCheck only displays informational summaries based on publicly available professional information and public links.
-                  </p>
-                </div>
-
-                <div>
-                  <p className="font-semibold text-white mb-1">
-                    Disclaimer
-                  </p>
-
-                  <p className="text-gray-400">
-                    CreativeCheck does not verify, endorse or guarantee any listed individual,
-                    organisation or company.
-                  </p>
-                </div>
-
-                <div>
-                  <p className="font-semibold text-white mb-1">
-                    Information Accuracy
-                  </p>
-
-                  <p className="text-gray-400">
-                    If information is inaccurate, outdated or incomplete, users may request corrections or removal.
-                  </p>
-                </div>
-
-                <div>
-                  <p className="font-semibold text-white mb-1">
-                    Copyright Notice
-                  </p>
-
-                  <p className="text-gray-400">
-                    All trademarks, logos, images and references belong to their respective owners.
-                  </p>
-                </div>
-
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-bold tracking-[0.2em] text-gray-400 mb-6">
-                SUPPORT
+              <h4 className="text-sm font-bold tracking-[0.25em] text-gray-500 mb-6">
+                LEGAL & SUPPORT
               </h4>
 
               <div className="space-y-4">
-
-                <button
-                  onClick={() => setOpenContact(true)}
-                  className="block hover:text-white transition text-left"
-                >
-                  Contact Support
+                <button onClick={() => setActive(info.privacy)} className="block hover:text-white transition text-left">
+                  Privacy Policy
                 </button>
 
-                <button
-                  onClick={() => setOpenContact(true)}
-                  className="block hover:text-white transition text-left"
-                >
-                  Profile Removal Request
+                <button onClick={() => setActive(info.terms)} className="block hover:text-white transition text-left">
+                  Terms of Service
                 </button>
 
-                <button
-                  onClick={() => setOpenContact(true)}
-                  className="block hover:text-white transition text-left"
-                >
-                  Information Correction
+                <button onClick={() => setActive(info.disclaimer)} className="block hover:text-white transition text-left">
+                  Disclaimer
                 </button>
 
-                <button
-                  onClick={() => setOpenContact(true)}
-                  className="block hover:text-white transition text-left"
-                >
-                  Help Centre
+                <button onClick={() => setActive(info.copyright)} className="block hover:text-white transition text-left">
+                  Copyright Notice
                 </button>
 
+                <button onClick={() => setActive(info.removal)} className="block hover:text-white transition text-left">
+                  Profile Removal / Correction
+                </button>
               </div>
             </div>
 
           </div>
 
-          <div className="border-t border-white/10 mt-12 pt-8 text-xs text-gray-500 leading-relaxed">
-
+          <div className="border-t border-white/10 mt-14 pt-8 text-xs text-gray-500 leading-relaxed">
             <p>
-              CreativeCheck provides informational summaries based on publicly
-              available professional information, portfolio visibility,
-              public links and public-facing references.
-            </p>
-
-            <p className="mt-3">
-              CreativeCheck is an informational platform only and does not provide
-              legal conclusions, verification services, endorsements or accusations.
-            </p>
-
-            <p className="mt-3">
-              Listed individuals or organisations may contact CreativeCheck to request
-              information correction, clarification or removal.
+              CreativeCheck provides informational summaries based on publicly available professional information,
+              portfolio visibility, public links and public-facing references.
             </p>
 
             <p className="mt-3">
               © 2026 CreativeCheck. All rights reserved.
             </p>
-
           </div>
 
         </div>
       </footer>
 
-      {openContact && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-6">
-
-          <div className="w-full max-w-lg rounded-3xl bg-white p-8 shadow-2xl relative">
-
-            <button
-              onClick={() => setOpenContact(false)}
-              className="absolute top-5 right-5 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500"
-            >
-              ✕
-            </button>
-
-            <h3 className="text-3xl font-extrabold text-gray-900">
-              Contact CreativeCheck
-            </h3>
-
-            <p className="text-gray-500 mt-2 mb-8">
-              Send your support request, correction request or message.
-            </p>
-
-            <form
-              onSubmit={handleContactSubmit}
-              className="space-y-5"
-            >
-
+      {active && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 px-4">
+          <div className="w-full max-w-3xl bg-white rounded-t-[32px] p-8 shadow-2xl animate-slide-up">
+            <div className="flex items-start justify-between gap-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Full Name
-                </label>
+                <h3 className="text-3xl font-extrabold text-gray-900 mb-4">
+                  {active.title}
+                </h3>
 
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  className="w-full rounded-2xl border border-gray-200 px-5 py-3 outline-none focus:border-violet-400"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Email Address
-                </label>
-
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  className="w-full rounded-2xl border border-gray-200 px-5 py-3 outline-none focus:border-violet-400"
-                  placeholder="you@example.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Message
-                </label>
-
-                <textarea
-                  name="message"
-                  rows="5"
-                  required
-                  className="w-full rounded-2xl border border-gray-200 px-5 py-3 outline-none focus:border-violet-400 resize-none"
-                  placeholder="Write your message..."
-                />
+                <p className="text-gray-600 leading-relaxed text-[16px]">
+                  {active.text}
+                </p>
               </div>
 
               <button
-                type="submit"
-                disabled={contactLoading}
-                className="w-full rounded-2xl bg-violet-600 text-white py-4 font-semibold hover:bg-violet-700 transition disabled:opacity-50"
+                onClick={() => setActive(null)}
+                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600"
               >
-                {contactLoading ? 'Sending...' : 'Send Message'}
+                ✕
               </button>
-
-              {contactMessage && (
-                <p className="text-sm text-gray-600">
-                  {contactMessage}
-                </p>
-              )}
-
-            </form>
-
+            </div>
           </div>
-
         </div>
       )}
     </>
