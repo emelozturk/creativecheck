@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Hero from './components/Hero'
-import CategoryChips from './components/CategoryChips'
 import ExploreSection from './components/ExploreSection'
 import FeatureStrip from './components/FeatureStrip'
 import Footer from './components/Footer'
@@ -15,27 +14,19 @@ export default function App() {
       style={{
         fontFamily: "'Plus Jakarta Sans', sans-serif",
         background:
-          'linear-gradient(135deg,#fff7fb 0%,#f5f3ff 45%,#ecfeff 100%)'
+          'linear-gradient(135deg,#fff8fb 0%,#f8f5ff 45%,#f3fdff 100%)'
       }}
     >
 
-      {/* PREMIUM HERO */}
+      {/* HERO */}
       <section id="discover">
         <Hero />
-      </section>
-
-      {/* CATEGORIES */}
-      <section
-        id="categories"
-        className="relative z-10 mt-[-30px]"
-      >
-        <CategoryChips />
       </section>
 
       {/* EXPLORE */}
       <section
         id="studios"
-        className="relative z-10 pt-8"
+        className="relative z-10 -mt-10"
       >
         <ExploreSection
           searchQuery={searchQuery}
@@ -58,25 +49,46 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-8 py-20">
 
           <div
-            className="rounded-[36px] p-14 border border-white/50"
+            className="rounded-[40px] p-14 border border-white/60"
             style={{
-              background: 'rgba(255,255,255,0.5)',
-              backdropFilter: 'blur(20px)',
+              background:
+                'rgba(255,255,255,0.65)',
+              backdropFilter:
+                'blur(24px)',
               boxShadow:
-                '0 20px 70px rgba(15,23,42,0.08)'
+                '0 20px 80px rgba(15,23,42,0.08)'
             }}
           >
 
-            <h2 className="text-5xl font-black tracking-[-2px] text-[#0f172a] mb-6">
-              Creative Resources
-            </h2>
+            <div className="max-w-3xl">
 
-            <p className="text-[18px] leading-relaxed text-gray-600 max-w-3xl">
-              CreativeCheck resources, public
-              information guidance, creative industry
-              visibility tools and trusted discovery
-              updates will appear here.
-            </p>
+              <div
+                className="inline-flex items-center px-5 py-2 rounded-full mb-6"
+                style={{
+                  background:
+                    'linear-gradient(135deg,#7c3aed,#ec4899)',
+                  color: 'white'
+                }}
+              >
+                <span className="text-[12px] font-black tracking-[2px] uppercase">
+                  CreativeCheck Resources
+                </span>
+              </div>
+
+              <h2 className="text-6xl font-black tracking-[-3px] leading-[1] text-[#020617] mb-8">
+                Trusted Creative
+                <br />
+                Visibility Platform
+              </h2>
+
+              <p className="text-[20px] leading-relaxed text-gray-600">
+                CreativeCheck helps discover creatives
+                through public professional visibility,
+                portfolios, industry presence and trusted
+                discovery systems.
+              </p>
+
+            </div>
 
           </div>
 
