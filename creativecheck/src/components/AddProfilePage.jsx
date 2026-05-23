@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const SUPABASE_URL = 'https://gnqrakuhmzchwherombt.supabase.co'
-const SUPABASE_KEY = 'sb_publishable_-sTc8wYEmrNKb-gtHc_qHA_cxq9M5lS
+const SUPABASE_KEY = 'sb_publishable_-sTc8wYEmrNKb-gtHc_qHA_cxq9M5lS'
 
 export default function AddProfilePage() {
   const [open, setOpen] = useState(false)
