@@ -322,7 +322,8 @@ export default function Hero() {
               'Performance',
               'Music',
               'Design',
-              'Content Creators'
+              'Content Creators',
+              'Production Companies'
             ].map((item) => (
               <div
                 key={item}
