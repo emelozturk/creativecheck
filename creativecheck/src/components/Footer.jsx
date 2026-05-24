@@ -1,149 +1,246 @@
 import { useState } from 'react'
-import LogoIcon from './LogoIcon'
-
-const info = {
-  about: {
-    title: 'About CreativeCheck',
-    text: 'CreativeCheck is a public creative discovery platform that helps users explore creative professionals through public professional visibility, portfolio presence and trusted discovery signals.'
-  },
-  privacy: {
-    title: 'Privacy Policy',
-    text: 'CreativeCheck only collects information submitted by users or publicly available professional information. Users may request correction or removal of their profile information.'
-  },
-  terms: {
-    title: 'Terms of Service',
-    text: 'Users are responsible for submitting accurate information that belongs to them. CreativeCheck may review, reject, update or remove profiles where necessary.'
-  },
-  disclaimer: {
-    title: 'Disclaimer',
-    text: 'CreativeCheck is an informational discovery platform. It does not provide legal conclusions, official certification, endorsements, guarantees or background checks.'
-  },
-  copyright: {
-    title: 'Copyright Notice',
-    text: 'All images, logos, names, trademarks and creative works remain the property of their respective owners. Copyright concerns can be submitted for review.'
-  },
-  removal: {
-    title: 'Profile Removal',
-    text: 'If you want your profile removed or corrected, you can contact CreativeCheck and request profile removal, clarification or information correction.'
-  }
-}
 
 export default function Footer() {
-  const [active, setActive] = useState(null)
+  const [showContact, setShowContact] = useState(false)
+  const [showRemoval, setShowRemoval] = useState(false)
 
   return (
-    <>
-      <footer
-        id="about"
-        className="bg-[#0b1220] text-gray-300 px-8 py-16"
-      >
-        <div className="max-w-7xl mx-auto">
+    <footer className="max-w-7xl mx-auto px-8 pt-10 pb-16">
 
-          <div className="grid md:grid-cols-3 gap-14">
+      <div className="rounded-[36px] overflow-hidden border border-white/70 bg-white/75 backdrop-blur-xl shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
 
-            <div>
-              <div className="flex items-center gap-3 mb-5">
-                <LogoIcon size={42} />
+        {/* TOP */}
+        <div className="grid lg:grid-cols-4 gap-10 p-10">
 
-                <span className="text-2xl font-extrabold text-white">
-                  Creative<span className="gradient-check">Check</span>
-                </span>
-              </div>
+          {/* BRAND */}
+          <div>
+            <h2 className="text-3xl font-black tracking-[-2px] text-[#0f172a]">
+              Creative<span className="gradient-check">Check</span>
+            </h2>
 
-              <p className="text-sm leading-relaxed text-gray-400 max-w-sm">
-                A public creative discovery platform focused on professional visibility,
-                portfolio presence and trusted creative discovery.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-bold tracking-[0.25em] text-gray-500 mb-6">
-                COMPANY
-              </h4>
-
-              <div className="space-y-4">
-                <button onClick={() => setActive(info.about)} className="block hover:text-white transition text-left">
-                  About
-                </button>
-
-                <a href="#discover" className="block hover:text-white transition">
-                  Discover
-                </a>
-
-                <a href="#resources" className="block hover:text-white transition">
-                  Resources
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-bold tracking-[0.25em] text-gray-500 mb-6">
-                LEGAL & SUPPORT
-              </h4>
-
-              <div className="space-y-4">
-                <button onClick={() => setActive(info.privacy)} className="block hover:text-white transition text-left">
-                  Privacy Policy
-                </button>
-
-                <button onClick={() => setActive(info.terms)} className="block hover:text-white transition text-left">
-                  Terms of Service
-                </button>
-
-                <button onClick={() => setActive(info.disclaimer)} className="block hover:text-white transition text-left">
-                  Disclaimer
-                </button>
-
-                <button onClick={() => setActive(info.copyright)} className="block hover:text-white transition text-left">
-                  Copyright Notice
-                </button>
-
-                <button onClick={() => setActive(info.removal)} className="block hover:text-white transition text-left">
-                  Profile Removal / Correction
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="border-t border-white/10 mt-14 pt-8 text-xs text-gray-500 leading-relaxed">
-            <p>
-              CreativeCheck provides informational summaries based on publicly available professional information,
-              portfolio visibility, public links and public-facing references.
-            </p>
-
-            <p className="mt-3">
-              © 2026 CreativeCheck. All rights reserved.
+            <p className="mt-4 text-sm text-gray-500 leading-relaxed">
+              Public creative discovery platform helping users explore creatives,
+              studios, agencies and production companies through public visibility
+              and portfolio presence.
             </p>
           </div>
 
-        </div>
-      </footer>
+          {/* PLATFORM */}
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-[2px] text-gray-400 mb-5">
+              Platform
+            </h3>
 
-      {active && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 px-4">
-          <div className="w-full max-w-3xl bg-white rounded-t-[32px] p-8 shadow-2xl animate-slide-up">
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <h3 className="text-3xl font-extrabold text-gray-900 mb-4">
-                  {active.title}
-                </h3>
+            <div className="flex flex-col gap-3 text-[15px] font-semibold text-[#0f172a]">
 
-                <p className="text-gray-600 leading-relaxed text-[16px]">
-                  {active.text}
-                </p>
-              </div>
+              <a href="#discover" className="hover:text-violet-600 transition">
+                Discover
+              </a>
+
+              <a href="#categories" className="hover:text-violet-600 transition">
+                Categories
+              </a>
+
+              <a href="#resources" className="hover:text-violet-600 transition">
+                Resources
+              </a>
+
+              <a href="#about" className="hover:text-violet-600 transition">
+                About
+              </a>
+
+            </div>
+          </div>
+
+          {/* LEGAL */}
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-[2px] text-gray-400 mb-5">
+              Legal
+            </h3>
+
+            <div className="flex flex-col gap-3 text-[15px] font-semibold text-[#0f172a]">
+
+              <button className="text-left hover:text-violet-600 transition">
+                Privacy Policy
+              </button>
+
+              <button className="text-left hover:text-violet-600 transition">
+                Disclaimer
+              </button>
 
               <button
-                onClick={() => setActive(null)}
-                className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600"
+                onClick={() => setShowRemoval(true)}
+                className="text-left hover:text-violet-600 transition"
               >
-                ✕
+                Profile Removal
               </button>
+
             </div>
           </div>
+
+          {/* CONTACT */}
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-[2px] text-gray-400 mb-5">
+              Contact
+            </h3>
+
+            <button
+              onClick={() => setShowContact(true)}
+              className="
+                px-5
+                py-3
+                rounded-full
+                bg-[#0f172a]
+                text-white
+                text-sm
+                font-semibold
+                hover:bg-violet-600
+                transition
+              "
+            >
+              Contact CreativeCheck
+            </button>
+          </div>
+
+        </div>
+
+        {/* BOTTOM */}
+        <div className="border-t border-white/70 px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
+
+          <p className="text-sm text-gray-500">
+            © 2026 CreativeCheck. All rights reserved.
+          </p>
+
+          <p className="text-sm text-gray-400">
+            Public creative discovery platform.
+          </p>
+
+        </div>
+
+      </div>
+
+      {/* CONTACT MODAL */}
+      {showContact && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-6">
+
+          <div className="w-full max-w-lg rounded-[32px] bg-white p-8 shadow-2xl">
+
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-black text-[#0f172a]">
+                Contact CreativeCheck
+              </h2>
+
+              <button
+                onClick={() => setShowContact(false)}
+                className="text-2xl text-gray-400 hover:text-black"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-4">
+
+              <input
+                type="text"
+                placeholder="Your name"
+                className="w-full rounded-2xl border border-gray-200 px-5 py-4 outline-none"
+              />
+
+              <input
+                type="email"
+                placeholder="Email address"
+                className="w-full rounded-2xl border border-gray-200 px-5 py-4 outline-none"
+              />
+
+              <textarea
+                rows="5"
+                placeholder="Message..."
+                className="w-full rounded-2xl border border-gray-200 px-5 py-4 outline-none resize-none"
+              />
+
+              <button
+                className="
+                  w-full
+                  py-4
+                  rounded-2xl
+                  bg-[#0f172a]
+                  text-white
+                  font-semibold
+                  hover:bg-violet-600
+                  transition
+                "
+              >
+                Send Message
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
       )}
-    </>
+
+      {/* PROFILE REMOVAL MODAL */}
+      {showRemoval && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-6">
+
+          <div className="w-full max-w-lg rounded-[32px] bg-white p-8 shadow-2xl">
+
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-black text-[#0f172a]">
+                Profile Removal Request
+              </h2>
+
+              <button
+                onClick={() => setShowRemoval(false)}
+                className="text-2xl text-gray-400 hover:text-black"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-4">
+
+              <input
+                type="text"
+                placeholder="Full name"
+                className="w-full rounded-2xl border border-gray-200 px-5 py-4 outline-none"
+              />
+
+              <input
+                type="email"
+                placeholder="Email address"
+                className="w-full rounded-2xl border border-gray-200 px-5 py-4 outline-none"
+              />
+
+              <textarea
+                rows="5"
+                placeholder="Please provide your profile removal request..."
+                className="w-full rounded-2xl border border-gray-200 px-5 py-4 outline-none resize-none"
+              />
+
+              <button
+                className="
+                  w-full
+                  py-4
+                  rounded-2xl
+                  bg-red-500
+                  text-white
+                  font-semibold
+                  hover:bg-red-600
+                  transition
+                "
+              >
+                Submit Request
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
+    </footer>
   )
 }
