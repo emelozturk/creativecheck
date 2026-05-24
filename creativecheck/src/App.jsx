@@ -42,6 +42,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('')
 
   return (
+
     <div className="min-h-screen overflow-hidden">
 
       {/* HERO */}
@@ -118,12 +119,13 @@ export default function App() {
             </p>
 
             <h2 className="text-3xl md:text-4xl font-black tracking-[-2px] text-[#0f172a]">
-              Selected creative profiles
+              Discover verified creative talent
             </h2>
 
           </div>
 
-          <button
+          <a
+            href="#studios"
             className="
               hidden
               md:flex
@@ -142,116 +144,122 @@ export default function App() {
             "
           >
             Explore all
-          </button>
+          </a>
 
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div
+          className="
+            rounded-[36px]
+            overflow-hidden
+            bg-gradient-to-br
+            from-violet-600
+            via-fuchsia-500
+            to-orange-400
+            p-[1px]
+            shadow-[0_20px_70px_rgba(124,58,237,0.25)]
+          "
+        >
 
-          {[
-            {
-              name: 'Sophia Bennett',
-              role: 'Fashion Photographer',
-              image:
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop'
-            },
-
-            {
-              name: 'Daniel Hart',
-              role: 'Film Director',
-              image:
-                'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop'
-            },
-
-            {
-              name: 'Mila Rivera',
-              role: 'Creative Stylist',
-              image:
-                'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop'
-            }
-
-          ].map((profile) => (
+          <div
+            className="
+              rounded-[36px]
+              bg-white/80
+              backdrop-blur-2xl
+              px-8
+              py-14
+              text-center
+            "
+          >
 
             <div
-              key={profile.name}
               className="
-                group
-                overflow-hidden
-                rounded-[30px]
-                bg-white/70
-                backdrop-blur-xl
-                border
-                border-white/80
-                shadow-[0_15px_40px_rgba(15,23,42,0.06)]
-                hover:-translate-y-1
-                hover:shadow-[0_25px_60px_rgba(15,23,42,0.12)]
-                transition-all
-                duration-300
+                inline-flex
+                items-center
+                gap-2
+                px-5
+                py-2
+                rounded-full
+                bg-violet-100
+                text-violet-700
+                text-xs
+                font-black
+                tracking-[2px]
+                uppercase
+                mb-6
               "
             >
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              Live Creative Profiles
+            </div>
 
-              <div className="relative h-[320px] overflow-hidden">
+            <h3
+              className="
+                text-4xl
+                md:text-5xl
+                font-black
+                tracking-[-3px]
+                text-[#0f172a]
+                leading-[1]
+                max-w-4xl
+                mx-auto
+              "
+            >
+              Real approved creators are now visible across CreativeCheck.
+            </h3>
 
-                <img
-                  src={profile.image}
-                  alt={profile.name}
-                  className="
-                    w-full
-                    h-full
-                    object-cover
-                    group-hover:scale-105
-                    transition-transform
-                    duration-700
-                  "
-                />
+            <p
+              className="
+                max-w-2xl
+                mx-auto
+                mt-6
+                text-[17px]
+                text-gray-600
+                leading-relaxed
+              "
+            >
+              Explore photographers, filmmakers, designers, models,
+              studios, agencies and creative professionals through
+              public profile visibility, portfolio presence and
+              trusted discovery systems.
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-3 mt-10">
+
+              {[
+                'Photographers',
+                'Filmmakers',
+                'Models',
+                'Stylists',
+                'Creative Directors',
+                'Studios',
+                'Agencies',
+                'Production'
+              ].map((item) => (
 
                 <div
+                  key={item}
                   className="
-                    absolute
-                    inset-0
-                    bg-gradient-to-t
-                    from-black/70
-                    via-black/10
-                    to-transparent
+                    px-4
+                    py-2
+                    rounded-full
+                    bg-white
+                    border
+                    border-white/80
+                    text-sm
+                    font-semibold
+                    text-[#0f172a]
+                    shadow-sm
                   "
-                />
-
-                <div className="absolute bottom-0 left-0 p-6 text-white">
-
-                  <div
-                    className="
-                      inline-flex
-                      items-center
-                      gap-2
-                      px-3
-                      py-1
-                      rounded-full
-                      bg-white/20
-                      backdrop-blur-md
-                      text-xs
-                      font-semibold
-                      mb-4
-                    "
-                  >
-                    <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                    Verified Creative
-                  </div>
-
-                  <h3 className="text-2xl font-black tracking-[-1px]">
-                    {profile.name}
-                  </h3>
-
-                  <p className="text-sm text-white/80 mt-1">
-                    {profile.role}
-                  </p>
-
+                >
+                  {item}
                 </div>
 
-              </div>
+              ))}
 
             </div>
 
-          ))}
+          </div>
 
         </div>
 
@@ -433,5 +441,7 @@ export default function App() {
       <Footer />
 
     </div>
+
   )
+
 }
