@@ -106,6 +106,157 @@ export default function App() {
 
       </section>
 
+      {/* FEATURED CREATIVES */}
+      <section className="max-w-7xl mx-auto px-8 py-10">
+
+        <div className="flex items-center justify-between mb-6">
+
+          <div>
+
+            <p className="text-xs uppercase tracking-[3px] text-violet-500 font-black mb-3">
+              Featured Creatives
+            </p>
+
+            <h2 className="text-3xl md:text-4xl font-black tracking-[-2px] text-[#0f172a]">
+              Selected creative profiles
+            </h2>
+
+          </div>
+
+          <button
+            className="
+              hidden
+              md:flex
+              px-5
+              py-3
+              rounded-full
+              bg-white/70
+              backdrop-blur-xl
+              border
+              border-white/80
+              text-sm
+              font-semibold
+              text-[#0f172a]
+              hover:bg-white
+              transition
+            "
+          >
+            Explore all
+          </button>
+
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          {[
+            {
+              name: 'Sophia Bennett',
+              role: 'Fashion Photographer',
+              image:
+                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop'
+            },
+
+            {
+              name: 'Daniel Hart',
+              role: 'Film Director',
+              image:
+                'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop'
+            },
+
+            {
+              name: 'Mila Rivera',
+              role: 'Creative Stylist',
+              image:
+                'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop'
+            }
+
+          ].map((profile) => (
+
+            <div
+              key={profile.name}
+              className="
+                group
+                overflow-hidden
+                rounded-[30px]
+                bg-white/70
+                backdrop-blur-xl
+                border
+                border-white/80
+                shadow-[0_15px_40px_rgba(15,23,42,0.06)]
+                hover:-translate-y-1
+                hover:shadow-[0_25px_60px_rgba(15,23,42,0.12)]
+                transition-all
+                duration-300
+              "
+            >
+
+              <div className="relative h-[320px] overflow-hidden">
+
+                <img
+                  src={profile.image}
+                  alt={profile.name}
+                  className="
+                    w-full
+                    h-full
+                    object-cover
+                    group-hover:scale-105
+                    transition-transform
+                    duration-700
+                  "
+                />
+
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-black/70
+                    via-black/10
+                    to-transparent
+                  "
+                />
+
+                <div className="absolute bottom-0 left-0 p-6 text-white">
+
+                  <div
+                    className="
+                      inline-flex
+                      items-center
+                      gap-2
+                      px-3
+                      py-1
+                      rounded-full
+                      bg-white/20
+                      backdrop-blur-md
+                      text-xs
+                      font-semibold
+                      mb-4
+                    "
+                  >
+                    <div className="w-2 h-2 rounded-full bg-emerald-400" />
+                    Verified Creative
+                  </div>
+
+                  <h3 className="text-2xl font-black tracking-[-1px]">
+                    {profile.name}
+                  </h3>
+
+                  <p className="text-sm text-white/80 mt-1">
+                    {profile.role}
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </section>
+
       {/* EXPLORE */}
       <section
         id="studios"
