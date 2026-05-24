@@ -1,134 +1,216 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { supabase } from '../supabase'
 
-const profiles = [
-  {
-    name: 'Lina Moreau',
-    role: 'Photographer',
-    location: 'Paris, France',
-    badge: 'Verified',
-    bio: 'Fashion and editorial photographer with a public portfolio and professional online presence.',
-    website: '#',
-    instagram: '#',
-    portfolio: '#',
-    score: '92',
-    links: '14',
-    activity: 'High',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop'
-  },
-  {
-    name: 'Alex Rivera',
-    role: 'Filmmaker',
-    location: 'Los Angeles, USA',
-    badge: 'Featured',
-    bio: 'Independent filmmaker focused on commercial, music video and documentary projects.',
-    website: '#',
-    instagram: '#',
-    portfolio: '#',
-    score: '88',
-    links: '11',
-    activity: 'High',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop'
-  },
-  {
-    name: 'Sara Kim',
-    role: 'Model',
-    location: 'Seoul, South Korea',
-    badge: 'Talent',
-    bio: 'Model with public portfolio visibility and professional creative collaborations.',
-    website: '#',
-    instagram: '#',
-    portfolio: '#',
-    score: '84',
-    links: '9',
-    activity: 'Medium',
-    image: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop'
+export default function ExploreSection({ searchQuery }) {
+
+  const [profiles, setProfiles] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+
+    fetchProfiles()
+
+  }, [])
+
+  async function fetchProfiles() {
+
+    setLoading(true)
+
+    const { data, error } = await supabase
+
+      .from('profiles')
+
+      .select('*')
+
+      .eq('status', 'approved')
+
+      .order('created_at', { ascending: false })
+
+    if (error) {
+
+      console.error(error)
+
+    } else {
+
+      setProfiles(data || [])
+
+    }
+
+    setLoading(false)
+
   }
-]
 
-export default function ExploreSection({ searchQuery = '' }) {
-  const [selectedProfile, setSelectedProfile] = useState(null)
+  const filteredProfiles = profiles.filter((profile) => {
 
-  const filteredProfiles = profiles.filter((profile) =>
-    `${profile.name} ${profile.role} ${profile.location} ${profile.badge}`
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase())
-  )
+    const query = searchQuery.toLowerCase()
+
+    return (
+
+      profile.full_name?.toLowerCase().includes(query) ||
+
+      profile.profession?.toLowerCase().includes(query) ||
+
+      profile.category?.toLowerCase().includes(query)
+
+    )
+
+  })
 
   return (
-    <section id="studios" className="max-w-7xl mx-auto px-8 py-20">
-      <div className="flex items-center justify-between mb-10">
+
+    <section className="max-w-7xl mx-auto px-8 py-8">
+
+      <div className="flex items-center justify-between mb-6">
+
         <div>
-          <h2 className="text-3xl font-extrabold">Explore the Creative World</h2>
-          <p className="text-gray-500 mt-2">
-            Browse professionals across the global creative ecosystem.
+
+          <p className="text-xs uppercase tracking-[3px] text-violet-500 font-black mb-3">
+            Explore Creatives
           </p>
+
+          <h2 className="text-3xl md:text-4xl font-black tracking-[-2px] text-[#0f172a]">
+            Discover creative professionals
+          </h2>
+
         </div>
 
-        <a href="#add-profile" className="text-violet-600 font-semibold">
-          Add your profile →
-        </a>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProfiles.map((profile) => (
-          <div key={profile.name} className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 hover:-translate-y-1 hover:shadow-2xl transition">
-            <div className="relative h-44 rounded-2xl mb-6 overflow-hidden">
-              <img src={profile.image} alt={profile.name} className="w-full h-full object-cover" />
-              <span className="absolute top-4 left-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-gray-700 shadow">
-                {profile.badge}
-              </span>
-            </div>
+      {loading ? (
 
-            <h3 className="text-xl font-bold">{profile.name}</h3>
-            <p className="text-gray-600">{profile.role}</p>
-            <p className="text-gray-400 mt-2">{profile.location}</p>
+        <div className="text-gray-500">
+          Loading profiles...
+        </div>
 
-            <p className="mt-5 text-sm text-gray-500">
-              Public professional presence available.
-            </p>
+      ) : filteredProfiles.length === 0 ? (
 
-            <div className="mt-6 flex gap-3">
-              <button
-                onClick={() => setSelectedProfile(profile)}
-                className="flex-1 rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-700 transition"
-              >
-                View Profile
-              </button>
+        <div
+          className="
+            rounded-3xl
+            p-10
+            text-center
+            bg-white/70
+            backdrop-blur-xl
+            border
+            border-white/80
+          "
+        >
 
-              <a href={profile.website} className="rounded-full border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-600 hover:border-violet-300 transition">
-                Website
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+          <h3 className="text-2xl font-black text-[#0f172a] mb-3">
+            No profiles found
+          </h3>
 
-      {selectedProfile && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-6">
-          <div className="max-w-xl w-full rounded-3xl bg-white p-8 shadow-2xl">
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <span className="inline-block rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700 mb-4">
-                  {selectedProfile.badge}
-                </span>
-                <h3 className="text-3xl font-extrabold">{selectedProfile.name}</h3>
-                <p className="text-gray-600 mt-1">{selectedProfile.role}</p>
-                <p className="text-gray-400 mt-1">{selectedProfile.location}</p>
+          <p className="text-gray-500">
+            Try another search or category.
+          </p>
+
+        </div>
+
+      ) : (
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          {filteredProfiles.map((profile) => (
+
+            <div
+              key={profile.id}
+              className="
+                overflow-hidden
+                rounded-[30px]
+                bg-white/70
+                backdrop-blur-xl
+                border
+                border-white/80
+                shadow-[0_15px_40px_rgba(15,23,42,0.06)]
+              "
+            >
+
+              <div className="p-6">
+
+                <div className="flex items-center justify-between mb-5">
+
+                  <div
+                    className="
+                      w-14
+                      h-14
+                      rounded-2xl
+                      bg-gradient-to-br
+                      from-violet-500
+                      to-pink-500
+                    "
+                  />
+
+                  {profile.verified && (
+
+                    <div
+                      className="
+                        px-3
+                        py-1
+                        rounded-full
+                        bg-emerald-100
+                        text-emerald-700
+                        text-xs
+                        font-bold
+                      "
+                    >
+                      Verified
+                    </div>
+
+                  )}
+
+                </div>
+
+                <h3 className="text-2xl font-black text-[#0f172a]">
+                  {profile.full_name}
+                </h3>
+
+                <p className="text-violet-600 font-semibold mt-2">
+                  {profile.profession}
+                </p>
+
+                <p className="text-gray-500 text-sm mt-2">
+                  {profile.category}
+                </p>
+
+                {profile.bio && (
+
+                  <p className="text-gray-500 text-sm mt-5 leading-relaxed">
+                    {profile.bio}
+                  </p>
+
+                )}
+
+                {profile.portfolio_url && (
+
+                  <a
+                    href={profile.portfolio_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="
+                      inline-flex
+                      mt-6
+                      text-sm
+                      font-semibold
+                      text-violet-600
+                      hover:text-violet-800
+                    "
+                  >
+                    View Portfolio →
+                  </a>
+
+                )}
+
               </div>
 
-              <button onClick={() => setSelectedProfile(null)} className="rounded-full bg-gray-100 px-3 py-1 text-gray-500 hover:bg-gray-200">
-                ✕
-              </button>
             </div>
 
-            <img src={selectedProfile.image} alt={selectedProfile.name} className="mt-8 h-48 w-full rounded-2xl object-cover" />
+          ))}
 
-            <p className="mt-6 text-gray-600 leading-relaxed">
-              {selectedProfile.bio}
-            </p>
-          </div>
         </div>
+
       )}
+
     </section>
+
   )
 }
