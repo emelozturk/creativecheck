@@ -12,12 +12,15 @@ export default function Hero() {
     >
       {/* HEADER */}
       <header className="flex items-center justify-between">
+        
         {/* LOGO */}
         <a href="#discover" className="flex items-center gap-4">
           <LogoIcon size={54} />
 
           <h1 className="text-[42px] font-black tracking-[-3px]">
-            <span className="text-[#0f172a]">Creative</span>
+            <span className="text-[#0f172a]">
+              Creative
+            </span>
 
             <span className="gradient-check">
               Check
@@ -27,6 +30,7 @@ export default function Hero() {
 
         {/* NAVBAR */}
         <nav className="hidden lg:flex items-center gap-10 text-[16px] font-bold text-[#0f172a]">
+          
           <a
             href="#discover"
             className="hover:text-violet-600 transition"
@@ -54,6 +58,7 @@ export default function Hero() {
           >
             About
           </a>
+
         </nav>
 
         {/* BUTTON */}
@@ -75,9 +80,10 @@ export default function Hero() {
         >
           + Add Your Profile
         </a>
+
       </header>
 
-      {/* HERO CONTENT */}
+      {/* HERO */}
       <div className="flex-1 flex flex-col items-center justify-center text-center">
 
         <h2 className="text-[72px] md:text-[104px] font-black tracking-[-6px] leading-[0.95] text-[#0f172a]">
@@ -96,6 +102,7 @@ export default function Hero() {
 
         {/* SEARCH BAR */}
         <div className="mt-10 w-full max-w-2xl">
+
           <div
             className="
               flex
@@ -113,7 +120,7 @@ export default function Hero() {
 
             <input
               type="text"
-              placeholder="Search photographers, filmmakers, models..."
+              placeholder="Search creatives..."
               className="
                 w-full
                 bg-transparent
@@ -141,117 +148,58 @@ export default function Hero() {
             </button>
 
           </div>
+
         </div>
 
-        {/* CATEGORY SECTIONS */}
+        {/* CATEGORY HEADINGS */}
         <div
           id="categories"
-          className="mt-10 max-w-5xl mx-auto space-y-5 w-full"
+          className="mt-10 max-w-4xl mx-auto space-y-4 w-full"
         >
 
           {[
-            {
-              title: 'Visual Arts',
-              items: [
-                'Photographers',
-                'Graphic Designers',
-                'Illustrators',
-                'Digital Artists'
-              ]
-            },
-            {
-              title: 'Film & Media',
-              items: [
-                'Filmmakers',
-                'Video Editors',
-                'Cinematographers',
-                'Producers'
-              ]
-            },
-            {
-              title: 'Fashion & Beauty',
-              items: [
-                'Models',
-                'Stylists',
-                'Makeup Artists',
-                'Fashion Designers'
-              ]
-            },
-            {
-              title: 'Performance & Music',
-              items: [
-                'Actors',
-                'Musicians',
-                'Dancers',
-                'Voice Actors'
-              ]
-            },
-            {
-              title: 'Creative Business',
-              items: [
-                'Studios',
-                'Agencies',
-                'Production Companies',
-                'Creative Directors'
-              ]
-            }
-          ].map((group) => (
-            <details
-              key={group.title}
+            'Visual Arts',
+            'Film & Media',
+            'Fashion & Beauty',
+            'Performance & Music',
+            'Creative Business',
+            'Studios',
+            'Agencies',
+            'Production Companies'
+          ].map((title) => (
+
+            <button
+              key={title}
               className="
+                w-full
+                flex
+                items-center
+                justify-between
+                px-8
+                py-6
+                rounded-3xl
                 bg-white/70
                 backdrop-blur-xl
                 border
                 border-white/80
-                rounded-3xl
                 shadow-lg
-                px-6
-                py-5
-                text-left
+                text-[#0f172a]
+                text-[20px]
+                font-black
+                hover:scale-[1.01]
+                hover:bg-white
+                transition
               "
             >
-              <summary
-                className="
-                  cursor-pointer
-                  list-none
-                  flex
-                  items-center
-                  justify-between
-                  text-[#0f172a]
-                  font-black
-                  text-[18px]
-                "
-              >
-                {group.title}
 
-                <span className="text-violet-600 text-[24px]">
-                  +
-                </span>
-              </summary>
+              {title}
 
-              <div className="flex flex-wrap gap-3 mt-5">
-                {group.items.map((item) => (
-                  <button
-                    key={item}
-                    className="
-                      px-5
-                      py-3
-                      rounded-full
-                      bg-white
-                      border
-                      border-gray-200
-                      text-[#0f172a]
-                      font-semibold
-                      shadow-sm
-                      hover:scale-105
-                      transition
-                    "
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-            </details>
+              <span className="text-violet-600 text-[28px]">
+                +
+              </span>
+
+            </button>
+
           ))}
 
         </div>
