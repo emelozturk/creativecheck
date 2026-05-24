@@ -219,32 +219,30 @@ export default function App() {
               "
             >
               Explore creative professionals across art, fashion,
-film, media, music, design, entertainment and digital
-culture through public profile visibility, portfolio
-presence and trusted discovery systems.
+              film, media, music, design, entertainment and digital
+              culture through public profile visibility, portfolio
+              presence and trusted discovery systems.
             </p>
 
             <div className="flex flex-wrap justify-center gap-3 mt-10">
 
               {[
-                '[
-  'Creative Professionals',
-  'Artists',
-  'Filmmakers',
-  'Photographers',
-  'Designers',
-  'Models',
-  'Musicians',
-  'Actors',
-  'Stylists',
-  'Creative Directors',
-  'Studios',
-  'Agencies',
-  'Production Companies',
-  'Visual Storytellers',
-  'Digital Creators',
-  'Entertainment & Media'
-]
+                'Creative Professionals',
+                'Artists',
+                'Filmmakers',
+                'Photographers',
+                'Designers',
+                'Models',
+                'Musicians',
+                'Actors',
+                'Stylists',
+                'Creative Directors',
+                'Studios',
+                'Agencies',
+                'Production Companies',
+                'Visual Storytellers',
+                'Digital Creators',
+                'Entertainment & Media'
               ].map((item) => (
 
                 <div
