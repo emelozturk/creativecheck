@@ -4,18 +4,16 @@ const SUPABASE_URL = 'https://gnqrakuhmzchwherombt.supabase.co'
 const SUPABASE_KEY = 'sb_publishable_-sTc8wYEmrNKb-gtHc_qHA_cxq9M5lS'
 
 export default function ExploreSection({ searchQuery = '' }) {
-
   const [profiles, setProfiles] = useState([])
   const [loading, setLoading] = useState(true)
+  const [selectedProfile, setSelectedProfile] = useState(null)
 
   useEffect(() => {
     fetchProfiles()
   }, [])
 
   async function fetchProfiles() {
-
     try {
-
       const response = await fetch(
         `${SUPABASE_URL}/rest/v1/profiles?status=eq.approved&select=*&order=created_at.desc`,
         {
@@ -27,51 +25,32 @@ export default function ExploreSection({ searchQuery = '' }) {
       )
 
       const data = await response.json()
-
       setProfiles(Array.isArray(data) ? data : [])
-
     } catch (error) {
-
       console.error('Profile fetch error:', error)
-
       setProfiles([])
-
     } finally {
-
       setLoading(false)
-
     }
-
   }
 
   const filteredProfiles = profiles.filter((profile) => {
-
     const query = searchQuery.toLowerCase().trim()
 
     if (!query) return true
 
     return (
-
       profile.full_name?.toLowerCase().includes(query) ||
-
       profile.profession?.toLowerCase().includes(query) ||
-
       profile.category?.toLowerCase().includes(query) ||
-
       profile.city?.toLowerCase().includes(query) ||
-
       profile.country?.toLowerCase().includes(query)
-
     )
-
   })
 
   return (
-
     <section className="max-w-7xl mx-auto px-8 py-8">
-
       <div className="mb-6">
-
         <p className="text-xs uppercase tracking-[3px] text-violet-500 font-black mb-3">
           Explore Creatives
         </p>
@@ -79,31 +58,16 @@ export default function ExploreSection({ searchQuery = '' }) {
         <h2 className="text-3xl md:text-4xl font-black tracking-[-2px] text-[#0f172a]">
           Discover creative professionals
         </h2>
-
       </div>
 
       {loading && (
-
         <p className="text-gray-500">
           Loading approved profiles...
         </p>
-
       )}
 
       {!loading && filteredProfiles.length === 0 && (
-
-        <div
-          className="
-            rounded-3xl
-            p-8
-            bg-white/70
-            backdrop-blur-xl
-            border
-            border-white/80
-            text-center
-          "
-        >
-
+        <div className="rounded-3xl p-8 bg-white/70 backdrop-blur-xl border border-white/80 text-center">
           <h3 className="text-xl font-black text-[#0f172a]">
             No approved profiles yet
           </h3>
@@ -111,86 +75,33 @@ export default function ExploreSection({ searchQuery = '' }) {
           <p className="text-gray-500 mt-2">
             Approved profiles will appear here.
           </p>
-
         </div>
-
       )}
 
       {!loading && filteredProfiles.length > 0 && (
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-
           {filteredProfiles.map((profile) => (
-
-            <div
+            <button
               key={profile.id}
-              className="
-                rounded-[30px]
-                p-6
-                bg-white/70
-                backdrop-blur-xl
-                border
-                border-white/80
-                shadow-[0_10px_30px_rgba(15,23,42,0.06)]
-                hover:shadow-[0_20px_50px_rgba(15,23,42,0.10)]
-                hover:-translate-y-1
-                transition-all
-                duration-300
-              "
+              onClick={() => setSelectedProfile(profile)}
+              className="text-left rounded-[30px] p-6 bg-white/70 backdrop-blur-xl border border-white/80 shadow-[0_10px_30px_rgba(15,23,42,0.06)] hover:shadow-[0_20px_50px_rgba(15,23,42,0.10)] hover:-translate-y-1 transition-all duration-300"
             >
-
               <div className="flex items-center justify-between mb-5">
-
                 {profile.avatar_url ? (
-
                   <img
                     src={profile.avatar_url}
                     alt={profile.full_name}
-                    className="
-                      w-16
-                      h-16
-                      rounded-2xl
-                      object-cover
-                      border
-                      border-white/70
-                      shadow-lg
-                    "
+                    className="w-16 h-16 rounded-2xl object-cover border border-white/70 shadow-lg"
                   />
-
                 ) : (
-
-                  <div
-                    className="
-                      w-16
-                      h-16
-                      rounded-2xl
-                      bg-gradient-to-br
-                      from-violet-500
-                      via-pink-500
-                      to-orange-400
-                    "
-                  />
-
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 via-pink-500 to-orange-400" />
                 )}
 
                 {profile.verified && (
-
-                  <span
-                    className="
-                      px-3
-                      py-1
-                      rounded-full
-                      bg-emerald-100
-                      text-emerald-700
-                      text-xs
-                      font-bold
-                    "
-                  >
+                  <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold">
                     Verified
                   </span>
-
                 )}
-
               </div>
 
               <h3 className="text-2xl font-black text-[#0f172a]">
@@ -206,91 +117,151 @@ export default function ExploreSection({ searchQuery = '' }) {
               </p>
 
               {(profile.city || profile.country) && (
-
                 <p className="text-gray-400 text-sm mt-1">
-                  {[profile.city, profile.country]
-                    .filter(Boolean)
-                    .join(', ')}
+                  {[profile.city, profile.country].filter(Boolean).join(', ')}
                 </p>
-
               )}
 
               {profile.bio && (
-
-                <p className="text-gray-500 text-sm mt-5 leading-relaxed">
+                <p className="text-gray-500 text-sm mt-5 leading-relaxed line-clamp-3">
                   {profile.bio}
                 </p>
-
               )}
 
-              <div className="flex items-center gap-4 mt-6 flex-wrap">
+              <p className="mt-6 text-sm font-semibold text-violet-600">
+                View Profile →
+              </p>
+            </button>
+          ))}
+        </div>
+      )}
 
-                {profile.website && (
+      {selectedProfile && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-6">
+          <div className="w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[36px] bg-white shadow-2xl">
+            <div
+              className="h-44 rounded-t-[36px]"
+              style={{
+                background:
+                  'linear-gradient(135deg,#7c3aed 0%,#ec4899 45%,#f97316 100%)'
+              }}
+            />
 
+            <div className="p-8 -mt-16">
+              <div className="flex items-end justify-between gap-6 mb-8">
+                <div className="flex items-end gap-5">
+                  {selectedProfile.avatar_url ? (
+                    <img
+                      src={selectedProfile.avatar_url}
+                      alt={selectedProfile.full_name}
+                      className="w-28 h-28 rounded-[28px] object-cover border-4 border-white shadow-xl"
+                    />
+                  ) : (
+                    <div className="w-28 h-28 rounded-[28px] bg-gradient-to-br from-violet-500 via-pink-500 to-orange-400 border-4 border-white shadow-xl" />
+                  )}
+
+                  <div className="pb-2">
+                    <h2 className="text-3xl md:text-4xl font-black tracking-[-2px] text-[#0f172a]">
+                      {selectedProfile.full_name || 'Creative Profile'}
+                    </h2>
+
+                    <p className="text-violet-600 font-semibold mt-2">
+                      {selectedProfile.profession || 'Creative Professional'}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setSelectedProfile(null)}
+                  className="w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 text-xl"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="flex flex-wrap gap-3 mb-8">
+                {selectedProfile.verified && (
+                  <span className="px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold">
+                    Verified Creative
+                  </span>
+                )}
+
+                {selectedProfile.category && (
+                  <span className="px-4 py-2 rounded-full bg-violet-100 text-violet-700 text-xs font-bold">
+                    {selectedProfile.category}
+                  </span>
+                )}
+
+                {(selectedProfile.city || selectedProfile.country) && (
+                  <span className="px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-xs font-bold">
+                    {[selectedProfile.city, selectedProfile.country].filter(Boolean).join(', ')}
+                  </span>
+                )}
+              </div>
+
+              {selectedProfile.bio && (
+                <div className="mb-8">
+                  <h3 className="text-sm uppercase tracking-[2px] font-black text-gray-400 mb-3">
+                    Profile Summary
+                  </h3>
+
+                  <p className="text-gray-600 leading-relaxed">
+                    {selectedProfile.bio}
+                  </p>
+                </div>
+              )}
+
+              <div className="grid md:grid-cols-3 gap-3">
+                {selectedProfile.website && (
                   <a
-                    href={profile.website}
+                    href={selectedProfile.website}
                     target="_blank"
                     rel="noreferrer"
-                    className="
-                      text-sm
-                      font-semibold
-                      text-violet-600
-                      hover:text-violet-800
-                    "
+                    className="rounded-2xl bg-[#0f172a] text-white px-5 py-4 text-center font-semibold hover:bg-violet-600 transition"
                   >
                     ↗ Website
                   </a>
-
                 )}
 
-                {profile.instagram && (
-
+                {selectedProfile.instagram && (
                   <a
-                    href={profile.instagram}
+                    href={selectedProfile.instagram}
                     target="_blank"
                     rel="noreferrer"
-                    className="
-                      text-sm
-                      font-semibold
-                      text-pink-600
-                      hover:text-pink-800
-                    "
+                    className="rounded-2xl bg-pink-50 text-pink-600 px-5 py-4 text-center font-semibold hover:bg-pink-100 transition"
                   >
                     ◎ Instagram
                   </a>
-
                 )}
 
-                {profile.portfolio_url && (
-
+                {selectedProfile.portfolio_url && (
                   <a
-                    href={profile.portfolio_url}
+                    href={selectedProfile.portfolio_url}
                     target="_blank"
                     rel="noreferrer"
-                    className="
-                      text-sm
-                      font-semibold
-                      text-orange-600
-                      hover:text-orange-800
-                    "
+                    className="rounded-2xl bg-orange-50 text-orange-600 px-5 py-4 text-center font-semibold hover:bg-orange-100 transition"
                   >
                     ◉ Portfolio
                   </a>
-
                 )}
-
               </div>
 
+              <div className="mt-8 rounded-3xl bg-gray-50 p-5 text-sm text-gray-500 leading-relaxed">
+                <p className="font-bold text-gray-700 mb-2">
+                  Source Transparency
+                </p>
+
+                <p>
+                  CreativeCheck provides informational profile summaries based on
+                  submitted professional information, public links and portfolio
+                  presence. CreativeCheck does not provide legal conclusions,
+                  endorsements, guarantees or background checks.
+                </p>
+              </div>
             </div>
-
-          ))}
-
+          </div>
         </div>
-
       )}
-
     </section>
-
   )
-
 }
