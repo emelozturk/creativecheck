@@ -1,6 +1,6 @@
 import LogoIcon from './LogoIcon'
 
-export default function Hero() {
+export default function Hero({ searchQuery, setSearchQuery }) {
   return (
     <section
       id="discover"
@@ -120,6 +120,8 @@ export default function Hero() {
 
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search creatives..."
               className="
                 w-full
@@ -178,6 +180,7 @@ export default function Hero() {
 
             <button
               key={title}
+              onClick={() => setSearchQuery(title)}
               className="
                 inline-flex
                 items-center
