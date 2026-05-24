@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import AddProfilePage from './components/AddProfilePage'
 
 export default function App() {
+
   const [searchQuery, setSearchQuery] = useState('')
 
   return (
@@ -20,7 +21,10 @@ export default function App() {
 
       {/* HERO */}
       <section id="discover">
-        <Hero />
+        <Hero
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
       </section>
 
       {/* EXPLORE */}
