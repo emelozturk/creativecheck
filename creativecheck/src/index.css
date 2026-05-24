@@ -1,17 +1,3 @@
-/* =========================
-   CREATIVECHECK PREMIUM ATMOSPHERE
-========================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   margin: 0;
 
@@ -20,36 +6,44 @@ body {
     sans-serif;
 
   background:
+
     radial-gradient(
-      circle at top left,
-      rgba(124, 58, 237, 0.22),
+      circle at 10% 20%,
+      rgba(168, 85, 247, 0.35),
       transparent 28%
     ),
 
     radial-gradient(
-      circle at top right,
-      rgba(236, 72, 153, 0.18),
+      circle at 85% 15%,
+      rgba(236, 72, 153, 0.28),
       transparent 28%
     ),
 
     radial-gradient(
-      circle at bottom left,
-      rgba(249, 115, 22, 0.15),
+      circle at 20% 85%,
+      rgba(249, 115, 22, 0.25),
       transparent 30%
     ),
 
     radial-gradient(
-      circle at bottom right,
-      rgba(6, 182, 212, 0.12),
+      circle at 80% 80%,
+      rgba(6, 182, 212, 0.22),
       transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.45),
+      transparent 60%
     ),
 
     linear-gradient(
       135deg,
-      #fffafc 0%,
-      #f6f3ff 25%,
-      #fdf2f8 50%,
-      #eff6ff 75%,
+      #fdf4ff 0%,
+      #eef2ff 20%,
+      #ffe4e6 40%,
+      #fef3c7 60%,
+      #cffafe 80%,
       #f8fafc 100%
     );
 
@@ -63,216 +57,4 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* cinematic glow layer */
-
-body::before {
-  content: '';
-
-  position: fixed;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  z-index: -1;
-
-  background:
-    radial-gradient(
-      circle at 15% 20%,
-      rgba(124, 58, 237, 0.12),
-      transparent 22%
-    ),
-
-    radial-gradient(
-      circle at 80% 15%,
-      rgba(236, 72, 153, 0.12),
-      transparent 22%
-    ),
-
-    radial-gradient(
-      circle at 50% 85%,
-      rgba(249, 115, 22, 0.10),
-      transparent 22%
-    );
-
-  filter: blur(90px);
-}
-
-/* selection */
-
-::selection {
-  background: rgba(124, 58, 237, 0.18);
-  color: #0f172a;
-}
-
-/* premium scrollbar */
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background:
-    linear-gradient(
-      180deg,
-      #7c3aed,
-      #ec4899,
-      #f97316
-    );
-
-  border-radius: 999px;
-}
-
-/* premium glass cards */
-
-.glass-card {
-  background: rgba(255,255,255,0.58);
-
-  backdrop-filter: blur(24px);
-
-  -webkit-backdrop-filter: blur(24px);
-
-  border:
-    1px solid rgba(255,255,255,0.75);
-
-  box-shadow:
-    0 10px 40px rgba(15,23,42,0.06),
-    0 2px 12px rgba(255,255,255,0.5);
-}
-
-/* hover atmosphere */
-
-.premium-hover {
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease,
-    opacity 0.35s ease;
-}
-
-.premium-hover:hover {
-  transform:
-    translateY(-6px)
-    scale(1.01);
-
-  box-shadow:
-    0 30px 80px rgba(124,58,237,0.16);
-}
-
-/* luxury text */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  letter-spacing: -0.03em;
-}
-
-/* buttons */
-
-button {
-  transition:
-    all 0.3s ease;
-}
-
-/* links */
-
-a {
-  text-decoration: none;
-}
-
-/* floating animation */
-
-@keyframes floaty {
-
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-4px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-
-}
-
-.floating {
-  animation:
-    floaty 5s ease-in-out infinite;
-}
-
-/* fade in */
-
-@keyframes fadeUp {
-
-  from {
-    opacity: 0;
-    transform:
-      translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      translateY(0px);
-  }
-
-}
-
-.fade-up {
-  animation:
-    fadeUp 0.8s ease forwards;
-}
-
-/* soft borders */
-
-.soft-border {
-  border:
-    1px solid rgba(255,255,255,0.7);
-}
-
-/* premium shadows */
-
-.soft-shadow {
-  box-shadow:
-    0 10px 40px rgba(15,23,42,0.08);
-}
-
-/* artistic gradient text */
-
-.gradient-text {
-  background:
-    linear-gradient(
-      135deg,
-      #7c3aed,
-      #ec4899,
-      #f97316
-    );
-
-  -webkit-background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-}
-
-/* smooth image rendering */
-
-img {
-  image-rendering: auto;
-}
-
-/* modal blur */
-
-.modal-backdrop {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
