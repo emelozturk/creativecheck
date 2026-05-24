@@ -14,37 +14,47 @@ body {
   overflow-x: hidden;
 
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(236,72,153,0.10),
-      transparent 22%
-    ),
 
     radial-gradient(
-      circle at top right,
-      rgba(124,58,237,0.12),
+      circle at 0% 0%,
+      rgba(168,85,247,0.22),
       transparent 26%
     ),
 
     radial-gradient(
-      circle at bottom left,
-      rgba(249,115,22,0.08),
-      transparent 24%
+      circle at 100% 0%,
+      rgba(236,72,153,0.20),
+      transparent 28%
     ),
 
     radial-gradient(
-      circle at bottom right,
-      rgba(6,182,212,0.08),
-      transparent 24%
+      circle at 100% 100%,
+      rgba(6,182,212,0.18),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(249,115,22,0.16),
+      transparent 26%
+    ),
+
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255,255,255,0.75),
+      transparent 60%
     ),
 
     linear-gradient(
       135deg,
-      #fffdfd 0%,
-      #faf7ff 35%,
-      #f5f7ff 65%,
-      #f7fdff 100%
+      #fff7fb 0%,
+      #f5f3ff 25%,
+      #eef6ff 50%,
+      #fdf2f8 75%,
+      #f0fdfa 100%
     );
+
+  background-attachment: fixed;
 
   font-family: 'Plus Jakarta Sans', sans-serif;
 
@@ -84,14 +94,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.5);
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
     180deg,
-    #c4b5fd,
-    #f9a8d4
+    #c084fc,
+    #f9a8d4,
+    #67e8f9
   );
 
   border-radius: 999px;
@@ -101,8 +112,7 @@ body {
 
 button,
 a {
-  transition:
-    all 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 /* INPUTS */
@@ -121,24 +131,24 @@ button:focus {
   outline: none;
 }
 
-/* PREMIUM GLASS */
+/* GLASS CARD */
 
 .glass-card {
-  background: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.65);
 
   backdrop-filter: blur(18px);
 
-  border: 1px solid rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.75);
 
   box-shadow:
-    0 10px 40px rgba(15,23,42,0.06);
+    0 12px 45px rgba(15,23,42,0.06);
 }
 
 /* PREMIUM SHADOW */
 
 .soft-shadow {
   box-shadow:
-    0 12px 40px rgba(15,23,42,0.07);
+    0 18px 50px rgba(15,23,42,0.08);
 }
 
 /* CLEAN TYPOGRAPHY */
