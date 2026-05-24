@@ -12,7 +12,7 @@ export default function Hero() {
     >
       {/* HEADER */}
       <header className="flex items-center justify-between">
-        
+
         {/* LOGO */}
         <a href="#discover" className="flex items-center gap-4">
           <LogoIcon size={54} />
@@ -30,7 +30,7 @@ export default function Hero() {
 
         {/* NAVBAR */}
         <nav className="hidden lg:flex items-center gap-10 text-[16px] font-bold text-[#0f172a]">
-          
+
           <a
             href="#discover"
             className="hover:text-violet-600 transition"
@@ -151,10 +151,18 @@ export default function Hero() {
 
         </div>
 
-        {/* CATEGORY HEADINGS */}
+        {/* CATEGORY CHIPS */}
         <div
           id="categories"
-          className="mt-10 max-w-4xl mx-auto space-y-4 w-full"
+          className="
+            mt-8
+            max-w-5xl
+            mx-auto
+            flex
+            flex-wrap
+            justify-center
+            gap-3
+          "
         >
 
           {[
@@ -171,32 +179,28 @@ export default function Hero() {
             <button
               key={title}
               className="
-                w-full
-                flex
+                inline-flex
                 items-center
-                justify-between
-                px-8
-                py-6
-                rounded-3xl
+                justify-center
+                gap-3
+                px-5
+                py-3
+                rounded-full
                 bg-white/70
                 backdrop-blur-xl
                 border
                 border-white/80
-                shadow-lg
+                shadow-md
                 text-[#0f172a]
-                text-[20px]
-                font-black
-                hover:scale-[1.01]
+                text-[14px]
+                font-bold
+                hover:scale-[1.03]
                 hover:bg-white
                 transition
               "
             >
 
               {title}
-
-              <span className="text-violet-600 text-[28px]">
-                +
-              </span>
 
             </button>
 
