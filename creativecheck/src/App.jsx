@@ -11,21 +11,25 @@ const categoryGroups = [
     color: '#7c3aed',
     items: ['Photographers', 'Designers', 'Illustrators']
   },
+
   {
     title: 'Film & Media',
     color: '#ec4899',
     items: ['Filmmakers', 'Editors', 'Producers']
   },
+
   {
     title: 'Fashion & Beauty',
     color: '#f97316',
     items: ['Models', 'Stylists', 'Makeup Artists']
   },
+
   {
     title: 'Performance & Music',
     color: '#06b6d4',
     items: ['Actors', 'Musicians', 'Dancers']
   },
+
   {
     title: 'Creative Business',
     color: '#10b981',
@@ -34,6 +38,7 @@ const categoryGroups = [
 ]
 
 export default function App() {
+
   const [searchQuery, setSearchQuery] = useState('')
 
   return (
@@ -175,34 +180,91 @@ export default function App() {
       {/* ABOUT */}
       <section
         id="about"
-        className="max-w-7xl mx-auto px-8 py-8"
+        className="max-w-7xl mx-auto px-8 py-10"
       >
 
         <div
           className="
-            rounded-3xl
-            p-7
+            rounded-[36px]
+            p-8
+            md:p-10
             text-white
-            shadow-[0_20px_60px_rgba(15,23,42,0.18)]
+            shadow-[0_24px_70px_rgba(15,23,42,0.22)]
+            overflow-hidden
+            relative
           "
           style={{
             background:
-              'linear-gradient(135deg,#0f172a 0%,#312e81 50%,#7c3aed 100%)'
+              'linear-gradient(135deg,#0f172a 0%,#312e81 45%,#7c3aed 100%)'
           }}
         >
 
-          <p className="text-xs uppercase tracking-[3px] text-violet-200 font-black mb-3">
-            About CreativeCheck
-          </p>
+          <div className="relative z-10 grid lg:grid-cols-2 gap-10">
 
-          <h2 className="text-3xl md:text-4xl font-black tracking-[-2px] mb-3">
-            Public discovery for the creative economy.
-          </h2>
+            {/* CREATIVECHECK */}
+            <div>
 
-          <p className="text-sm md:text-[15px] text-white/75 max-w-4xl leading-relaxed">
-            CreativeCheck helps people discover creative professionals through public visibility,
-            portfolio presence and reviewed profile information.
-          </p>
+              <p className="text-xs uppercase tracking-[3px] text-violet-200 font-black mb-4">
+                About CreativeCheck
+              </p>
+
+              <h2 className="text-3xl md:text-4xl font-black tracking-[-2px] mb-5">
+                Public discovery for the creative economy.
+              </h2>
+
+              <p className="text-sm md:text-[15px] text-white/75 leading-relaxed">
+                CreativeCheck helps people discover creative professionals through
+                public visibility, portfolio presence and reviewed profile information.
+                The platform supports creatives, studios, agencies and production
+                companies by making professional creative profiles easier to find,
+                understand and connect with.
+              </p>
+
+              <p className="text-sm md:text-[15px] text-white/65 leading-relaxed mt-5">
+                CreativeCheck is designed as an informational discovery platform.
+                It does not provide legal conclusions, endorsements, guarantees or
+                background checks. Profiles may be reviewed before publication to
+                protect quality, accuracy and trust.
+              </p>
+
+            </div>
+
+            {/* FOUNDER */}
+            <div>
+
+              <p className="text-xs uppercase tracking-[3px] text-pink-200 font-black mb-4">
+                About the Founder
+              </p>
+
+              <h3 className="text-2xl md:text-3xl font-black tracking-[-1px] mb-5">
+                Founded by Emel Ozturk
+              </h3>
+
+              <p className="text-sm md:text-[15px] text-white/75 leading-relaxed">
+                CreativeCheck was founded by Emel Ozturk — an award-winning filmmaker
+                and photographer whose work has been published across international
+                magazines and creative media platforms.
+              </p>
+
+              <p className="text-sm md:text-[15px] text-white/70 leading-relaxed mt-5">
+                With years of experience across photography, filmmaking, visual
+                storytelling and creative production, Emel developed CreativeCheck
+                after recognising the growing need for a more trusted, transparent and
+                professionally structured discovery platform for the creative industry.
+              </p>
+
+              <p className="text-sm md:text-[15px] text-white/65 leading-relaxed mt-5">
+                Alongside her creative career, Emel expanded her legal education with
+                a focus on technology, artificial intelligence and the legal protection
+                of creative industries. Her academic research explores the impact of AI
+                and emerging technologies on the creative sector, with a particular
+                focus on protecting creators’ rights, professional visibility and
+                ethical development within the evolving digital landscape.
+              </p>
+
+            </div>
+
+          </div>
 
         </div>
 
