@@ -6,24 +6,40 @@ import Footer from './components/Footer'
 import AddProfilePage from './components/AddProfilePage'
 
 const categoryGroups = [
-  { title: 'Visual Arts', color: '#7c3aed', items: ['Photographers', 'Designers', 'Illustrators'] },
-  { title: 'Film & Media', color: '#ec4899', items: ['Filmmakers', 'Editors', 'Producers'] },
-  { title: 'Fashion & Beauty', color: '#f97316', items: ['Models', 'Stylists', 'Makeup Artists'] },
-  { title: 'Performance & Music', color: '#06b6d4', items: ['Actors', 'Musicians', 'Dancers'] },
-  { title: 'Creative Business', color: '#10b981', items: ['Studios', 'Agencies', 'Production Companies'] }
+  {
+    title: 'Visual Arts',
+    color: '#7c3aed',
+    items: ['Photographers', 'Designers', 'Illustrators']
+  },
+  {
+    title: 'Film & Media',
+    color: '#ec4899',
+    items: ['Filmmakers', 'Editors', 'Producers']
+  },
+  {
+    title: 'Fashion & Beauty',
+    color: '#f97316',
+    items: ['Models', 'Stylists', 'Makeup Artists']
+  },
+  {
+    title: 'Performance & Music',
+    color: '#06b6d4',
+    items: ['Actors', 'Musicians', 'Dancers']
+  },
+  {
+    title: 'Creative Business',
+    color: '#10b981',
+    items: ['Studios', 'Agencies', 'Production Companies']
+  }
 ]
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('')
 
   return (
-    <div
-      className="min-h-screen overflow-hidden"
-      style={{
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
-        background: 'linear-gradient(135deg,#fffafc 0%,#f8f5ff 50%,#f4fdff 100%)'
-      }}
-    >
+    <div className="min-h-screen overflow-hidden">
+
+      {/* HERO */}
       <section id="discover">
         <Hero
           searchQuery={searchQuery}
@@ -31,18 +47,41 @@ export default function App() {
         />
       </section>
 
-      <section id="categories" className="max-w-7xl mx-auto px-8 py-8">
+      {/* CATEGORIES */}
+      <section
+        id="categories"
+        className="max-w-7xl mx-auto px-8 py-8"
+      >
+
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-3">
+
           {categoryGroups.map((group) => (
+
             <button
               key={group.title}
               onClick={() => setSearchQuery(group.title)}
-              className="group rounded-2xl p-4 text-left bg-white/80 border border-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition"
+              className="
+                group
+                rounded-2xl
+                p-4
+                text-left
+                bg-white/70
+                backdrop-blur-xl
+                border
+                border-white/80
+                shadow-[0_10px_30px_rgba(15,23,42,0.05)]
+                hover:shadow-[0_20px_40px_rgba(15,23,42,0.10)]
+                hover:-translate-y-1
+                transition-all
+                duration-300
+              "
             >
+
               <div
                 className="w-9 h-9 rounded-xl mb-3"
                 style={{
-                  background: `linear-gradient(135deg, ${group.color}, #fdf2f8)`
+                  background:
+                    `linear-gradient(135deg, ${group.color}, #ffffff)`
                 }}
               />
 
@@ -53,26 +92,65 @@ export default function App() {
               <p className="text-xs text-gray-500 mt-1">
                 {group.items.join(' • ')}
               </p>
+
             </button>
+
           ))}
+
         </div>
+
       </section>
 
-      <section id="studios" className="relative z-10">
+      {/* EXPLORE */}
+      <section
+        id="studios"
+        className="relative z-10"
+      >
         <ExploreSection searchQuery={searchQuery} />
       </section>
 
-      <section id="resources" className="max-w-7xl mx-auto px-8 py-8">
+      {/* RESOURCES */}
+      <section
+        id="resources"
+        className="max-w-7xl mx-auto px-8 py-8"
+      >
+
         <div className="grid md:grid-cols-3 gap-4">
+
           {[
-            ['Profile Review', 'Reviewed before public display.', '#7c3aed'],
-            ['Correction Requests', 'Update or remove information.', '#ec4899'],
-            ['Trust Notice', 'Discovery only, no guarantees.', '#f97316']
+            [
+              'Profile Review',
+              'Reviewed before public display.',
+              '#7c3aed'
+            ],
+
+            [
+              'Correction Requests',
+              'Update or remove information.',
+              '#ec4899'
+            ],
+
+            [
+              'Trust Notice',
+              'Discovery only, no guarantees.',
+              '#f97316'
+            ]
+
           ].map(([title, text, color]) => (
+
             <div
               key={title}
-              className="rounded-2xl p-5 bg-white/80 border border-white shadow-sm"
+              className="
+                rounded-2xl
+                p-5
+                bg-white/70
+                backdrop-blur-xl
+                border
+                border-white/80
+                shadow-[0_10px_30px_rgba(15,23,42,0.05)]
+              "
             >
+
               <div
                 className="w-10 h-1 rounded-full mb-4"
                 style={{ background: color }}
@@ -85,13 +163,34 @@ export default function App() {
               <p className="text-sm text-gray-500 mt-2">
                 {text}
               </p>
+
             </div>
+
           ))}
+
         </div>
+
       </section>
 
-      <section id="about" className="max-w-7xl mx-auto px-8 py-8">
-        <div className="rounded-3xl p-7 bg-gradient-to-r from-[#0f172a] via-[#312e81] to-[#7c3aed] text-white shadow-xl">
+      {/* ABOUT */}
+      <section
+        id="about"
+        className="max-w-7xl mx-auto px-8 py-8"
+      >
+
+        <div
+          className="
+            rounded-3xl
+            p-7
+            text-white
+            shadow-[0_20px_60px_rgba(15,23,42,0.18)]
+          "
+          style={{
+            background:
+              'linear-gradient(135deg,#0f172a 0%,#312e81 50%,#7c3aed 100%)'
+          }}
+        >
+
           <p className="text-xs uppercase tracking-[3px] text-violet-200 font-black mb-3">
             About CreativeCheck
           </p>
@@ -104,16 +203,22 @@ export default function App() {
             CreativeCheck helps people discover creative professionals through public visibility,
             portfolio presence and reviewed profile information.
           </p>
+
         </div>
+
       </section>
 
+      {/* ADD PROFILE */}
       <section id="add-profile">
         <AddProfilePage />
       </section>
 
+      {/* FEATURES */}
       <FeatureStrip />
 
+      {/* FOOTER */}
       <Footer />
+
     </div>
   )
 }
