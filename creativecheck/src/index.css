@@ -12,12 +12,39 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background: linear-gradient(
-    135deg,
-    #fffafc 0%,
-    #f8f5ff 48%,
-    #f4fdff 100%
-  );
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(236,72,153,0.10),
+      transparent 22%
+    ),
+
+    radial-gradient(
+      circle at top right,
+      rgba(124,58,237,0.12),
+      transparent 26%
+    ),
+
+    radial-gradient(
+      circle at bottom left,
+      rgba(249,115,22,0.08),
+      transparent 24%
+    ),
+
+    radial-gradient(
+      circle at bottom right,
+      rgba(6,182,212,0.08),
+      transparent 24%
+    ),
+
+    linear-gradient(
+      135deg,
+      #fffdfd 0%,
+      #faf7ff 35%,
+      #f5f7ff 65%,
+      #f7fdff 100%
+    );
 
   font-family: 'Plus Jakarta Sans', sans-serif;
 
@@ -94,7 +121,7 @@ button:focus {
   outline: none;
 }
 
-/* GLASS EFFECT */
+/* PREMIUM GLASS */
 
 .glass-card {
   background: rgba(255,255,255,0.72);
@@ -112,33 +139,6 @@ button:focus {
 .soft-shadow {
   box-shadow:
     0 12px 40px rgba(15,23,42,0.07);
-}
-
-/* HERO LIGHT */
-
-.hero-light {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle at 15% 20%,
-      rgba(236,72,153,0.12),
-      transparent 30%
-    ),
-
-    radial-gradient(
-      circle at 85% 18%,
-      rgba(249,115,22,0.12),
-      transparent 30%
-    ),
-
-    radial-gradient(
-      circle at 80% 80%,
-      rgba(20,184,166,0.1),
-      transparent 30%
-    );
 }
 
 /* CLEAN TYPOGRAPHY */
@@ -165,7 +165,7 @@ img {
   max-width: 100%;
 }
 
-/* ANIMATION */
+/* PREMIUM ANIMATION */
 
 .fade-up {
   animation: fadeUp 0.7s ease forwards;
