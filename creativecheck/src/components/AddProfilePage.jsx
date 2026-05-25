@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { supabase } from '../lib/supabase'
+import { supabase } from '../supabase'
 
 export default function AddProfilePage() {
   const [loading, setLoading] = useState(false)
@@ -146,7 +146,7 @@ export default function AddProfilePage() {
           className="space-y-5"
         >
 
-          {/* NAME */}
+          {/* FULL NAME */}
 
           <input
             type="text"
@@ -368,7 +368,7 @@ export default function AddProfilePage() {
 
           </label>
 
-          {/* BUTTON */}
+          {/* SUBMIT */}
 
           <button
             type="submit"
