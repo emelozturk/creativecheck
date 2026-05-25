@@ -81,6 +81,10 @@ export default function Hero({
             About
           </a>
 
+          <a href="#add-profile" className="hover:text-blue-600 transition">
+            Add Profile
+          </a>
+
         </nav>
 
         <a
@@ -219,6 +223,52 @@ export default function Hero({
             </button>
 
           </div>
+
+        </div>
+
+        {/* QUICK ACTIONS */}
+
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+
+          <a
+            href="#add-profile"
+            className="
+              px-5
+              py-3
+              rounded-full
+              bg-gradient-to-r
+              from-[#4f46e5]
+              to-[#06b6d4]
+              text-white
+              text-sm
+              font-semibold
+              shadow-lg
+              hover:scale-105
+              transition
+            "
+          >
+            + Create Your Profile
+          </a>
+
+          <a
+            href="#categories"
+            className="
+              px-5
+              py-3
+              rounded-full
+              bg-white/80
+              border
+              border-white
+              text-[#0f172a]
+              text-sm
+              font-semibold
+              shadow-sm
+              hover:bg-white
+              transition
+            "
+          >
+            Explore Categories
+          </a>
 
         </div>
 
