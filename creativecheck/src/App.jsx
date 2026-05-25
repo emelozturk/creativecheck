@@ -97,8 +97,6 @@ export default function App() {
 
         </div>
 
-        {/* CATEGORY CTA */}
-
         <div className="flex justify-center mt-8">
 
           <a
@@ -198,29 +196,37 @@ export default function App() {
         className="max-w-7xl mx-auto px-8 py-8"
       >
 
-        <div className="grid lg:grid-cols-2 gap-4">
+        <div className="grid lg:grid-cols-2 gap-5">
+
+          {/* ABOUT PLATFORM */}
 
           <div
             className="
-              rounded-3xl
-              p-7
+              relative
+              overflow-hidden
+              rounded-[34px]
+              p-8
               bg-gradient-to-br
               from-[#0f172a]
               via-[#1d4ed8]
               to-[#06b6d4]
               text-white
-              shadow-xl
+              shadow-[0_20px_60px_rgba(15,23,42,0.18)]
             "
           >
 
+            <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
+
             <p
               className="
+                relative
+                z-10
                 text-xs
                 uppercase
                 tracking-[3px]
                 text-blue-100
                 font-black
-                mb-3
+                mb-4
               "
             >
               About CreativeCheck
@@ -228,43 +234,56 @@ export default function App() {
 
             <h2
               className="
+                relative
+                z-10
                 text-3xl
-                md:text-4xl
+                md:text-5xl
                 font-black
-                tracking-[-2px]
-                mb-4
+                tracking-[-3px]
+                leading-[1]
+                mb-5
               "
             >
-              A public discovery platform for the creative economy.
+              A discovery layer
+              <br />
+              for the global
+              <br />
+              creative industry.
             </h2>
 
             <p
               className="
-                text-sm
-                md:text-[15px]
+                relative
+                z-10
+                text-[15px]
                 text-white/80
                 leading-relaxed
+                max-w-xl
               "
             >
-              CreativeCheck helps users discover creative professionals,
-              studios, agencies and production companies through public
-              visibility, portfolio presence and reviewed profile information.
+              CreativeCheck is a public creative discovery platform
+              helping users explore creatives, studios, agencies and
+              production companies through portfolio presence,
+              professional visibility and reviewed profile information.
             </p>
 
             <p
               className="
-                text-sm
-                md:text-[15px]
+                relative
+                z-10
+                text-[15px]
                 text-white/70
                 leading-relaxed
-                mt-4
+                max-w-xl
+                mt-5
               "
             >
-              The platform is designed to support creatives by making
-              their public professional presence easier to find.
+              The platform is designed to support transparency,
+              discoverability and professional visibility for the
+              global creative community.
             </p>
 
-            <div className="mt-6">
+            <div className="relative z-10 mt-7">
 
               <a
                 href="#add-profile"
@@ -277,12 +296,12 @@ export default function App() {
                   bg-white
                   text-[#0f172a]
                   font-semibold
-                  shadow-lg
+                  shadow-xl
                   hover:scale-105
                   transition
                 "
               >
-                Create Your Creative Profile
+                Create Your Profile
               </a>
 
             </div>
@@ -293,23 +312,29 @@ export default function App() {
 
           <div
             className="
-              rounded-3xl
-              p-7
+              relative
+              overflow-hidden
+              rounded-[34px]
+              p-8
               bg-white/85
               border
               border-white
-              shadow-xl
+              shadow-[0_20px_60px_rgba(15,23,42,0.08)]
             "
           >
 
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-100 rounded-full blur-3xl opacity-60" />
+
             <p
               className="
+                relative
+                z-10
                 text-xs
                 uppercase
                 tracking-[3px]
                 text-blue-500
                 font-black
-                mb-3
+                mb-4
               "
             >
               Founder
@@ -317,44 +342,99 @@ export default function App() {
 
             <h2
               className="
+                relative
+                z-10
                 text-3xl
-                md:text-4xl
+                md:text-5xl
                 font-black
-                tracking-[-2px]
+                tracking-[-3px]
                 text-[#0f172a]
-                mb-4
+                leading-[1]
+                mb-5
               "
             >
-              Founded by Emel Ozturk
+              Founded by
+              <br />
+              Emel Ozturk
             </h2>
 
             <p
               className="
-                text-sm
-                md:text-[15px]
+                relative
+                z-10
+                text-[15px]
                 text-gray-600
                 leading-relaxed
               "
             >
               CreativeCheck was founded by Emel Ozturk,
-              combining creative industry experience with legal
-              knowledge to build a platform supporting visibility,
-              transparency and trusted discovery for creatives.
+              combining creative industry experience with
+              legal knowledge to create a more transparent,
+              professional and discoverable ecosystem for
+              creatives worldwide.
             </p>
 
             <p
               className="
-                text-sm
-                md:text-[15px]
+                relative
+                z-10
+                text-[15px]
                 text-gray-500
                 leading-relaxed
-                mt-4
+                mt-5
               "
             >
-              The mission is to help creatives be discovered
-              professionally while encouraging responsible use
-              of public information and creative visibility.
+              The mission behind CreativeCheck is to help
+              creatives gain visibility while encouraging
+              responsible use of public information and
+              ethical creative discovery systems.
             </p>
+
+            <div className="relative z-10 mt-7 flex flex-wrap gap-3">
+
+              <div
+                className="
+                  px-4
+                  py-2
+                  rounded-full
+                  bg-blue-50
+                  text-blue-700
+                  text-sm
+                  font-semibold
+                "
+              >
+                Creative Industry
+              </div>
+
+              <div
+                className="
+                  px-4
+                  py-2
+                  rounded-full
+                  bg-indigo-50
+                  text-indigo-700
+                  text-sm
+                  font-semibold
+                "
+              >
+                Legal Knowledge
+              </div>
+
+              <div
+                className="
+                  px-4
+                  py-2
+                  rounded-full
+                  bg-cyan-50
+                  text-cyan-700
+                  text-sm
+                  font-semibold
+                "
+              >
+                Creative Technology
+              </div>
+
+            </div>
 
           </div>
 
