@@ -8,44 +8,37 @@ import AddProfilePage from './components/AddProfilePage'
 const categoryGroups = [
   {
     title: 'Visual Arts',
-    color: '#7c3aed',
+    color: '#4f46e5',
     items: ['Photographers', 'Designers', 'Illustrators']
   },
-
   {
     title: 'Film & Media',
-    color: '#ec4899',
+    color: '#2563eb',
     items: ['Filmmakers', 'Editors', 'Producers']
   },
-
   {
     title: 'Fashion & Beauty',
-    color: '#f97316',
+    color: '#7c3aed',
     items: ['Models', 'Stylists', 'Makeup Artists']
   },
-
   {
     title: 'Performance & Music',
     color: '#06b6d4',
     items: ['Actors', 'Musicians', 'Dancers']
   },
-
   {
     title: 'Creative Business',
-    color: '#10b981',
+    color: '#0f172a',
     items: ['Studios', 'Agencies', 'Production Companies']
   }
 ]
 
 export default function App() {
-
   const [searchQuery, setSearchQuery] = useState('')
 
   return (
-
     <div className="min-h-screen overflow-hidden">
 
-      {/* HERO */}
       <section id="discover">
         <Hero
           searchQuery={searchQuery}
@@ -58,7 +51,6 @@ export default function App() {
         id="categories"
         className="max-w-7xl mx-auto px-8 py-8"
       >
-
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-3">
 
           {categoryGroups.map((group) => (
@@ -71,15 +63,13 @@ export default function App() {
                 rounded-2xl
                 p-4
                 text-left
-                bg-white/70
-                backdrop-blur-xl
+                bg-white/80
                 border
-                border-white/80
-                shadow-[0_10px_30px_rgba(15,23,42,0.05)]
-                hover:shadow-[0_20px_40px_rgba(15,23,42,0.10)]
+                border-white
+                shadow-sm
+                hover:shadow-xl
                 hover:-translate-y-1
-                transition-all
-                duration-300
+                transition
               "
             >
 
@@ -87,7 +77,7 @@ export default function App() {
                 className="w-9 h-9 rounded-xl mb-3"
                 style={{
                   background:
-                    `linear-gradient(135deg, ${group.color}, #ffffff)`
+                    `linear-gradient(135deg, ${group.color}, #dbeafe)`
                 }}
               />
 
@@ -104,180 +94,10 @@ export default function App() {
           ))}
 
         </div>
-
-      </section>
-
-      {/* FEATURED CREATIVES */}
-      <section className="max-w-7xl mx-auto px-8 py-10">
-
-        <div className="flex items-center justify-between mb-6">
-
-          <div>
-
-            <p className="text-xs uppercase tracking-[3px] text-violet-500 font-black mb-3">
-              Featured Creatives
-            </p>
-
-            <h2 className="text-3xl md:text-4xl font-black tracking-[-2px] text-[#0f172a]">
-              Discover verified creative talent
-            </h2>
-
-          </div>
-
-          <a
-            href="#studios"
-            className="
-              hidden
-              md:flex
-              px-5
-              py-3
-              rounded-full
-              bg-white/70
-              backdrop-blur-xl
-              border
-              border-white/80
-              text-sm
-              font-semibold
-              text-[#0f172a]
-              hover:bg-white
-              transition
-            "
-          >
-            Explore all
-          </a>
-
-        </div>
-
-        <div
-          className="
-            rounded-[36px]
-            overflow-hidden
-            bg-gradient-to-br
-            from-violet-600
-            via-fuchsia-500
-            to-orange-400
-            p-[1px]
-            shadow-[0_20px_70px_rgba(124,58,237,0.25)]
-          "
-        >
-
-          <div
-            className="
-              rounded-[36px]
-              bg-white/80
-              backdrop-blur-2xl
-              px-8
-              py-14
-              text-center
-            "
-          >
-
-            <div
-              className="
-                inline-flex
-                items-center
-                gap-2
-                px-5
-                py-2
-                rounded-full
-                bg-violet-100
-                text-violet-700
-                text-xs
-                font-black
-                tracking-[2px]
-                uppercase
-                mb-6
-              "
-            >
-              <div className="w-2 h-2 rounded-full bg-emerald-500" />
-              Live Creative Profiles
-            </div>
-
-            <h3
-              className="
-                text-4xl
-                md:text-5xl
-                font-black
-                tracking-[-3px]
-                text-[#0f172a]
-                leading-[1]
-                max-w-4xl
-                mx-auto
-              "
-            >
-              Real approved creators are now visible across CreativeCheck.
-            </h3>
-
-            <p
-              className="
-                max-w-2xl
-                mx-auto
-                mt-6
-                text-[17px]
-                text-gray-600
-                leading-relaxed
-              "
-            >
-              Explore creative professionals across art, fashion,
-              film, media, music, design, entertainment and digital
-              culture through public profile visibility, portfolio
-              presence and trusted discovery systems.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-3 mt-10">
-
-              {[
-                'Creative Professionals',
-                'Artists',
-                'Filmmakers',
-                'Photographers',
-                'Designers',
-                'Models',
-                'Musicians',
-                'Actors',
-                'Stylists',
-                'Creative Directors',
-                'Studios',
-                'Agencies',
-                'Production Companies',
-                'Visual Storytellers',
-                'Digital Creators',
-                'Entertainment & Media'
-              ].map((item) => (
-
-                <div
-                  key={item}
-                  className="
-                    px-4
-                    py-2
-                    rounded-full
-                    bg-white
-                    border
-                    border-white/80
-                    text-sm
-                    font-semibold
-                    text-[#0f172a]
-                    shadow-sm
-                  "
-                >
-                  {item}
-                </div>
-
-              ))}
-
-            </div>
-
-          </div>
-
-        </div>
-
       </section>
 
       {/* EXPLORE */}
-      <section
-        id="studios"
-        className="relative z-10"
-      >
+      <section id="studios">
         <ExploreSection searchQuery={searchQuery} />
       </section>
 
@@ -286,26 +106,25 @@ export default function App() {
         id="resources"
         className="max-w-7xl mx-auto px-8 py-8"
       >
-
         <div className="grid md:grid-cols-3 gap-4">
 
           {[
             [
               'Profile Review',
               'Reviewed before public display.',
-              '#7c3aed'
+              '#4f46e5'
             ],
 
             [
               'Correction Requests',
               'Update or remove information.',
-              '#ec4899'
+              '#2563eb'
             ],
 
             [
               'Trust Notice',
               'Discovery only, no guarantees.',
-              '#f97316'
+              '#06b6d4'
             ]
 
           ].map(([title, text, color]) => (
@@ -315,11 +134,10 @@ export default function App() {
               className="
                 rounded-2xl
                 p-5
-                bg-white/70
-                backdrop-blur-xl
+                bg-white/80
                 border
-                border-white/80
-                shadow-[0_10px_30px_rgba(15,23,42,0.05)]
+                border-white
+                shadow-sm
               "
             >
 
@@ -341,100 +159,67 @@ export default function App() {
           ))}
 
         </div>
-
       </section>
 
       {/* ABOUT */}
       <section
         id="about"
-        className="max-w-7xl mx-auto px-8 py-10"
+        className="max-w-7xl mx-auto px-8 py-8"
       >
-
         <div
           className="
-            rounded-[36px]
-            p-8
-            md:p-10
+            rounded-3xl
+            p-7
+            bg-gradient-to-r
+            from-[#0f172a]
+            via-[#1d4ed8]
+            to-[#06b6d4]
             text-white
-            shadow-[0_24px_70px_rgba(15,23,42,0.22)]
-            overflow-hidden
-            relative
+            shadow-xl
           "
-          style={{
-            background:
-              'linear-gradient(135deg,#0f172a 0%,#312e81 45%,#7c3aed 100%)'
-          }}
         >
 
-          <div className="relative z-10 grid lg:grid-cols-2 gap-10">
+          <p
+            className="
+              text-xs
+              uppercase
+              tracking-[3px]
+              text-blue-100
+              font-black
+              mb-3
+            "
+          >
+            About CreativeCheck
+          </p>
 
-            {/* CREATIVECHECK */}
-            <div>
+          <h2
+            className="
+              text-3xl
+              md:text-4xl
+              font-black
+              tracking-[-2px]
+              mb-3
+            "
+          >
+            Public discovery for the creative economy.
+          </h2>
 
-              <p className="text-xs uppercase tracking-[3px] text-violet-200 font-black mb-4">
-                About CreativeCheck
-              </p>
-
-              <h2 className="text-3xl md:text-4xl font-black tracking-[-2px] mb-5">
-                Public discovery for the creative economy.
-              </h2>
-
-              <p className="text-sm md:text-[15px] text-white/75 leading-relaxed">
-                CreativeCheck helps people discover creative professionals through
-                public visibility, portfolio presence and reviewed profile information.
-                The platform supports creatives, studios, agencies and production
-                companies by making professional creative profiles easier to find,
-                understand and connect with.
-              </p>
-
-              <p className="text-sm md:text-[15px] text-white/65 leading-relaxed mt-5">
-                CreativeCheck is designed as an informational discovery platform.
-                It does not provide legal conclusions, endorsements, guarantees or
-                background checks. Profiles may be reviewed before publication to
-                protect quality, accuracy and trust.
-              </p>
-
-            </div>
-
-            {/* FOUNDER */}
-            <div>
-
-              <p className="text-xs uppercase tracking-[3px] text-pink-200 font-black mb-4">
-                About the Founder
-              </p>
-
-              <h3 className="text-2xl md:text-3xl font-black tracking-[-1px] mb-5">
-                Founded by Emel Ozturk
-              </h3>
-
-              <p className="text-sm md:text-[15px] text-white/75 leading-relaxed">
-                CreativeCheck was founded by Emel Ozturk — an award-winning filmmaker
-                and photographer whose work has been published across international
-                magazines and creative media platforms.
-              </p>
-
-              <p className="text-sm md:text-[15px] text-white/70 leading-relaxed mt-5">
-                With years of experience across photography, filmmaking, visual
-                storytelling and creative production, Emel developed CreativeCheck
-                after recognising the growing need for a more trusted, transparent and
-                professionally structured discovery platform for the creative industry.
-              </p>
-
-              <p className="text-sm md:text-[15px] text-white/65 leading-relaxed mt-5">
-                Alongside her creative career, Emel expanded her legal education with
-                a focus on technology, artificial intelligence and the legal protection
-                of creative industries. Her academic research explores the impact of AI
-                and emerging technologies on the creative sector, with a particular
-                focus on protecting creators’ rights, professional visibility and
-                ethical development within the evolving digital landscape.
-              </p>
-
-            </div>
-
-          </div>
+          <p
+            className="
+              text-sm
+              md:text-[15px]
+              text-white/80
+              max-w-4xl
+              leading-relaxed
+            "
+          >
+            CreativeCheck helps people discover creative
+            professionals through public visibility,
+            portfolio presence and reviewed profile
+            information.
+          </p>
 
         </div>
-
       </section>
 
       {/* ADD PROFILE */}
@@ -442,14 +227,10 @@ export default function App() {
         <AddProfilePage />
       </section>
 
-      {/* FEATURES */}
       <FeatureStrip />
 
-      {/* FOOTER */}
       <Footer />
 
     </div>
-
   )
-
-}
+}            
