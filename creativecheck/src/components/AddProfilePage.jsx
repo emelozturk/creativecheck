@@ -1,422 +1,426 @@
 import { useState } from 'react'
-
-const SUPABASE_URL = 'https://gnqrakuhmzchwherombt.supabase.co'
-const SUPABASE_KEY = 'sb_publishable_-sTc8wYEmrNKb-gtHc_qHA_cxq9M5lS'
+import { supabase } from '../lib/supabase'
 
 export default function AddProfilePage() {
-
-  const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
-  const handleSubmit = async (e) => {
-
+  async function handleSubmit(e) {
     e.preventDefault()
+
+    const form = e.target
 
     setLoading(true)
     setMessage('')
 
-    const form = e.target
+    /* REQUIRED PUBLIC LINK */
 
-    const profileData = {
+    const hasPublicLink =
+      form.website.value.trim() ||
+      form.instagram.value.trim() ||
+      form.portfolio_url.value.trim()
 
-      full_name: form.full_name.value,
-
-      email: form.email.value,
-
-      profession: form.profession.value,
-
-      category: form.category.value,
-
-      city: form.city.value,
-
-      country: form.country.value,
-
-      website: form.website.value,
-
-      instagram: form.instagram.value,
-
-      portfolio_url: form.portfolio_url.value,
-
-      avatar_url: form.avatar_url.value,
-
-      bio: form.bio.value,
-
-      status: 'pending',
-
-      verified: false
-
-    }
-
-    try {
-
-      const response = await fetch(
-        `${SUPABASE_URL}/rest/v1/profiles`,
-        {
-          method: 'POST',
-
-          headers: {
-            apikey: SUPABASE_KEY,
-            Authorization: `Bearer ${SUPABASE_KEY}`,
-            'Content-Type': 'application/json',
-            Prefer: 'return=minimal'
-          },
-
-          body: JSON.stringify(profileData)
-        }
+    if (!hasPublicLink) {
+      setMessage(
+        'Please add at least one public link: website, Instagram or portfolio.'
       )
 
-      if (response.ok) {
+      setLoading(false)
+      return
+    }
 
-        setMessage(
-          'Profile submitted successfully. It will be reviewed before publishing.'
-        )
+    /* PROFILE DATA */
 
-        form.reset()
+    const profileData = {
+      full_name: form.full_name.value,
+      profession: form.profession.value,
+      city: form.city.value,
+      country: form.country.value,
+      bio: form.bio.value,
+      website: form.website.value,
+      instagram: form.instagram.value,
+      portfolio_url: form.portfolio_url.value,
+      email: form.email.value,
+      status: 'pending'
+    }
 
-        setTimeout(() => {
+    const { error } = await supabase
+      .from('profiles')
+      .insert([profileData])
 
-          setOpen(false)
-
-          setMessage('')
-
-          document
-            .getElementById('discover')
-            ?.scrollIntoView({
-              behavior: 'smooth'
-            })
-
-        }, 1800)
-
-      } else {
-
-        setMessage(
-          'Something went wrong. Please try again.'
-        )
-
-      }
-
-    } catch (error) {
+    if (error) {
+      console.error(error)
 
       setMessage(
         'Something went wrong. Please try again.'
       )
 
+      setLoading(false)
+      return
     }
 
-    setLoading(false)
+    setMessage(
+      'Profile submitted successfully and pending review.'
+    )
 
+    form.reset()
+
+    setLoading(false)
   }
 
   return (
-
     <section
-      id="add-profile"
-      className="max-w-3xl mx-auto px-8 py-24"
+      className="
+        max-w-4xl
+        mx-auto
+        px-8
+        py-14
+      "
     >
 
       <div
         className="
-          bg-white
-          rounded-3xl
-          shadow-xl
-          p-10
+          rounded-[36px]
+          bg-white/80
+          backdrop-blur-xl
           border
-          border-gray-100
-          text-center
+          border-white/80
+          shadow-[0_20px_60px_rgba(15,23,42,0.08)]
+          p-8
+          md:p-10
         "
       >
 
-        <h2 className="text-4xl font-extrabold mb-3">
-          Add Your Profile
-        </h2>
+        {/* HEADER */}
 
-        <p className="text-gray-500 mb-8">
-          Submit your public creative profile for
-          review before it appears on CreativeCheck.
-        </p>
+        <div className="mb-10">
 
-        <button
-          onClick={() => setOpen(true)}
-          className="
-            bg-black
-            text-white
-            rounded-full
-            px-8
-            py-4
-            font-semibold
-            hover:opacity-90
-            transition
-          "
-        >
-          Open Profile Form
-        </button>
-
-      </div>
-
-      {open && (
-
-        <div
-          className="
-            fixed
-            inset-0
-            z-50
-            flex
-            items-center
-            justify-center
-            bg-black/50
-            px-6
-          "
-        >
-
-          <div
+          <p
             className="
-              w-full
-              max-w-2xl
-              rounded-3xl
-              bg-white
-              p-8
-              shadow-2xl
-              relative
-              max-h-[90vh]
-              overflow-y-auto
+              text-xs
+              uppercase
+              tracking-[3px]
+              text-blue-500
+              font-black
+              mb-3
             "
           >
+            Submit Your Profile
+          </p>
 
-            <button
-              onClick={() => setOpen(false)}
-              className="
-                absolute
-                top-5
-                right-5
-                w-9
-                h-9
-                rounded-full
-                bg-gray-100
-                hover:bg-gray-200
-                text-gray-500
-              "
-            >
-              ✕
-            </button>
+          <h2
+            className="
+              text-4xl
+              md:text-5xl
+              font-black
+              tracking-[-3px]
+              text-[#0f172a]
+              leading-[1]
+            "
+          >
+            Join
+            <span className="gradient-check">
+              {' '}CreativeCheck
+            </span>
+          </h2>
 
-            <h3 className="text-3xl font-extrabold text-gray-900">
-              Submit Your Profile
-            </h3>
-
-            <p className="text-gray-500 mt-2 mb-8">
-              Your profile will be reviewed before publishing.
-            </p>
-
-            <form
-              onSubmit={handleSubmit}
-              className="grid gap-5"
-            >
-
-              <input
-                name="full_name"
-                placeholder="Full Name"
-                required
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <input
-                name="email"
-                type="email"
-                placeholder="Email"
-                required
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <input
-                name="profession"
-                placeholder="Profession"
-                required
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <input
-                name="category"
-                placeholder="Category"
-                required
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <input
-                name="city"
-                placeholder="City"
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <input
-                name="country"
-                placeholder="Country"
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <input
-                name="website"
-                type="url"
-                placeholder="Website"
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <input
-                name="instagram"
-                type="url"
-                placeholder="Instagram URL"
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <input
-                name="portfolio_url"
-                type="url"
-                placeholder="Portfolio URL"
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <input
-                name="avatar_url"
-                type="url"
-                placeholder="Profile Image URL"
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <textarea
-                name="bio"
-                placeholder="Short Bio"
-                rows="5"
-                className="
-                  rounded-2xl
-                  border
-                  border-gray-200
-                  px-5
-                  py-4
-                "
-              />
-
-              <label
-                className="
-                  flex
-                  gap-3
-                  text-xs
-                  text-gray-500
-                  leading-relaxed
-                "
-              >
-
-                <input
-                  type="checkbox"
-                  required
-                  className="mt-1"
-                />
-
-                I confirm that the information
-                submitted is accurate, belongs to me,
-                and may be reviewed by CreativeCheck
-                before publication.
-
-              </label>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="
-                  bg-black
-                  text-white
-                  rounded-2xl
-                  py-4
-                  font-semibold
-                  hover:opacity-90
-                  transition
-                  disabled:opacity-50
-                "
-              >
-
-                {loading
-                  ? 'Submitting...'
-                  : 'Submit Profile'}
-
-              </button>
-
-              {message && (
-
-                <p className="text-sm text-gray-600">
-                  {message}
-                </p>
-
-              )}
-
-            </form>
-
-          </div>
+          <p
+            className="
+              mt-5
+              text-[16px]
+              text-gray-500
+              leading-relaxed
+              max-w-2xl
+            "
+          >
+            Submit your professional public profile
+            for CreativeCheck review and discovery.
+          </p>
 
         </div>
 
-      )}
+        {/* FORM */}
+
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-5"
+        >
+
+          {/* NAME */}
+
+          <input
+            type="text"
+            name="full_name"
+            required
+            placeholder="Full Name"
+            className="
+              w-full
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              px-5
+              py-4
+              text-[#0f172a]
+            "
+          />
+
+          {/* PROFESSION */}
+
+          <input
+            type="text"
+            name="profession"
+            required
+            placeholder="Profession"
+            className="
+              w-full
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              px-5
+              py-4
+              text-[#0f172a]
+            "
+          />
+
+          {/* CITY + COUNTRY */}
+
+          <div className="grid md:grid-cols-2 gap-4">
+
+            <input
+              type="text"
+              name="city"
+              placeholder="City"
+              className="
+                w-full
+                rounded-2xl
+                border
+                border-gray-200
+                bg-white
+                px-5
+                py-4
+                text-[#0f172a]
+              "
+            />
+
+            <input
+              type="text"
+              name="country"
+              placeholder="Country"
+              className="
+                w-full
+                rounded-2xl
+                border
+                border-gray-200
+                bg-white
+                px-5
+                py-4
+                text-[#0f172a]
+              "
+            />
+
+          </div>
+
+          {/* BIO */}
+
+          <textarea
+            name="bio"
+            required
+            rows="5"
+            placeholder="Short professional bio — required for review"
+            className="
+              w-full
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              px-5
+              py-4
+              text-[#0f172a]
+              resize-none
+            "
+          />
+
+          {/* WEBSITE */}
+
+          <input
+            type="url"
+            name="website"
+            placeholder="Website URL"
+            className="
+              w-full
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              px-5
+              py-4
+              text-[#0f172a]
+            "
+          />
+
+          {/* INSTAGRAM */}
+
+          <input
+            type="url"
+            name="instagram"
+            placeholder="Instagram Profile URL"
+            className="
+              w-full
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              px-5
+              py-4
+              text-[#0f172a]
+            "
+          />
+
+          {/* PORTFOLIO */}
+
+          <input
+            type="url"
+            name="portfolio_url"
+            placeholder="Portfolio URL"
+            className="
+              w-full
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              px-5
+              py-4
+              text-[#0f172a]
+            "
+          />
+
+          {/* EMAIL */}
+
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Email Address"
+            className="
+              w-full
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              px-5
+              py-4
+              text-[#0f172a]
+            "
+          />
+
+          {/* INFO */}
+
+          <div
+            className="
+              rounded-2xl
+              bg-blue-50
+              border
+              border-blue-100
+              p-5
+            "
+          >
+
+            <p
+              className="
+                text-sm
+                text-blue-700
+                leading-relaxed
+              "
+            >
+              Please add at least two public link:
+              website, Instagram or portfolio.
+              Incomplete profiles may not be approved.
+            </p>
+
+          </div>
+
+          {/* CONSENT */}
+
+          <label
+            className="
+              flex
+              items-start
+              gap-3
+              text-sm
+              text-gray-500
+              leading-relaxed
+            "
+          >
+
+            <input
+              type="checkbox"
+              required
+              className="mt-1"
+            />
+
+            <span>
+              I confirm that submitted information
+              is publicly shareable and may be reviewed
+              before publication on CreativeCheck.
+            </span>
+
+          </label>
+
+          {/* BUTTON */}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="
+              w-full
+              py-4
+              rounded-2xl
+              bg-gradient-to-r
+              from-[#4f46e5]
+              via-[#2563eb]
+              to-[#06b6d4]
+              text-white
+              font-semibold
+              shadow-xl
+              hover:scale-[1.01]
+              transition
+              disabled:opacity-50
+            "
+          >
+
+            {loading
+              ? 'Submitting...'
+              : 'Submit Profile'}
+
+          </button>
+
+          {/* MESSAGE */}
+
+          {message && (
+
+            <div
+              className="
+                rounded-2xl
+                bg-gray-50
+                border
+                border-gray-200
+                px-5
+                py-4
+                text-sm
+                text-gray-600
+              "
+            >
+              {message}
+            </div>
+
+          )}
+
+        </form>
+
+      </div>
 
     </section>
-
   )
-
 }
