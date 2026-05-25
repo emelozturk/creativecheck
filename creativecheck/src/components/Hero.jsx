@@ -1,13 +1,5 @@
 import LogoIcon from './LogoIcon'
 
-const categories = [
-  'Visual Arts',
-  'Film & Media',
-  'Fashion & Beauty',
-  'Performance & Music',
-  'Creative Business'
-]
-
 export default function Hero({
   searchQuery,
   setSearchQuery
@@ -269,54 +261,6 @@ export default function Hero({
           >
             Explore Categories
           </a>
-
-        </div>
-
-        {/* CATEGORY CHIPS */}
-
-        <div
-          id="categories"
-          className="
-            mt-8
-            max-w-5xl
-            mx-auto
-            flex
-            flex-wrap
-            justify-center
-            gap-3
-          "
-        >
-
-          {categories.map((title) => (
-
-            <button
-              key={title}
-              onClick={() =>
-                setSearchQuery(title)
-              }
-              className="
-                px-4
-                py-2
-                rounded-full
-                bg-white/70
-                backdrop-blur-xl
-                border
-                border-white/80
-                shadow-sm
-                text-[#0f172a]
-                text-[14px]
-                font-semibold
-                hover:scale-[1.03]
-                hover:bg-white
-                transition
-              "
-            >
-
-              {title}
-
-            </button>
-
-          ))}
 
         </div>
 
