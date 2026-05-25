@@ -1,17 +1,44 @@
 import LogoIcon from './LogoIcon'
 
-export default function Hero({ searchQuery, setSearchQuery }) {
+const categories = [
+  'Visual Arts',
+  'Film & Media',
+  'Fashion & Beauty',
+  'Performance & Music',
+  'Creative Business'
+]
+
+export default function Hero({
+  searchQuery,
+  setSearchQuery
+}) {
   return (
     <section
       id="discover"
-      className="relative min-h-screen px-8 py-8 flex flex-col overflow-hidden"
+      className="
+        relative
+        min-h-screen
+        px-8
+        py-8
+        flex
+        flex-col
+        overflow-hidden
+      "
+      style={{
+        background:
+          'radial-gradient(circle at 15% 20%, rgba(79,70,229,0.16), transparent 28%), radial-gradient(circle at 85% 18%, rgba(37,99,235,0.14), transparent 30%), radial-gradient(circle at 80% 80%, rgba(6,182,212,0.16), transparent 30%), linear-gradient(135deg,#f8fbff 0%,#f5f7ff 48%,#f4faff 100%)'
+      }}
     >
 
       {/* HEADER */}
+
       <header className="relative z-10 flex items-center justify-between">
 
-        {/* LOGO */}
-        <a href="#discover" className="flex items-center gap-4">
+        <a
+          href="#discover"
+          className="flex items-center gap-4"
+        >
+
           <LogoIcon size={48} />
 
           <h1 className="text-[34px] font-black tracking-[-2px]">
@@ -23,42 +50,39 @@ export default function Hero({ searchQuery, setSearchQuery }) {
               Check
             </span>
           </h1>
+
         </a>
 
-        {/* NAVBAR */}
-        <nav className="hidden lg:flex items-center gap-9 text-[15px] font-semibold text-[#0f172a]">
+        <nav
+          className="
+            hidden
+            lg:flex
+            items-center
+            gap-9
+            text-[15px]
+            font-semibold
+            text-[#0f172a]
+          "
+        >
 
-          <a
-            href="#discover"
-            className="hover:text-violet-600 transition"
-          >
+          <a href="#discover" className="hover:text-blue-600 transition">
             Discover
           </a>
 
-          <a
-            href="#categories"
-            className="hover:text-violet-600 transition"
-          >
+          <a href="#categories" className="hover:text-blue-600 transition">
             Categories
           </a>
 
-          <a
-            href="#resources"
-            className="hover:text-violet-600 transition"
-          >
+          <a href="#resources" className="hover:text-blue-600 transition">
             Resources
           </a>
 
-          <a
-            href="#about"
-            className="hover:text-violet-600 transition"
-          >
+          <a href="#about" className="hover:text-blue-600 transition">
             About
           </a>
 
         </nav>
 
-        {/* BUTTON */}
         <a
           href="#add-profile"
           className="
@@ -71,7 +95,7 @@ export default function Hero({ searchQuery, setSearchQuery }) {
             rounded-full
             font-semibold
             shadow-[0_12px_32px_rgba(15,23,42,0.18)]
-            hover:bg-violet-600
+            hover:bg-blue-600
             transition
           "
         >
@@ -81,27 +105,69 @@ export default function Hero({ searchQuery, setSearchQuery }) {
       </header>
 
       {/* HERO */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center">
 
-        <div className="mb-6 text-[11px] uppercase tracking-[4px] text-gray-400 font-bold">
+      <div
+        className="
+          relative
+          z-10
+          flex-1
+          flex
+          flex-col
+          items-center
+          justify-center
+          text-center
+        "
+      >
+
+        <div
+          className="
+            mb-6
+            text-[11px]
+            uppercase
+            tracking-[4px]
+            text-blue-500
+            font-bold
+          "
+        >
           Public Creative Discovery Platform
         </div>
 
-        <h2 className="text-[58px] md:text-[88px] font-black tracking-[-4px] leading-[1] text-[#0f172a] max-w-5xl">
+        <h2
+          className="
+            text-[58px]
+            md:text-[88px]
+            font-black
+            tracking-[-4px]
+            leading-[1]
+            text-[#0f172a]
+            max-w-5xl
+          "
+        >
           Discover Creatives
           <br />
 
           <span className="gradient-check">
             with Confidence
           </span>
+
         </h2>
 
-        <p className="mt-7 max-w-2xl text-[18px] text-gray-500 leading-relaxed">
-          Discover creative professionals through public visibility,
-          portfolio presence and trusted creative discovery.
+        <p
+          className="
+            mt-7
+            max-w-2xl
+            text-[18px]
+            text-gray-500
+            leading-relaxed
+          "
+        >
+          Discover creative professionals through public
+          visibility, portfolio presence and trusted
+          creative discovery.
         </p>
 
-        {/* SEARCH BAR */}
+        {/* SEARCH */}
+
         <div className="mt-10 w-full max-w-2xl">
 
           <div
@@ -122,7 +188,9 @@ export default function Hero({ searchQuery, setSearchQuery }) {
             <input
               type="text"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) =>
+                setSearchQuery(e.target.value)
+              }
               placeholder="Search creatives..."
               className="
                 w-full
@@ -143,7 +211,7 @@ export default function Hero({ searchQuery, setSearchQuery }) {
                 rounded-full
                 text-sm
                 font-semibold
-                hover:bg-violet-600
+                hover:bg-blue-600
                 transition
               "
             >
@@ -151,6 +219,54 @@ export default function Hero({ searchQuery, setSearchQuery }) {
             </button>
 
           </div>
+
+        </div>
+
+        {/* CATEGORY CHIPS */}
+
+        <div
+          id="categories"
+          className="
+            mt-8
+            max-w-5xl
+            mx-auto
+            flex
+            flex-wrap
+            justify-center
+            gap-3
+          "
+        >
+
+          {categories.map((title) => (
+
+            <button
+              key={title}
+              onClick={() =>
+                setSearchQuery(title)
+              }
+              className="
+                px-4
+                py-2
+                rounded-full
+                bg-white/70
+                backdrop-blur-xl
+                border
+                border-white/80
+                shadow-sm
+                text-[#0f172a]
+                text-[14px]
+                font-semibold
+                hover:scale-[1.03]
+                hover:bg-white
+                transition
+              "
+            >
+
+              {title}
+
+            </button>
+
+          ))}
 
         </div>
 
