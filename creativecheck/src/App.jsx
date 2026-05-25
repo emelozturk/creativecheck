@@ -47,10 +47,12 @@ export default function App() {
       </section>
 
       {/* CATEGORIES */}
+
       <section
         id="categories"
         className="max-w-7xl mx-auto px-8 py-8"
       >
+
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-3">
 
           {categoryGroups.map((group) => (
@@ -94,18 +96,45 @@ export default function App() {
           ))}
 
         </div>
+
+        {/* CATEGORY CTA */}
+
+        <div className="flex justify-center mt-8">
+
+          <a
+            href="#add-profile"
+            className="
+              px-7
+              py-4
+              rounded-full
+              bg-[#0f172a]
+              text-white
+              font-semibold
+              shadow-xl
+              hover:bg-blue-600
+              transition
+            "
+          >
+            + Join CreativeCheck
+          </a>
+
+        </div>
+
       </section>
 
       {/* EXPLORE */}
+
       <section id="studios">
         <ExploreSection searchQuery={searchQuery} />
       </section>
 
       {/* RESOURCES */}
+
       <section
         id="resources"
         className="max-w-7xl mx-auto px-8 py-8"
       >
+
         <div className="grid md:grid-cols-3 gap-4">
 
           {[
@@ -159,70 +188,182 @@ export default function App() {
           ))}
 
         </div>
+
       </section>
 
       {/* ABOUT */}
+
       <section
         id="about"
         className="max-w-7xl mx-auto px-8 py-8"
       >
-        <div
-          className="
-            rounded-3xl
-            p-7
-            bg-gradient-to-r
-            from-[#0f172a]
-            via-[#1d4ed8]
-            to-[#06b6d4]
-            text-white
-            shadow-xl
-          "
-        >
 
-          <p
+        <div className="grid lg:grid-cols-2 gap-4">
+
+          <div
             className="
-              text-xs
-              uppercase
-              tracking-[3px]
-              text-blue-100
-              font-black
-              mb-3
+              rounded-3xl
+              p-7
+              bg-gradient-to-br
+              from-[#0f172a]
+              via-[#1d4ed8]
+              to-[#06b6d4]
+              text-white
+              shadow-xl
             "
           >
-            About CreativeCheck
-          </p>
 
-          <h2
+            <p
+              className="
+                text-xs
+                uppercase
+                tracking-[3px]
+                text-blue-100
+                font-black
+                mb-3
+              "
+            >
+              About CreativeCheck
+            </p>
+
+            <h2
+              className="
+                text-3xl
+                md:text-4xl
+                font-black
+                tracking-[-2px]
+                mb-4
+              "
+            >
+              A public discovery platform for the creative economy.
+            </h2>
+
+            <p
+              className="
+                text-sm
+                md:text-[15px]
+                text-white/80
+                leading-relaxed
+              "
+            >
+              CreativeCheck helps users discover creative professionals,
+              studios, agencies and production companies through public
+              visibility, portfolio presence and reviewed profile information.
+            </p>
+
+            <p
+              className="
+                text-sm
+                md:text-[15px]
+                text-white/70
+                leading-relaxed
+                mt-4
+              "
+            >
+              The platform is designed to support creatives by making
+              their public professional presence easier to find.
+            </p>
+
+            <div className="mt-6">
+
+              <a
+                href="#add-profile"
+                className="
+                  inline-flex
+                  items-center
+                  px-6
+                  py-3
+                  rounded-full
+                  bg-white
+                  text-[#0f172a]
+                  font-semibold
+                  shadow-lg
+                  hover:scale-105
+                  transition
+                "
+              >
+                Create Your Creative Profile
+              </a>
+
+            </div>
+
+          </div>
+
+          {/* FOUNDER */}
+
+          <div
             className="
-              text-3xl
-              md:text-4xl
-              font-black
-              tracking-[-2px]
-              mb-3
+              rounded-3xl
+              p-7
+              bg-white/85
+              border
+              border-white
+              shadow-xl
             "
           >
-            Public discovery for the creative economy.
-          </h2>
 
-          <p
-            className="
-              text-sm
-              md:text-[15px]
-              text-white/80
-              max-w-4xl
-              leading-relaxed
-            "
-          >
-            CreativeCheck helps people discover creative
-            professionals through public visibility,
-            portfolio presence and reviewed profile
-            information.
-          </p>
+            <p
+              className="
+                text-xs
+                uppercase
+                tracking-[3px]
+                text-blue-500
+                font-black
+                mb-3
+              "
+            >
+              Founder
+            </p>
+
+            <h2
+              className="
+                text-3xl
+                md:text-4xl
+                font-black
+                tracking-[-2px]
+                text-[#0f172a]
+                mb-4
+              "
+            >
+              Founded by Emel Ozturk
+            </h2>
+
+            <p
+              className="
+                text-sm
+                md:text-[15px]
+                text-gray-600
+                leading-relaxed
+              "
+            >
+              CreativeCheck was founded by Emel Ozturk,
+              combining creative industry experience with legal
+              knowledge to build a platform supporting visibility,
+              transparency and trusted discovery for creatives.
+            </p>
+
+            <p
+              className="
+                text-sm
+                md:text-[15px]
+                text-gray-500
+                leading-relaxed
+                mt-4
+              "
+            >
+              The mission is to help creatives be discovered
+              professionally while encouraging responsible use
+              of public information and creative visibility.
+            </p>
+
+          </div>
 
         </div>
+
       </section>
 
       {/* ADD PROFILE */}
+
       <section id="add-profile">
         <AddProfilePage />
       </section>
@@ -233,4 +374,4 @@ export default function App() {
 
     </div>
   )
-}            
+}
