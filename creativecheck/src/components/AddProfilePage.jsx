@@ -334,7 +334,7 @@ export default function AddProfilePage() {
                 leading-relaxed
               "
             >
-              Please add at least two public link:
+              Please add at least one public link:
               website, Instagram or portfolio.
               Incomplete profiles may not be approved.
             </p>
