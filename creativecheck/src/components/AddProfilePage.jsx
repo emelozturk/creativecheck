@@ -208,9 +208,11 @@ export default function AddProfilePage() {
 
           {/* CATEGORY */}
 
-          <select
+          <input
+            type="text"
             name="category"
             required
+            placeholder="Creative field / speciality — e.g. Fashion Photographer, Film Director, Makeup Artist"
             className="
               w-full
               rounded-2xl
@@ -221,26 +223,7 @@ export default function AddProfilePage() {
               py-4
               text-[#0f172a]
             "
-          >
-
-            <option value="">
-              Select Category
-            </option>
-
-            <option>Photographer</option>
-            <option>Filmmaker</option>
-            <option>Creative Director</option>
-            <option>Model</option>
-            <option>Designer</option>
-            <option>Stylist</option>
-            <option>Makeup Artist</option>
-            <option>Producer</option>
-            <option>Editor</option>
-            <option>Studio</option>
-            <option>Agency</option>
-            <option>Production Company</option>
-
-          </select>
+          />
 
           {/* CITY + COUNTRY */}
 
