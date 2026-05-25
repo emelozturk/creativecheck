@@ -33,15 +33,17 @@ export default function AddProfilePage() {
 
     const profileData = {
       full_name: form.full_name.value,
+      email: form.email.value,
       profession: form.profession.value,
+      category: form.category.value,
       city: form.city.value,
       country: form.country.value,
-      bio: form.bio.value,
       website: form.website.value,
       instagram: form.instagram.value,
       portfolio_url: form.portfolio_url.value,
-      email: form.email.value,
-      status: 'pending'
+      bio: form.bio.value,
+      status: 'pending',
+      verified: false
     }
 
     const { error } = await supabase
@@ -70,6 +72,7 @@ export default function AddProfilePage() {
 
   return (
     <section
+      id="add-profile"
       className="
         max-w-4xl
         mx-auto
@@ -165,6 +168,25 @@ export default function AddProfilePage() {
             "
           />
 
+          {/* EMAIL */}
+
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Email Address"
+            className="
+              w-full
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              px-5
+              py-4
+              text-[#0f172a]
+            "
+          />
+
           {/* PROFESSION */}
 
           <input
@@ -183,6 +205,42 @@ export default function AddProfilePage() {
               text-[#0f172a]
             "
           />
+
+          {/* CATEGORY */}
+
+          <select
+            name="category"
+            required
+            className="
+              w-full
+              rounded-2xl
+              border
+              border-gray-200
+              bg-white
+              px-5
+              py-4
+              text-[#0f172a]
+            "
+          >
+
+            <option value="">
+              Select Category
+            </option>
+
+            <option>Photographer</option>
+            <option>Filmmaker</option>
+            <option>Creative Director</option>
+            <option>Model</option>
+            <option>Designer</option>
+            <option>Stylist</option>
+            <option>Makeup Artist</option>
+            <option>Producer</option>
+            <option>Editor</option>
+            <option>Studio</option>
+            <option>Agency</option>
+            <option>Production Company</option>
+
+          </select>
 
           {/* CITY + COUNTRY */}
 
@@ -284,25 +342,6 @@ export default function AddProfilePage() {
             type="url"
             name="portfolio_url"
             placeholder="Portfolio URL"
-            className="
-              w-full
-              rounded-2xl
-              border
-              border-gray-200
-              bg-white
-              px-5
-              py-4
-              text-[#0f172a]
-            "
-          />
-
-          {/* EMAIL */}
-
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="Email Address"
             className="
               w-full
               rounded-2xl
