@@ -196,11 +196,19 @@ export default function Footer() {
             © 2026 CreativeCheck. All rights reserved.
           </p>
 
-          <p className="text-sm text-gray-200/80">
-            Public visibility · Portfolio presence · Trusted discovery
-          </p>
-
-        </div>
+         <div className="mt-3">
+  <a
+    href="mailto:info@creativecheck.app"
+    className="
+      text-sm
+      text-cyan-300
+      hover:text-white
+      transition
+    "
+  >
+    info@creativecheck.app
+  </a>
+</div>
 
       </div>
 
