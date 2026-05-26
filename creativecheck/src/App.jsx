@@ -166,40 +166,153 @@ export default function App() {
               Emel Ozturk
             </h2>
 
-            <p className="relative z-10 text-[15px] text-gray-600 leading-relaxed">
-              Emel Ozturk is an award-winning filmmaker, photographer and creative
-              entrepreneur whose visual work has been published in international magazines
-              and creative media platforms.
-            </p>
+           {/* FOUNDER */}
 
-            <p className="relative z-10 text-[15px] text-gray-500 leading-relaxed mt-5">
-              Alongside her creative industry background, she studied law and pursued a
-              legal master’s degree focused on Technology, AI and Legal Services.
-            </p>
+<section
+  id="founder"
+  className="
+    max-w-6xl
+    mx-auto
+    px-6
+    md:px-10
+    py-24
+  "
+>
 
-            <p className="relative z-10 text-[15px] text-gray-500 leading-relaxed mt-5">
-              Her academic work explores the impact of emerging technologies and artificial
-              intelligence within the creative industries, with a focus on creator visibility,
-              intellectual property protection, digital identity and legal rights.
-            </p>
+  <div
+    className="
+      relative
+      overflow-hidden
+      rounded-[40px]
+      border
+      border-white/20
+      bg-white/70
+      backdrop-blur-2xl
+      shadow-[0_25px_80px_rgba(15,23,42,0.10)]
+      p-8
+      md:p-14
+    "
+  >
 
-            <div className="relative z-10 mt-7 flex flex-wrap gap-3">
-              <div className="px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold">
-                Award-winning Filmmaker
-              </div>
+    {/* BACKGROUND GLOW */}
 
-              <div className="px-4 py-2 rounded-full bg-indigo-50 text-indigo-700 text-sm font-semibold">
-                Photographer
-              </div>
+    <div
+      className="
+        absolute
+        -top-32
+        -right-32
+        w-[420px]
+        h-[420px]
+        rounded-full
+        blur-3xl
+        opacity-30
+      "
+      style={{
+        background:
+          'linear-gradient(135deg,#4f46e5,#06b6d4,#8b5cf6)'
+      }}
+    />
 
-              <div className="px-4 py-2 rounded-full bg-cyan-50 text-cyan-700 text-sm font-semibold">
-                Technology & AI Law
-              </div>
-            </div>
-          </div>
+    <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
 
-        </div>
-      </section>
+      {/* LEFT */}
+
+      <div>
+
+        <p
+          className="
+            inline-flex
+            items-center
+            gap-2
+            px-5
+            py-2
+            rounded-full
+            text-xs
+            font-black
+            tracking-[3px]
+            uppercase
+            text-white
+            mb-6
+          "
+          style={{
+            background:
+              'linear-gradient(135deg,#4f46e5,#06b6d4)'
+          }}
+        >
+          Founder
+        </p>
+
+        <h2
+          className="
+            text-5xl
+            md:text-6xl
+            font-black
+            tracking-[-4px]
+            leading-[0.95]
+            text-[#0f172a]
+          "
+        >
+          Built by
+          <br />
+
+          <span className="gradient-check">
+            Emel Ozturk
+          </span>
+        </h2>
+
+      </div>
+
+      {/* RIGHT */}
+
+      <div
+        className="
+          text-[17px]
+          leading-relaxed
+          text-gray-600
+          space-y-6
+        "
+      >
+
+        <p>
+          Emel Ozturk is an award-winning filmmaker,
+          photographer and creative entrepreneur
+          whose visual work has been published in
+          international magazines and creative media platforms.
+        </p>
+
+        <p>
+          Alongside a professional background in media
+          and visual storytelling, Emel also studied law
+          and pursued a legal master’s degree focused on
+          Technology, AI and Legal Services.
+        </p>
+
+        <p>
+          Her academic and professional work explores
+          The impact of emerging technologies and artificial
+          intelligence within the creative industries,
+          particularly focusing on creator visibility,
+          intellectual property protection,
+          digital identity and legal rights in evolving
+          creative ecosystems.
+        </p>
+
+        <p>
+          CreativeCheck was created to help creatives,
+          artists, filmmakers, photographers,
+          agencies and production professionals gain
+          trusted visibility while protecting
+          The value of creative work in the age
+          of emerging technology.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
       <section id="add-profile">
         <AddProfilePage />
