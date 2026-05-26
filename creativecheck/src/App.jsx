@@ -392,26 +392,6 @@ export default function App() {
               of emerging technology.
             </p>
 
-            <div className="relative z-10 mt-7 flex flex-wrap gap-3">
-
-              <div className="px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-semibold">
-                Award-winning Filmmaker
-              </div>
-
-              <div className="px-4 py-2 rounded-full bg-indigo-50 text-indigo-700 text-sm font-semibold">
-                Internationally Published Photographer
-              </div>
-
-              <div className="px-4 py-2 rounded-full bg-cyan-50 text-cyan-700 text-sm font-semibold">
-                Technology & AI Law
-              </div>
-
-              <div className="px-4 py-2 rounded-full bg-violet-50 text-violet-700 text-sm font-semibold">
-                Emerging Technologies Research
-              </div>
-
-            </div>
-
           </div>
 
         </div>
