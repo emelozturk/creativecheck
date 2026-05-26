@@ -385,9 +385,8 @@ export default function App() {
 
             <p className="relative z-10 text-[15px] text-gray-500 leading-relaxed mt-5">
               CreativeCheck was created to help creatives,
-              artists, filmmakers, photographers,
-              agencies and production professionals gain
-              trusted visibility while protecting
+              creative businesses and professionals
+              gain trusted visibility while protecting
               The value of creative work in the age
               of emerging technology.
             </p>
