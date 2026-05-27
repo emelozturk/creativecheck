@@ -1,44 +1,69 @@
-export default function LogoIcon({ size = 48 }) {
+export default function LogoIcon({ size = 56 }) {
   return (
     <div
       style={{
         width: size,
         height: size,
-        borderRadius: '18px',
-        background:
-          'linear-gradient(135deg,#4f46e5 0%,#7c3aed 45%,#06b6d4 100%)',
+        position: 'relative',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: '0 14px 35px rgba(79,70,229,0.35)'
+        justifyContent: 'center'
       }}
     >
       <svg
-        width={size * 0.62}
-        height={size * 0.62}
-        viewBox="0 0 64 64"
+        width={size}
+        height={size}
+        viewBox="0 0 100 100"
         fill="none"
       >
+        <defs>
+          <linearGradient id="creativeGradient" x1="10" y1="85" x2="90" y2="15">
+            <stop offset="0%" stopColor="#06b6d4" />
+            <stop offset="35%" stopColor="#2563eb" />
+            <stop offset="70%" stopColor="#7c3aed" />
+            <stop offset="100%" stopColor="#ec4899" />
+          </linearGradient>
+
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
         <path
-          d="M44 18C40.5 14.5 35.8 12.5 30.8 12.5C20.7 12.5 12.5 20.7 12.5 30.8C12.5 40.9 20.7 49.1 30.8 49.1C36.1 49.1 40.9 46.9 44.2 43.3"
-          stroke="white"
-          strokeWidth="7"
+          d="M74 24C67 17 57 13 46 14C26 16 12 32 13 52C14 71 31 86 50 85C61 84 70 80 77 72"
+          stroke="url(#creativeGradient)"
+          strokeWidth="14"
           strokeLinecap="round"
+          filter="url(#glow)"
         />
 
         <path
-          d="M24 31.5L31 38.5L49 20.5"
-          stroke="white"
-          strokeWidth="7"
+          d="M28 53L43 68L78 31"
+          stroke="url(#creativeGradient)"
+          strokeWidth="12"
           strokeLinecap="round"
           strokeLinejoin="round"
+          filter="url(#glow)"
         />
 
         <path
-          d="M46 10L54 18"
-          stroke="rgba(255,255,255,0.55)"
+          d="M22 70C35 82 55 86 73 76"
+          stroke="#06b6d4"
           strokeWidth="4"
           strokeLinecap="round"
+          opacity="0.45"
+        />
+
+        <path
+          d="M19 31C28 18 46 10 64 16"
+          stroke="#ec4899"
+          strokeWidth="4"
+          strokeLinecap="round"
+          opacity="0.45"
         />
       </svg>
     </div>
