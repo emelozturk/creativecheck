@@ -414,27 +414,28 @@ export default function Hero({
         "
       >
 
-      <div
-  className="
-    absolute
-    right-0
-    top-0
-    h-full
-    w-[58%]
-    overflow-hidden
-  "
->
+        <div
+          className="
+            absolute
+            right-0
+            top-0
+            h-full
+            w-1/2
+            overflow-hidden
+          "
+        >
 
           <img
             src="/assets/hero-art.jpg"
             alt=""
             className="
               absolute
-              inset-0
-              w-full
+              top-0
+              left-[-60px]
+              w-[calc(100%+60px)]
               h-full
               object-cover
-              object-[85%_center]
+              object-[65%_center]
             "
           />
 
