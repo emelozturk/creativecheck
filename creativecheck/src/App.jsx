@@ -1,411 +1,368 @@
+import founderPhoto from './assets/founder-original.jpg'
 import { useState } from 'react'
-import Hero from './components/Hero'
 import ExploreSection from './components/ExploreSection'
-import FeatureStrip from './components/FeatureStrip'
-import Footer from './components/Footer'
 import AddProfilePage from './components/AddProfilePage'
+import './index.css'
 
-const categoryGroups = [
-  {
-    title: 'Visual Arts',
-    color: '#4f46e5',
-    items: ['Photographers', 'Designers', 'Illustrators']
-  },
-  {
-    title: 'Film & Media',
-    color: '#2563eb',
-    items: ['Filmmakers', 'Editors', 'Producers']
-  },
-  {
-    title: 'Fashion & Beauty',
-    color: '#7c3aed',
-    items: ['Models', 'Stylists', 'Makeup Artists']
-  },
-  {
-    title: 'Performance & Music',
-    color: '#06b6d4',
-    items: ['Actors', 'Musicians', 'Dancers']
-  },
-  {
-    title: 'Creative Business',
-    color: '#0f172a',
-    items: ['Studios', 'Agencies', 'Production Companies']
-  }
+const upcoming = [
+  ['✧', 'AI Matching', 'Smart connections'],
+  ['▤', 'Projects & Opportunities', 'New opportunities every day'],
+  ['▧', 'Contracts & Invoices', 'Professional tools for creatives'],
+  ['▦', 'Events & Workshops', 'Learn, connect and grow'],
+  ['♧', 'Business & Legal Connections', 'Connect with trusted advisors'],
+]
+
+const futureFeatures = [
+  ['✣', 'AI Project Matching', 'Find the right fit'],
+  ['▣', 'Jobs & Opportunities', 'Discover new projects'],
+  ['▤', 'Contracts & Invoices', 'Professional tools'],
+  ['▦', 'Events & Workshops', 'Grow your skills'],
+  ['▥', 'Magazine & Insights', 'Creative knowledge'],
+  ['♧', 'Legal & Business Support', 'Connect with experts'],
 ]
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('')
 
   return (
-    <div className="min-h-screen overflow-hidden">
+    <div className="cc-site">
 
-      {/* HERO */}
+      <header className="cc-header">
+        <a href="#discover" className="cc-brand" aria-label="CreativeCheck home">
+          <span className="cc-mark">C</span>
+          <span>
+            <strong>CREATIVECHECK</strong>
+            <small>CONNECT · COLLABORATE · CREATE</small>
+          </span>
+        </a>
 
-      <section id="discover">
-        <Hero
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
-      </section>
+        <nav className="cc-nav">
+          <a className="active" href="#discover">Discover</a>
+          <a href="#members">Professionals</a>
+          <a href="#members">Businesses</a>
+          <a href="#founder">Founder</a>
+          <a href="#about">About</a>
+          <a href="#future">Resources <span>⌄</span></a>
+        </nav>
 
-      {/* CATEGORIES */}
-
-      <section
-        id="categories"
-        className="max-w-7xl mx-auto px-8 py-8"
-      >
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-3">
-
-          {categoryGroups.map((group) => (
-
-            <button
-              key={group.title}
-              onClick={() => setSearchQuery(group.title)}
-              className="
-                group
-                rounded-2xl
-                p-4
-                text-left
-                bg-white/80
-                border
-                border-white
-                shadow-sm
-                hover:shadow-xl
-                hover:-translate-y-1
-                transition
-              "
-            >
-
-              <div
-                className="w-9 h-9 rounded-xl mb-3"
-                style={{
-                  background:
-                    `linear-gradient(135deg, ${group.color}, #dbeafe)`
-                }}
-              />
-
-              <h3 className="text-[15px] font-black text-[#0f172a]">
-                {group.title}
-              </h3>
-
-              <p className="text-xs text-gray-500 mt-1">
-                {group.items.join(' • ')}
-              </p>
-
-            </button>
-
-          ))}
-
-        </div>
-
-        <div className="flex justify-center mt-8">
-
-          <a
-            href="#add-profile"
-            className="
-              px-7
-              py-4
-              rounded-full
-              bg-[#0f172a]
-              text-white
-              font-semibold
-              shadow-xl
-              hover:bg-blue-600
-              transition
-            "
+        <div className="cc-header-actions">
+          <button
+            className="icon-button"
+            aria-label="Search"
+            onClick={() =>
+              document.getElementById('creative-search')?.focus()
+            }
           >
-            + Join CreativeCheck
+            ⌕
+          </button>
+
+          <a href="#login">Log in</a>
+
+          <a className="cc-join" href="#add-profile">
+            Join CreativeCheck
           </a>
-
         </div>
+      </header>
 
-      </section>
+      <main>
 
-      {/* EXPLORE */}
+        <section id="discover" className="cc-hero">
 
-      <section id="studios">
-        <ExploreSection searchQuery={searchQuery} />
-      </section>
+          <div className="cc-hero-copy">
 
-      {/* RESOURCES */}
+            <h1>
+              The Home of
+              <br />
+              <em>Creative Minds</em>
+            </h1>
 
-      <section
-        id="resources"
-        className="max-w-7xl mx-auto px-8 py-8"
-      >
+            <p className="cc-hero-desc">
+              Discover and connect with creative professionals
+              <br />
+              and creative businesses worldwide.
+            </p>
 
-        <div className="grid md:grid-cols-3 gap-4">
+            <div className="cc-search" id="creative-search-wrap">
 
-          {[
-            [
-              'Profile Review',
-              'Reviewed before public display.',
-              '#4f46e5'
-            ],
+              <span className="search-icon">⌕</span>
 
-            [
-              'Correction Requests',
-              'Update or remove information.',
-              '#2563eb'
-            ],
-
-            [
-              'Trust Notice',
-              'Discovery only, no guarantees.',
-              '#06b6d4'
-            ]
-
-          ].map(([title, text, color]) => (
-
-            <div
-              key={title}
-              className="
-                rounded-2xl
-                p-5
-                bg-white/80
-                border
-                border-white
-                shadow-sm
-              "
-            >
-
-              <div
-                className="w-10 h-1 rounded-full mb-4"
-                style={{ background: color }}
+              <input
+                id="creative-search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search creatives, skills or services..."
+                aria-label="Search creatives, skills or services"
               />
 
-              <h3 className="font-black text-[#0f172a]">
-                {title}
-              </h3>
+              <span className="search-divider" />
 
-              <p className="text-sm text-gray-500 mt-2">
-                {text}
-              </p>
+              <span className="search-category">
+                All categories⌄
+              </span>
+
+              <button
+                className="search-submit"
+                onClick={() =>
+                  document
+                    .getElementById('members')
+                    ?.scrollIntoView({ behavior: 'smooth' })
+                }
+              >
+                →
+              </button>
 
             </div>
 
-          ))}
+            <div className="cc-coming-title">
+              COMING NEXT
+            </div>
 
-        </div>
+            <div className="cc-upcoming-grid">
 
-      </section>
+              {upcoming.map(([icon, title, text]) => (
 
-      {/* ABOUT */}
+                <div
+                  className="cc-upcoming-card"
+                  key={title}
+                >
 
-      <section
-        id="about"
-        className="max-w-7xl mx-auto px-8 py-8"
-      >
+                  <span className="upcoming-icon">
+                    {icon}
+                  </span>
 
-        <div className="grid lg:grid-cols-2 gap-5">
+                  <div>
+                    <strong>{title}</strong>
+                    <small>{text}</small>
+                  </div>
 
-          {/* ABOUT PLATFORM */}
+                </div>
 
-          <div
-            className="
-              relative
-              overflow-hidden
-              rounded-[34px]
-              p-8
-              bg-gradient-to-br
-              from-[#0f172a]
-              via-[#1d4ed8]
-              to-[#06b6d4]
-              text-white
-              shadow-[0_20px_60px_rgba(15,23,42,0.18)]
-            "
-          >
+              ))}
 
-            <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
+            </div>
 
-            <p
-              className="
-                relative
-                z-10
-                text-xs
-                uppercase
-                tracking-[3px]
-                text-blue-100
-                font-black
-                mb-4
-              "
-            >
-              About CreativeCheck
-            </p>
+            <div className="cc-notice">
 
-            <h2
-              className="
-                relative
-                z-10
-                text-3xl
-                md:text-5xl
-                font-black
-                tracking-[-3px]
-                leading-[1]
-                mb-5
-              "
-            >
-              A discovery layer
-              <br />
-              for the global
-              <br />
-              creative industry.
-            </h2>
+              <span className="notice-icon">
+                ♢
+              </span>
 
-            <p
-              className="
-                relative
-                z-10
-                text-[15px]
-                text-white/80
-                leading-relaxed
-                max-w-xl
-              "
-            >
-              CreativeCheck is a public creative discovery platform helping users explore creatives,
-              studios, agencies and production companies through portfolio presence,
-              professional visibility and reviewed profile information.
-            </p>
-
-            <p
-              className="
-                relative
-                z-10
-                text-[15px]
-                text-white/70
-                leading-relaxed
-                max-w-xl
-                mt-5
-              "
-            >
-              The platform is designed to support transparency,
-              discoverability and professional visibility for the
-              global creative community.
-            </p>
-
-            <div className="relative z-10 mt-7">
-
-              <a
-                href="#add-profile"
-                className="
-                  inline-flex
-                  items-center
-                  px-6
-                  py-3
-                  rounded-full
-                  bg-white
-                  text-[#0f172a]
-                  font-semibold
-                  shadow-xl
-                  hover:scale-105
-                  transition
-                "
-              >
-                Create Your Profile
-              </a>
+              <div>
+                <b>Important:</b> CreativeCheck is a connection platform only.
+                <br />
+                We do not provide legal, business or financial advice.
+                We connect you with the right professionals.
+              </div>
 
             </div>
 
           </div>
 
-          {/* FOUNDER */}
-
           <div
-            className="
-              relative
-              overflow-hidden
-              rounded-[34px]
-              p-8
-              bg-white/85
-              border
-              border-white
-              shadow-[0_20px_60px_rgba(15,23,42,0.08)]
-            "
+            className="cc-hero-art"
+            aria-hidden="true"
+          />
+
+        </section>
+
+
+        <section id="members">
+
+          <ExploreSection
+            searchQuery={searchQuery}
+          />
+
+        </section>
+
+
+        <section
+          id="future"
+          className="cc-future"
+        >
+
+          <div className="future-lead">
+            <strong>
+              More tools. More connections.
+            </strong>
+
+            <span>
+              More opportunities. Coming soon.
+            </span>
+          </div>
+
+          {futureFeatures.map(
+            ([icon, title, text]) => (
+
+              <div
+                className="future-item"
+                key={title}
+              >
+
+                <span>{icon}</span>
+
+                <div>
+                  <strong>{title}</strong>
+                  <small>{text}</small>
+                </div>
+
+              </div>
+
+            )
+          )}
+
+          <a
+            href="#future"
+            className="future-button"
           >
+            See All Upcoming Features&nbsp; →
+          </a>
 
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-100 rounded-full blur-3xl opacity-60" />
+        </section>
 
-            <p
-              className="
-                relative
-                z-10
-                text-xs
-                uppercase
-                tracking-[3px]
-                text-blue-500
-                font-black
-                mb-4
-              "
-            >
-              Founder
-            </p>
 
-            <h2
-              className="
-                relative
-                z-10
-                text-3xl
-                md:text-5xl
-                font-black
-                tracking-[-3px]
-                text-[#0f172a]
-                leading-[1]
-                mb-5
-              "
-            >
-              Founded by
-              <br />
+        <section
+          id="founder"
+          className="cc-founder"
+        >
+
+          <div className="founder-photo-wrap">
+
+            <img
+              src={founderPhoto}
+              alt="Emel Ozturk"
+              className="founder-photo"
+            />
+
+          </div>
+
+
+          <div className="founder-copy">
+
+            <span className="section-label">
+              FOUNDER
+            </span>
+
+            <h2>
               Emel Ozturk
             </h2>
 
-            <p className="relative z-10 text-[15px] text-gray-600 leading-relaxed">
-              Emel Ozturk is an award-winning filmmaker,
-              photographer and creative entrepreneur
-              whose visual work has been published in
-              international magazines and creative media platforms.
+            <p>
+              <strong>
+                Award-winning filmmaker, photographer
+                &amp; creative entrepreneur.
+              </strong>
             </p>
 
-            <p className="relative z-10 text-[15px] text-gray-500 leading-relaxed mt-5">
-              Alongside a professional background in media
-              and visual storytelling, she also studied law
-              and pursuing a master’s degree in law focused on
-              Technology, AI and Legal Services.
+            <p>
+              Law graduate and currently pursuing a
+              Master’s in <strong>AI, Technology &amp;
+              Legal Services</strong>.
             </p>
 
-            <p className="relative z-10 text-[15px] text-gray-500 leading-relaxed mt-5">
-              Her academic and professional work explores
-              The impact of emerging technologies and artificial
-              intelligence within the creative industries,
-              particularly focusing on creator visibility,
-              intellectual property protection,
-              digital identity and legal rights in evolving
-              creative ecosystems.
+            <p>
+              Emel is building CreativeCheck to strengthen
+              the creative community through professional
+              opportunities, education, collaboration and
+              industry connections.
             </p>
 
-            <p className="relative z-10 text-[15px] text-gray-500 leading-relaxed mt-5">
-              CreativeCheck was created to help creatives,
-              creative businesses and professionals
-              gain trusted visibility while protecting
-              The value of creative work in the age
-              of emerging technology.
-            </p>
+            <a href="#about">
+              More about Emel&nbsp; →
+            </a>
 
           </div>
 
+
+          <div
+            id="about"
+            className="founder-about"
+          >
+
+            <span className="section-label">
+              ABOUT CREATIVECHECK
+            </span>
+
+            <p>
+              CreativeCheck is an AI-powered platform built
+              to create a stronger, more connected creative
+              ecosystem — where creative professionals and
+              creative businesses can connect, collaborate,
+              learn and grow.
+            </p>
+
+            <p>
+              Its purpose is to bring creative talent,
+              creative businesses, knowledge and opportunity
+              closer together across the creative industries.
+            </p>
+
+            <a href="#discover">
+              Learn more about us&nbsp; →
+            </a>
+
+          </div>
+
+        </section>
+
+
+        <section
+          id="add-profile"
+          className="cc-add-profile"
+        >
+
+          <AddProfilePage />
+
+        </section>
+
+      </main>
+
+
+      <footer className="cc-footer">
+
+        <div className="footer-brand">
+
+          <span className="cc-mark">
+            C
+          </span>
+
+          <span>
+            <strong>CREATIVECHECK</strong>
+            <small>
+              CONNECT · COLLABORATE · CREATE
+            </small>
+          </span>
+
         </div>
 
-      </section>
 
-      {/* ADD PROFILE */}
+        <nav className="footer-links">
 
-      <section id="add-profile">
-        <AddProfilePage />
-      </section>
+          <a href="#about">About</a>
+          <a href="#discover">How It Works</a>
+          <a href="#members">Community</a>
+          <a href="#add-profile">Help Center</a>
+          <a href="#about">Legals</a>
+          <a href="#about">Responsibilities</a>
+          <a href="#about">Terms</a>
+          <a href="#about">Privacy</a>
 
-      <FeatureStrip />
+        </nav>
 
-      <Footer />
+
+        <div className="footer-social">
+
+          <span>◎</span>
+          <span>in</span>
+          <span>𝕏</span>
+          <span>▶</span>
+
+          <small>
+            © 2025 CreativeCheck. All rights reserved.
+          </small>
+
+        </div>
+
+      </footer>
 
     </div>
   )
