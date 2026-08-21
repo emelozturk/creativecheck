@@ -414,16 +414,16 @@ export default function Hero({
         "
       >
 
-        <div
-          className="
-            absolute
-            right-0
-            top-0
-            h-full
-            w-1/2
-            overflow-hidden
-          "
-        >
+       <div
+  className="
+    absolute
+    right-[3%]
+    top-0
+    h-full
+    w-1/2
+    overflow-hidden
+  "
+>
 
           <img
             src="/assets/hero-art.jpg"
