@@ -48,27 +48,24 @@ export default function ExploreSection({ searchQuery = '' }) {
   })
 
   const Avatar = ({ profile, large = false }) => {
-    const size = large ? 'w-28 h-28 rounded-[30px]' : 'w-20 h-20 rounded-[24px]'
+    const size = large
+      ? 'w-28 h-28 rounded-[30px]'
+      : 'w-20 h-20 rounded-[24px]'
 
-    if (profile.avatar_url) {
-      return (
-        <img
-          src={profile.avatar_url}
-          alt={profile.full_name || 'Creative profile'}
-          onError={(e) => {
-            e.currentTarget.style.display = 'none'
-            e.currentTarget.nextSibling.style.display = 'flex'
-          }}
-          className={`${size} object-cover border border-white/80 shadow-xl`}
-        />
-      )
-    }
+    const initials = (profile.full_name || 'Creative')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part.charAt(0).toUpperCase())
+      .join('')
 
     return (
       <div
-        className={`${size} flex items-center justify-center bg-gradient-to-br from-violet-500 via-pink-500 to-orange-400 text-white text-2xl font-black shadow-xl`}
+        aria-label={`${profile.full_name || 'Creative'} initials`}
+        className={`${size} flex items-center justify-center bg-gradient-to-br from-violet-500 via-pink-500 to-orange-400 text-white ${large ? 'text-4xl' : 'text-2xl'} font-black shadow-xl border border-white/80`}
       >
-        {profile.full_name?.charAt(0) || 'C'}
+        {initials || 'C'}
       </div>
     )
   }
@@ -127,15 +124,7 @@ export default function ExploreSection({ searchQuery = '' }) {
             >
               <div className="h-full rounded-[36px] p-6 bg-white/75 backdrop-blur-2xl border border-white/80">
                 <div className="flex items-start justify-between mb-6">
-                  <div className="relative">
-                    <Avatar profile={profile} />
-
-                    <div
-                      className="hidden w-20 h-20 rounded-[24px] items-center justify-center bg-gradient-to-br from-violet-500 via-pink-500 to-orange-400 text-white text-2xl font-black shadow-xl"
-                    >
-                      {profile.full_name?.charAt(0) || 'C'}
-                    </div>
-                  </div>
+                  <Avatar profile={profile} />
 
                   {profile.verified && (
                     <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-black">
@@ -191,15 +180,7 @@ export default function ExploreSection({ searchQuery = '' }) {
             <div className="p-8 -mt-16">
               <div className="flex items-end justify-between gap-6 mb-8">
                 <div className="flex items-end gap-5">
-                  <div className="relative">
-                    <Avatar profile={selectedProfile} large />
-
-                    <div
-                      className="hidden w-28 h-28 rounded-[30px] items-center justify-center bg-gradient-to-br from-violet-500 via-pink-500 to-orange-400 text-white text-4xl font-black border-4 border-white shadow-xl"
-                    >
-                      {selectedProfile.full_name?.charAt(0) || 'C'}
-                    </div>
-                  </div>
+                  <Avatar profile={selectedProfile} large />
 
                   <div className="pb-2">
                     <h2 className="text-3xl md:text-4xl font-black tracking-[-2px] text-[#0f172a]">
