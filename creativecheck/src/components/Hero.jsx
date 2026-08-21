@@ -29,54 +29,12 @@ export default function Hero({
       }}
     >
 
-      {/* =====================================================
-          HERO BACKGROUND / ART
-          ===================================================== */}
-
-      <div
-        className="
-          absolute
-          inset-0
-          z-0
-          pointer-events-none
-          overflow-hidden
-        "
-      >
-        <div
-          className="
-            absolute
-            right-0
-            top-0
-            h-full
-            w-[50%]
-            overflow-hidden
-          "
-        >
-          <img
-            src="/assets/hero-art.jpg"
-            alt=""
-            className="
-              absolute
-              top-0
-              left-0
-              w-full
-              h-full
-              object-cover
-              object-[65%_center]
-            "
-          />
-        </div>
-      </div>
-
-
-      {/* =====================================================
-          HEADER
-          ===================================================== */}
+      {/* HEADER */}
 
       <header
         className="
           relative
-          z-20
+          z-10
           w-full
           max-w-[1600px]
           mx-auto
@@ -128,7 +86,6 @@ export default function Hero({
           </h1>
 
         </a>
-
 
         <nav
           className="
@@ -183,7 +140,6 @@ export default function Hero({
 
         </nav>
 
-
         <a
           href="#add-profile"
           className="
@@ -211,15 +167,12 @@ export default function Hero({
 
       </header>
 
-
-      {/* =====================================================
-          HERO CONTENT
-          ===================================================== */}
+      {/* HERO */}
 
       <div
         className="
           relative
-          z-20
+          z-10
           w-full
           max-w-[1600px]
           mx-auto
@@ -254,7 +207,6 @@ export default function Hero({
           Public Creative Discovery Platform
         </div>
 
-
         <h2
           className="
             w-full
@@ -282,7 +234,6 @@ export default function Hero({
 
         </h2>
 
-
         <p
           className="
             mt-5
@@ -302,7 +253,6 @@ export default function Hero({
           visibility, portfolio presence and trusted
           creative discovery.
         </p>
-
 
         {/* SEARCH */}
 
@@ -385,7 +335,6 @@ export default function Hero({
 
         </div>
 
-
         {/* QUICK ACTIONS */}
 
         <div
@@ -449,6 +398,45 @@ export default function Hero({
           >
             Explore Categories
           </a>
+
+        </div>
+
+      </div>
+
+      {/* HERO BACKGROUND / ART */}
+
+      <div
+        className="
+          absolute
+          inset-0
+          pointer-events-none
+          overflow-hidden
+        "
+      >
+
+        <div
+          className="
+            absolute
+            right-0
+            top-0
+            h-full
+            w-1/2
+            overflow-hidden
+          "
+        >
+
+          <img
+            src="/assets/hero-art.jpg"
+            alt=""
+            className="
+              absolute
+              inset-0
+              w-full
+              h-full
+              object-cover
+              object-[85%_center]
+            "
+          />
 
         </div>
 
