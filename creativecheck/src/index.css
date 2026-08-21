@@ -2,14 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =========================================================
-   GLOBAL — VIEWPORT FIT
-========================================================= */
+/* GLOBAL */
 
 html {
   scroll-behavior: smooth;
   width: 100%;
-  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -17,20 +14,11 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  max-width: 100%;
   overflow-x: hidden;
 
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(79,70,229,0.10),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at top right,
-      rgba(6,182,212,0.10),
-      transparent 25%
-    ),
+    radial-gradient(circle at top left, rgba(79,70,229,0.10), transparent 28%),
+    radial-gradient(circle at top right, rgba(6,182,212,0.10), transparent 25%),
     linear-gradient(
       135deg,
       #f8fbff 0%,
@@ -49,47 +37,21 @@ body {
 #root {
   width: 100%;
   max-width: 100%;
-  min-width: 0;
   overflow-x: hidden;
 }
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-}
-
-button,
-a {
-  transition: all 0.25s ease;
-}
-
-input,
-textarea,
-select {
-  font-family: inherit;
-  max-width: 100%;
-}
-
-input:focus,
-textarea:focus,
-button:focus {
-  outline: none;
-}
+/* TEXT SELECTION */
 
 ::selection {
   background: #bfdbfe;
   color: #0f172a;
 }
 
-/* =========================================================
-   EXISTING VISUAL SYSTEM
-========================================================= */
+/* PREMIUM GRADIENT TEXT */
 
 .gradient-check {
   background: linear-gradient(
@@ -105,19 +67,68 @@ button:focus {
   background-clip: text;
 }
 
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #4f46e5,
+    #06b6d4
+  );
+
+  border-radius: 999px;
+}
+
+/* BUTTONS */
+
+button,
+a {
+  transition: all 0.25s ease;
+}
+
+/* INPUTS */
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+/* GLASS */
+
 .glass-card {
   background: rgba(255,255,255,0.72);
+
   backdrop-filter: blur(18px);
+
   border: 1px solid rgba(255,255,255,0.7);
 
   box-shadow:
     0 10px 40px rgba(15,23,42,0.06);
 }
 
+/* SHADOW */
+
 .soft-shadow {
   box-shadow:
     0 12px 40px rgba(15,23,42,0.07);
 }
+
+/* TYPOGRAPHY */
 
 h1,
 h2,
@@ -132,156 +143,92 @@ p {
   line-height: 1.7;
 }
 
+/* IMAGES */
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* FADE */
+
+.fade-up {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* =========================================================
-   HERO — ONLY FIT / SCALE
+   CREATIVE CHECK — SCREEN FIT
+   ONLY RESPONSIVE SIZING / POSITIONING
 ========================================================= */
 
 #discover {
-  position: relative;
-
   width: 100%;
   max-width: 100vw;
   min-width: 0;
-
   overflow: hidden;
 }
 
-/* Keep the existing hero composition centred */
+/* Keep all direct hero content inside viewport */
 
 #discover > * {
-  max-width: 100%;
-  min-width: 0;
-}
-
-/* Header must never create horizontal overflow */
-
-#discover header {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-}
-
-#discover header > a {
-  min-width: 0;
-}
-
-#discover header h1 {
   min-width: 0;
   max-width: 100%;
-  white-space: nowrap;
 }
 
-/* Navigation */
+/* Desktop reference */
 
-#discover nav {
-  min-width: 0;
-  max-width: 100%;
-  flex-shrink: 1;
-}
-
-#discover nav a {
-  white-space: nowrap;
-}
-
-/* Hero heading */
-
-#discover h2 {
-  width: 100%;
-  max-width: min(1100px, 90vw);
-
-  margin-left: auto;
-  margin-right: auto;
-
-  overflow-wrap: normal;
-  word-break: normal;
-}
-
-/* Hero paragraph */
-
-#discover p {
-  max-width: min(680px, 90vw);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Search */
-
-#discover .hero-search,
-#discover form {
-  max-width: min(680px, 90vw);
-}
-
-#discover .hero-search {
-  width: 100%;
-  min-width: 0;
-}
-
-#discover .hero-search input {
-  min-width: 0;
-  flex: 1 1 auto;
-}
-
-#discover .hero-search button {
-  flex: 0 0 auto;
-}
-
-/* =========================================================
-   1536 → 1440
-========================================================= */
-
-@media (max-width: 1440px) {
+@media (min-width: 1251px) {
 
   #discover {
-    padding-left: clamp(24px, 3vw, 48px);
-    padding-right: clamp(24px, 3vw, 48px);
+    min-height: 100vh;
+    height: 100vh;
+  }
+
+  #discover > header {
+    flex-shrink: 0;
+  }
+
+  #discover > div {
+    min-height: 0;
+    overflow: hidden;
+  }
+}
+
+/* Laptop */
+
+@media (max-width: 1250px) {
+
+  #discover {
+    min-height: 100vh;
+    height: 100vh;
   }
 
   #discover h2 {
-    font-size: clamp(54px, 5.4vw, 84px);
-    letter-spacing: -3.5px;
+    font-size: clamp(
+      54px,
+      6vw,
+      78px
+    );
   }
 
-  #discover header {
-    gap: 20px;
-  }
-
-  #discover nav {
-    gap: 24px;
-  }
-}
-
-/* =========================================================
-   1280
-========================================================= */
-
-@media (max-width: 1280px) {
-
-  #discover {
-    padding-left: 28px;
-    padding-right: 28px;
-  }
-
-  #discover h2 {
-    max-width: 900px;
-    font-size: clamp(50px, 5.5vw, 72px);
-    letter-spacing: -3px;
-    line-height: 0.98;
-  }
-
-  #discover nav {
-    gap: 18px;
-    font-size: 14px;
-  }
-
-  #discover header > a:last-child {
-    padding-left: 20px;
-    padding-right: 20px;
+  #discover p {
+    max-width: 620px;
   }
 }
 
-/* =========================================================
-   1100
-========================================================= */
+/* Smaller laptop */
 
 @media (max-width: 1100px) {
 
@@ -290,270 +237,110 @@ p {
     padding-right: 24px;
   }
 
-  #discover nav {
-    gap: 14px;
-    font-size: 13px;
-  }
-
-  #discover header > a:last-child {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-
   #discover h2 {
-    font-size: clamp(46px, 5.8vw, 64px);
-  }
-}
+    font-size: clamp(
+      48px,
+      6vw,
+      68px
+    );
 
-/* =========================================================
-   1024 — FIT SCREEN
-========================================================= */
-
-@media (max-width: 1024px) {
-
-  #discover {
-    width: 100%;
-    min-height: 100vh;
-
-    padding-left: 22px;
-    padding-right: 22px;
-
-    overflow: hidden;
-  }
-
-  #discover nav {
-    display: none;
-  }
-
-  #discover h2 {
-    max-width: 850px;
-
-    font-size: clamp(46px, 7vw, 68px);
-    line-height: 0.99;
     letter-spacing: -3px;
   }
-
-  #discover p {
-    max-width: 650px;
-  }
-
-  #discover .hero-search,
-  #discover form {
-    max-width: 680px;
-  }
 }
 
-/* =========================================================
-   900
-========================================================= */
+/* Tablet */
 
 @media (max-width: 900px) {
 
   #discover {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  #discover header h1 {
-    font-size: 30px;
+    min-height: 100vh;
+    height: auto;
   }
 
   #discover h2 {
-    max-width: 760px;
-
-    font-size: clamp(44px, 7.5vw, 62px);
-    letter-spacing: -2.5px;
-  }
-
-  #discover p {
-    font-size: 17px;
-  }
-}
-
-/* =========================================================
-   768 — TABLET
-========================================================= */
-
-@media (max-width: 768px) {
-
-  #discover {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-
-  #discover header {
-    gap: 12px;
-  }
-
-  #discover header h1 {
-    font-size: 27px;
-    letter-spacing: -1.5px;
-  }
-
-  #discover h2 {
-    max-width: 680px;
-
-    font-size: clamp(40px, 9vw, 58px);
-    line-height: 1;
-    letter-spacing: -2px;
+    font-size: clamp(
+      46px,
+      8vw,
+      64px
+    );
   }
 
   #discover p {
     max-width: 620px;
-    padding-left: 8px;
-    padding-right: 8px;
-
-    font-size: 16px;
-  }
-
-  #discover .hero-search,
-  #discover form {
-    max-width: 650px;
   }
 }
 
-/* =========================================================
-   640
-========================================================= */
+/* Mobile */
 
 @media (max-width: 640px) {
 
   #discover {
+    min-height: 100vh;
+    height: auto;
+
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  #discover h2 {
+    font-size: clamp(
+      38px,
+      11vw,
+      52px
+    );
+
+    letter-spacing: -2px;
+  }
+
+  #discover p {
+    font-size: 14px;
+  }
+
+  #discover header {
+    gap: 10px;
   }
 
   #discover header h1 {
     font-size: 24px;
   }
 
-  #discover h2 {
-    max-width: 100%;
-
-    font-size: clamp(38px, 10.5vw, 52px);
-    letter-spacing: -1.8px;
-  }
-
-  #discover p {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  #discover header > a:last-child {
+  #discover nav {
     display: none;
   }
 
-  #discover .hero-search,
-  #discover form {
+  #discover .hero-search {
     width: 100%;
     max-width: 100%;
   }
-
-  #discover .hero-search {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  #discover .hero-search input {
-    min-width: 0;
-    width: 100%;
-  }
-
-  #discover .hero-search button {
-    flex-shrink: 0;
-  }
 }
 
-/* =========================================================
-   480 — SMALL MOBILE
-========================================================= */
+/* Very small screens */
 
-@media (max-width: 480px) {
-
-  #discover {
-    padding-left: 14px;
-    padding-right: 14px;
-  }
-
-  #discover header h1 {
-    font-size: 22px;
-  }
-
-  #discover h2 {
-    font-size: clamp(34px, 11vw, 46px);
-    letter-spacing: -1.5px;
-  }
-
-  #discover p {
-    font-size: 13px;
-  }
-
-  #discover .hero-search {
-    border-radius: 22px;
-    padding-top: 11px;
-    padding-bottom: 11px;
-  }
-
-  #discover .hero-search button {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-
-/* =========================================================
-   390 — VERY SMALL MOBILE
-========================================================= */
-
-@media (max-width: 390px) {
+@media (max-width: 420px) {
 
   #discover {
     padding-left: 12px;
     padding-right: 12px;
   }
 
-  #discover header h1 {
-    font-size: 20px;
-  }
-
   #discover h2 {
-    font-size: 35px;
-    line-height: 1;
+    font-size: 36px;
   }
 
-  #discover p {
-    font-size: 12.5px;
+  #discover header h1 {
+    font-size: 21px;
   }
 }
 
-/* =========================================================
-   UNIVERSAL OVERFLOW PROTECTION
-========================================================= */
+/* FINAL OVERFLOW PROTECTION */
 
-section,
-header,
-main,
-footer,
-div {
-  max-width: 100%;
-}
-
-svg,
-canvas,
-iframe,
-video {
-  max-width: 100%;
-}
-
-table {
-  max-width: 100%;
-}
-
-pre,
-code {
-  max-width: 100%;
-  overflow-x: auto;
-}
-
-body {
+html,
+body,
+#root {
   overflow-x: hidden !important;
+}
+
+#discover,
+#discover * {
+  max-width: 100%;
 }
