@@ -5,10 +5,8 @@ export default function Hero({
   setSearchQuery
 }) {
   return (
-    <section
-      id="discover"
-      className="hero-section"
-    >
+    <section id="discover" className="hero-section">
+
       <div className="hero-content">
 
         <div className="hero-eyebrow">
@@ -28,51 +26,34 @@ export default function Hero({
 
         <div className="hero-search">
 
-          <div className="hero-search-icon">
+          <span className="hero-search-icon">
             ⌕
-          </div>
+          </span>
 
           <input
             type="text"
             value={searchQuery}
-            onChange={(e) =>
-              setSearchQuery(e.target.value)
-            }
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search creatives, skills or services..."
           />
 
           <select
             className="hero-category"
             defaultValue="all"
+            aria-label="Creative category"
           >
-            <option value="all">
-              All categories
-            </option>
-
-            <option value="visual">
-              Visual Arts
-            </option>
-
-            <option value="film">
-              Film & Media
-            </option>
-
-            <option value="fashion">
-              Fashion & Beauty
-            </option>
-
-            <option value="music">
-              Music & Performance
-            </option>
-
-            <option value="design">
-              Design
-            </option>
+            <option value="all">All categories</option>
+            <option value="visual">Visual Arts</option>
+            <option value="film">Film & Media</option>
+            <option value="fashion">Fashion & Beauty</option>
+            <option value="music">Music & Performance</option>
+            <option value="design">Design</option>
           </select>
 
           <button
             type="button"
             className="hero-search-button"
+            aria-label="Search"
           >
             →
           </button>
@@ -87,34 +68,30 @@ export default function Hero({
 
           <div className="hero-feature">
             <span>✧</span>
-
             <div>
               <strong>AI Matching</strong>
-              <small>Smart connections</small>
+              <small>Smart creative connections</small>
             </div>
           </div>
 
           <div className="hero-feature">
             <span>▤</span>
-
             <div>
               <strong>Projects & Opportunities</strong>
-              <small>New opportunities every day</small>
+              <small>Discover new opportunities</small>
             </div>
           </div>
 
           <div className="hero-feature">
             <span>▧</span>
-
             <div>
               <strong>Contracts & Invoices</strong>
-              <small>Professional tools for creatives</small>
+              <small>Professional creative tools</small>
             </div>
           </div>
 
           <div className="hero-feature">
             <span>▦</span>
-
             <div>
               <strong>Events & Workshops</strong>
               <small>Learn, connect and grow</small>
@@ -123,27 +100,23 @@ export default function Hero({
 
           <div className="hero-feature">
             <span>♧</span>
-
             <div>
               <strong>Business & Legal Connections</strong>
-              <small>Connect with trusted advisors</small>
+              <small>Find the right professionals</small>
             </div>
           </div>
 
         </div>
 
         <div className="hero-notice">
-
           <span>◇</span>
 
           <p>
             <strong>Important:</strong> CreativeCheck is a
-            connection platform only.
-            <br />
-            We do not provide legal, business or financial
-            advice. We connect you with the right professionals.
+            connection platform only. We do not provide legal,
+            business or financial advice. We connect you with
+            the right professionals.
           </p>
-
         </div>
 
       </div>
