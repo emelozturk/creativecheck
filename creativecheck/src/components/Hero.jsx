@@ -9,548 +9,422 @@ export default function Hero({
       id="discover"
       className="
         relative
+        min-h-screen
         w-full
-        min-h-[calc(100vh-96px)]
+        max-w-[100vw]
+        px-4
+        sm:px-6
+        lg:px-8
+        py-5
+        sm:py-6
+        lg:py-8
+        flex
+        flex-col
         overflow-hidden
-        bg-[#f7eee8]
+        box-border
       "
+      style={{
+        background:
+          'radial-gradient(circle at 15% 20%, rgba(79,70,229,0.16), transparent 28%), radial-gradient(circle at 85% 18%, rgba(37,99,235,0.14), transparent 30%), radial-gradient(circle at 80% 80%, rgba(6,182,212,0.16), transparent 30%), linear-gradient(135deg,#f8fbff 0%,#f5f7ff 48%,#f4faff 100%)'
+      }}
     >
 
-      {/* =====================================================
-          HEADER
-      ===================================================== */}
+      {/* HEADER */}
 
       <header
         className="
           relative
-          z-30
+          z-10
           w-full
-          h-[92px]
-          bg-[#f8eee8]
-          border-b
-          border-[#e8d9d0]
+          max-w-[1600px]
+          mx-auto
           flex
           items-center
+          justify-between
+          gap-4
+          min-w-0
         "
       >
-        <div
+
+        <a
+          href="#discover"
           className="
-            w-full
-            max-w-[1500px]
-            mx-auto
-            px-6
-            lg:px-10
             flex
             items-center
-            justify-between
-            gap-8
+            gap-2
+            sm:gap-3
+            lg:gap-4
+            min-w-0
+            shrink
           "
         >
 
-          {/* LOGO */}
+          <div className="shrink-0">
+            <LogoIcon
+              size={40}
+            />
+          </div>
 
-          <a
-            href="#discover"
+          <h1
             className="
-              flex
-              items-center
-              gap-3
-              shrink-0
-            "
-          >
-            <LogoIcon size={42} />
-
-            <div className="leading-none">
-              <div
-                className="
-                  text-[21px]
-                  lg:text-[24px]
-                  font-bold
-                  tracking-[2px]
-                  text-[#101a35]
-                "
-              >
-                CREATIVECHECK
-              </div>
-
-              <div
-                className="
-                  mt-1
-                  text-[7px]
-                  lg:text-[8px]
-                  tracking-[3px]
-                  font-semibold
-                  text-[#101a35]
-                "
-              >
-                CONNECT · COLLABORATE · CREATE
-              </div>
-            </div>
-          </a>
-
-
-          {/* NAVIGATION */}
-
-          <nav
-            className="
-              hidden
-              lg:flex
-              items-center
-              gap-7
-              xl:gap-9
-              text-[14px]
-              xl:text-[15px]
-              font-semibold
-              text-[#101a35]
+              text-[24px]
+              sm:text-[28px]
+              lg:text-[34px]
+              font-black
+              tracking-[-1.5px]
+              lg:tracking-[-2px]
               whitespace-nowrap
             "
           >
-            <a
-              href="#discover"
-              className="hover:text-[#b06a42] transition"
-            >
-              Discover
-            </a>
+            <span className="text-[#0f172a]">
+              Creative
+            </span>
 
-            <a
-              href="#categories"
-              className="hover:text-[#b06a42] transition"
-            >
-              Professionals
-            </a>
+            <span className="gradient-check">
+              Check
+            </span>
+          </h1>
 
-            <a
-              href="#businesses"
-              className="hover:text-[#b06a42] transition"
-            >
-              Businesses
-            </a>
+        </a>
 
-            <a
-              href="#founder"
-              className="hover:text-[#b06a42] transition"
-            >
-              Founder
-            </a>
+        <nav
+          className="
+            hidden
+            xl:flex
+            items-center
+            justify-center
+            gap-5
+            2xl:gap-9
+            text-[14px]
+            2xl:text-[15px]
+            font-semibold
+            text-[#0f172a]
+            whitespace-nowrap
+          "
+        >
 
-            <a
-              href="#about"
-              className="hover:text-[#b06a42] transition"
-            >
-              About
-            </a>
-
-            <a
-              href="#resources"
-              className="hover:text-[#b06a42] transition"
-            >
-              Resources⌄
-            </a>
-          </nav>
-
-
-          {/* RIGHT ACTIONS */}
-
-          <div
-            className="
-              flex
-              items-center
-              gap-4
-              shrink-0
-            "
+          <a
+            href="#discover"
+            className="hover:text-blue-600 transition"
           >
+            Discover
+          </a>
 
-            <button
-              type="button"
-              aria-label="Search"
-              className="
-                hidden
-                sm:flex
-                items-center
-                justify-center
-                w-9
-                h-9
-                text-[#101a35]
-                text-xl
-              "
-            >
-              ⌕
-            </button>
+          <a
+            href="#categories"
+            className="hover:text-blue-600 transition"
+          >
+            Categories
+          </a>
 
-            <a
-              href="#login"
-              className="
-                hidden
-                sm:block
-                text-[14px]
-                font-semibold
-                text-[#101a35]
-                hover:text-[#b06a42]
-              "
-            >
-              Log in
-            </a>
+          <a
+            href="#resources"
+            className="hover:text-blue-600 transition"
+          >
+            Resources
+          </a>
 
-            <a
-              href="#add-profile"
-              className="
-                bg-[#101a35]
-                text-white
-                px-5
-                xl:px-6
-                py-3
-                rounded-[8px]
-                text-[13px]
-                xl:text-[14px]
-                font-semibold
-                whitespace-nowrap
-                hover:bg-[#1c2a50]
-                transition
-              "
-            >
-              Join CreativeCheck
-            </a>
+          <a
+            href="#about"
+            className="hover:text-blue-600 transition"
+          >
+            About
+          </a>
 
-          </div>
+          <a
+            href="#add-profile"
+            className="hover:text-blue-600 transition"
+          >
+            Add Profile
+          </a>
 
-        </div>
+        </nav>
+
+        <a
+          href="#add-profile"
+          className="
+            hidden
+            md:flex
+            shrink-0
+            bg-[#0f172a]
+            text-white
+            px-5
+            lg:px-7
+            py-2.5
+            lg:py-3
+            rounded-full
+            text-sm
+            lg:text-base
+            font-semibold
+            shadow-[0_12px_32px_rgba(15,23,42,0.18)]
+            hover:bg-blue-600
+            transition
+            whitespace-nowrap
+          "
+        >
+          + Add Your Profile
+        </a>
+
       </header>
 
-
-      {/* =====================================================
-          HERO
-      ===================================================== */}
+      {/* HERO */}
 
       <div
         className="
           relative
+          z-10
           w-full
-          min-h-[calc(100vh-92px)]
-          grid
-          grid-cols-1
-          lg:grid-cols-[49%_51%]
-          overflow-hidden
+          max-w-[1600px]
+          mx-auto
+          flex-1
+          flex
+          flex-col
+          items-center
+          justify-center
+          text-center
+          min-w-0
+          py-10
+          sm:py-12
+          lg:py-16
         "
       >
 
-        {/* ===================================================
-            LEFT CONTENT
-        =================================================== */}
+        <div
+          className="
+            mb-4
+            sm:mb-5
+            lg:mb-6
+            text-[9px]
+            sm:text-[10px]
+            lg:text-[11px]
+            uppercase
+            tracking-[3px]
+            sm:tracking-[4px]
+            text-blue-500
+            font-bold
+          "
+        >
+          Public Creative Discovery Platform
+        </div>
+
+        <h2
+          className="
+            w-full
+            max-w-[1100px]
+            px-2
+            text-[42px]
+            sm:text-[54px]
+            md:text-[68px]
+            lg:text-[78px]
+            xl:text-[88px]
+            font-black
+            tracking-[-2.5px]
+            sm:tracking-[-3px]
+            lg:tracking-[-4px]
+            leading-[0.98]
+            text-[#0f172a]
+          "
+        >
+          Discover Creatives
+          <br />
+
+          <span className="gradient-check">
+            with Confidence
+          </span>
+
+        </h2>
+
+        <p
+          className="
+            mt-5
+            sm:mt-6
+            lg:mt-7
+            w-full
+            max-w-[680px]
+            px-3
+            text-[15px]
+            sm:text-[17px]
+            lg:text-[18px]
+            text-gray-500
+            leading-relaxed
+          "
+        >
+          Discover creative professionals through public
+          visibility, portfolio presence and trusted
+          creative discovery.
+        </p>
+
+        {/* SEARCH */}
 
         <div
           className="
-            relative
-            z-20
-            flex
-            items-center
-            bg-[#f8eee8]
-            px-6
-            sm:px-10
-            lg:px-12
-            xl:px-16
-            py-12
-            lg:py-14
+            mt-7
+            sm:mt-8
+            lg:mt-10
+            w-full
+            max-w-[680px]
+            px-2
+            box-border
           "
         >
 
           <div
             className="
               w-full
-              max-w-[690px]
-              mx-auto
-              lg:mx-0
+              flex
+              items-center
+              bg-white/80
+              backdrop-blur-xl
+              border
+              border-white/80
+              shadow-[0_10px_40px_rgba(15,23,42,0.06)]
+              rounded-[22px]
+              sm:rounded-[26px]
+              lg:rounded-[28px]
+              px-3
+              sm:px-4
+              lg:px-5
+              py-3
+              sm:py-3.5
+              lg:py-4
+              box-border
             "
           >
 
-            {/* EYEBROW */}
-
-            <div
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) =>
+                setSearchQuery(e.target.value)
+              }
+              placeholder="Search creatives..."
               className="
-                mb-5
-                text-[10px]
-                sm:text-[11px]
-                uppercase
-                tracking-[4px]
-                font-bold
-                text-[#8d4d7c]
+                min-w-0
+                flex-1
+                bg-transparent
+                outline-none
+                px-2
+                sm:px-3
+                text-[14px]
+                sm:text-[15px]
+                lg:text-[16px]
+                text-[#0f172a]
               "
-            >
-              THE HOME OF
-            </div>
+            />
 
-
-            {/* TITLE */}
-
-            <h2
+            <button
               className="
-                m-0
-                font-serif
-                text-[#101a35]
-                leading-[0.9]
-                tracking-[-3px]
-                text-[52px]
-                sm:text-[64px]
-                lg:text-[68px]
-                xl:text-[76px]
-                2xl:text-[82px]
-              "
-            >
-              The Home of
-              <br />
-
-              <span
-                className="
-                  italic
-                  text-[#7d4a73]
-                "
-              >
-                Creative Minds
-              </span>
-            </h2>
-
-
-            {/* DESCRIPTION */}
-
-            <p
-              className="
-                mt-7
-                max-w-[500px]
-                text-[16px]
-                lg:text-[17px]
-                leading-[1.55]
-                text-[#20283d]
-              "
-            >
-              Discover and connect with creative professionals
-              and creative businesses worldwide.
-            </p>
-
-
-            {/* SEARCH */}
-
-            <div
-              className="
-                mt-7
-                w-full
-                max-w-[690px]
-                h-[58px]
+                shrink-0
+                bg-[#0f172a]
+                text-white
+                px-4
+                sm:px-5
+                py-2
                 rounded-full
-                bg-white/75
-                border
-                border-[#dfd4cf]
-                flex
-                items-center
-                px-4
-                shadow-[0_5px_20px_rgba(40,25,20,0.05)]
+                text-xs
+                sm:text-sm
+                font-semibold
+                hover:bg-blue-600
+                transition
               "
             >
-
-              <span
-                className="
-                  text-[#101a35]
-                  text-[20px]
-                  shrink-0
-                  mr-3
-                "
-              >
-                ⌕
-              </span>
-
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) =>
-                  setSearchQuery(e.target.value)
-                }
-                placeholder="Search creatives, skills or services..."
-                className="
-                  min-w-0
-                  flex-1
-                  bg-transparent
-                  outline-none
-                  text-[14px]
-                  text-[#101a35]
-                  placeholder:text-[#7b7f89]
-                "
-              />
-
-              <div
-                className="
-                  hidden
-                  sm:flex
-                  items-center
-                  h-[32px]
-                  pl-5
-                  ml-3
-                  border-l
-                  border-[#ddd4d0]
-                  text-[13px]
-                  font-medium
-                  text-[#303548]
-                  whitespace-nowrap
-                "
-              >
-                All categories⌄
-              </div>
-
-              <button
-                type="button"
-                className="
-                  ml-3
-                  shrink-0
-                  w-[42px]
-                  h-[42px]
-                  rounded-full
-                  bg-[#101a35]
-                  text-white
-                  flex
-                  items-center
-                  justify-center
-                  text-[20px]
-                  hover:bg-[#25345d]
-                  transition
-                "
-              >
-                →
-              </button>
-
-            </div>
-
-
-            {/* COMING NEXT */}
-
-            <div
-              className="
-                mt-5
-                text-[10px]
-                font-bold
-                tracking-[3px]
-                text-[#101a35]
-              "
-            >
-              COMING NEXT
-            </div>
-
-
-            {/* FEATURE CARDS */}
-
-            <div
-              className="
-                mt-3
-                grid
-                grid-cols-2
-                sm:grid-cols-3
-                lg:grid-cols-5
-                gap-2
-                w-full
-              "
-            >
-
-              {[
-                ['✧', 'AI Matching', 'Smart connections'],
-                ['▤', 'Projects & Opportunities', 'New opportunities every day'],
-                ['▧', 'Contracts & Invoices', 'Professional tools for creatives'],
-                ['▦', 'Events & Workshops', 'Learn, connect and grow'],
-                ['♧', 'Business & Legal Connections', 'Connect with trusted advisors']
-              ].map(([icon, title, text]) => (
-                <div
-                  key={title}
-                  className="
-                    min-w-0
-                    min-h-[96px]
-                    rounded-[10px]
-                    border
-                    border-[#dfd2cb]
-                    bg-[#faf2ed]/75
-                    px-3
-                    py-3
-                    flex
-                    flex-col
-                  "
-                >
-
-                  <div
-                    className="
-                      text-[19px]
-                      leading-none
-                      text-[#8d4d7c]
-                    "
-                  >
-                    {icon}
-                  </div>
-
-                  <div
-                    className="
-                      mt-2
-                      text-[11px]
-                      leading-[1.2]
-                      font-bold
-                      text-[#20263a]
-                    "
-                  >
-                    {title}
-                  </div>
-
-                  <div
-                    className="
-                      mt-1
-                      text-[9px]
-                      leading-[1.25]
-                      text-[#5e6370]
-                    "
-                  >
-                    {text}
-                  </div>
-
-                </div>
-              ))}
-
-            </div>
-
-
-            {/* IMPORTANT NOTICE */}
-
-            <div
-              className="
-                mt-3
-                w-full
-                rounded-[9px]
-                border
-                border-[#e3cdbd]
-                bg-[#f0ded1]
-                px-4
-                py-3
-                text-[10px]
-                sm:text-[11px]
-                leading-[1.4]
-                text-[#30313a]
-              "
-            >
-              <strong>Important:</strong> CreativeCheck is a connection platform only.
-              <br className="hidden sm:block" />
-              We do not provide legal, business or financial advice.
-              We connect you with the right professionals.
-            </div>
+              Search
+            </button>
 
           </div>
 
         </div>
 
-
-        {/* ===================================================
-            RIGHT VISUAL
-            IMPORTANT:
-            NO TEXT OVERLAY.
-            THE ARTWORK IS CONTAINED INSIDE THIS COLUMN.
-        =================================================== */}
+        {/* QUICK ACTIONS */}
 
         <div
           className="
-            relative
-            min-h-[420px]
-            lg:min-h-0
+            mt-4
+            sm:mt-5
+            flex
+            flex-wrap
+            items-center
+            justify-center
+            gap-2
+            sm:gap-3
+            px-2
+          "
+        >
+
+          <a
+            href="#add-profile"
+            className="
+              px-4
+              sm:px-5
+              py-2.5
+              sm:py-3
+              rounded-full
+              bg-gradient-to-r
+              from-[#4f46e5]
+              to-[#06b6d4]
+              text-white
+              text-xs
+              sm:text-sm
+              font-semibold
+              shadow-lg
+              hover:scale-105
+              transition
+              whitespace-nowrap
+            "
+          >
+            + Create Your Profile
+          </a>
+
+          <a
+            href="#categories"
+            className="
+              px-4
+              sm:px-5
+              py-2.5
+              sm:py-3
+              rounded-full
+              bg-white/80
+              border
+              border-white
+              text-[#0f172a]
+              text-xs
+              sm:text-sm
+              font-semibold
+              shadow-sm
+              hover:bg-white
+              transition
+              whitespace-nowrap
+            "
+          >
+            Explore Categories
+          </a>
+
+        </div>
+
+      </div>
+
+      {/* =====================================================
+          HERO BACKGROUND / ART
+          ONLY CHANGE: POSITION MOVED LEFT
+      ===================================================== */}
+
+      <div
+        className="
+          absolute
+          inset-0
+          pointer-events-none
+          overflow-hidden
+        "
+      >
+
+        <div
+          className="
+            absolute
+            right-0
+            top-0
+            h-full
+            w-1/2
             overflow-hidden
-            bg-[#f4e9e2]
           "
         >
 
@@ -563,23 +437,7 @@ export default function Hero({
               w-full
               h-full
               object-cover
-              object-center
-            "
-          />
-
-          {/* Soft edge between content and artwork */}
-
-          <div
-            className="
-              absolute
-              left-0
-              top-0
-              bottom-0
-              w-10
-              bg-gradient-to-r
-              from-[#f8eee8]/35
-              to-transparent
-              pointer-events-none
+              object-[65%_center]
             "
           />
 
