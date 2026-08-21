@@ -414,13 +414,13 @@ export default function Hero({
         "
       >
 
-       <div
+      <div
   className="
     absolute
-    right-[3%]
+    right-0
     top-0
     h-full
-    w-1/2
+    w-[58%]
     overflow-hidden
   "
 >
