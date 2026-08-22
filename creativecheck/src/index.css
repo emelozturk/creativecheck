@@ -3,9 +3,23 @@
 @tailwind utilities;
 
 /* =========================================================
-   CREATIVE CHECK
-   GLOBAL
+   CREATIVECHECK — PASTEL CREATIVE PALETTE
 ========================================================= */
+
+:root {
+  --cc-lavender: #c8b6e8;
+  --cc-lilac: #d8c7f0;
+  --cc-violet: #bfa7d9;
+  --cc-pink: #e8c7d8;
+  --cc-periwinkle: #c9d2f3;
+  --cc-peach: #f1d1c2;
+  --cc-cream: #faf7f5;
+
+  --cc-dark: #17142a;
+  --cc-muted: #6f6878;
+}
+
+/* GLOBAL */
 
 html {
   scroll-behavior: smooth;
@@ -21,26 +35,38 @@ body {
 
   background:
     radial-gradient(
-      circle at top left,
-      rgba(79, 70, 229, 0.10),
-      transparent 28%
+      circle at 8% 10%,
+      rgba(200, 182, 232, 0.34),
+      transparent 30%
     ),
     radial-gradient(
-      circle at top right,
-      rgba(6, 182, 212, 0.10),
-      transparent 25%
+      circle at 90% 8%,
+      rgba(232, 199, 216, 0.32),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 78% 78%,
+      rgba(191, 167, 217, 0.25),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 20% 88%,
+      rgba(241, 209, 194, 0.20),
+      transparent 30%
     ),
     linear-gradient(
       135deg,
-      #f8fbff 0%,
-      #f5f7ff 45%,
-      #f4faff 100%
+      #faf7f5 0%,
+      #f8f3fa 45%,
+      #f3eff9 100%
     );
 
   font-family: "Plus Jakarta Sans", sans-serif;
+
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  color: #0f172a;
+
+  color: var(--cc-dark);
 }
 
 #root {
@@ -53,18 +79,61 @@ body {
   box-sizing: border-box;
 }
 
+/* TEXT SELECTION */
+
 ::selection {
-  background: #bfdbfe;
-  color: #0f172a;
+  background: #e3d5f1;
+  color: #17142a;
 }
+
+/* =========================================================
+   PASTEL GRADIENT TEXT
+========================================================= */
+
+.gradient-check {
+  background: linear-gradient(
+    90deg,
+    #bfa7d9 0%,
+    #c8b6e8 30%,
+    #d8c7f0 65%,
+    #e8c7d8 100%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf7f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #c8b6e8,
+    #d8c7f0,
+    #e8c7d8
+  );
+
+  border-radius: 999px;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 button,
 a {
   transition: all 0.25s ease;
-}
-
-button {
-  font-family: inherit;
 }
 
 input,
@@ -79,10 +148,33 @@ button:focus {
   outline: none;
 }
 
-img {
-  display: block;
-  max-width: 100%;
+/* =========================================================
+   GLASS
+========================================================= */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.70);
+
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(216, 199, 240, 0.55);
+
+  box-shadow:
+    0 10px 40px rgba(91, 72, 112, 0.06);
 }
+
+/* =========================================================
+   SHADOW
+========================================================= */
+
+.soft-shadow {
+  box-shadow:
+    0 12px 40px rgba(91, 72, 112, 0.07);
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
 
 h1,
 h2,
@@ -98,54 +190,17 @@ p {
 }
 
 /* =========================================================
-   SCROLLBAR
+   IMAGES
 ========================================================= */
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.6);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    #4f46e5,
-    #06b6d4
-  );
-  border-radius: 999px;
+img {
+  display: block;
+  max-width: 100%;
 }
 
 /* =========================================================
-   UTILITIES
+   FADE
 ========================================================= */
-
-.gradient-check {
-  background: linear-gradient(
-    90deg,
-    #4f46e5 0%,
-    #7c3aed 30%,
-    #2563eb 65%,
-    #06b6d4 100%
-  );
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.06);
-}
-
-.soft-shadow {
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.07);
-}
 
 .fade-up {
   animation: fadeUp 0.7s ease forwards;
@@ -164,945 +219,193 @@ p {
 }
 
 /* =========================================================
-   MAIN SITE
+   HERO BACKGROUND
+   PASTEL LAVENDER / LILAC / PINK
 ========================================================= */
 
-.cc-site {
+#discover {
   width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.cc-header {
-  position: relative;
-  z-index: 20;
-
-  width: 100%;
-  height: 78px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 5.2vw;
-
-  background: rgba(255, 255, 255, 0.92);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-
-  backdrop-filter: blur(18px);
-}
-
-.cc-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-
-  color: #0f172a;
-  text-decoration: none;
-
-  flex-shrink: 0;
-}
-
-.cc-mark {
-  width: 34px;
-  height: 34px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 2px solid #c58b2a;
-  border-radius: 50%;
-
-  color: #c58b2a;
-  font-family: Georgia, serif;
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.cc-brand strong,
-.footer-brand strong {
-  display: block;
-
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.10em;
-  line-height: 1.1;
-}
-
-.cc-brand small,
-.footer-brand small {
-  display: block;
-  margin-top: 3px;
-
-  font-size: 6.5px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  color: #64748b;
-}
-
-.cc-nav {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-
-  margin-left: auto;
-  margin-right: 32px;
-}
-
-.cc-nav a {
-  position: relative;
-
-  color: #172033;
-  text-decoration: none;
-
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.cc-nav a:hover {
-  color: #7c3aed;
-}
-
-.cc-nav a.active {
-  color: #0f172a;
-}
-
-.cc-nav a.active::after {
-  content: "";
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -11px;
-
-  height: 2px;
-  border-radius: 99px;
-
-  background: #c58b2a;
-}
-
-.cc-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  flex-shrink: 0;
-}
-
-.cc-header-actions > a {
-  color: #172033;
-  text-decoration: none;
-
-  font-size: 11px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.cc-header-actions > a:hover {
-  color: #7c3aed;
-}
-
-.icon-button {
-  border: 0;
-  background: transparent;
-
-  padding: 4px;
-
-  cursor: pointer;
-
-  color: #172033;
-  font-size: 19px;
-}
-
-.cc-join {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 38px;
-  padding: 0 18px;
-
-  border-radius: 8px;
-
-  background: #101b35;
-  color: white !important;
-
-  font-size: 10px !important;
-  font-weight: 800 !important;
-
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.16);
-}
-
-.cc-join:hover {
-  background: #26375e;
-  transform: translateY(-1px);
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.cc-hero {
-  position: relative;
-
-  display: flex;
-
-  width: 100%;
-  min-height: calc(100vh - 78px);
-  height: calc(100vh - 78px);
-
-  overflow: hidden;
-
-  background: #f8ece8;
-}
-
-/* =========================================================
-   HERO LEFT
-========================================================= */
-
-.cc-hero-copy {
-  position: relative;
-  z-index: 3;
-
-  flex: 0 0 53%;
-  width: 53%;
-
+  max-width: 100vw;
   min-width: 0;
-
-  padding:
-    clamp(58px, 7vh, 88px)
-    4vw
-    45px
-    6vw;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  overflow: hidden;
 
   background:
     radial-gradient(
-      circle at 20% 10%,
-      rgba(255, 255, 255, 0.7),
-      transparent 35%
+      circle at 12% 18%,
+      rgba(200, 182, 232, 0.38),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 88% 14%,
+      rgba(232, 199, 216, 0.34),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 82% 82%,
+      rgba(191, 167, 217, 0.27),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 20% 85%,
+      rgba(241, 209, 194, 0.22),
+      transparent 28%
     ),
     linear-gradient(
       135deg,
-      #fff8f4 0%,
-      #faefed 55%,
-      #f7ebe9 100%
+      #faf7f5 0%,
+      #f8f3fa 45%,
+      #f3eff9 100%
     );
 }
 
-.cc-hero-copy h1 {
-  margin: 0 0 18px;
+/* Keep all direct hero content inside viewport */
 
-  color: #101c35;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: clamp(54px, 5.1vw, 84px);
-  font-weight: 500;
-
-  line-height: 0.94;
-  letter-spacing: -0.055em;
-}
-
-.cc-hero-copy h1 em {
-  color: #75406f;
-  font-weight: 500;
-}
-
-.cc-hero-desc {
-  margin: 0 0 25px;
-
-  color: #243149;
-
-  font-size: clamp(13px, 1vw, 16px);
-  font-weight: 600;
-
-  line-height: 1.65;
+#discover > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* =========================================================
-   SEARCH
+   LINKS / ACCENTS
 ========================================================= */
 
-.cc-search {
-  width: min(100%, 590px);
-  height: 52px;
+#discover a:hover,
+#about a:hover,
+#future a:hover {
+  color: #9a79bd;
+}
 
-  display: flex;
-  align-items: center;
+#discover .text-blue-500,
+#discover .text-blue-600 {
+  color: #a985c7 !important;
+}
 
-  padding: 0 9px 0 17px;
+#discover .hover\:text-blue-600:hover {
+  color: #9a79bd !important;
+}
 
-  background: rgba(255, 255, 255, 0.92);
+/* =========================================================
+   PASTEL PRIMARY BUTTONS
+========================================================= */
 
-  border: 1px solid rgba(15, 23, 42, 0.09);
-  border-radius: 28px;
+#discover .bg-gradient-to-r {
+  background-image: linear-gradient(
+    90deg,
+    #bfa7d9,
+    #c8b6e8,
+    #d8c7f0
+  ) !important;
+}
 
+#discover .bg-blue-600 {
+  background-color: #bfa7d9 !important;
+}
+
+#discover .hover\:bg-blue-600:hover {
+  background-color: #a985c7 !important;
+}
+
+/* =========================================================
+   PASTEL SEARCH / GLASS
+========================================================= */
+
+#discover input::placeholder {
+  color: #9b91a5;
+}
+
+#discover input:focus {
   box-shadow:
-    0 10px 30px rgba(15, 23, 42, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-
-  overflow: hidden;
-}
-
-.search-icon {
-  flex-shrink: 0;
-
-  color: #64748b;
-  font-size: 18px;
-
-  margin-right: 10px;
-}
-
-.cc-search input {
-  min-width: 0;
-  flex: 1;
-
-  border: 0;
-  outline: 0;
-
-  background: transparent;
-
-  color: #172033;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.cc-search input::placeholder {
-  color: #9aa4b4;
-}
-
-.search-divider {
-  width: 1px;
-  height: 22px;
-
-  margin: 0 15px;
-
-  background: #e2e8f0;
-}
-
-.search-category {
-  flex-shrink: 0;
-
-  color: #334155;
-
-  font-size: 10px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.search-submit {
-  flex-shrink: 0;
-
-  width: 34px;
-  height: 34px;
-
-  margin-left: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: 0;
-  border-radius: 50%;
-
-  background: #101b35;
-  color: white;
-
-  font-size: 18px;
-
-  cursor: pointer;
-}
-
-.search-submit:hover {
-  transform: translateX(2px);
-  background: #27395f;
+    0 0 0 3px rgba(200, 182, 232, 0.20);
 }
 
 /* =========================================================
-   COMING NEXT
+   RESPONSIVE — DESKTOP
 ========================================================= */
 
-.cc-coming-title {
-  margin-top: 25px;
-  margin-bottom: 10px;
+@media (min-width: 1251px) {
 
-  color: #101b35;
+  #discover {
+    min-height: 100vh;
+    height: 100vh;
+  }
 
-  font-size: 10px;
-  font-weight: 800;
+  #discover > header {
+    flex-shrink: 0;
+  }
 
-  letter-spacing: 0.15em;
-}
-
-.cc-upcoming-grid {
-  width: min(100%, 650px);
-
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-
-  gap: 6px;
-}
-
-.cc-upcoming-card {
-  min-width: 0;
-  min-height: 82px;
-
-  display: flex;
-  flex-direction: column;
-
-  padding: 11px 9px;
-
-  border: 1px solid rgba(15, 23, 42, 0.09);
-  border-radius: 7px;
-
-  background: rgba(255, 255, 255, 0.33);
-}
-
-.upcoming-icon {
-  display: block;
-
-  margin-bottom: 6px;
-
-  color: #795071;
-
-  font-size: 14px;
-  line-height: 1;
-}
-
-.cc-upcoming-card strong {
-  display: block;
-
-  color: #172033;
-
-  font-size: 9px;
-  font-weight: 800;
-
-  line-height: 1.2;
-}
-
-.cc-upcoming-card small {
-  display: block;
-
-  margin-top: 5px;
-
-  color: #64748b;
-
-  font-size: 7px;
-  line-height: 1.35;
+  #discover > div {
+    min-height: 0;
+    overflow: hidden;
+  }
 }
 
 /* =========================================================
-   IMPORTANT NOTICE
+   LAPTOP
 ========================================================= */
 
-.cc-notice {
-  width: min(100%, 650px);
+@media (max-width: 1250px) {
 
-  display: flex;
-  align-items: flex-start;
-  gap: 9px;
+  #discover {
+    min-height: 100vh;
+    height: 100vh;
+  }
 
-  margin-top: 12px;
-  padding: 11px 13px;
-
-  border-radius: 7px;
-
-  background: rgba(197, 139, 42, 0.11);
-  color: #374151;
-
-  font-size: 8px;
-  line-height: 1.5;
-}
-
-.cc-notice b {
-  color: #172033;
-}
-
-.notice-icon {
-  flex-shrink: 0;
-
-  color: #c58b2a;
-
-  font-size: 13px;
-}
-
-/* =========================================================
-   HERO ART
-   IMPORTANT:
-   hero-art.jpg is the reference image itself.
-   It must NOT be stretched into the container.
-   It is intentionally enlarged and cropped.
-========================================================= */
-
-.cc-hero-art {
-  position: relative;
-
-  flex: 0 0 47%;
-  width: 47%;
-
-  min-width: 0;
-  height: 100%;
-
-  overflow: hidden;
-
-  background-color: #f8ece8;
-
-  background-image: url("./assets/hero-art.jpg");
-
-  background-repeat: no-repeat;
-
-  /*
-     The reference is a full-screen composition.
-     We enlarge it vertically and crop the left side
-     so that the actual artwork becomes the hero artwork.
-  */
-  background-size: auto 143%;
-
-  /*
-     Move the composition LEFT and DOWN.
-     This is the key reference adjustment.
-  */
-  background-position: 88% 112%;
-
-  flex-shrink: 0;
-}
-
-/*
-   Soft edge so the photograph blends naturally
-   into the hero background.
-*/
-.cc-hero-art::after {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(248, 236, 232, 0.22) 0%,
-      rgba(248, 236, 232, 0) 18%
+  #discover h2 {
+    font-size: clamp(
+      54px,
+      6vw,
+      78px
     );
+  }
+
+  #discover p {
+    max-width: 620px;
+  }
 }
 
 /* =========================================================
-   EXPLORE SECTION
+   SMALL LAPTOP
 ========================================================= */
 
-#members {
-  width: 100%;
-  min-width: 0;
-  overflow: hidden;
-}
-
-#members > * {
-  min-width: 0;
-}
-
-/* =========================================================
-   FUTURE FEATURES
-========================================================= */
-
-.cc-future {
-  width: 100%;
-
-  display: grid;
-  grid-template-columns:
-    1.5fr
-    repeat(3, 1fr);
-
-  gap: 14px;
-
-  padding: 55px 6vw;
-
-  background: #101b35;
-  color: white;
-}
-
-.future-lead {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  padding-right: 20px;
-}
-
-.future-lead strong {
-  font-size: 20px;
-  line-height: 1.2;
-}
-
-.future-lead span {
-  margin-top: 7px;
-
-  color: #aeb8d0;
-
-  font-size: 11px;
-}
-
-.future-item {
-  min-height: 105px;
-
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-
-  padding: 17px;
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-
-  background: rgba(255, 255, 255, 0.035);
-}
-
-.future-item > span {
-  color: #c58b2a;
-  font-size: 18px;
-}
-
-.future-item strong {
-  display: block;
-
-  font-size: 11px;
-}
-
-.future-item small {
-  display: block;
-
-  margin-top: 5px;
-
-  color: #aeb8d0;
-
-  font-size: 9px;
-}
-
-.future-button {
-  grid-column: 1 / -1;
-
-  justify-self: center;
-
-  margin-top: 10px;
-
-  color: white;
-  text-decoration: none;
-
-  font-size: 11px;
-  font-weight: 800;
-}
-
-.future-button:hover {
-  color: #c58b2a;
-}
-
-/* =========================================================
-   FOUNDER
-========================================================= */
-
-.cc-founder {
-  width: 100%;
-
-  display: grid;
-  grid-template-columns: 0.8fr 1fr 1fr;
-
-  gap: 50px;
-
-  padding: 90px 8vw;
-
-  background: #f8fafc;
-}
-
-.founder-photo-wrap {
-  width: 100%;
-  max-width: 400px;
-
-  overflow: hidden;
-
-  border-radius: 14px;
-
-  background: #e2e8f0;
-}
-
-.founder-photo {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-.founder-copy,
-.founder-about {
-  padding-top: 10px;
-}
-
-.section-label {
-  display: block;
-
-  margin-bottom: 13px;
-
-  color: #7c3aed;
-
-  font-size: 9px;
-  font-weight: 800;
-
-  letter-spacing: 0.18em;
-}
-
-.founder-copy h2 {
-  margin: 0 0 17px;
-
-  color: #101b35;
-
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: clamp(35px, 4vw, 54px);
-  font-weight: 500;
-}
-
-.founder-copy p,
-.founder-about p {
-  color: #475569;
-
-  font-size: 13px;
-  line-height: 1.75;
-}
-
-.founder-copy a,
-.founder-about a {
-  display: inline-block;
-
-  margin-top: 8px;
-
-  color: #7c3aed;
-  text-decoration: none;
-
-  font-size: 11px;
-  font-weight: 800;
-}
-
-/* =========================================================
-   ADD PROFILE
-========================================================= */
-
-.cc-add-profile {
-  width: 100%;
-  min-width: 0;
-
-  background: #f8fafc;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.cc-footer {
-  width: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-
-  gap: 30px;
-
-  padding: 35px 6vw;
-
-  background: #0b1328;
-  color: white;
-}
-
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.footer-brand .cc-mark {
-  border-color: #c58b2a;
-  color: #c58b2a;
-}
-
-.footer-brand small {
-  color: #94a3b8;
-}
-
-.footer-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-wrap: wrap;
-  gap: 18px;
-}
-
-.footer-links a {
-  color: #aeb8d0;
-  text-decoration: none;
-
-  font-size: 9px;
-  font-weight: 600;
-}
-
-.footer-links a:hover {
-  color: white;
-}
-
-.footer-social {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 13px;
-
-  color: #aeb8d0;
-
-  font-size: 12px;
-}
-
-.footer-social small {
-  margin-left: 10px;
-
-  font-size: 8px;
+@media (max-width: 1100px) {
+
+  #discover {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  #discover h2 {
+    font-size: clamp(
+      48px,
+      6vw,
+      68px
+    );
+
+    letter-spacing: -3px;
+  }
 }
 
 /* =========================================================
    TABLET
 ========================================================= */
 
-@media (max-width: 1100px) {
-
-  .cc-header {
-    padding-left: 3vw;
-    padding-right: 3vw;
-  }
-
-  .cc-nav {
-    gap: 17px;
-    margin-right: 17px;
-  }
-
-  .cc-header-actions {
-    gap: 10px;
-  }
-
-  .cc-hero-copy {
-    flex-basis: 55%;
-    width: 55%;
-
-    padding-left: 4vw;
-    padding-right: 2.5vw;
-  }
-
-  .cc-hero-art {
-    flex-basis: 45%;
-    width: 45%;
-
-    background-size: auto 137%;
-    background-position: 88% 112%;
-  }
-
-  .cc-upcoming-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  .cc-founder {
-    grid-template-columns: 0.75fr 1fr;
-  }
-
-  .founder-about {
-    grid-column: 2;
-  }
-
-  .cc-future {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .future-lead {
-    grid-column: 1 / -1;
-  }
-}
-
-/* =========================================================
-   TABLET / SMALL LAPTOP
-========================================================= */
-
 @media (max-width: 900px) {
 
-  .cc-header {
-    height: 70px;
-  }
-
-  .cc-nav {
-    display: none;
-  }
-
-  .cc-header-actions {
-    margin-left: auto;
-  }
-
-  .cc-hero {
-    display: block;
-
+  #discover {
+    min-height: 100vh;
     height: auto;
-    min-height: 0;
   }
 
-  .cc-hero-copy {
-    width: 100%;
-    min-height: 650px;
-
-    padding:
-      65px
-      6vw
-      55px;
+  #discover h2 {
+    font-size: clamp(
+      46px,
+      8vw,
+      64px
+    );
   }
 
-  .cc-hero-copy h1 {
-    font-size: clamp(55px, 9vw, 78px);
-  }
-
-  .cc-hero-art {
-    width: 100%;
-    height: 650px;
-    min-height: 650px;
-
-    background-size: auto 120%;
-    background-position: 85% 110%;
-  }
-
-  .cc-upcoming-grid {
-    max-width: 700px;
-  }
-
-  .cc-founder {
-    grid-template-columns: 1fr;
-  }
-
-  .founder-photo-wrap {
-    max-width: 500px;
-  }
-
-  .founder-about {
-    grid-column: auto;
-  }
-
-  .cc-footer {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-brand,
-  .footer-social {
-    justify-content: center;
+  #discover p {
+    max-width: 620px;
   }
 }
 
@@ -1112,177 +415,63 @@ p {
 
 @media (max-width: 640px) {
 
-  .cc-header {
-    height: 64px;
+  #discover {
+    min-height: 100vh;
+    height: auto;
 
     padding-left: 16px;
     padding-right: 16px;
   }
 
-  .cc-brand strong {
-    font-size: 11px;
-  }
-
-  .cc-brand small {
-    font-size: 5.5px;
-  }
-
-  .cc-mark {
-    width: 30px;
-    height: 30px;
-
-    font-size: 17px;
-  }
-
-  .cc-header-actions {
-    gap: 8px;
-  }
-
-  .cc-header-actions > a:not(.cc-join) {
-    display: none;
-  }
-
-  .icon-button {
-    font-size: 17px;
-  }
-
-  .cc-join {
-    min-height: 34px;
-    padding: 0 12px;
-
-    font-size: 9px !important;
-  }
-
-  .cc-hero-copy {
-    min-height: auto;
-
-    padding:
+  #discover h2 {
+    font-size: clamp(
+      38px,
+      11vw,
       52px
-      18px
-      35px;
+    );
+
+    letter-spacing: -2px;
   }
 
-  .cc-hero-copy h1 {
-    font-size: clamp(43px, 12vw, 58px);
-
-    letter-spacing: -0.055em;
+  #discover p {
+    font-size: 14px;
   }
 
-  .cc-hero-desc {
-    font-size: 12px;
+  #discover header {
+    gap: 10px;
   }
 
-  .cc-hero-desc br {
+  #discover header h1 {
+    font-size: 24px;
+  }
+
+  #discover nav {
     display: none;
   }
 
-  .cc-search {
-    height: 48px;
-  }
-
-  .search-category {
-    display: none;
-  }
-
-  .search-divider {
-    display: none;
-  }
-
-  .cc-upcoming-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 7px;
-  }
-
-  .cc-upcoming-card {
-    min-height: 76px;
-  }
-
-  .cc-upcoming-card:last-child {
-    grid-column: 1 / -1;
-  }
-
-  .cc-notice {
-    font-size: 8px;
-  }
-
-  .cc-hero-art {
+  #discover .hero-search {
     width: 100%;
-    height: 470px;
-    min-height: 470px;
-
-    /*
-      On mobile keep the artwork visible,
-      but continue using the reference crop.
-    */
-    background-size: auto 115%;
-    background-position: 83% 108%;
-  }
-
-  .cc-future {
-    grid-template-columns: 1fr;
-
-    padding: 45px 18px;
-  }
-
-  .future-lead {
-    grid-column: auto;
-  }
-
-  .future-item {
-    min-height: 85px;
-  }
-
-  .cc-founder {
-    padding: 60px 22px;
-
-    gap: 30px;
-  }
-
-  .founder-copy h2 {
-    font-size: 40px;
-  }
-
-  .cc-footer {
-    padding:
-      30px
-      18px;
-  }
-
-  .footer-links {
-    gap: 12px;
+    max-width: 100%;
   }
 }
 
 /* =========================================================
-   VERY SMALL MOBILE
+   VERY SMALL SCREENS
 ========================================================= */
 
 @media (max-width: 420px) {
 
-  .cc-brand small {
-    display: none;
+  #discover {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
-  .cc-hero-copy {
-    padding-left: 14px;
-    padding-right: 14px;
+  #discover h2 {
+    font-size: 36px;
   }
 
-  .cc-hero-copy h1 {
-    font-size: 39px;
-  }
-
-  .cc-search input {
-    font-size: 10px;
-  }
-
-  .cc-hero-art {
-    height: 400px;
-    min-height: 400px;
-
-    background-size: auto 112%;
-    background-position: 82% 108%;
+  #discover header h1 {
+    font-size: 21px;
   }
 }
 
@@ -1292,14 +481,11 @@ p {
 
 html,
 body,
-#root,
-.cc-site {
-  max-width: 100%;
+#root {
   overflow-x: hidden !important;
 }
 
 #discover,
 #discover * {
-  min-width: 0;
   max-width: 100%;
 }
