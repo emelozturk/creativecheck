@@ -261,32 +261,32 @@ export default function Hero({
 
         {/* HERO ART */}
 
-<div
-  className="
-    absolute
-    top-0
-    right-0
-    bottom-0
-    w-[56%]
-    overflow-hidden
-    pointer-events-none
-    z-0
-  "
->
-  <img
-    src="/assets/hero-art.jpg"
-    alt=""
-    className="
-      absolute
-      top-0
-      left-0
-      h-full
-      w-full
-      object-cover
-      object-[center_center]
-    "
-  />
-</div>
+        <div
+          className="
+            absolute
+            top-0
+            right-0
+            bottom-0
+            w-[56%]
+            overflow-hidden
+            pointer-events-none
+            z-0
+          "
+        >
+          <img
+            src="/assets/hero-art.jpg"
+            alt=""
+            className="
+              absolute
+              top-0
+              right-0
+              h-full
+              w-full
+              object-contain
+              object-right
+            "
+          />
+        </div>
 
 
         {/* LEFT CONTENT */}
