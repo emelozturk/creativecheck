@@ -22,7 +22,7 @@ export default function Hero({
       "
       style={{
         background: '#f4e5df',
-        color: '#11172e'
+        colour: '#11172e'
       }}
     >
 
@@ -106,7 +106,7 @@ export default function Hero({
         <nav
           className="
             hidden
-            lg:flex
+            lg: flex
             items-center
             gap-[34px]
             text-[14px]
@@ -199,7 +199,7 @@ export default function Hero({
             }
             className="
               hidden
-              sm:block
+              sm: block
               border-0
               bg-transparent
               text-[22px]
@@ -216,7 +216,7 @@ export default function Hero({
             href="#login"
             className="
               hidden
-              sm:block
+              sm: block
               text-[#11172e]
               no-underline
             "
@@ -429,7 +429,7 @@ export default function Hero({
               <span
                 className="
                   hidden
-                  sm:block
+                  sm: block
                   h-[24px]
                   w-px
                   bg-[#ddd0cc]
@@ -440,7 +440,7 @@ export default function Hero({
               <span
                 className="
                   hidden
-                  sm:block
+                  sm: block
                   shrink-0
                   text-[13px]
                   font-semibold
@@ -457,7 +457,7 @@ export default function Hero({
                   document
                     .getElementById('categories')
                     ?.scrollIntoView({
-                      behavior: 'smooth'
+                      behaviour: 'smooth'
                     })
                 }
                 className="
