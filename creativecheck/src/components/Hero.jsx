@@ -22,7 +22,7 @@ export default function Hero({
       "
       style={{
         background: '#f4e5df',
-        colour: '#11172e'
+        color: '#11172e'
       }}
     >
 
@@ -106,7 +106,7 @@ export default function Hero({
         <nav
           className="
             hidden
-            lg: flex
+            lg:flex
             items-center
             gap-[34px]
             text-[14px]
@@ -199,7 +199,7 @@ export default function Hero({
             }
             className="
               hidden
-              sm: block
+              sm:block
               border-0
               bg-transparent
               text-[22px]
@@ -216,7 +216,7 @@ export default function Hero({
             href="#login"
             className="
               hidden
-              sm: block
+              sm:block
               text-[#11172e]
               no-underline
             "
@@ -259,12 +259,7 @@ export default function Hero({
         "
       >
 
-        {/* =================================================
-            ARTWORK
-            The uploaded hero image is a full reference image.
-            We crop it from the RIGHT so only the artwork
-            remains visible.
-        ================================================= */}
+        {/* ARTWORK */}
 
         <div
           className="
@@ -272,7 +267,7 @@ export default function Hero({
             right-0
             top-0
             bottom-0
-            w-[56%]
+            w-[63.5%]
             overflow-hidden
             pointer-events-none
             z-0
@@ -285,11 +280,9 @@ export default function Hero({
             aria-hidden="true"
             className="
               absolute
-              top-0
-              right-0
+              inset-0
+              w-full
               h-full
-              w-[178%]
-              max-w-none
               object-cover
               object-right
             "
@@ -337,7 +330,6 @@ export default function Hero({
                 fontFamily: 'Georgia, "Times New Roman", serif'
               }}
             >
-
               The Home of
 
               <br />
@@ -354,7 +346,6 @@ export default function Hero({
               >
                 Creative Minds
               </em>
-
             </h1>
 
 
@@ -429,7 +420,7 @@ export default function Hero({
               <span
                 className="
                   hidden
-                  sm: block
+                  sm:block
                   h-[24px]
                   w-px
                   bg-[#ddd0cc]
@@ -440,7 +431,7 @@ export default function Hero({
               <span
                 className="
                   hidden
-                  sm: block
+                  sm:block
                   shrink-0
                   text-[13px]
                   font-semibold
@@ -457,7 +448,7 @@ export default function Hero({
                   document
                     .getElementById('categories')
                     ?.scrollIntoView({
-                      behaviour: 'smooth'
+                      behavior: 'smooth'
                     })
                 }
                 className="
@@ -594,14 +585,12 @@ export default function Hero({
                 box-border
               "
             >
-
               <b>Important:</b> CreativeCheck is a connection platform only.
 
               <br />
 
               We do not provide legal, business or financial advice.
               We connect you with the right professionals.
-
             </div>
 
           </div>
