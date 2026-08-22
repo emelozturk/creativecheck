@@ -15,7 +15,11 @@ export default function Hero({
   return (
     <section
       id="discover"
-      className="relative w-full overflow-hidden"
+      className="
+        relative
+        w-full
+        overflow-hidden
+      "
       style={{
         background: '#f4e5df',
         color: '#11172e'
@@ -231,6 +235,7 @@ export default function Hero({
               py-[12px]
               font-bold
               text-[14px]
+              shadow-none
             "
           >
             Join CreativeCheck
@@ -246,22 +251,28 @@ export default function Hero({
       <div
         className="
           relative
-          w-full
           min-h-[420px]
+          w-full
           overflow-hidden
+          box-border
           bg-[#f4e5df]
         "
       >
 
-        {/* RIGHT ARTWORK */}
+        {/* =================================================
+            ARTWORK
+            The uploaded hero image is a full reference image.
+            We crop it from the RIGHT so only the artwork
+            remains visible.
+        ================================================= */}
 
         <div
           className="
             absolute
-            top-0
             right-0
+            top-0
             bottom-0
-            w-[55%]
+            w-[56%]
             overflow-hidden
             pointer-events-none
             z-0
@@ -277,31 +288,14 @@ export default function Hero({
               top-0
               right-0
               h-full
-              w-full
+              w-[178%]
+              max-w-none
               object-cover
               object-right
             "
           />
 
         </div>
-
-
-        {/* SOFT OVERLAY TO KEEP LEFT SIDE CLEAN */}
-
-        <div
-          className="
-            absolute
-            inset-y-0
-            left-0
-            z-[1]
-            w-[55%]
-            pointer-events-none
-          "
-          style={{
-            background:
-              'linear-gradient(90deg, #f4e5df 0%, rgba(244,229,223,0.98) 62%, rgba(244,229,223,0.72) 88%, rgba(244,229,223,0) 100%)'
-          }}
-        />
 
 
         {/* LEFT CONTENT */}
@@ -311,8 +305,6 @@ export default function Hero({
             relative
             z-10
             w-full
-            max-w-[1600px]
-            mx-auto
             px-[50px]
             pt-[18px]
             pb-[10px]
@@ -396,7 +388,7 @@ export default function Hero({
                 border
                 border-[#d8c9c4]
                 rounded-[24px]
-                bg-white/65
+                bg-white/45
                 px-[15px]
                 box-border
               "
@@ -506,7 +498,7 @@ export default function Hero({
             </div>
 
 
-            {/* CARDS */}
+            {/* UPCOMING CARDS */}
 
             <div
               className="
@@ -532,7 +524,7 @@ export default function Hero({
                     border-[#dbcac4]
                     rounded-[8px]
                     p-[11px]
-                    bg-white/30
+                    bg-white/20
                     box-border
                     overflow-hidden
                   "
