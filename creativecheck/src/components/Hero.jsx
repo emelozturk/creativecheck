@@ -34,7 +34,7 @@ export default function Hero({
       <header
         className="
           relative
-          z-10
+          z-20
           w-full
           max-w-[1600px]
           mx-auto
@@ -60,9 +60,7 @@ export default function Hero({
         >
 
           <div className="shrink-0">
-            <LogoIcon
-              size={40}
-            />
+            <LogoIcon size={40} />
           </div>
 
           <h1
@@ -167,7 +165,8 @@ export default function Hero({
 
       </header>
 
-      {/* HERO */}
+
+      {/* HERO CONTENT */}
 
       <div
         className="
@@ -254,6 +253,7 @@ export default function Hero({
           creative discovery.
         </p>
 
+
         {/* SEARCH */}
 
         <div
@@ -335,6 +335,7 @@ export default function Hero({
 
         </div>
 
+
         {/* QUICK ACTIONS */}
 
         <div
@@ -403,43 +404,35 @@ export default function Hero({
 
       </div>
 
-      {/* HERO BACKGROUND / ART */}
+
+      {/* HERO ART */}
 
       <div
         className="
           absolute
-          inset-0
-          pointer-events-none
+          top-0
+          right-0
+          bottom-0
+          w-[50%]
           overflow-hidden
+          pointer-events-none
+          z-0
         "
       >
 
-        <div
+        <img
+          src="/assets/hero-art.jpg"
+          alt=""
           className="
             absolute
-            right-0
             top-0
+            right-0
             h-full
-            w-1/2
-            overflow-hidden
+            w-full
+            object-cover
+            object-[72%_center]
           "
-        >
-
-          <img
-            src="/assets/hero-art.jpg"
-            alt=""
-            className="
-              absolute
-              top-0
-              left-[-60px]
-              w-[calc(100%+60px)]
-              h-full
-              object-cover
-              object-[65%_center]
-            "
-          />
-
-        </div>
+        />
 
       </div>
 
