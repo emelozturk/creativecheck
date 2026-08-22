@@ -4,435 +4,608 @@ export default function Hero({
   searchQuery,
   setSearchQuery
 }) {
+  const upcoming = [
+    ['✧', 'AI Matching', 'Smart connections'],
+    ['▤', 'Projects & Opportunities', 'New opportunities every day'],
+    ['▧', 'Contracts & Invoices', 'Professional tools for creatives'],
+    ['▦', 'Events & Workshops', 'Learn, connect and grow'],
+    ['♧', 'Business & Legal Connections', 'Connect with trusted advisors']
+  ]
+
   return (
     <section
       id="discover"
-      className="
-        relative
-        min-h-screen
-        w-full
-        max-w-[100vw]
-        px-4
-        sm:px-6
-        lg:px-8
-        py-5
-        sm:py-6
-        lg:py-8
-        flex
-        flex-col
-        overflow-hidden
-        box-border
-      "
+      className="relative w-full overflow-hidden"
       style={{
-        background:
-          'radial-gradient(circle at 15% 20%, rgba(79,70,229,0.16), transparent 28%), radial-gradient(circle at 85% 18%, rgba(37,99,235,0.14), transparent 30%), radial-gradient(circle at 80% 80%, rgba(6,182,212,0.16), transparent 30%), linear-gradient(135deg,#f8fbff 0%,#f5f7ff 48%,#f4faff 100%)'
+        background: '#f4e5df',
+        color: '#11172e'
       }}
     >
 
-      {/* HEADER */}
+      {/* =====================================================
+          HEADER
+          EXACT REFERENCE PROPORTIONS
+      ===================================================== */}
 
       <header
         className="
           relative
-          z-20
+          z-30
           w-full
-          max-w-[1600px]
-          mx-auto
+          h-[68px]
           flex
           items-center
           justify-between
-          gap-4
-          min-w-0
+          px-[38px]
+          bg-[#f4e5df]
+          border-b
+          border-[#e8d8d2]
+          box-border
         "
       >
+
+        {/* BRAND */}
 
         <a
           href="#discover"
           className="
             flex
             items-center
-            gap-2
-            sm:gap-3
-            lg:gap-4
-            min-w-0
-            shrink
+            gap-3
+            no-underline
+            shrink-0
           "
         >
 
-          <div className="shrink-0">
-            <LogoIcon size={40} />
-          </div>
-
-          <h1
+          <div
             className="
-              text-[24px]
-              sm:text-[28px]
-              lg:text-[34px]
-              font-black
-              tracking-[-1.5px]
-              lg:tracking-[-2px]
-              whitespace-nowrap
+              relative
+              w-[38px]
+              h-[48px]
+              flex
+              items-center
+              justify-center
             "
           >
-            <span className="text-[#0f172a]">
-              Creative
-            </span>
+            <LogoIcon size={42} />
+          </div>
 
-            <span className="gradient-check">
-              Check
-            </span>
-          </h1>
+          <div className="leading-none">
+
+            <div
+              className="
+                text-[17px]
+                font-extrabold
+                tracking-[3px]
+                text-[#11172e]
+              "
+            >
+              CREATIVECHECK
+            </div>
+
+            <div
+              className="
+                mt-[5px]
+                text-[8px]
+                font-semibold
+                tracking-[2px]
+                text-[#11172e]
+              "
+            >
+              CONNECT · COLLABORATE · CREATE
+            </div>
+
+          </div>
 
         </a>
+
+
+        {/* NAVIGATION */}
 
         <nav
           className="
             hidden
-            xl:flex
+            lg:flex
             items-center
-            justify-center
-            gap-5
-            2xl:gap-9
+            gap-[34px]
             text-[14px]
-            2xl:text-[15px]
             font-semibold
-            text-[#0f172a]
             whitespace-nowrap
           "
         >
 
           <a
             href="#discover"
-            className="hover:text-blue-600 transition"
+            className="
+              relative
+              text-[#11172e]
+              no-underline
+              pb-[10px]
+            "
           >
             Discover
+
+            <span
+              className="
+                absolute
+                left-0
+                right-0
+                bottom-0
+                h-[2px]
+                bg-[#c58a32]
+              "
+            />
           </a>
 
           <a
             href="#categories"
-            className="hover:text-blue-600 transition"
+            className="text-[#11172e] no-underline"
           >
-            Categories
+            Professionals
           </a>
 
           <a
-            href="#resources"
-            className="hover:text-blue-600 transition"
+            href="#categories"
+            className="text-[#11172e] no-underline"
           >
-            Resources
+            Businesses
+          </a>
+
+          <a
+            href="#founder"
+            className="text-[#11172e] no-underline"
+          >
+            Founder
           </a>
 
           <a
             href="#about"
-            className="hover:text-blue-600 transition"
+            className="text-[#11172e] no-underline"
           >
             About
           </a>
 
           <a
-            href="#add-profile"
-            className="hover:text-blue-600 transition"
+            href="#resources"
+            className="text-[#11172e] no-underline"
           >
-            Add Profile
+            Resources⌄
           </a>
 
         </nav>
 
-        <a
-          href="#add-profile"
+
+        {/* HEADER ACTIONS */}
+
+        <div
           className="
-            hidden
-            md:flex
-            shrink-0
-            bg-[#0f172a]
-            text-white
-            px-5
-            lg:px-7
-            py-2.5
-            lg:py-3
-            rounded-full
-            text-sm
-            lg:text-base
+            flex
+            items-center
+            gap-[22px]
+            text-[14px]
             font-semibold
-            shadow-[0_12px_32px_rgba(15,23,42,0.18)]
-            hover:bg-blue-600
-            transition
             whitespace-nowrap
           "
         >
-          + Add Your Profile
-        </a>
+
+          <button
+            type="button"
+            aria-label="Search"
+            onClick={() =>
+              document
+                .getElementById('creative-search')
+                ?.focus()
+            }
+            className="
+              hidden
+              sm:block
+              border-0
+              bg-transparent
+              text-[22px]
+              leading-none
+              text-[#11172e]
+              cursor-pointer
+              p-0
+            "
+          >
+            ⌕
+          </button>
+
+          <a
+            href="#login"
+            className="
+              hidden
+              sm:block
+              text-[#11172e]
+              no-underline
+            "
+          >
+            Log in
+          </a>
+
+          <a
+            href="#add-profile"
+            className="
+              bg-[#111a36]
+              text-white
+              no-underline
+              rounded-[7px]
+              px-[18px]
+              py-[12px]
+              font-bold
+              text-[14px]
+              shadow-none
+            "
+          >
+            Join CreativeCheck
+          </a>
+
+        </div>
 
       </header>
 
 
-      {/* HERO CONTENT */}
+      {/* =====================================================
+          HERO
+          EXACT REFERENCE:
+          min-height: 420px
+          padding: 18px 50px 10px
+          artwork: 63.5%
+          content: 47%
+      ===================================================== */}
 
       <div
         className="
           relative
-          z-10
+          min-h-[420px]
           w-full
-          max-w-[1600px]
-          mx-auto
-          flex-1
-          flex
-          flex-col
-          items-center
-          justify-center
-          text-center
-          min-w-0
-          py-10
-          sm:py-12
-          lg:py-16
+          overflow-hidden
+          box-border
+          px-[50px]
+          pt-[18px]
+          pb-[10px]
+          bg-[#f4e5df]
         "
       >
 
+        {/* =================================================
+            ARTWORK
+            IMPORTANT:
+            The image is BEHIND the content and starts at
+            the right. No second hero layer.
+        ================================================= */}
+
         <div
           className="
-            mb-4
-            sm:mb-5
-            lg:mb-6
-            text-[9px]
-            sm:text-[10px]
-            lg:text-[11px]
-            uppercase
-            tracking-[3px]
-            sm:tracking-[4px]
-            text-blue-500
-            font-bold
+            absolute
+            right-0
+            top-0
+            bottom-0
+            w-[63.5%]
+            overflow-hidden
+            pointer-events-none
+            z-0
           "
         >
-          Public Creative Discovery Platform
+
+          <img
+            src="/assets/hero-art.jpg"
+            alt=""
+            aria-hidden="true"
+            className="
+              absolute
+              inset-0
+              w-full
+              h-full
+              object-cover
+              object-right
+            "
+          />
+
         </div>
 
-        <h2
-          className="
-            w-full
-            max-w-[1100px]
-            px-2
-            text-[42px]
-            sm:text-[54px]
-            md:text-[68px]
-            lg:text-[78px]
-            xl:text-[88px]
-            font-black
-            tracking-[-2.5px]
-            sm:tracking-[-3px]
-            lg:tracking-[-4px]
-            leading-[0.98]
-            text-[#0f172a]
-          "
-        >
-          Discover Creatives
-          <br />
 
-          <span className="gradient-check">
-            with Confidence
-          </span>
-
-        </h2>
-
-        <p
-          className="
-            mt-5
-            sm:mt-6
-            lg:mt-7
-            w-full
-            max-w-[680px]
-            px-3
-            text-[15px]
-            sm:text-[17px]
-            lg:text-[18px]
-            text-gray-500
-            leading-relaxed
-          "
-        >
-          Discover creative professionals through public
-          visibility, portfolio presence and trusted
-          creative discovery.
-        </p>
-
-
-        {/* SEARCH */}
+        {/* =================================================
+            LEFT CONTENT
+        ================================================= */}
 
         <div
           className="
-            mt-7
-            sm:mt-8
-            lg:mt-10
-            w-full
-            max-w-[680px]
-            px-2
-            box-border
+            relative
+            z-10
+            w-[47%]
+            max-w-[700px]
+            min-w-0
           "
         >
 
-          <div
+          {/* HEADLINE */}
+
+          <h1
             className="
-              w-full
+              m-0
+              mt-[5px]
+              mb-[10px]
+              font-serif
+              font-medium
+              text-[clamp(42px,4vw,62px)]
+              leading-none
+              tracking-[-2px]
+              text-[#11172e]
+            "
+            style={{
+              fontFamily: 'Georgia, "Times New Roman", serif'
+            }}
+          >
+
+            The Home of
+
+            <br />
+
+            <em
+              className="
+                text-[#73406f]
+                not-italic
+                italic
+              "
+              style={{
+                fontFamily: 'Georgia, "Times New Roman", serif'
+              }}
+            >
+              Creative Minds
+            </em>
+
+          </h1>
+
+
+          {/* DESCRIPTION */}
+
+          <p
+            className="
+              m-0
+              max-w-[430px]
+              text-[16px]
+              leading-[1.45]
+              text-[#30354a]
+            "
+          >
+            Discover and connect with creative professionals
+            <br className="hidden sm:block" />
+            and creative businesses worldwide.
+          </p>
+
+
+          {/* SEARCH */}
+
+          <div
+            id="creative-search-wrap"
+            className="
+              mt-[12px]
+              w-[600px]
+              max-w-full
+              h-[44px]
               flex
               items-center
-              bg-white/80
-              backdrop-blur-xl
               border
-              border-white/80
-              shadow-[0_10px_40px_rgba(15,23,42,0.06)]
-              rounded-[22px]
-              sm:rounded-[26px]
-              lg:rounded-[28px]
-              px-3
-              sm:px-4
-              lg:px-5
-              py-3
-              sm:py-3.5
-              lg:py-4
+              border-[#d8c9c4]
+              rounded-[24px]
+              bg-white/45
+              px-[15px]
               box-border
             "
           >
 
+            <span
+              className="
+                shrink-0
+                text-[18px]
+                text-[#30354a]
+                mr-2
+              "
+            >
+              ⌕
+            </span>
+
             <input
+              id="creative-search"
               type="text"
               value={searchQuery}
               onChange={(e) =>
                 setSearchQuery(e.target.value)
               }
-              placeholder="Search creatives..."
+              placeholder="Search creatives, skills or services..."
+              aria-label="Search creatives, skills or services"
               className="
                 min-w-0
                 flex-1
                 bg-transparent
+                border-0
                 outline-none
-                px-2
-                sm:px-3
-                text-[14px]
-                sm:text-[15px]
-                lg:text-[16px]
-                text-[#0f172a]
+                text-[13px]
+                text-[#30354a]
+                placeholder:text-[#77717a]
               "
             />
 
-            <button
+            <span
               className="
+                hidden
+                sm:block
+                h-[24px]
+                w-px
+                bg-[#ddd0cc]
+                mx-[14px]
+              "
+            />
+
+            <span
+              className="
+                hidden
+                sm:block
                 shrink-0
-                bg-[#0f172a]
-                text-white
-                px-4
-                sm:px-5
-                py-2
-                rounded-full
-                text-xs
-                sm:text-sm
+                text-[13px]
                 font-semibold
-                hover:bg-blue-600
-                transition
+                text-[#30354a]
+                whitespace-nowrap
               "
             >
-              Search
+              All categories⌄
+            </span>
+
+            <button
+              type="button"
+              onClick={() =>
+                document
+                  .getElementById('categories')
+                  ?.scrollIntoView({
+                    behavior: 'smooth'
+                  })
+              }
+              className="
+                shrink-0
+                ml-[12px]
+                w-[38px]
+                h-[38px]
+                rounded-full
+                border-0
+                bg-[#111a36]
+                text-white
+                text-[20px]
+                leading-none
+                flex
+                items-center
+                justify-center
+                cursor-pointer
+              "
+            >
+              →
             </button>
 
           </div>
 
-        </div>
 
+          {/* COMING NEXT */}
 
-        {/* QUICK ACTIONS */}
-
-        <div
-          className="
-            mt-4
-            sm:mt-5
-            flex
-            flex-wrap
-            items-center
-            justify-center
-            gap-2
-            sm:gap-3
-            px-2
-          "
-        >
-
-          <a
-            href="#add-profile"
+          <div
             className="
-              px-4
-              sm:px-5
-              py-2.5
-              sm:py-3
-              rounded-full
-              bg-gradient-to-r
-              from-[#4f46e5]
-              to-[#06b6d4]
-              text-white
-              text-xs
-              sm:text-sm
-              font-semibold
-              shadow-lg
-              hover:scale-105
-              transition
-              whitespace-nowrap
+              mt-[14px]
+              text-[10px]
+              tracking-[3px]
+              font-bold
+              text-[#11172e]
             "
           >
-            + Create Your Profile
-          </a>
+            COMING NEXT
+          </div>
 
-          <a
-            href="#categories"
+
+          {/* UPCOMING CARDS */}
+
+          <div
             className="
-              px-4
-              sm:px-5
-              py-2.5
-              sm:py-3
-              rounded-full
-              bg-white/80
+              mt-[6px]
+              flex
+              gap-[10px]
+              w-full
+              overflow-hidden
+            "
+          >
+
+            {upcoming.map(([icon, title, text]) => (
+
+              <div
+                key={title}
+                className="
+                  flex
+                  gap-[8px]
+                  w-[132px]
+                  min-w-[132px]
+                  h-[76px]
+                  border
+                  border-[#dbcac4]
+                  rounded-[8px]
+                  p-[11px]
+                  bg-white/20
+                  box-border
+                  overflow-hidden
+                "
+              >
+
+                <span
+                  className="
+                    shrink-0
+                    text-[18px]
+                    leading-none
+                    text-[#73406f]
+                  "
+                >
+                  {icon}
+                </span>
+
+                <div className="min-w-0">
+
+                  <strong
+                    className="
+                      block
+                      text-[12px]
+                      leading-[1.15]
+                      font-bold
+                      text-[#11172e]
+                    "
+                  >
+                    {title}
+                  </strong>
+
+                  <small
+                    className="
+                      block
+                      mt-[5px]
+                      text-[10px]
+                      leading-[1.25]
+                      text-[#4e4b58]
+                    "
+                  >
+                    {text}
+                  </small>
+
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
+
+          {/* NOTICE */}
+
+          <div
+            className="
+              mt-[10px]
+              max-w-[700px]
+              rounded-[8px]
               border
-              border-white
-              text-[#0f172a]
-              text-xs
-              sm:text-sm
-              font-semibold
-              shadow-sm
-              hover:bg-white
-              transition
-              whitespace-nowrap
+              border-[#d7b9a8]
+              bg-[#ead4c5]
+              px-[14px]
+              py-[10px]
+              text-[12px]
+              leading-[1.35]
+              text-[#30303a]
+              box-border
             "
           >
-            Explore Categories
-          </a>
+
+            <b>Important:</b> CreativeCheck is a connection platform only.
+
+            <br />
+
+            We do not provide legal, business or financial advice.
+            We connect you with the right professionals.
+
+          </div>
 
         </div>
-
-      </div>
-
-
-      {/* HERO ART */}
-
-      <div
-        className="
-          absolute
-          top-0
-          right-0
-          bottom-0
-          w-[50%]
-          overflow-hidden
-          pointer-events-none
-          z-0
-        "
-      >
-
-        <img
-          src="/assets/hero-art.jpg"
-          alt=""
-          className="
-            absolute
-            top-0
-            right-0
-            h-full
-            w-full
-            object-cover
-            object-[72%_center]
-          "
-        />
 
       </div>
 
