@@ -22,10 +22,7 @@ export default function Hero({
       }}
     >
 
-      {/* =====================================================
-          HEADER
-          EXACT REFERENCE PROPORTIONS
-      ===================================================== */}
+      {/* HEADER */}
 
       <header
         className="
@@ -234,7 +231,6 @@ export default function Hero({
               py-[12px]
               font-bold
               text-[14px]
-              shadow-none
             "
           >
             Join CreativeCheck
@@ -245,43 +241,27 @@ export default function Hero({
       </header>
 
 
-      {/* =====================================================
-          HERO
-          EXACT REFERENCE:
-          min-height: 420px
-          padding: 18px 50px 10px
-          artwork: 63.5%
-          content: 47%
-      ===================================================== */}
+      {/* HERO */}
 
       <div
         className="
           relative
-          min-h-[420px]
           w-full
+          min-h-[420px]
           overflow-hidden
-          box-border
-          px-[50px]
-          pt-[18px]
-          pb-[10px]
           bg-[#f4e5df]
         "
       >
 
-        {/* =================================================
-            ARTWORK
-            IMPORTANT:
-            The image is BEHIND the content and starts at
-            the right. No second hero layer.
-        ================================================= */}
+        {/* RIGHT ARTWORK */}
 
         <div
           className="
             absolute
-            right-0
             top-0
+            right-0
             bottom-0
-            w-[63.5%]
+            w-[55%]
             overflow-hidden
             pointer-events-none
             z-0
@@ -294,9 +274,10 @@ export default function Hero({
             aria-hidden="true"
             className="
               absolute
-              inset-0
-              w-full
+              top-0
+              right-0
               h-full
+              w-full
               object-cover
               object-right
             "
@@ -305,303 +286,331 @@ export default function Hero({
         </div>
 
 
-        {/* =================================================
-            LEFT CONTENT
-        ================================================= */}
+        {/* SOFT OVERLAY TO KEEP LEFT SIDE CLEAN */}
+
+        <div
+          className="
+            absolute
+            inset-y-0
+            left-0
+            z-[1]
+            w-[55%]
+            pointer-events-none
+          "
+          style={{
+            background:
+              'linear-gradient(90deg, #f4e5df 0%, rgba(244,229,223,0.98) 62%, rgba(244,229,223,0.72) 88%, rgba(244,229,223,0) 100%)'
+          }}
+        />
+
+
+        {/* LEFT CONTENT */}
 
         <div
           className="
             relative
             z-10
-            w-[47%]
-            max-w-[700px]
-            min-w-0
+            w-full
+            max-w-[1600px]
+            mx-auto
+            px-[50px]
+            pt-[18px]
+            pb-[10px]
+            box-border
           "
         >
 
-          {/* HEADLINE */}
-
-          <h1
+          <div
             className="
-              m-0
-              mt-[5px]
-              mb-[10px]
-              font-serif
-              font-medium
-              text-[clamp(42px,4vw,62px)]
-              leading-none
-              tracking-[-2px]
-              text-[#11172e]
+              w-[47%]
+              max-w-[700px]
+              min-w-0
             "
-            style={{
-              fontFamily: 'Georgia, "Times New Roman", serif'
-            }}
           >
 
-            The Home of
+            {/* HEADLINE */}
 
-            <br />
-
-            <em
+            <h1
               className="
-                text-[#73406f]
-                not-italic
-                italic
+                m-0
+                mt-[5px]
+                mb-[10px]
+                font-medium
+                text-[clamp(42px,4vw,62px)]
+                leading-none
+                tracking-[-2px]
+                text-[#11172e]
               "
               style={{
                 fontFamily: 'Georgia, "Times New Roman", serif'
               }}
             >
-              Creative Minds
-            </em>
 
-          </h1>
+              The Home of
 
+              <br />
 
-          {/* DESCRIPTION */}
+              <em
+                className="
+                  text-[#73406f]
+                  not-italic
+                  italic
+                "
+                style={{
+                  fontFamily: 'Georgia, "Times New Roman", serif'
+                }}
+              >
+                Creative Minds
+              </em>
 
-          <p
-            className="
-              m-0
-              max-w-[430px]
-              text-[16px]
-              leading-[1.45]
-              text-[#30354a]
-            "
-          >
-            Discover and connect with creative professionals
-            <br className="hidden sm:block" />
-            and creative businesses worldwide.
-          </p>
+            </h1>
 
 
-          {/* SEARCH */}
+            {/* DESCRIPTION */}
 
-          <div
-            id="creative-search-wrap"
-            className="
-              mt-[12px]
-              w-[600px]
-              max-w-full
-              h-[44px]
-              flex
-              items-center
-              border
-              border-[#d8c9c4]
-              rounded-[24px]
-              bg-white/45
-              px-[15px]
-              box-border
-            "
-          >
-
-            <span
+            <p
               className="
-                shrink-0
-                text-[18px]
+                m-0
+                max-w-[430px]
+                text-[16px]
+                leading-[1.45]
                 text-[#30354a]
-                mr-2
               "
             >
-              ⌕
-            </span>
+              Discover and connect with creative professionals
+              <br className="hidden sm:block" />
+              and creative businesses worldwide.
+            </p>
 
-            <input
-              id="creative-search"
-              type="text"
-              value={searchQuery}
-              onChange={(e) =>
-                setSearchQuery(e.target.value)
-              }
-              placeholder="Search creatives, skills or services..."
-              aria-label="Search creatives, skills or services"
-              className="
-                min-w-0
-                flex-1
-                bg-transparent
-                border-0
-                outline-none
-                text-[13px]
-                text-[#30354a]
-                placeholder:text-[#77717a]
-              "
-            />
 
-            <span
-              className="
-                hidden
-                sm:block
-                h-[24px]
-                w-px
-                bg-[#ddd0cc]
-                mx-[14px]
-              "
-            />
+            {/* SEARCH */}
 
-            <span
+            <div
               className="
-                hidden
-                sm:block
-                shrink-0
-                text-[13px]
-                font-semibold
-                text-[#30354a]
-                whitespace-nowrap
-              "
-            >
-              All categories⌄
-            </span>
-
-            <button
-              type="button"
-              onClick={() =>
-                document
-                  .getElementById('categories')
-                  ?.scrollIntoView({
-                    behavior: 'smooth'
-                  })
-              }
-              className="
-                shrink-0
-                ml-[12px]
-                w-[38px]
-                h-[38px]
-                rounded-full
-                border-0
-                bg-[#111a36]
-                text-white
-                text-[20px]
-                leading-none
+                mt-[12px]
+                w-[600px]
+                max-w-full
+                h-[44px]
                 flex
                 items-center
-                justify-center
-                cursor-pointer
+                border
+                border-[#d8c9c4]
+                rounded-[24px]
+                bg-white/65
+                px-[15px]
+                box-border
               "
             >
-              →
-            </button>
 
-          </div>
-
-
-          {/* COMING NEXT */}
-
-          <div
-            className="
-              mt-[14px]
-              text-[10px]
-              tracking-[3px]
-              font-bold
-              text-[#11172e]
-            "
-          >
-            COMING NEXT
-          </div>
-
-
-          {/* UPCOMING CARDS */}
-
-          <div
-            className="
-              mt-[6px]
-              flex
-              gap-[10px]
-              w-full
-              overflow-hidden
-            "
-          >
-
-            {upcoming.map(([icon, title, text]) => (
-
-              <div
-                key={title}
+              <span
                 className="
-                  flex
-                  gap-[8px]
-                  w-[132px]
-                  min-w-[132px]
-                  h-[76px]
-                  border
-                  border-[#dbcac4]
-                  rounded-[8px]
-                  p-[11px]
-                  bg-white/20
-                  box-border
-                  overflow-hidden
+                  shrink-0
+                  text-[18px]
+                  text-[#30354a]
+                  mr-2
                 "
               >
+                ⌕
+              </span>
 
-                <span
+              <input
+                id="creative-search"
+                type="text"
+                value={searchQuery}
+                onChange={(e) =>
+                  setSearchQuery(e.target.value)
+                }
+                placeholder="Search creatives, skills or services..."
+                aria-label="Search creatives, skills or services"
+                className="
+                  min-w-0
+                  flex-1
+                  bg-transparent
+                  border-0
+                  outline-none
+                  text-[13px]
+                  text-[#30354a]
+                  placeholder:text-[#77717a]
+                "
+              />
+
+              <span
+                className="
+                  hidden
+                  sm:block
+                  h-[24px]
+                  w-px
+                  bg-[#ddd0cc]
+                  mx-[14px]
+                "
+              />
+
+              <span
+                className="
+                  hidden
+                  sm:block
+                  shrink-0
+                  text-[13px]
+                  font-semibold
+                  text-[#30354a]
+                  whitespace-nowrap
+                "
+              >
+                All categories⌄
+              </span>
+
+              <button
+                type="button"
+                onClick={() =>
+                  document
+                    .getElementById('categories')
+                    ?.scrollIntoView({
+                      behavior: 'smooth'
+                    })
+                }
+                className="
+                  shrink-0
+                  ml-[12px]
+                  w-[38px]
+                  h-[38px]
+                  rounded-full
+                  border-0
+                  bg-[#111a36]
+                  text-white
+                  text-[20px]
+                  leading-none
+                  flex
+                  items-center
+                  justify-center
+                  cursor-pointer
+                "
+              >
+                →
+              </button>
+
+            </div>
+
+
+            {/* COMING NEXT */}
+
+            <div
+              className="
+                mt-[14px]
+                text-[10px]
+                tracking-[3px]
+                font-bold
+                text-[#11172e]
+              "
+            >
+              COMING NEXT
+            </div>
+
+
+            {/* CARDS */}
+
+            <div
+              className="
+                mt-[6px]
+                flex
+                gap-[10px]
+                w-full
+                overflow-hidden
+              "
+            >
+
+              {upcoming.map(([icon, title, text]) => (
+
+                <div
+                  key={title}
                   className="
-                    shrink-0
-                    text-[18px]
-                    leading-none
-                    text-[#73406f]
+                    flex
+                    gap-[8px]
+                    w-[132px]
+                    min-w-[132px]
+                    h-[76px]
+                    border
+                    border-[#dbcac4]
+                    rounded-[8px]
+                    p-[11px]
+                    bg-white/30
+                    box-border
+                    overflow-hidden
                   "
                 >
-                  {icon}
-                </span>
 
-                <div className="min-w-0">
-
-                  <strong
+                  <span
                     className="
-                      block
-                      text-[12px]
-                      leading-[1.15]
-                      font-bold
-                      text-[#11172e]
+                      shrink-0
+                      text-[18px]
+                      leading-none
+                      text-[#73406f]
                     "
                   >
-                    {title}
-                  </strong>
+                    {icon}
+                  </span>
 
-                  <small
-                    className="
-                      block
-                      mt-[5px]
-                      text-[10px]
-                      leading-[1.25]
-                      text-[#4e4b58]
-                    "
-                  >
-                    {text}
-                  </small>
+                  <div className="min-w-0">
+
+                    <strong
+                      className="
+                        block
+                        text-[12px]
+                        leading-[1.15]
+                        font-bold
+                        text-[#11172e]
+                      "
+                    >
+                      {title}
+                    </strong>
+
+                    <small
+                      className="
+                        block
+                        mt-[5px]
+                        text-[10px]
+                        leading-[1.25]
+                        text-[#4e4b58]
+                      "
+                    >
+                      {text}
+                    </small>
+
+                  </div>
 
                 </div>
 
-              </div>
+              ))}
 
-            ))}
-
-          </div>
+            </div>
 
 
-          {/* NOTICE */}
+            {/* NOTICE */}
 
-          <div
-            className="
-              mt-[10px]
-              max-w-[700px]
-              rounded-[8px]
-              border
-              border-[#d7b9a8]
-              bg-[#ead4c5]
-              px-[14px]
-              py-[10px]
-              text-[12px]
-              leading-[1.35]
-              text-[#30303a]
-              box-border
-            "
-          >
+            <div
+              className="
+                mt-[10px]
+                max-w-[700px]
+                rounded-[8px]
+                border
+                border-[#d7b9a8]
+                bg-[#ead4c5]
+                px-[14px]
+                py-[10px]
+                text-[12px]
+                leading-[1.35]
+                text-[#30303a]
+                box-border
+              "
+            >
 
-            <b>Important:</b> CreativeCheck is a connection platform only.
+              <b>Important:</b> CreativeCheck is a connection platform only.
 
-            <br />
+              <br />
 
-            We do not provide legal, business or financial advice.
-            We connect you with the right professionals.
+              We do not provide legal, business or financial advice.
+              We connect you with the right professionals.
+
+            </div>
 
           </div>
 
