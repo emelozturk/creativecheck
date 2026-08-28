@@ -1,4 +1,4 @@
-import founderPhoto from './assets/founder-original.jpg'
+import founderPhoto from './founderPhotoData'
 import { useState } from 'react'
 import ExploreSection from './components/ExploreSection'
 import AddProfilePage from './components/AddProfilePage'
