@@ -1,2 +1,2 @@
-const founderPhoto = 'data:image/jpeg;base64,REPLACE_BASE64';
+import founderPhoto from './assets/founder-original.jpg';
 export default founderPhoto;
