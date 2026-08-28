@@ -5,26 +5,25 @@ import AddProfilePage from './components/AddProfilePage'
 import './index.css'
 
 const upcoming = [
-  ['✧', 'AI Matching', 'Smarter creative connections'],
-  ['▤', 'Job Board', 'Creative jobs, gigs and projects'],
-  ['▧', 'Legal & Business Support', 'Resources and professional connections'],
-  ['▦', 'Invoices & Contracts', 'Professional creative business tools'],
-  ['♧', 'Events & Community', 'Learn, meet and grow together'],
+  ['✣', 'AI Matching', 'Smart connections to the right people and opportunities'],
+  ['▣', 'Job Board', 'Find and post jobs, freelance gigs and creative projects'],
+  ['▤', 'Invoices', 'Create and send professional invoices with ease'],
+  ['▥', 'Contracts', 'Simple, secure contracts for creative collaborations'],
+  ['♧', 'Professional Matching', 'Connect with trusted legal and business professionals'],
 ]
 
 const futureFeatures = [
-  ['✣', 'AI Matching', 'Find relevant creative connections'],
-  ['▣', 'Job Board', 'Discover and post creative opportunities'],
-  ['▤', 'Legal & Business Support', 'Resources and professional connections'],
-  ['▦', 'Invoices', 'Create professional invoices'],
-  ['▥', 'Contracts', 'Simple tools for creative collaborations'],
-  ['♧', 'Legal & Business Professional Matching', 'Connect with relevant professionals'],
-  ['✦', 'Education & Resources', 'Learn and access useful resources'],
-  ['✧', 'Promote', 'Promote your work, services and opportunities'],
-  ['◈', 'Events', 'Discover creative events and opportunities'],
-  ['○', 'Community', 'Grow within a global creative community'],
-  ['◉', 'Insights', 'Understand profile activity and growth'],
-  ['◎', 'Global Reach', 'Expand your creative visibility worldwide'],
+  ['✣', 'AI Matching', 'Smart matching to connect you with the right people and opportunities'],
+  ['▣', 'Job Board', 'Find and post jobs, freelance gigs and creative projects'],
+  ['▤', 'Invoices', 'Create and send professional invoices with ease'],
+  ['▥', 'Contracts', 'Simple, secure contracts for creative collaborations'],
+  ['♧', 'Legal & Business Professional Matching', 'Connect with trusted professionals who understand the creative world'],
+  ['✦', 'Education & Resources', 'Learn, grow and stay informed with curated education and tools'],
+  ['✧', 'Promote', 'Promote your work, services and opportunities to the right audience'],
+  ['◈', 'Events', 'Discover and share creative events, festivals and networking'],
+  ['○', 'Community', 'Join conversations, share ideas and support each other'],
+  ['◉', 'Insights', 'Track your profile performance and understand your growth'],
+  ['◎', 'Global Reach', 'One global platform to connect and collaborate without borders'],
 ]
 
 export default function App() {
@@ -46,7 +45,7 @@ export default function App() {
           <a href="#members">Businesses</a>
           <a href="#founder">Founder</a>
           <a href="#about">About</a>
-          <a href="#future">Coming Soon <span>⌄</span></a>
+          <a href="#future">Roadmap <span>⌄</span></a>
         </nav>
         <div className="cc-header-actions">
           <button className="icon-button" aria-label="Search" onClick={() => document.getElementById('creative-search')?.focus()}>⌕</button>
@@ -78,7 +77,7 @@ export default function App() {
             </div>
             <div className="cc-notice">
               <span className="notice-icon">♢</span>
-              <div><b>Important:</b> CreativeCheck is a discovery and connection platform. We do not provide legal, business or financial advice.</div>
+              <div><b>Important:</b> CreativeCheck is a discovery and connection platform. We connect members with relevant professionals; we do not provide legal, business or financial advice.</div>
             </div>
           </div>
           <div className="cc-hero-art" aria-hidden="true" />
@@ -88,16 +87,16 @@ export default function App() {
 
         <section id="future" className="cc-future">
           <div className="future-lead">
-            <strong>More tools. More connections.</strong>
-            <span>More opportunities. Coming soon.</span>
+            <strong>CREATIVECHECK ROADMAP</strong>
+            <span>Future features built around Discover · Connect · Match · Work · Grow.</span>
           </div>
           {futureFeatures.map(([icon, title, text]) => (
             <div className="future-item" key={title}>
               <span>{icon}</span>
-              <div><strong>{title}</strong><small>{text}</small></div>
+              <div><strong>{title}</strong><small>{text}</small><em>COMING SOON</em></div>
             </div>
           ))}
-          <a href="#future" className="future-button">Explore Coming Soon Features&nbsp; →</a>
+          <a href="#add-profile" className="future-button">Join CreativeCheck Today&nbsp; →</a>
         </section>
 
         <section id="founder" className="cc-founder">
@@ -113,7 +112,7 @@ export default function App() {
           <div id="about" className="founder-about">
             <span className="section-label">ABOUT CREATIVECHECK</span>
             <p>CreativeCheck is a platform built for creatives and creative businesses to create professional profiles, increase visibility and discover the wider creative ecosystem.</p>
-            <p>Our long-term vision is to bring responsible technology and AI together with human creativity — supporting discovery, connection and growth without replacing the people who make the work.</p>
+            <p>Our long-term vision is to bring responsible technology and AI together with human creativity — supporting discovery, connection, matching and growth without replacing the people who make the work.</p>
             <a href="#discover">Discover CreativeCheck&nbsp; →</a>
           </div>
         </section>
@@ -127,7 +126,7 @@ export default function App() {
           <span><strong>CREATIVECHECK</strong><small>DISCOVER · CONNECT · GROW</small></span>
         </div>
         <nav className="footer-links">
-          <a href="#about">About</a><a href="#discover">How It Works</a><a href="#members">Community</a><a href="#add-profile">Create Profile</a><a href="#about">Legals</a><a href="#about">Responsibilities</a><a href="#about">Terms</a><a href="#about">Privacy</a>
+          <a href="#about">About</a><a href="#discover">How It Works</a><a href="#members">Community</a><a href="#add-profile">Create Profile</a><a href="#future">Roadmap</a><a href="#about">Responsibilities</a><a href="#about">Terms</a><a href="#about">Privacy</a>
         </nav>
         <div className="footer-social"><span>◎</span><span>in</span><span>𝕏</span><span>▶</span><small>© 2026 CreativeCheck. All rights reserved.</small></div>
       </footer>
