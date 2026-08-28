@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import './roadmap-fix.css'
+import './footer-fix.css'
 
 ReactDOM.createRoot(
   document.getElementById('root')
