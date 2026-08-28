@@ -1,2 +1,2 @@
-const founderPhoto = 'data:image/webp;base64," + b64 + "';
+const founderPhoto = 'data:image/jpeg;base64,REPLACE_BASE64';
 export default founderPhoto;
