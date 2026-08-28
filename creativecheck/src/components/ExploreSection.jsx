@@ -3,8 +3,9 @@ import { useEffect, useMemo, useState } from 'react'
 const SUPABASE_URL = 'https://gnqrakuhmzchwherombt.supabase.co'
 const SUPABASE_KEY = 'sb_publishable_-sTc8wYEmrNKb-gtHc_qHA_cxq9M5lS'
 
-const businessTerms = ['agency','studio','studios','production company','production companies','company','companies','creative business','label','collective','media group','design firm','consultancy','brand','organisation','organization']
-const creativeTerms = ['photographer','photography','filmmaker','film maker','director','artist','illustrator','designer','graphic designer','fashion designer','musician','composer','writer','creative director','editor','animator','actor','producer','architect','stylist','creative professional']
+// Creative professionals stay in Creatives. Business is reserved for organisations/company-led profiles.
+const businessTerms = ['agency','studio','studios','production company','production companies','company','companies','creative production','production house','brand organisation','organisation','organization']
+const creativeTerms = ['photographer','photography','filmmaker','film maker','director','artist','illustrator','designer','graphic designer','fashion designer','musician','composer','writer','creative director','editor','animator','actor','producer','architect','stylist','creative professional','artist']
 
 function isBusiness(profile) {
   if (profile.profile_type === 'business' || profile.account_type === 'business') return true
@@ -12,7 +13,7 @@ function isBusiness(profile) {
   const profession = String(profile.profession || '').toLowerCase()
   const name = String(profile.full_name || '').toLowerCase()
   const category = String(profile.category || '').toLowerCase()
-  const text = [name,profession,category,profile.bio].filter(Boolean).join(' ').toLowerCase()
+  const text = [name,profession,category].filter(Boolean).join(' ').toLowerCase()
   if (creativeTerms.some(term => profession === term || profession.includes(term))) return false
   return businessTerms.some(term => text.includes(term))
 }
