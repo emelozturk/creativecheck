@@ -35,15 +35,24 @@ const creativeFuture = [
   ['Global Reach','A wider network connecting creative professionals across disciplines and borders.'],
 ]
 
+function AudienceColumn({ kind, features }) {
+  const isBusiness = kind === 'Business'
+  return <article className={`audience-column ${isBusiness ? 'business-column' : 'creatives-column'}`}>
+    <div className="audience-column-top"><span className="audience-kicker">FOR</span><h3>{kind}</h3><p>{isBusiness ? 'Agencies, studios, production companies, creative brands and other businesses working with creative talent.' : 'Photographers, filmmakers, artists, designers, musicians, writers and other creative professionals.'}</p></div>
+    <div className="audience-live"><span>WHAT YOU CAN DO NOW</span><ul><li>Create your professional presence</li><li>Be discovered across the creative ecosystem</li><li>Connect with relevant people</li></ul></div>
+    <div className="audience-future"><div className="list-title">COMING SOON</div>{features.map(([title,text],i)=><div className="future-row" key={title}><span>{String(i+1).padStart(2,'0')}</span><div><h4>{title}</h4><p>{text}</p></div></div>)}</div>
+    <a href="#add-profile-form" className="text-link">{isBusiness ? 'Create a business profile' : 'Create your creative profile'} <span>→</span></a>
+  </article>
+}
+
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('')
-  const [audience, setAudience] = useState('creatives')
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return <div className="cc-site">
     <header className="cc-header">
       <a href="#discover" className="cc-brand"><span className="cc-mark">C</span><span><strong>CREATIVECHECK</strong><small>DISCOVER · CONNECT · GROW</small></span></a>
-      <nav className="cc-nav"><a href="#discover" className="active">Discover</a><a href="#audiences">Creatives</a><a href="#audiences">Business</a><a href="#roadmap">Roadmap</a><a href="#about">About</a><a href="#members">Members</a></nav>
+      <nav className="cc-nav"><a href="#discover" className="active">Discover</a><a href="#creatives">Creatives</a><a href="#business">Business</a><a href="#roadmap">Roadmap</a><a href="#about">About</a><a href="#members">Members</a></nav>
       <div className="cc-header-actions"><button className="header-search" onClick={()=>document.getElementById('creative-search')?.focus()} aria-label="Search">⌕</button><a className="cc-join" href="#add-profile-form">Create Your Profile ↗</a></div>
     </header>
 
@@ -59,7 +68,7 @@ export default function App() {
 
       <section className="current-section"><div className="section-intro"><span className="section-label">WHAT WE OFFER NOW</span><h2>Start with a<br/><em>professional presence.</em></h2><p>CreativeCheck is already a place for creatives and creative businesses to create a professional profile, be discovered and begin meaningful connections.</p></div><div className="current-grid"><article><span>01</span><h3>Professional Profiles</h3><p>Create your professional presence in minutes.</p></article><article><span>02</span><h3>Public Discovery</h3><p>Be found by the right people across the creative world.</p></article><article><span>03</span><h3>Networking</h3><p>Connect, collaborate and build meaningful relationships.</p></article><article><span>04</span><h3>External Presence</h3><p>Your profile lives on the open web — always discoverable.</p></article></div></section>
 
-      <section id="audiences" className="audience-section"><div className="audience-head"><div><span className="section-label">FOR CREATIVES & BUSINESS</span><h2>Built around<br/><em>different creative needs.</em></h2></div><div className="audience-toggle"><button className={audience==='creatives'?'selected':''} onClick={()=>setAudience('creatives')}>Creatives</button><button className={audience==='business'?'selected':''} onClick={()=>setAudience('business')}>Business</button></div></div><div className="audience-content">{audience==='creatives'?<><div className="audience-statement"><span className="big-number">C</span><h3>Creatives</h3><p>Photographers, filmmakers, artists, designers, musicians, writers and other creative professionals.</p><a href="#add-profile-form" className="text-link">Create your creative profile <span>→</span></a></div><div className="future-list"><div className="list-title">COMING SOON</div>{creativeFuture.map(([title,text],i)=><div className="future-row" key={title}><span>0{i+1}</span><div><h4>{title}</h4><p>{text}</p></div></div>)}</div></>:<><div className="audience-statement"><span className="big-number">B</span><h3>Business</h3><p>Agencies, studios, production companies, creative brands and other businesses working with creative talent.</p><a href="#add-profile-form" className="text-link">Create a business profile <span>→</span></a></div><div className="future-list"><div className="list-title">COMING SOON</div>{businessFuture.map(([title,text],i)=><div className="future-row" key={title}><span>0{i+1}</span><div><h4>{title}</h4><p>{text}</p></div></div>)}</div></>}</div></section>
+      <section className="audience-section"><div className="audience-head"><div><span className="section-label">FOR CREATIVES & BUSINESS</span><h2>Two sides of<br/><em>one creative ecosystem.</em></h2></div><p>Different needs. One place to discover, connect and grow.</p></div><div className="audience-columns"><div id="creatives"><AudienceColumn kind="Creatives" features={creativeFuture}/></div><div id="business"><AudienceColumn kind="Business" features={businessFuture}/></div></div></section>
 
       <section id="members" className="members-section"><ExploreSection searchQuery={searchQuery}/></section>
 
