@@ -4,6 +4,7 @@ import ExploreSection from './components/ExploreSection'
 import AddProfilePage from './components/AddProfilePage'
 import './index.css'
 import './reference-art.css'
+import './final-overrides.css'
 
 const roadmap = [
   ['01','AI Matching','AI-assisted discovery and recommendations built around real creative needs.','MATCH'],
