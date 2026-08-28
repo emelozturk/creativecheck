@@ -53,9 +53,9 @@ export default function ExploreSection({ searchQuery = '' }) {
     return [profile.full_name,profile.profession,profile.category,profile.city,profile.country,profile.bio].filter(Boolean).join(' ').toLowerCase().includes(q)
   }), [profiles, searchQuery])
 
-  const individuals = filtered.filter(p => !isBusiness(p))
+  const creatives = filtered.filter(p => !isBusiness(p))
   const businesses = filtered.filter(p => isBusiness(p))
-  const visible = filter === 'individuals' ? individuals : filter === 'businesses' ? businesses : filtered
+  const visible = filter === 'creatives' ? creatives : filter === 'businesses' ? businesses : filtered
 
   return (
     <section style={{maxWidth:1280,margin:'0 auto',padding:'0 5.5vw 120px'}}>
@@ -65,7 +65,7 @@ export default function ExploreSection({ searchQuery = '' }) {
           <h2 style={{fontFamily:'Georgia,serif',fontSize:'clamp(42px,5vw,70px)',lineHeight:.95,fontWeight:400,letterSpacing:'-.05em',margin:'16px 0 0'}}>Meet the people<br/><em style={{color:'#5b2634'}}>behind the work.</em></h2>
         </div>
         <div style={{display:'flex',gap:4,border:'1px solid rgba(17,19,24,.14)',padding:3}}>
-          {[["all","All"],["individuals","Individual"],["businesses","Business"]].map(([key,label])=><button key={key} onClick={()=>setFilter(key)} style={{padding:'11px 14px',fontSize:9,textTransform:'uppercase',letterSpacing:'.1em',background:filter===key?'#111318':'transparent',color:filter===key?'#fbfaf7':'#66625b',cursor:'pointer'}}>{label}</button>)}
+          {[['all','All'],['creatives','Creatives'],['businesses','Business']].map(([key,label])=><button key={key} onClick={()=>setFilter(key)} style={{padding:'11px 14px',fontSize:9,textTransform:'uppercase',letterSpacing:'.1em',background:filter===key?'#111318':'transparent',color:filter===key?'#fbfaf7':'#66625b',cursor:'pointer'}}>{label}</button>)}
         </div>
       </div>
 
@@ -74,9 +74,9 @@ export default function ExploreSection({ searchQuery = '' }) {
       {!loading && visible.length>0 && (
         <>
           {filter==='all' ? <>
-            {individuals.length>0 && <MemberGroup title="Individual Creatives" count={individuals.length} profiles={individuals} onOpen={setSelectedProfile}/>} 
-            {businesses.length>0 && <MemberGroup title="Creative Businesses" count={businesses.length} profiles={businesses} onOpen={setSelectedProfile}/>} 
-          </> : <MemberGroup title={filter==='businesses'?'Creative Businesses':'Individual Creatives'} count={visible.length} profiles={visible} onOpen={setSelectedProfile}/>} 
+            {creatives.length>0 && <MemberGroup title="Creatives" count={creatives.length} profiles={creatives} onOpen={setSelectedProfile}/>} 
+            {businesses.length>0 && <MemberGroup title="Business" count={businesses.length} profiles={businesses} onOpen={setSelectedProfile}/>} 
+          </> : <MemberGroup title={filter==='businesses'?'Business':'Creatives'} count={visible.length} profiles={visible} onOpen={setSelectedProfile}/>} 
         </>
       )}
 
