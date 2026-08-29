@@ -25,3 +25,6 @@
 .hero-mantra span{display:block!important;font-family:'Playfair Display',Georgia,serif!important;font-size:clamp(40px,4.7vw,72px)!important;line-height:.94!important;letter-spacing:-.055em!important;font-weight:500!important}
 .hero-mantra span:nth-child(1){color:#203b88!important}.hero-mantra span:nth-child(2){color:#6654b8!important}.hero-mantra span:nth-child(3){color:#3d6d73!important}
 @media(max-width:900px){.cc-hero-premium{grid-template-columns:1fr!important;min-height:auto!important}.cc-hero-art-premium{min-height:300px!important;padding:40px 24px!important;border-left:0!important;border-top:1px solid rgba(32,59,136,.10)!important}.hero-mantra{width:min(420px,90%)!important;padding:28px 30px!important}.hero-mantra span{font-size:clamp(38px,10vw,58px)!important}}
+
+/* Final hero visibility fix: keep the upper-right statement visible on desktop. */
+@media(min-width:901px){.cc-hero-premium .cc-hero-art-premium{display:flex!important;visibility:visible!important;opacity:1!important;position:relative!important}.cc-hero-premium .hero-mantra{display:flex!important;visibility:visible!important;opacity:1!important}.cc-hero-premium .hero-mantra span{display:block!important;visibility:visible!important;opacity:1!important}}
