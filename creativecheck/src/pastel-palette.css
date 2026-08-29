@@ -1,0 +1,13 @@
+/* BACKGROUND PALETTE ONLY — preserve all existing content and layout */
+:root{--paper:#eaf3f8!important;--cream:#f4f8fb!important;--cobalt:#244f73!important;--teal:#356b7d!important;--coral:#b56f78!important;--ochre:#a8895a!important;--violet:#647a9b!important;--olive:#647b7c!important;--wine:#596b82!important;--gold:#a68b62!important;--line:rgba(16,42,66,.14)!important}
+body{background:#eaf3f8!important}
+.cc-header{background:#f4f8fb!important}
+.cc-hero-premium{background:#eaf3f8!important}
+.cc-hero-art-premium{background:#d7e7f0!important}
+.current-section{background:#f4f8fb!important}
+.members-section{background:#e4eef4!important}
+.audience-section{background:#dbeaf1!important}
+.roadmap-section{background:#cbdde8!important;color:#10243e!important}
+.founder-section{background:#e6f0f5!important}
+.join-section{background:#234a6d!important;color:#fff!important}
+.cc-footer-premium{background:#071a33!important}

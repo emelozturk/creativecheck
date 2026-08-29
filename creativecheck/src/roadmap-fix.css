@@ -1,0 +1,16 @@
+/* Stable roadmap layout: no overlap, readable type, compact height */
+.roadmap-section{box-sizing:border-box!important;overflow:visible!important}
+.roadmap-top{display:grid!important;grid-template-columns:minmax(0,1.05fr) minmax(260px,.75fr)!important;gap:36px!important;align-items:end!important}
+.roadmap-top>div,.roadmap-top>p{min-width:0!important}
+.roadmap-top p{margin:0!important;max-width:520px!important;line-height:1.55!important}
+.roadmap-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;max-height:none!important;overflow:visible!important;margin-top:26px!important}
+.roadmap-grid article{box-sizing:border-box!important;display:grid!important;grid-template-columns:34px minmax(0,1fr)!important;gap:12px!important;min-width:0!important;min-height:0!important;height:auto!important;padding:16px!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:16px!important;background:rgba(255,255,255,.08)!important;align-items:start!important}
+.roadmap-grid article>div:last-child{min-width:0!important}
+.roadmap-grid article h3{margin:5px 0 6px!important;font-size:15px!important;line-height:1.25!important;overflow-wrap:anywhere!important}
+.roadmap-grid article p{margin:0!important;font-size:11px!important;line-height:1.45!important;overflow-wrap:anywhere!important}
+.roadmap-number{font-size:11px!important;line-height:1!important;padding-top:4px!important;opacity:.75!important}
+.stage-tag{display:inline-block!important;font-size:8px!important;line-height:1!important;letter-spacing:.12em!important;margin-bottom:4px!important;opacity:.8!important}
+.coming-badge{display:inline-block!important;margin-top:9px!important;font-size:8px!important;line-height:1!important;letter-spacing:.08em!important}
+.roadmap-grid article:nth-child(n+7){display:grid!important}
+@media(max-width:1000px){.roadmap-top{grid-template-columns:1fr!important;gap:12px!important}.roadmap-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:680px){.roadmap-section{padding:28px 18px 24px!important}.roadmap-top h2{font-size:42px!important;line-height:1.02!important}.roadmap-top p{font-size:13px!important;line-height:1.5!important}.roadmap-grid{grid-template-columns:1fr!important;gap:10px!important;margin-top:18px!important}.roadmap-grid article{grid-template-columns:28px minmax(0,1fr)!important;padding:13px!important}.roadmap-grid article h3{font-size:15px!important}.roadmap-grid article p{font-size:11px!important}.roadmap-flow{flex-wrap:wrap!important;gap:8px!important;font-size:9px!important}}
