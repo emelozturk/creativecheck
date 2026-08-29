@@ -1,16 +1,13 @@
-/* Pastel blue/navy palette only — layout and content unchanged */
-.cc-site{background:#eef4f8!important;color:#10243e!important}
-.cc-header{background:#f4f8fb!important;border-color:#d5e0ea!important}
-.cc-hero-premium,.current-section,.audience-section,.members-section,.founder-section{background:#eef4f8!important}
-.cc-hero-art-premium{background:linear-gradient(145deg,#d9e8f2 0%,#c4d9e8 48%,#e7eef4 100%)!important}
-.current-grid article,.audience-column,.member-card,.current-section article{background:#f8fbfd!important;border-color:#cbdbe7!important}
-.audience-head,.section-intro{color:#10243e!important}
-.primary-button{background:#12345a!important;color:#fff!important}
-.secondary-button{background:#dbe8f1!important;color:#12345a!important;border-color:#b8ccdc!important}
-.roadmap-section{background:#c8d9e7!important;color:#10243e!important}
-.roadmap-section .light,.roadmap-section h2,.roadmap-section p,.roadmap-section .roadmap-flow,.roadmap-section .roadmap-number,.roadmap-section .stage-tag,.roadmap-section .coming-badge{color:#10243e!important}
-.roadmap-grid article{background:rgba(255,255,255,.52)!important;border-color:rgba(16,36,62,.15)!important}
-.founder-section{background:#e4edf4!important}
-.join-section{background:#183b63!important;color:#fff!important}
-.join-section .light{color:#d9e8f2!important}
+/* BACKGROUND PALETTE ONLY — preserve all existing content and layout */
+:root{--paper:#eaf3f8!important;--cream:#f4f8fb!important;--cobalt:#244f73!important;--teal:#356b7d!important;--coral:#b56f78!important;--ochre:#a8895a!important;--violet:#647a9b!important;--olive:#647b7c!important;--wine:#596b82!important;--gold:#a68b62!important;--line:rgba(16,42,66,.14)!important}
+body{background:#eaf3f8!important}
+.cc-header{background:#f4f8fb!important}
+.cc-hero-premium{background:#eaf3f8!important}
+.cc-hero-art-premium{background:#d7e7f0!important}
+.current-section{background:#f4f8fb!important}
+.members-section{background:#e4eef4!important}
+.audience-section{background:#dbeaf1!important}
+.roadmap-section{background:#cbdde8!important;color:#10243e!important}
+.founder-section{background:#e6f0f5!important}
+.join-section{background:#234a6d!important;color:#fff!important}
 .cc-footer-premium{background:#071a33!important}
