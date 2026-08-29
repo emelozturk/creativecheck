@@ -1,0 +1,10 @@
+/* Premium navy + restrained pastel palette. Text contrast intentionally protected. */
+:root{--ink:#10243e!important;--paper:#f5f3ee!important;--cream:#faf8f4!important;--cobalt:#244f73!important;--teal:#426f73!important;--coral:#b97878!important;--ochre:#b49a68!important;--violet:#7b7192!important;--olive:#758477!important;--wine:#765e6a!important;--gold:#b29a70!important;--line:rgba(16,36,62,.15)!important}
+body{background:#f5f3ee!important;color:#10243e!important}
+.cc-header{background:#0b2745!important;color:#fff!important;border-color:rgba(255,255,255,.16)!important}.cc-header .cc-brand,.cc-header .cc-nav a,.cc-header .header-search{color:#fff!important}.cc-header .cc-nav a{opacity:.82!important}.cc-header .cc-nav .active{opacity:1!important}.cc-header .cc-join{background:#f0e8dc!important;color:#0b2745!important}
+.cc-hero-premium{background:#f5f3ee!important}.cc-hero-copy h1 em{color:#244f73!important}.cc-hero-desc{color:#4d5d6e!important}.cc-hero-art-premium{background:#0b2745!important}
+.current-section{background:#f8f6f1!important}.current-grid article,.audience-column{background:#f1eee7!important;border-color:#d1d8dc!important}.members-section{background:#e8e1d8!important}.audience-section{background:#dce7e5!important}.founder-section{background:#e9e3db!important}
+.primary-button{background:#0b2745!important;color:#fff!important}.secondary-button{background:#eee7dc!important;color:#0b2745!important;border-color:#c8d0d5!important}
+.roadmap-section{background:#163a5d!important;color:#fff!important}.roadmap-section h2,.roadmap-section p,.roadmap-section .roadmap-flow,.roadmap-section .roadmap-number,.roadmap-section .stage-tag,.roadmap-section .coming-badge,.roadmap-section .light{color:#fff!important}.roadmap-grid article{background:rgba(245,243,238,.10)!important;border-color:rgba(255,255,255,.22)!important}.roadmap-grid article h3{color:#fff!important}.roadmap-grid article p{color:#e4ebf0!important}
+.join-section{background:#0b2745!important;color:#fff!important}.join-section h2,.join-section p,.join-section .light{color:#fff!important}
+.cc-footer-premium{background:#061b31!important;color:#fff!important}
