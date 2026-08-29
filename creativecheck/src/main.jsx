@@ -8,5 +8,6 @@ import './footer-navy-final.css'
 import './footer-clean.css'
 import './pastel-palette.css'
 import './pastel-navy-final.css'
+import './footer-social-links.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>)
