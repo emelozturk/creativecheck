@@ -1,5 +1,5 @@
 const INSTAGRAM_URL='https://www.instagram.com/creativecheck.app/'
-const LINKEDIN_URL='https://www.linkedin.com/company/creativecheck-app/'
+const LINKEDIN_URL='https://www.linkedin.com/company/creativecheck/?viewAsMember=true'
 
 function wireFooterSocial(){
   const social=document.querySelector('.cc-footer-premium .footer-social')
@@ -11,6 +11,11 @@ function wireFooterSocial(){
 function tidyFooterContact(){
   const note=document.querySelector('.cc-footer-premium .footer-note')
   if(note) note.textContent='For support, correction requests, partnerships or general enquiries.'
+  const contact=document.querySelector('.cc-footer-premium .footer-contact-button')
+  if(contact && !contact.dataset.emailBound){
+    contact.dataset.emailBound='true'
+    contact.addEventListener('click',()=>{window.location.href='mailto:info@creativecheck.app'})
+  }
 }
 function init(){wireFooterSocial();tidyFooterContact();new MutationObserver(()=>{wireFooterSocial();tidyFooterContact()}).observe(document.body,{childList:true,subtree:true})}
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init()
