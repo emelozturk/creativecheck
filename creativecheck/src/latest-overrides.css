@@ -20,3 +20,12 @@
 .cc-hero-premium .hero-mantra span:nth-child(3){color:#3d6d73!important}
 .cc-hero-premium .hero-mantra span+span{margin-top:2px!important}
 @media(max-width:900px){.cc-hero-premium{grid-template-columns:1fr!important;min-height:auto!important}.cc-hero-premium .cc-hero-art-premium{min-height:300px!important;padding:48px 24px!important;border-left:0!important;border-top:1px solid rgba(32,59,136,.09)!important}.cc-hero-premium .hero-mantra{width:min(440px,100%)!important;gap:18px!important}.cc-hero-premium .hero-mantra span{font-size:clamp(38px,10vw,58px)!important}}
+
+/* MVP refinement — right hero panel only. All other page sections remain untouched. */
+.cc-hero-premium .cc-hero-art-premium{background:linear-gradient(145deg,#f0f1f5 0%,#e8e3f2 50%,#e0e9ee 100%)!important;padding:56px 6vw!important}
+.cc-hero-premium .hero-mantra{width:min(390px,100%)!important;gap:30px!important;align-items:flex-start!important}
+.cc-hero-premium .hero-mantra span{font-size:clamp(38px,4.2vw,62px)!important;line-height:1!important;letter-spacing:-.035em!important;font-weight:600!important;font-family:inherit!important}
+.cc-hero-premium .hero-mantra span:nth-child(1){color:#203b88!important}
+.cc-hero-premium .hero-mantra span:nth-child(2){color:#6654b8!important}
+.cc-hero-premium .hero-mantra span:nth-child(3){color:#3d6d73!important}
+@media(max-width:900px){.cc-hero-premium .cc-hero-art-premium{padding:42px 24px!important}.cc-hero-premium .hero-mantra{gap:24px!important}.cc-hero-premium .hero-mantra span{font-size:clamp(36px,9vw,54px)!important}}
