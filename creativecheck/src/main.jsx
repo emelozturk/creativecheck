@@ -5,11 +5,6 @@ import './index.css'
 import './roadmap-fix.css'
 import './footer-fix.css'
 import './footer-navy-final.css'
+import './footer-clean.css'
 
-ReactDOM.createRoot(
-  document.getElementById('root')
-).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+ReactDOM.createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>)
