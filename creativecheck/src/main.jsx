@@ -10,5 +10,6 @@ import './pastel-palette.css'
 import './pastel-navy-final.css'
 import './footer-social-fix.css'
 import './footer-social-links.js'
+import './footer-links-fix.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>)
