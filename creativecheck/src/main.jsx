@@ -9,5 +9,6 @@ import './footer-clean.css'
 import './pastel-palette.css'
 import './pastel-navy-final.css'
 import './footer-social-fix.css'
+import './hero-final-fix.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>)
