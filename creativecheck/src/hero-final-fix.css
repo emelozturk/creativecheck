@@ -8,9 +8,9 @@
 .hero-mantra span{display:block!important;position:static!important;transform:none!important;white-space:nowrap!important;opacity:1!important;font-size:clamp(38px,4.5vw,68px)!important;line-height:.92!important;letter-spacing:.04em!important;color:#f3eadf!important;text-align:left!important}
 @media(max-width:900px){.cc-hero-premium{grid-template-columns:1fr!important}.cc-hero-art-premium{min-height:250px!important;height:250px!important;padding:28px 32px!important}.hero-mantra{width:min(100%,430px)!important;gap:10px!important}.hero-mantra span{font-size:clamp(34px,10vw,52px)!important}}
 
-/* Final Discover colour: soft pastel green, deliberately distinct from the lavender palette. */
+/* Final Discover colour: soft pastel warm brown, clearly distinct from the lavender and green palette. */
 .cc-hero-premium .cc-hero-art-premium .hero-mantra > span:first-child{
-  color:#C9E6D0!important;
-  -webkit-text-fill-color:#C9E6D0!important;
-  text-shadow:0 0 18px rgba(201,230,208,.20)!important;
+  color:#C9A58B!important;
+  -webkit-text-fill-color:#C9A58B!important;
+  text-shadow:0 0 18px rgba(201,165,139,.20)!important;
 }
