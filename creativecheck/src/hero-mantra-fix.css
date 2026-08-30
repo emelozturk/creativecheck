@@ -1,8 +1,8 @@
-/* Hero layout: Discover Creatives stays left; Discover / Connect / Grow stays clearly to the right. */
+/* Hero layout + final contrast fix for the DISCOVER / CONNECT / GROW mantra. */
 .cc-hero-premium{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr)!important;align-items:stretch!important;position:relative!important;overflow:hidden!important}
 .cc-hero-copy{position:relative!important;z-index:2!important;min-width:0!important}
 .cc-hero-art-premium{position:relative!important;inset:auto!important;width:auto!important;height:100%!important;min-height:520px!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;z-index:1!important}
-.hero-mantra{position:relative!important;inset:auto!important;transform:none!important;width:min(100%,430px)!important;display:flex!important;flex-direction:column!important;gap:18px!important;padding:0!important;z-index:2!important}
+.hero-mantra{position:relative!important;inset:auto!important;transform:none!important;width:min(100%,430px)!important;display:flex!important;flex-direction:column!important;gap:18px!important;padding:0!important;z-index:20!important}
 .hero-mantra span{display:block!important;position:relative!important;left:auto!important;top:auto!important;transform:none!important;white-space:nowrap!important;opacity:1!important;font-size:clamp(38px,4.5vw,68px)!important;line-height:.92!important;letter-spacing:.08em!important;color:#183c62!important;text-align:left!important}
-.hero-mantra span:first-child{color:#d8c7e8!important;opacity:1!important}
+.hero-mantra span:first-child{color:#f3d8f2!important;opacity:1!important;text-shadow:0 2px 14px rgba(255,255,255,.32)!important}
 @media (max-width:900px){.cc-hero-premium{grid-template-columns:1fr!important}.cc-hero-copy{order:1!important}.cc-hero-art-premium{order:2!important;min-height:250px!important;height:250px!important;padding:28px 32px!important}.hero-mantra{width:min(100%,430px)!important;gap:10px!important}.hero-mantra span{font-size:clamp(34px,10vw,52px)!important}}
