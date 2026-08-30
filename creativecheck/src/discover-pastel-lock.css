@@ -1,0 +1,6 @@
+/* Hard lock for the hero mantra: Discover must remain light pastel. */
+.cc-hero-premium .cc-hero-art-premium .hero-mantra > span:first-child {
+  color: #E8D6F3 !important;
+  -webkit-text-fill-color: #E8D6F3 !important;
+  text-shadow: 0 0 18px rgba(232, 214, 243, 0.18) !important;
+}
