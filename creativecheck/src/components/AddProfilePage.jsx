@@ -86,5 +86,11 @@ function ProfileForm({ isBusiness }) {
 }
 
 export default function AddProfilePage() {
-  return <div style={{width:'100%'}}><ProfileForm isBusiness={false}/><ProfileForm isBusiness={true}/></div>
+  // Intentionally render exactly two profile entry points: one for Creatives and one for Creative Businesses.
+  return (
+    <div style={{width:'100%'}}>
+      <ProfileForm isBusiness={false}/>
+      <ProfileForm isBusiness={true}/>
+    </div>
+  )
 }
