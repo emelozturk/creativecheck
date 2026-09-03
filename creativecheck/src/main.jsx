@@ -11,6 +11,7 @@ import './pastel-palette.css'
 import './pastel-navy-final.css'
 import './footer-social-fix.css'
 import './hero-final-fix.css'
+import './form-dup-fix.css'
 
 function Root(){
   const seoPage=SeoRouter()
