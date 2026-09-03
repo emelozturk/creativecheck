@@ -23,5 +23,5 @@
 .profile-submit-details>section{margin-top:0!important}
 @media(max-width:680px){.profile-submit-details{width:calc(100% - 44px)!important;margin:3px auto 0!important;border-radius:12px!important}.profile-form-anchor + .profile-form-anchor{margin-top:-4px!important}.profile-submit-details + .profile-form-anchor{margin-top:-4px!important}.profile-submit-trigger{padding:11px 48px 11px 17px!important}.profile-submit-kicker{font-size:6.5px!important}.profile-submit-title{font-size:18px!important}.profile-submit-copy{font-size:8.5px!important}.profile-submit-trigger::after{right:14px!important;width:25px!important;height:25px!important;font-size:16px!important}}
 
-/* About CreativeCheck label — larger, dark navy blue. */
-#about .section-label{color:#102f52!important;font-size:clamp(15px,1.35vw,19px)!important;font-weight:800!important;letter-spacing:.16em!important}
+/* ONLY the ABOUT CREATIVECHECK title — do not affect the text underneath. */
+#about .section-label{display:inline-block!important;color:#102f52!important;font-size:clamp(20px,2.1vw,30px)!important;line-height:1.05!important;font-weight:800!important;letter-spacing:.12em!important;margin:0 0 18px!important}
