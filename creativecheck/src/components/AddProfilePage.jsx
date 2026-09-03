@@ -44,11 +44,11 @@ function ProfileForm({ isBusiness }) {
   }
 
   return (
-    <details className={`profile-submit-details separate-profile-form ${isBusiness ? 'business-profile-submit' : 'creative-profile-submit'}`} style={{display:'block',width:'min(680px,76vw)',maxWidth:'680px',margin:'0 auto 24px',background:'#e9d7e8',backgroundImage:'none',borderRadius:'14px',overflow:'hidden'}}>
-      <summary className="profile-submit-trigger" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',width:'100%',boxSizing:'border-box',textAlign:'center',cursor:'pointer'}}>
-        <span className="profile-submit-kicker" style={{display:'block',width:'100%',textAlign:'center'}}>JOIN CREATIVECHECK</span>
-        <span className="profile-submit-title" style={{display:'block',width:'100%',textAlign:'center'}}>{isBusiness ? 'Creative Businesses' : 'Creatives'} <span>↗</span></span>
-        <span className="profile-submit-copy" style={{display:'block',width:'100%',textAlign:'center',margin:'0 auto'}}>{isBusiness ? 'Create a professional profile for your agency, studio, production company, creative brand or organisation.' : 'Create a professional profile for your creative practice and be discovered by the community.'}</span>
+    <details className={`profile-submit-details separate-profile-form ${isBusiness ? 'business-profile-submit' : 'creative-profile-submit'}`} style={{display:'block',width:'min(680px,76vw)',maxWidth:'680px',margin:'0 auto 24px',background:'#0b2a4a',backgroundImage:'none',borderRadius:'14px',overflow:'hidden'}}>
+      <summary className="profile-submit-trigger" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',width:'100%',boxSizing:'border-box',textAlign:'center',cursor:'pointer',color:'#ffffff'}}>
+        <span className="profile-submit-kicker" style={{display:'block',width:'100%',textAlign:'center',color:'#dbe8f5'}}>JOIN CREATIVECHECK</span>
+        <span className="profile-submit-title" style={{display:'block',width:'100%',textAlign:'center',color:'#ffffff'}}>{isBusiness ? 'Creative Businesses' : 'Creatives'} <span>↗</span></span>
+        <span className="profile-submit-copy" style={{display:'block',width:'100%',textAlign:'center',margin:'0 auto',color:'#dbe8f5'}}>{isBusiness ? 'Create a professional profile for your agency, studio, production company, creative brand or organisation.' : 'Create a professional profile for your creative practice and be discovered by the community.'}</span>
       </summary>
       <section className="max-w-4xl mx-auto px-8 py-14">
         <div className="rounded-[36px] bg-white/80 backdrop-blur-xl border border-white/80 shadow-[0_20px_60px_rgba(15,23,42,0.08)] p-8 md:p-10">
@@ -86,7 +86,6 @@ function ProfileForm({ isBusiness }) {
 }
 
 export default function AddProfilePage() {
-  // Intentionally render exactly two profile entry points: one for Creatives and one for Creative Businesses.
   return (
     <div style={{width:'100%'}}>
       <ProfileForm isBusiness={false}/>
