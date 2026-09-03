@@ -1,10 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from '../supabase'
 
 export default function AddProfilePage({ type = 'creative' }) {
   const isBusiness = type === 'business'
+  const anchorId = isBusiness ? 'add-business-profile-form' : 'add-creative-profile-form'
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    const syncWithHash = () => setOpen(window.location.hash === `#${anchorId}`)
+    syncWithHash()
+    window.addEventListener('hashchange', syncWithHash)
+    return () => window.removeEventListener('hashchange', syncWithHash)
+  }, [anchorId])
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -44,7 +53,7 @@ export default function AddProfilePage({ type = 'creative' }) {
   }
 
   return (
-    <details className={`profile-submit-details ${isBusiness ? 'business-profile-submit' : 'creative-profile-submit'}`}>
+    <details open={open} onToggle={e => setOpen(e.currentTarget.open)} className={`profile-submit-details ${isBusiness ? 'business-profile-submit' : 'creative-profile-submit'}`}>
       <summary className="profile-submit-trigger">
         <span className="profile-submit-kicker">{isBusiness ? 'JOIN CREATIVECHECK · BUSINESS' : 'JOIN CREATIVECHECK · CREATIVE'}</span>
         <span className="profile-submit-title">{isBusiness ? 'Submit Your Business Profile' : 'Submit Your Creative Profile'} <span>↗</span></span>
