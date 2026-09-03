@@ -58,8 +58,8 @@ export default function AddProfilePage({ type = 'chooser' }) {
     <details open={open} onToggle={e => setOpen(e.currentTarget.open)} className={`profile-submit-details ${isBusiness ? 'business-profile-submit' : 'creative-profile-submit'}`} style={{display:'block',width:'min(680px, 76vw)',maxWidth:'680px',margin:'0 auto',background:'#e9d7e8',backgroundImage:'none',borderRadius:'14px',overflow:'hidden'}}>
       <summary className="profile-submit-trigger" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',width:'100%',boxSizing:'border-box',textAlign:'center',cursor:'pointer'}}>
         <span className="profile-submit-kicker" style={{display:'block',width:'100%',textAlign:'center'}}>JOIN CREATIVECHECK</span>
-        <span className="profile-submit-title" style={{display:'block',width:'100%',textAlign:'center'}}>Create your profile <span>↗</span></span>
-        <span className="profile-submit-copy" style={{display:'block',width:'100%',textAlign:'center',margin:'0 auto'}}>Choose whether you are joining as a creative professional or a creative business.</span>
+        <span className="profile-submit-title" style={{display:'block',width:'100%',textAlign:'center'}}>{isBusiness ? 'Creative Business' : 'Creatives'} <span>↗</span></span>
+        <span className="profile-submit-copy" style={{display:'block',width:'100%',textAlign:'center',margin:'0 auto'}}>{isBusiness ? 'Create a profile for your creative business.' : 'Create a professional presence for your creative work.'}</span>
       </summary>
       <section className="max-w-4xl mx-auto px-8 py-14">
         {isChooser ? (
@@ -70,12 +70,12 @@ export default function AddProfilePage({ type = 'chooser' }) {
             <div className="grid md:grid-cols-2 gap-5 mt-10">
               <button type="button" onClick={() => setSelectedType('creative')} className="text-left rounded-3xl border border-gray-200 bg-white p-7 hover:shadow-xl transition">
                 <span className="text-xs uppercase tracking-[3px] text-blue-500 font-black">FOR CREATIVES</span>
-                <h3 className="text-2xl font-black text-[#0f172a] mt-3">Creative Professional</h3>
+                <h3 className="text-2xl font-black text-[#0f172a] mt-3">Creatives</h3>
                 <p className="text-gray-500 mt-3 leading-relaxed">Photographers, filmmakers, artists, designers, musicians, writers and other creative professionals.</p>
                 <span className="inline-block mt-6 font-semibold text-[#203b88]">Create creative profile →</span>
               </button>
               <button type="button" onClick={() => setSelectedType('business')} className="text-left rounded-3xl border border-gray-200 bg-white p-7 hover:shadow-xl transition">
-                <span className="text-xs uppercase tracking-[3px] text-blue-500 font-black">FOR BUSINESSES</span>
+                <span className="text-xs uppercase tracking-[3px] text-blue-500 font-black">FOR CREATIVE BUSINESSES</span>
                 <h3 className="text-2xl font-black text-[#0f172a] mt-3">Creative Business</h3>
                 <p className="text-gray-500 mt-3 leading-relaxed">Agencies, studios, production companies, creative brands and other organisations.</p>
                 <span className="inline-block mt-6 font-semibold text-[#203b88]">Create business profile →</span>
@@ -86,8 +86,8 @@ export default function AddProfilePage({ type = 'chooser' }) {
           <div className="rounded-[36px] bg-white/80 backdrop-blur-xl border border-white/80 shadow-[0_20px_60px_rgba(15,23,42,0.08)] p-8 md:p-10">
             <button type="button" onClick={() => { setSelectedType(null); setMessage('') }} className="text-xs uppercase tracking-[2px] text-gray-500 mb-6">← Choose a different profile type</button>
             <div className="mb-10">
-              <p className="text-xs uppercase tracking-[3px] text-blue-500 font-black mb-3">{isBusiness ? 'Business Profile' : 'Creative Profile'}</p>
-              <h2 className="text-4xl md:text-5xl font-black tracking-[-3px] text-[#0f172a] leading-[1]">Join <span className="gradient-check">CreativeCheck</span> as a {isBusiness ? 'Business' : 'Creative'}</h2>
+              <p className="text-xs uppercase tracking-[3px] text-blue-500 font-black mb-3">{isBusiness ? 'Creative Business' : 'Creatives'}</p>
+              <h2 className="text-4xl md:text-5xl font-black tracking-[-3px] text-[#0f172a] leading-[1]">Join <span className="gradient-check">CreativeCheck</span> as a {isBusiness ? 'Creative Business' : 'Creative'}</h2>
               <p className="mt-5 text-[16px] text-gray-500 leading-relaxed max-w-2xl">{isBusiness ? 'Tell the creative community who you are, what your business does and how people can find you.' : 'Tell the creative community who you are, what you do and where people can find your work.'}</p>
             </div>
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -109,7 +109,7 @@ export default function AddProfilePage({ type = 'chooser' }) {
               <input type="url" name="portfolio_url" placeholder={isBusiness ? 'Company / Work Showcase URL' : 'Portfolio / Work URL'} className="w-full rounded-2xl border border-gray-200 bg-white px-5 py-4 text-[#0f172a]" />
               <div className="rounded-2xl bg-blue-50 border border-blue-100 p-5"><p className="text-sm text-blue-700 leading-relaxed">Please add at least one public link: website, Instagram or portfolio. Incomplete profiles may not be approved.</p></div>
               <label className="flex items-start gap-3 text-sm text-gray-500 leading-relaxed"><input type="checkbox" required className="mt-1" /><span>I confirm that submitted information is publicly shareable and may be reviewed before publication on CreativeCheck.</span></label>
-              <button type="submit" disabled={loading} className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#4f46e5] via-[#2563eb] to-[#06b6d4] text-white font-semibold shadow-xl hover:scale-[1.01] transition disabled:opacity-50">{loading ? 'Submitting...' : isBusiness ? 'Submit Business Profile' : 'Submit Creative Profile'}</button>
+              <button type="submit" disabled={loading} className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#4f46e5] via-[#2563eb] to-[#06b6d4] text-white font-semibold shadow-xl hover:scale-[1.01] transition disabled:opacity-50">{loading ? 'Submitting...' : isBusiness ? 'Submit Creative Business' : 'Submit Creative Profile'}</button>
               {message && <div className="rounded-2xl bg-gray-50 border border-gray-200 px-5 py-4 text-sm text-gray-600">{message}</div>}
             </form>
           </div>
