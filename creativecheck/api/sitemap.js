@@ -1,5 +1,5 @@
 const SUPABASE_URL='https://gnqrakuhmzchwherombt.supabase.co'
-const SUPABASE_KEY='sb_publishable_-sTc8wYEmrNKb-gtHc_qcxq9M5lS'
+const SUPABASE_KEY='sb_publishable_-sTc8wYEmrNKb-gtHc_qHA_cxq9M5lS'
 const BASE='https://creativecheck.app'
 
 const categoryTerms={
@@ -10,7 +10,6 @@ const categoryTerms={
   musicians:['musician','composer'],
   'creative-businesses':['agency','studio','production company','company','brand','organisation','organization']
 }
-
 const slugify=v=>String(v||'creative').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')
 const esc=v=>String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;')
 
@@ -31,9 +30,6 @@ export default async function handler(req,res){
     })
     locations.forEach(key=>{const [k,loc]=key.split('|');urls.push({loc:`${BASE}/${k}/${loc}`,priority:'0.6',changefreq:'weekly'})})
     const xml=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(u=>`<url><loc>${esc(u.loc)}</loc><changefreq>${u.changefreq}</changefreq><priority>${u.priority}</priority></url>`).join('')}</urlset>`
-    res.statusCode=200
-    res.setHeader('Content-Type','application/xml; charset=utf-8')
-    res.setHeader('Cache-Control','s-maxage=3600, stale-while-revalidate=86400')
-    res.end(xml)
+    res.statusCode=200;res.setHeader('Content-Type','application/xml; charset=utf-8');res.setHeader('Cache-Control','s-maxage=3600, stale-while-revalidate=86400');res.end(xml)
   }catch(e){res.statusCode=500;res.setHeader('Content-Type','application/xml; charset=utf-8');res.end('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>')}
 }
