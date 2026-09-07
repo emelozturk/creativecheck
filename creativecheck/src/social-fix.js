@@ -13,8 +13,17 @@ function fixSocial(){
   data.forEach(([href,label,svg],i)=>{
     let a=links[i];
     if(!a){a=document.createElement('a');a.className='footer-social-icon';box.appendChild(a);}
-    a.href=href;a.target='_blank';a.rel='noreferrer';a.ariaLabel=label;a.innerHTML=svg;
+    if(a.getAttribute('href')!==href) a.href=href;
+    if(a.getAttribute('target')!=='_blank') a.target='_blank';
+    if(a.getAttribute('rel')!=='noreferrer') a.rel='noreferrer';
+    if(a.getAttribute('aria-label')!==label) a.setAttribute('aria-label',label);
+    if(a.innerHTML!==svg) a.innerHTML=svg;
   });
 }
-new MutationObserver(fixSocial).observe(document.documentElement,{childList:true,subtree:true});
+const observer=new MutationObserver(()=>{
+  observer.disconnect();
+  fixSocial();
+  observer.observe(document.documentElement,{childList:true,subtree:true});
+});
+observer.observe(document.documentElement,{childList:true,subtree:true});
 fixSocial();
