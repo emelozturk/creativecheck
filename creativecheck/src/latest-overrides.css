@@ -8,6 +8,14 @@
 .profile-submit-details.separate-profile-form .profile-submit-copy{display:block!important;width:100%!important;max-width:520px!important;text-align:center!important;margin:0 auto!important;color:#60718a!important;font-size:14px!important;line-height:1.55!important}
 .profile-submit-details.separate-profile-form>section{background:#eef2f8!important}
 .profile-submit-details.separate-profile-form>section>div{border-radius:24px!important}
+
+/* Keep the audience cards symmetrical and side-by-side; prevent any horizontal drift/overflow. */
+.audience-columns{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:stretch!important;gap:24px!important;width:100%!important;max-width:1180px!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
+.audience-columns>div{display:block!important;width:100%!important;min-width:0!important;max-width:none!important}
+.audience-column{width:100%!important;max-width:none!important;box-sizing:border-box!important}
+html,body,#root,.cc-site{max-width:100%!important;width:100%!important;overflow-x:hidden!important}
+
+/* Legal modal */
 .footer-panel-backdrop{position:fixed!important;inset:0!important;z-index:10000!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:24px!important;box-sizing:border-box!important;background:rgba(8,20,38,.68)!important;backdrop-filter:blur(7px)!important;-webkit-backdrop-filter:blur(7px)!important}
 .footer-panel{position:relative!important;width:min(760px,calc(100vw - 32px))!important;max-height:min(78vh,760px)!important;overflow-y:auto!important;box-sizing:border-box!important;margin:0!important;padding:42px 46px 38px!important;background:#f8faff!important;color:#18213b!important;border:1px solid rgba(255,255,255,.75)!important;border-radius:22px!important;box-shadow:0 30px 90px rgba(5,18,40,.35)!important}
 .footer-panel .section-label{display:block!important;margin:0 0 12px!important;color:#6a7f9f!important;font-size:10px!important;letter-spacing:.18em!important;font-weight:800!important}
@@ -16,10 +24,11 @@
 .footer-panel small{display:block!important;margin-top:24px!important;padding-top:16px!important;border-top:1px solid rgba(16,47,82,.12)!important;color:#8290a4!important;font-size:11px!important}
 .footer-panel-close{position:absolute!important;top:18px!important;right:18px!important;width:38px!important;height:38px!important;border:1px solid rgba(16,47,82,.14)!important;border-radius:50%!important;background:#e8edf5!important;color:#38516f!important;font-size:25px!important;line-height:1!important;cursor:pointer!important;display:flex!important;align-items:center!important;justify-content:center!important}
 .footer-panel-close:hover{background:#dce5f2!important;color:#102f52!important}
-.cc-footer-premium .footer-social{display:flex!important;align-items:center!important;gap:10px!important;margin:14px 0 0!important;padding:0!important}
+.cc-footer-premium .footer-social{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;margin:14px 0 0!important;padding:0!important}
 .cc-footer-premium .footer-social-icon{display:flex!important;align-items:center!important;justify-content:center!important;width:34px!important;height:34px!important;border-radius:50%!important;background:rgba(255,255,255,.10)!important;border:1px solid rgba(255,255,255,.22)!important;color:#fff!important;text-decoration:none!important}
 .cc-footer-premium .footer-social-icon svg,.cc-footer-premium .footer-social-icon img{width:16px!important;height:16px!important;display:block!important;object-fit:contain!important}
 .cc-footer-premium .footer-contact-button{display:block!important;width:max-content!important;margin:8px auto 0!important;text-align:center!important}
 .cc-footer-premium .footer-note{width:100%!important;text-align:center!important;margin-left:auto!important;margin-right:auto!important}
 .cc-footer-premium h4{text-align:center!important}
+@media(max-width:900px){.audience-columns{grid-template-columns:1fr!important;max-width:680px!important}}
 @media(max-width:680px){.profile-submit-details.separate-profile-form{width:calc(100vw - 32px)!important}.profile-submit-details.separate-profile-form .profile-submit-trigger{min-height:175px!important;padding:26px 20px!important}.footer-panel-backdrop{padding:14px!important}.footer-panel{width:calc(100vw - 28px)!important;max-height:84vh!important;padding:34px 24px 28px!important;border-radius:18px!important}.footer-panel h2{font-size:34px!important}}
