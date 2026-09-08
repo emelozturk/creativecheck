@@ -11,14 +11,10 @@
 .profile-submit-details.separate-profile-form .profile-submit-copy{display:block!important;width:100%!important;max-width:520px!important;text-align:center!important;margin:0 auto!important;color:#60718a!important;font-size:14px!important;line-height:1.55!important}
 .profile-submit-details.separate-profile-form>section{background:#eef2f8!important}
 .profile-submit-details.separate-profile-form>section>div{border-radius:24px!important}
-
-/* Keep the audience cards symmetrical and side-by-side; prevent any horizontal drift/overflow. */
 .audience-columns{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;align-items:stretch!important;gap:24px!important;width:100%!important;max-width:1180px!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important}
 .audience-columns>div{display:block!important;width:100%!important;min-width:0!important;max-width:none!important}
 .audience-column{width:100%!important;max-width:none!important;box-sizing:border-box!important}
 html,body,#root,.cc-site{max-width:100%!important;width:100%!important;overflow-x:hidden!important}
-
-/* Legal modal */
 .footer-panel-backdrop{position:fixed!important;inset:0!important;z-index:10000!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:24px!important;box-sizing:border-box!important;background:rgba(8,20,38,.68)!important;backdrop-filter:blur(7px)!important;-webkit-backdrop-filter:blur(7px)!important}
 .footer-panel{position:relative!important;width:min(760px,calc(100vw - 32px))!important;max-height:min(78vh,760px)!important;overflow-y:auto!important;box-sizing:border-box!important;margin:0!important;padding:42px 46px 38px!important;background:#f8faff!important;color:#18213b!important;border:1px solid rgba(255,255,255,.75)!important;border-radius:22px!important;box-shadow:0 30px 90px rgba(5,18,40,.35)!important}
 .footer-panel .section-label{display:block!important;margin:0 0 12px!important;color:#6a7f9f!important;font-size:10px!important;letter-spacing:.18em!important;font-weight:800!important}
@@ -33,5 +29,12 @@ html,body,#root,.cc-site{max-width:100%!important;width:100%!important;overflow-
 .cc-footer-premium .footer-contact-button{display:block!important;width:max-content!important;margin:8px auto 0!important;text-align:center!important}
 .cc-footer-premium .footer-note{width:100%!important;text-align:center!important;margin-left:auto!important;margin-right:auto!important}
 .cc-footer-premium h4{text-align:center!important}
+/* Footer headings aligned to the same left edge. */
+.cc-footer-premium>div:not(.footer-copy){text-align:left!important}
+.cc-footer-premium>div:not(.footer-copy)>h4{width:max-content!important;margin:0 0 16px!important;text-align:left!important}
+.cc-footer-premium>div:not(.footer-copy) .footer-links{text-align:left!important;align-items:flex-start!important}
+.cc-footer-premium>div:not(.footer-copy) .footer-note{width:100%!important;text-align:left!important;margin-left:0!important;margin-right:0!important}
+.cc-footer-premium>div:not(.footer-copy) .footer-contact-button{margin-left:0!important;margin-right:0!important;text-align:left!important}
+.cc-footer-premium>div:not(.footer-copy) .footer-social{justify-content:flex-start!important}
 @media(max-width:900px){.profile-form-grid{grid-template-columns:1fr!important;width:min(680px,calc(100% - 32px))!important}.audience-columns{grid-template-columns:1fr!important;max-width:680px!important}}
 @media(max-width:680px){.profile-submit-details.separate-profile-form{width:100%!important}.profile-submit-details.separate-profile-form .profile-submit-trigger{min-height:175px!important;padding:26px 20px!important}.footer-panel-backdrop{padding:14px!important}.footer-panel{width:calc(100vw - 28px)!important;max-height:84vh!important;padding:34px 24px 28px!important;border-radius:18px!important}.footer-panel h2{font-size:34px!important}}
