@@ -1,23 +1,37 @@
 import { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../supabase'
+import { track } from '../analytics'
 
 function isBusiness(profile){ return profile.profile_type === 'business' }
 
 function ProfileCard({profile,onOpen}){
   const displayName=String(profile.full_name || 'Creative').trim() || 'Creative'
   const initials=displayName.split(/\s+/).slice(0,2).map(x=>x[0]?.toUpperCase()).join('') || 'C'
-  return <article className="member-compact-card" onClick={()=>onOpen(profile)} role="button" tabIndex={0} onKeyDown={e=>{if(e.key==='Enter'||e.key===' ')onOpen(profile)}}>
+  function openProfile(){
+    track('profile_card_clicked',{profile_id:profile.id})
+    onOpen(profile)
+  }
+  return <article className="member-compact-card" onClick={openProfile} role="button" tabIndex={0} onKeyDown={e=>{if(e.key==='Enter'||e.key===' ')openProfile()}}>
     <div className="member-card-top"><span className="member-initials">{initials}</span>{profile.verified&&<span className="member-verified">Reviewed</span>}</div>
     <h4 style={{display:'block',visibility:'visible',opacity:1,color:'#111318',fontSize:'19px',lineHeight:1.1,margin:'8px 0 3px',fontWeight:600}}>{displayName}</h4>
     <p className="member-profession"><strong>{profile.profession||'Creative Professional'}</strong></p>
     <p className="member-location">{[profile.city,profile.country].filter(Boolean).join(', ')||profile.category||'Creative'}</p>
-    {profile.bio&&<button className="member-bio-button" onClick={e=>{e.stopPropagation();onOpen(profile)}}>Bio +</button>}
+    {profile.bio&&<button className="member-bio-button" onClick={e=>{e.stopPropagation();openProfile()}}>Bio +</button>}
   </article>
 }
 
 export default function ExploreSection({searchQuery=''}){
   const[profiles,setProfiles]=useState([]),[loading,setLoading]=useState(true),[selectedProfile,setSelectedProfile]=useState(null),[filter,setFilter]=useState('all')
   useEffect(()=>{fetchProfiles()},[])
+  useEffect(()=>{
+    const q=searchQuery.trim()
+    if(q.length<2) return
+    const timer=window.setTimeout(()=>track('search_performed',{query:q.slice(0,120)}),700)
+    return()=>window.clearTimeout(timer)
+  },[searchQuery])
+  useEffect(()=>{
+    if(filter!=='all') track('filter_applied',{query:filter})
+  },[filter])
   async function fetchProfiles(){try{const{data,error}=await supabase.from('profiles').select('*').eq('status','approved').order('created_at',{ascending:false});if(error)throw error;setProfiles(Array.isArray(data)?data:[])}catch(error){console.error('Profile fetch error:',error);setProfiles([])}finally{setLoading(false)}}
   const filtered=useMemo(()=>profiles.filter(profile=>{const q=searchQuery.toLowerCase().trim();if(!q)return true;return[profile.full_name,profile.profession,profile.category,profile.city,profile.country,profile.bio].filter(Boolean).join(' ').toLowerCase().includes(q)}),[profiles,searchQuery])
   const creatives=filtered.filter(p=>!isBusiness(p)),businesses=filtered.filter(isBusiness),visible=filter==='creatives'?creatives:filter==='businesses'?businesses:filtered
@@ -32,4 +46,4 @@ export default function ExploreSection({searchQuery=''}){
     {selectedProfile&&<ProfileModal profile={selectedProfile} onClose={()=>setSelectedProfile(null)}/>}</section>
 }
 function MemberGroup({title,count,profiles,onOpen}){return <div style={{marginBottom:22}}><div style={{display:'flex',alignItems:'baseline',gap:9,marginBottom:9}}><h3 style={{fontFamily:'Georgia,serif',fontSize:22,fontWeight:400,margin:0}}>{title}</h3><span style={{fontSize:9,letterSpacing:'.15em',color:'#8d8a83'}}>{String(count).padStart(2,'0')}</span></div><div className="member-grid-compact">{profiles.map(profile=><ProfileCard key={profile.id} profile={profile} onOpen={onOpen}/>)}</div></div>}
-function ProfileModal({profile,onClose}){const displayName=profile.full_name||'Creative';return <div style={{position:'fixed',inset:0,zIndex:100,background:'rgba(17,19,24,.72)',backdropFilter:'blur(10px)',display:'grid',placeItems:'center',padding:24}} onClick={onClose}><div onClick={e=>e.stopPropagation()} style={{width:'min(700px,100%)',maxHeight:'88vh',overflow:'auto',background:'#f4f1eb',padding:40,border:'1px solid rgba(255,255,255,.2)'}}><div style={{display:'flex',justifyContent:'space-between',gap:20,alignItems:'start'}}><div><div style={{fontFamily:'Georgia,serif',fontSize:'clamp(34px,5vw,54px)',lineHeight:.95}}>{displayName}</div><div style={{marginTop:9,color:'#203b88',fontWeight:800,fontSize:14}}>{profile.profession||'Creative Professional'}</div></div><button onClick={onClose} style={{fontSize:28,cursor:'pointer'}}>×</button></div>{profile.bio&&<p style={{fontSize:15,lineHeight:1.8,color:'#625e57',marginTop:28}}>{profile.bio}</p>}<div style={{display:'flex',gap:10,flexWrap:'wrap',marginTop:30}}>{profile.website&&<a href={profile.website} target="_blank" rel="noreferrer" style={{padding:'13px 17px',background:'#203b88',color:'#fff',fontSize:10}}>Website ↗</a>}{profile.instagram&&<a href={profile.instagram} target="_blank" rel="noreferrer" style={{padding:'13px 17px',border:'1px solid rgba(17,19,24,.2)',fontSize:10}}>Instagram ↗</a>}{profile.portfolio_url&&<a href={profile.portfolio_url} target="_blank" rel="noreferrer" style={{padding:'13px 17px',border:'1px solid rgba(17,19,24,.2)',fontSize:10}}>External work ↗</a>}</div></div></div>}
+function ProfileModal({profile,onClose}){const displayName=profile.full_name||'Creative';useEffect(()=>{if(profile?.id)track('profile_viewed',{profile_id:profile.id})},[profile?.id]);return <div style={{position:'fixed',inset:0,zIndex:100,background:'rgba(17,19,24,.72)',backdropFilter:'blur(10px)',display:'grid',placeItems:'center',padding:24}} onClick={onClose}><div onClick={e=>e.stopPropagation()} style={{width:'min(700px,100%)',maxHeight:'88vh',overflow:'auto',background:'#f4f1eb',padding:40,border:'1px solid rgba(255,255,255,.2)'}}><div style={{display:'flex',justifyContent:'space-between',gap:20,alignItems:'start'}}><div><div style={{fontFamily:'Georgia,serif',fontSize:'clamp(34px,5vw,54px)',lineHeight:.95}}>{displayName}</div><div style={{marginTop:9,color:'#203b88',fontWeight:800,fontSize:14}}>{profile.profession||'Creative Professional'}</div></div><button onClick={onClose} style={{fontSize:28,cursor:'pointer'}}>×</button></div>{profile.bio&&<p style={{fontSize:15,lineHeight:1.8,color:'#625e57',marginTop:28}}>{profile.bio}</p>}<div style={{display:'flex',gap:10,flexWrap:'wrap',marginTop:30}}>{profile.website&&<a href={profile.website} target="_blank" rel="noreferrer" style={{padding:'13px 17px',background:'#203b88',color:'#fff',fontSize:10}} onClick={()=>track('outbound_link_clicked',{profile_id:profile.id,href:profile.website})}>Website ↗</a>}{profile.instagram&&<a href={profile.instagram} target="_blank" rel="noreferrer" style={{padding:'13px 17px',border:'1px solid rgba(17,19,24,.2)',fontSize:10}} onClick={()=>track('outbound_link_clicked',{profile_id:profile.id,href:profile.instagram})}>Instagram ↗</a>}{profile.portfolio_url&&<a href={profile.portfolio_url} target="_blank" rel="noreferrer" style={{padding:'13px 17px',border:'1px solid rgba(17,19,24,.2)',fontSize:10}} onClick={()=>track('outbound_link_clicked',{profile_id:profile.id,href:profile.portfolio_url})}>External work ↗</a>}</div></div></div>}
