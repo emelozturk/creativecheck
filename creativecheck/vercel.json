@@ -1,4 +1,17 @@
 {
+  "redirects": [
+    { "source": "/creatives/", "destination": "/creatives", "permanent": true },
+    { "source": "/creatives/photographers", "destination": "/photographers", "permanent": true },
+    { "source": "/creatives/filmmakers", "destination": "/filmmakers", "permanent": true },
+    { "source": "/creatives/designers", "destination": "/designers", "permanent": true },
+    { "source": "/creatives/artists", "destination": "/artists", "permanent": true },
+    { "source": "/creatives/musicians", "destination": "/musicians", "permanent": true },
+    { "source": "/creatives/photographers/", "destination": "/photographers", "permanent": true },
+    { "source": "/creatives/filmmakers/", "destination": "/filmmakers", "permanent": true },
+    { "source": "/creatives/designers/", "destination": "/designers", "permanent": true },
+    { "source": "/creatives/artists/", "destination": "/artists", "permanent": true },
+    { "source": "/creatives/musicians/", "destination": "/musicians", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/creatives", "destination": "/api/seo?path=/creatives" },
