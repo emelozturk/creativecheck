@@ -1,6 +1,20 @@
 {
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
+    { "source": "/creatives", "destination": "/api/seo?path=/creatives" },
+    { "source": "/photographers", "destination": "/api/seo?path=/photographers" },
+    { "source": "/filmmakers", "destination": "/api/seo?path=/filmmakers" },
+    { "source": "/designers", "destination": "/api/seo?path=/designers" },
+    { "source": "/artists", "destination": "/api/seo?path=/artists" },
+    { "source": "/musicians", "destination": "/api/seo?path=/musicians" },
+    { "source": "/creative-businesses", "destination": "/api/seo?path=/creative-businesses" },
+    { "source": "/photographers/:location", "destination": "/api/seo?path=/photographers/:location" },
+    { "source": "/filmmakers/:location", "destination": "/api/seo?path=/filmmakers/:location" },
+    { "source": "/designers/:location", "destination": "/api/seo?path=/designers/:location" },
+    { "source": "/artists/:location", "destination": "/api/seo?path=/artists/:location" },
+    { "source": "/musicians/:location", "destination": "/api/seo?path=/musicians/:location" },
+    { "source": "/creative-businesses/:location", "destination": "/api/seo?path=/creative-businesses/:location" },
+    { "source": "/profile/:slug", "destination": "/api/seo?path=/profile/:slug" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
