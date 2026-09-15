@@ -38,7 +38,6 @@ function profileCard(p){
   const meta=[p.profession,place].filter(Boolean).join(' · ')
   return `<li><a href="${esc(profileUrl(p))}"><strong>${esc(p.full_name||'Creative professional')}</strong></a>${meta?` — ${esc(meta)}`:''}</li>`
 }
-function breadcrumbs(items){return {'@type':'BreadcrumbList',itemListElement:items.map((item,i)=>({'@type':'ListItem',position:i+1,name:item.name,item.url&&({})}))}}
 function breadcrumbList(items){return {'@type':'BreadcrumbList',itemListElement:items.map((item,i)=>{const x={'@type':'ListItem',position:i+1,name:item.name};if(item.url)x.item=item.url;return x})}}
 
 export default async function handler(req,res){
@@ -86,7 +85,7 @@ export default async function handler(req,res){
       const description=`Discover ${name}, ${profession}${place?` in ${place}`:''}, on CreativeCheck.`
       const type=String(p.profile_type||'').toLowerCase()==='business'?'Organization':'Person'
       const externalLinks=[safeUrl(p.website),safeUrl(p.instagram),safeUrl(p.portfolio_url)].filter(Boolean)
-      const entity={'@type':type,name,url:canonical};
+      const entity={'@type':type,name,url:canonical}
       if(place) entity.address={'@type':'PostalAddress',addressLocality:p.city||undefined,addressCountry:p.country||undefined}
       if(p.profession) entity.jobTitle=p.profession
       if(p.bio) entity.description=String(p.bio).trim().slice(0,500)
