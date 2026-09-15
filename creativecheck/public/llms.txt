@@ -1,0 +1,49 @@
+# CreativeCheck
+
+> CreativeCheck is a public creative discovery platform for creative professionals and creative businesses.
+
+## About
+
+CreativeCheck helps creative professionals and creative businesses create a professional public profile and become discoverable within a global creative ecosystem. It is designed for discovery, visibility and meaningful connections across creative industries.
+
+## Current feature
+
+- Public professional profile creation and discovery.
+- Profiles can link to existing websites, portfolios and social channels.
+- Creative professionals and creative businesses can be discovered by category and location.
+
+## Next Features
+
+CreativeCheck is developing additional tools and services, including:
+
+- Invoice Tool
+- Contracts
+- Professional Service Connection
+- Legal & Business Professional Match
+- AI Business Tool
+- AI-supported Discovery and Matching
+- Professional Insights
+
+These are future features and are not represented as currently available.
+
+## Main directories
+
+- https://creativecheck.app/creatives
+- https://creativecheck.app/photographers
+- https://creativecheck.app/filmmakers
+- https://creativecheck.app/designers
+- https://creativecheck.app/artists
+- https://creativecheck.app/musicians
+- https://creativecheck.app/creative-businesses
+
+## Profile creation
+
+https://creativecheck.app/add-profile
+
+## Sitemap
+
+https://creativecheck.app/sitemap.xml
+
+## Website
+
+https://creativecheck.app/
