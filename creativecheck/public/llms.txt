@@ -8,7 +8,7 @@ CreativeCheck helps creative professionals and creative businesses create a prof
 
 ## Current feature
 
-- Public professional profile creation and discovery.
+- Free public professional profile creation and discovery.
 - Profiles can link to existing websites, portfolios and social channels.
 - Creative professionals and creative businesses can be discovered by category and location.
 
@@ -38,7 +38,7 @@ These are future features and are not represented as currently available.
 
 ## Profile creation
 
-https://creativecheck.app/add-profile
+https://creativecheck.app/?join=1
 
 ## Sitemap
 
