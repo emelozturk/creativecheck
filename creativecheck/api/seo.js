@@ -26,6 +26,7 @@ async function getProfiles(){
 }
 function matchesCategory(p,key){
   const c=categories[key]
+  if(key==='creative-businesses'&&String(p.profile_type||'').toLowerCase()==='business') return true
   const text=[p.profession,p.category,p.full_name].filter(Boolean).join(' ').toLowerCase()
   return c.ids.includes(Number(p.discipline_id)) || (terms[key]||[]).some(t=>text.includes(t))
 }
@@ -59,6 +60,7 @@ export default async function handler(req,res){
       let results=profiles.filter(p=>matchesCategory(p,key))
       const location=locationSlug?decodeURIComponent(locationSlug).replace(/-/g,' '):''
       if(location) results=results.filter(p=>String(p.city||'').trim().toLowerCase()===location.toLowerCase())
+      if(location&&results.length===0){res.status(404).setHeader('X-Robots-Tag','noindex').send('<!doctype html><html lang="en"><head><meta name="robots" content="noindex,nofollow"><title>Location not found | CreativeCheck</title></head><body><h1>No matching profiles found</h1><p><a href="/creatives">Explore CreativeCheck</a></p></body></html>');return}
       const nice=location.replace(/\b\w/g,c=>c.toUpperCase())
       const name=location?`${c.title} in ${nice}`:c.title
       const canonical=`${BASE}/${key}${locationSlug?`/${locationSlug}`:''}`
@@ -87,7 +89,7 @@ export default async function handler(req,res){
       const externalLinks=[safeUrl(p.website),safeUrl(p.instagram),safeUrl(p.portfolio_url)].filter(Boolean)
       const entity={'@type':type,name,url:canonical}
       if(place) entity.address={'@type':'PostalAddress',addressLocality:p.city||undefined,addressCountry:p.country||undefined}
-      if(p.profession) entity.jobTitle=p.profession
+      if(p.profession&&type==='Person') entity.jobTitle=p.profession
       if(p.bio) entity.description=String(p.bio).trim().slice(0,500)
       if(p.avatar_url){const image=safeUrl(p.avatar_url);if(image)entity.image=image}
       if(externalLinks.length)entity.sameAs=[...new Set(externalLinks)]
