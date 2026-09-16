@@ -4,35 +4,36 @@ import { track } from '../analytics'
 
 function isBusiness(profile){ return profile.profile_type === 'business' }
 
-function ProfileCard({profile,onOpen}){
+function ProfileCard({profile,onOpen,member}){
   const displayName=String(profile.full_name || 'Creative').trim() || 'Creative'
   const initials=displayName.split(/\s+/).slice(0,2).map(x=>x[0]?.toUpperCase()).join('') || 'C'
-  function openProfile(){
-    track('profile_card_clicked',{profile_id:profile.id})
-    onOpen(profile)
-  }
-  return <article className="member-compact-card" onClick={openProfile} role="button" tabIndex={0} onKeyDown={e=>{if(e.key==='Enter'||e.key===' ')openProfile()}}>
+  const bio=String(profile.bio||'').trim()
+  function openProfile(){ if(!member || !onOpen) return; track('profile_card_clicked',{profile_id:profile.id}); onOpen(profile) }
+  return <article className={`member-compact-card ${member?'member-card-full':'member-card-teaser'}`} onClick={openProfile} role={member?'button':undefined} tabIndex={member?0:undefined} onKeyDown={e=>{if(member&&(e.key==='Enter'||e.key===' '))openProfile()}}>
     <div className="member-card-top"><span className="member-initials">{initials}</span>{profile.verified&&<span className="member-verified">Reviewed</span>}</div>
     <h4 style={{display:'block',visibility:'visible',opacity:1,color:'#111318',fontSize:'19px',lineHeight:1.1,margin:'8px 0 3px',fontWeight:600}}>{displayName}</h4>
     <p className="member-profession"><strong>{profile.profession||'Creative Professional'}</strong></p>
     <p className="member-location">{[profile.city,profile.country].filter(Boolean).join(', ')||profile.category||'Creative'}</p>
-    {profile.bio&&<button className="member-bio-button" onClick={e=>{e.stopPropagation();openProfile()}}>Bio +</button>}
+    {bio&&<p className="member-bio-teaser">{bio}</p>}
+    {!member&&<span className="member-lock-label">Members can view full profile ↗</span>}
   </article>
 }
 
 export default function ExploreSection({searchQuery=''}){
-  const[profiles,setProfiles]=useState([]),[loading,setLoading]=useState(true),[selectedProfile,setSelectedProfile]=useState(null),[filter,setFilter]=useState('all')
-  useEffect(()=>{fetchProfiles()},[])
-  useEffect(()=>{
-    const q=searchQuery.trim()
-    if(q.length<2) return
-    const timer=window.setTimeout(()=>track('search_performed',{query:q.slice(0,120)}),700)
-    return()=>window.clearTimeout(timer)
-  },[searchQuery])
-  useEffect(()=>{
-    if(filter!=='all') track('filter_applied',{query:filter})
-  },[filter])
-  async function fetchProfiles(){try{const{data,error}=await supabase.from('profiles').select('*').eq('status','approved').order('created_at',{ascending:false});if(error)throw error;setProfiles(Array.isArray(data)?data:[])}catch(error){console.error('Profile fetch error:',error);setProfiles([])}finally{setLoading(false)}}
+  const[profiles,setProfiles]=useState([]),[loading,setLoading]=useState(true),[selectedProfile,setSelectedProfile]=useState(null),[filter,setFilter]=useState('all'),[member,setMember]=useState(false)
+  useEffect(()=>{loadProfiles();const{data:listener}=supabase.auth.onAuthStateChange(()=>loadProfiles());return()=>listener.subscription.unsubscribe()},[])
+  useEffect(()=>{const q=searchQuery.trim();if(q.length<2)return;const timer=window.setTimeout(()=>track('search_performed',{query:q.slice(0,120)}),700);return()=>window.clearTimeout(timer)},[searchQuery])
+  useEffect(()=>{if(filter!=='all')track('filter_applied',{query:filter})},[filter])
+  async function loadProfiles(){
+    setLoading(true)
+    try{
+      const {data:fullData,error:fullError}=await supabase.rpc('get_member_profiles')
+      if(!fullError && Array.isArray(fullData)){setProfiles(fullData);setMember(true);return}
+      const {data,error}=await supabase.from('profiles').select('*').eq('status','approved').order('created_at',{ascending:false})
+      if(error)throw error
+      setProfiles(Array.isArray(data)?data:[]);setMember(false)
+    }catch(error){console.error('Profile fetch error:',error);setProfiles([]);setMember(false)}finally{setLoading(false)}
+  }
   const filtered=useMemo(()=>profiles.filter(profile=>{const q=searchQuery.toLowerCase().trim();if(!q)return true;return[profile.full_name,profile.profession,profile.category,profile.city,profile.country,profile.bio].filter(Boolean).join(' ').toLowerCase().includes(q)}),[profiles,searchQuery])
   const creatives=filtered.filter(p=>!isBusiness(p)),businesses=filtered.filter(isBusiness),visible=filter==='creatives'?creatives:filter==='businesses'?businesses:filtered
   return <section style={{maxWidth:1280,margin:'0 auto',padding:'0 5.5vw 45px'}}>
@@ -40,10 +41,11 @@ export default function ExploreSection({searchQuery=''}){
       <div><div style={{fontSize:10,letterSpacing:'.22em',fontWeight:800,color:'#3158c7'}}>03 / OUR CREATIVE COMMUNITY</div><h2 style={{fontFamily:'Georgia,serif',fontSize:'clamp(42px,5vw,68px)',lineHeight:.9,fontWeight:400,letterSpacing:'-.05em',margin:'10px 0 0'}}>Meet the<br/><em style={{color:'#3158c7'}}>community.</em></h2></div>
       <div style={{display:'flex',gap:4,border:'1px solid rgba(17,19,24,.14)',padding:3}}>{[['all','All'],['creatives','Creatives'],['businesses','Creative Businesses']].map(([key,label])=><button key={key} onClick={()=>setFilter(key)} style={{padding:'9px 12px',fontSize:10,textTransform:'uppercase',letterSpacing:'.1em',background:filter===key?'#203b88':'transparent',color:filter===key?'#fbfaf7':'#66625b',cursor:'pointer'}}>{label}</button>)}</div>
     </div>
+    <div style={{maxWidth:760,margin:'0 0 28px',padding:'18px 20px',border:'1px solid rgba(17,19,24,.12)',background:'#f7f4ee'}}><strong style={{display:'block',fontFamily:'Georgia,serif',fontSize:21,fontWeight:400}}>Discover the CreativeCheck community</strong><p style={{margin:'7px 0 12px',color:'#6b675f',lineHeight:1.6}}>Explore the people and businesses shaping today’s creative world. Create your free CreativeCheck profile to discover more and become part of the community.</p>{!member&&<a href="#add-profile-form" style={{display:'inline-block',padding:'11px 15px',background:'#203b88',color:'#fff',fontSize:10,letterSpacing:'.12em',textTransform:'uppercase'}}>Create Your Profile →</a>}</div>
     {loading&&<div style={{padding:'25px 0',fontFamily:'Georgia,serif',fontSize:22,color:'#77736b'}}>Loading the creative community…</div>}
     {!loading&&visible.length===0&&<div style={{padding:'25px 0',borderTop:'1px solid rgba(17,19,24,.1)',color:'#77736b'}}>No approved profiles match this search yet.</div>}
-    {!loading&&visible.length>0&&<>{filter==='all'?<>{creatives.length>0&&<MemberGroup title="Creatives" count={creatives.length} profiles={creatives} onOpen={setSelectedProfile}/>} {businesses.length>0&&<MemberGroup title="Creative Businesses" count={businesses.length} profiles={businesses} onOpen={setSelectedProfile}/>}</>:<MemberGroup title={filter==='businesses'?'Creative Businesses':'Creatives'} count={visible.length} profiles={visible} onOpen={setSelectedProfile}/>}</>}
-    {selectedProfile&&<ProfileModal profile={selectedProfile} onClose={()=>setSelectedProfile(null)}/>}</section>
+    {!loading&&visible.length>0&&<>{filter==='all'?<>{creatives.length>0&&<MemberGroup title="Creatives" count={creatives.length} profiles={creatives} onOpen={setSelectedProfile} member={member}/>} {businesses.length>0&&<MemberGroup title="Creative Businesses" count={businesses.length} profiles={businesses} onOpen={setSelectedProfile} member={member}/>}</>:<MemberGroup title={filter==='businesses'?'Creative Businesses':'Creatives'} count={visible.length} profiles={visible} onOpen={setSelectedProfile} member={member}/>}</>}
+    {selectedProfile&&member&&<ProfileModal profile={selectedProfile} onClose={()=>setSelectedProfile(null)}/>}</section>
 }
-function MemberGroup({title,count,profiles,onOpen}){return <div style={{marginBottom:22}}><div style={{display:'flex',alignItems:'baseline',gap:9,marginBottom:9}}><h3 style={{fontFamily:'Georgia,serif',fontSize:22,fontWeight:400,margin:0}}>{title}</h3><span style={{fontSize:9,letterSpacing:'.15em',color:'#8d8a83'}}>{String(count).padStart(2,'0')}</span></div><div className="member-grid-compact">{profiles.map(profile=><ProfileCard key={profile.id} profile={profile} onOpen={onOpen}/>)}</div></div>}
-function ProfileModal({profile,onClose}){const displayName=profile.full_name||'Creative';useEffect(()=>{if(profile?.id)track('profile_viewed',{profile_id:profile.id})},[profile?.id]);return <div style={{position:'fixed',inset:0,zIndex:100,background:'rgba(17,19,24,.72)',backdropFilter:'blur(10px)',display:'grid',placeItems:'center',padding:24}} onClick={onClose}><div onClick={e=>e.stopPropagation()} style={{width:'min(700px,100%)',maxHeight:'88vh',overflow:'auto',background:'#f4f1eb',padding:40,border:'1px solid rgba(255,255,255,.2)'}}><div style={{display:'flex',justifyContent:'space-between',gap:20,alignItems:'start'}}><div><div style={{fontFamily:'Georgia,serif',fontSize:'clamp(34px,5vw,54px)',lineHeight:.95}}>{displayName}</div><div style={{marginTop:9,color:'#203b88',fontWeight:800,fontSize:14}}>{profile.profession||'Creative Professional'}</div></div><button onClick={onClose} style={{fontSize:28,cursor:'pointer'}}>×</button></div>{profile.bio&&<p style={{fontSize:15,lineHeight:1.8,color:'#625e57',marginTop:28}}>{profile.bio}</p>}<div style={{display:'flex',gap:10,flexWrap:'wrap',marginTop:30}}>{profile.website&&<a href={profile.website} target="_blank" rel="noreferrer" style={{padding:'13px 17px',background:'#203b88',color:'#fff',fontSize:10}} onClick={()=>track('outbound_link_clicked',{profile_id:profile.id,href:profile.website})}>Website ↗</a>}{profile.instagram&&<a href={profile.instagram} target="_blank" rel="noreferrer" style={{padding:'13px 17px',border:'1px solid rgba(17,19,24,.2)',fontSize:10}} onClick={()=>track('outbound_link_clicked',{profile_id:profile.id,href:profile.instagram})}>Instagram ↗</a>}{profile.portfolio_url&&<a href={profile.portfolio_url} target="_blank" rel="noreferrer" style={{padding:'13px 17px',border:'1px solid rgba(17,19,24,.2)',fontSize:10}} onClick={()=>track('outbound_link_clicked',{profile_id:profile.id,href:profile.portfolio_url})}>External work ↗</a>}</div></div></div>}
+function MemberGroup({title,count,profiles,onOpen,member}){return <div style={{marginBottom:22}}><div style={{display:'flex',alignItems:'baseline',gap:9,marginBottom:9}}><h3 style={{fontFamily:'Georgia,serif',fontSize:22,fontWeight:400,margin:0}}>{title}</h3><span style={{fontSize:9,letterSpacing:'.15em',color:'#8d8a83'}}>{String(count).padStart(2,'0')}</span></div><div className="member-grid-compact">{profiles.map(profile=><ProfileCard key={profile.id} profile={profile} onOpen={onOpen} member={member}/>)}</div></div>}
+function ProfileModal({profile,onClose}){const displayName=profile.full_name||'Creative';useEffect(()=>{if(profile?.id)track('profile_viewed',{profile_id:profile.id})},[profile?.id]);return <div style={{position:'fixed',inset:0,zIndex:100,background:'rgba(17,19,24,.72)',backdropFilter:'blur(10px)',display:'grid',placeItems:'center',padding:24}} onClick={onClose}><div onClick={e=>e.stopPropagation()} style={{width:'min(700px,100%)',maxHeight:'88vh',overflow:'auto',background:'#f4f1eb',padding:40,border:'1px solid rgba(255,255,255,.2)'}}><div style={{display:'flex',justifyContent:'space-between',gap:20,alignItems:'start'}}><div><div style={{fontFamily:'Georgia,serif',fontSize:'clamp(34px,5vw,54px)',lineHeight:.95}}>{displayName}</div><div style={{marginTop:9,color:'#203b88',fontWeight:800,fontSize:14}}>{profile.profession||'Creative Professional'}</div><div style={{marginTop:6,color:'#77736b',fontSize:13}}>{[profile.city,profile.country].filter(Boolean).join(', ')}</div></div><button onClick={onClose} style={{fontSize:28,cursor:'pointer'}}>×</button></div>{profile.bio&&<p style={{fontSize:15,lineHeight:1.8,color:'#625e57',marginTop:28}}>{profile.bio}</p>}<div style={{display:'flex',gap:10,flexWrap:'wrap',marginTop:30}}>{profile.website&&<a href={profile.website} target="_blank" rel="noreferrer" style={{padding:'13px 17px',background:'#203b88',color:'#fff',fontSize:10}} onClick={()=>track('outbound_link_clicked',{profile_id:profile.id,href:profile.website})}>Website ↗</a>}{profile.instagram&&<a href={profile.instagram} target="_blank" rel="noreferrer" style={{padding:'13px 17px',border:'1px solid rgba(17,19,24,.2)',fontSize:10}} onClick={()=>track('outbound_link_clicked',{profile_id:profile.id,href:profile.instagram})}>Instagram ↗</a>}{profile.portfolio_url&&<a href={profile.portfolio_url} target="_blank" rel="noreferrer" style={{padding:'13px 17px',border:'1px solid rgba(17,19,24,.2)',fontSize:10}} onClick={()=>track('outbound_link_clicked',{profile_id:profile.id,href:profile.portfolio_url})}>External work ↗</a>}</div></div></div>}
