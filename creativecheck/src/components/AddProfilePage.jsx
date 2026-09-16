@@ -2,7 +2,33 @@ import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../supabase'
 import { track } from '../analytics'
 
-function MemberAccess({ type }) {
+function TypeChooser({ onChoose }) {
+  return (
+    <div id="add-profile-form" className="member-access-card" style={{ width:'min(900px,92vw)', margin:'0 auto 24px', color:'#fff' }}>
+      <div style={{background:'#071a33',borderRadius:16,padding:'34px 30px'}}>
+        <div style={{fontSize:10,letterSpacing:'.22em',fontWeight:800,opacity:.8}}>JOIN CREATIVECHECK</div>
+        <h3 style={{fontFamily:'Georgia,serif',fontSize:'clamp(34px,5vw,52px)',fontWeight:400,margin:'10px 0 8px'}}>Choose your account.</h3>
+        <p style={{color:'rgba(255,255,255,.72)',lineHeight:1.65,maxWidth:650,margin:'0 auto 28px 0'}}>Start with the account type that matches you. You can create a free Creative profile or a Creative Business profile.</p>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:14}}>
+          <button type="button" onClick={()=>onChoose('creative')} style={{textAlign:'left',padding:24,border:'1px solid rgba(255,255,255,.18)',borderRadius:14,background:'#fff',color:'#071a33',cursor:'pointer'}}>
+            <span style={{fontSize:10,letterSpacing:'.16em',fontWeight:800}}>FOR INDIVIDUALS</span>
+            <strong style={{display:'block',fontFamily:'Georgia,serif',fontSize:28,fontWeight:400,margin:'8px 0'}}>Creative</strong>
+            <span style={{display:'block',fontSize:13,lineHeight:1.5,opacity:.7}}>For photographers, filmmakers, designers, artists, musicians, writers and other creative professionals.</span>
+            <span style={{display:'block',marginTop:18,fontSize:11,fontWeight:800,letterSpacing:'.1em'}}>CREATE CREATIVE PROFILE →</span>
+          </button>
+          <button type="button" onClick={()=>onChoose('business')} style={{textAlign:'left',padding:24,border:'1px solid rgba(255,255,255,.18)',borderRadius:14,background:'#fff',color:'#071a33',cursor:'pointer'}}>
+            <span style={{fontSize:10,letterSpacing:'.16em',fontWeight:800}}>FOR ORGANISATIONS</span>
+            <strong style={{display:'block',fontFamily:'Georgia,serif',fontSize:28,fontWeight:400,margin:'8px 0'}}>Creative Business</strong>
+            <span style={{display:'block',fontSize:13,lineHeight:1.5,opacity:.7}}>For agencies, studios, production companies, creative brands and other creative organisations.</span>
+            <span style={{display:'block',marginTop:18,fontSize:11,fontWeight:800,letterSpacing:'.1em'}}>CREATE BUSINESS PROFILE →</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function MemberAccess({ type, onBack }) {
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -19,14 +45,14 @@ function MemberAccess({ type }) {
       return
     }
 
-    const redirectUrl = `${window.location.origin}${window.location.pathname}?profile=${type || 'choose'}`
+    const redirectUrl = `${window.location.origin}${window.location.pathname}?profile=${type}`
     const { error } = await supabase.auth.signInWithOtp({
       email: clean,
       options: { emailRedirectTo: redirectUrl, shouldCreateUser: true }
     })
 
     if (error) {
-      setMessage(error.message)
+      setMessage(error.message || 'We could not send the secure link. Please try again.')
       setLoading(false)
       return
     }
@@ -37,25 +63,26 @@ function MemberAccess({ type }) {
 
   if (sent) {
     return (
-      <div className="member-access-card" style={{ width:'min(680px,92vw)', maxWidth:680, margin:'0 auto 24px', background:'#071a33', borderRadius:14, padding:'34px 30px', color:'#fff', textAlign:'center' }}>
+      <div className="member-access-card" style={{ width:'min(680px,92vw)', margin:'0 auto 24px', background:'#071a33', borderRadius:14, padding:'34px 30px', color:'#fff', textAlign:'center' }}>
         <div style={{fontSize:10,letterSpacing:'.22em',fontWeight:800,opacity:.8}}>CHECK YOUR EMAIL</div>
         <h3 style={{fontFamily:'Georgia,serif',fontSize:'clamp(30px,4vw,44px)',fontWeight:400,margin:'10px 0'}}>Your secure link is on its way.</h3>
-        <p style={{color:'rgba(255,255,255,.72)',lineHeight:1.65,maxWidth:560,margin:'0 auto'}}>Open the email we sent to <strong>{email}</strong> and click the secure CreativeCheck sign-in link. Your profile form will open automatically.</p>
+        <p style={{color:'rgba(255,255,255,.72)',lineHeight:1.65,maxWidth:560,margin:'0 auto'}}>Open the email we sent to <strong>{email}</strong> and click the secure CreativeCheck sign-in link. Your {type === 'business' ? 'Creative Business' : 'Creative'} profile form will open automatically.</p>
         <button type="button" onClick={() => setSent(false)} style={{marginTop:20,padding:'11px 16px',borderRadius:10,border:'1px solid rgba(255,255,255,.2)',background:'transparent',color:'#fff',cursor:'pointer'}}>Use a different email</button>
       </div>
     )
   }
 
   return (
-    <div className="member-access-card" style={{ width:'min(680px,92vw)', maxWidth:680, margin:'0 auto 24px', background:'#071a33', borderRadius:14, padding:'34px 30px', color:'#fff', textAlign:'center' }}>
-      <div style={{fontSize:10,letterSpacing:'.22em',fontWeight:800,opacity:.8}}>MEMBER ACCESS</div>
-      <h3 style={{fontFamily:'Georgia,serif',fontSize:'clamp(30px,4vw,44px)',fontWeight:400,margin:'10px 0'}}>Create your free profile.</h3>
-      <p style={{color:'rgba(255,255,255,.72)',lineHeight:1.65,maxWidth:560,margin:'0 auto 22px'}}>Enter your email and we’ll send you a secure sign-in link. After you click it, your profile form will open here.</p>
+    <div className="member-access-card" style={{ width:'min(680px,92vw)', margin:'0 auto 24px', background:'#071a33', borderRadius:14, padding:'34px 30px', color:'#fff', textAlign:'center' }}>
+      <div style={{fontSize:10,letterSpacing:'.22em',fontWeight:800,opacity:.8}}>SECURE SIGN-IN</div>
+      <h3 style={{fontFamily:'Georgia,serif',fontSize:'clamp(30px,4vw,44px)',fontWeight:400,margin:'10px 0'}}>Create your {type === 'business' ? 'Creative Business' : 'Creative'} profile.</h3>
+      <p style={{color:'rgba(255,255,255,.72)',lineHeight:1.65,maxWidth:560,margin:'0 auto 22px'}}>Send your email address and we’ll send you a secure magic link. Click the link in your email to continue to your profile form.</p>
       <form onSubmit={sendLink} style={{display:'flex',gap:10,maxWidth:540,margin:'0 auto',flexWrap:'wrap',justifyContent:'center'}}>
-        <input value={email} onChange={e=>setEmail(e.target.value)} type="email" required placeholder="Email address" style={{flex:'1 1 280px',padding:'14px 16px',borderRadius:12,border:'1px solid rgba(255,255,255,.2)',background:'#fff',color:'#111318'}} />
-        <button disabled={loading} type="submit" style={{padding:'14px 18px',borderRadius:12,border:0,background:'#fff',color:'#071a33',fontWeight:700,cursor:'pointer'}}>{loading?'Sending…':'Send Secure Sign-In Link →'}</button>
+        <input value={email} onChange={e=>setEmail(e.target.value)} type="email" required autoComplete="email" placeholder="Your email address" style={{flex:'1 1 280px',padding:'14px 16px',borderRadius:12,border:'1px solid rgba(255,255,255,.2)',background:'#fff',color:'#111318'}} />
+        <button disabled={loading} type="submit" style={{padding:'14px 18px',borderRadius:12,border:0,background:'#fff',color:'#071a33',fontWeight:700,cursor:loading?'wait':'pointer'}}>{loading?'Sending…':'Send Magic Link →'}</button>
       </form>
-      {message && <p style={{color:'#ffb4b4',marginTop:14,fontSize:13}}>{message}</p>}
+      {message && <p role="alert" style={{color:'#ffb4b4',marginTop:14,fontSize:13}}>{message}</p>}
+      <button type="button" onClick={onBack} style={{marginTop:18,border:0,background:'transparent',color:'rgba(255,255,255,.65)',cursor:'pointer',fontSize:12}}>← Choose a different account type</button>
     </div>
   )
 }
@@ -119,14 +146,17 @@ function ProfileForm({ isBusiness, session }) {
           <div style={{padding:16,borderRadius:12,background:'#eff6ff',border:'1px solid #dbeafe',color:'#1d4ed8',fontSize:14,lineHeight:1.5}}>Please add at least one public link: website, Instagram or portfolio.</div>
           <label style={{display:'flex',gap:10,alignItems:'flex-start',fontSize:13,color:'#64748b',lineHeight:1.5}}><input type="checkbox" required style={{marginTop:3}} /><span>I confirm that submitted information is publicly shareable and may be reviewed before publication on CreativeCheck.</span></label>
           <button type="submit" disabled={loading} style={{padding:'15px 18px',border:0,borderRadius:12,background:'#3158c7',color:'#fff',fontWeight:700,cursor:'pointer'}}>{loading?'Submitting…':isBusiness?'Submit Creative Business Profile':'Submit Creative Profile'}</button>
-          {message && <div style={{padding:14,borderRadius:12,background:'#f8fafc',fontSize:14,color:'#475569'}}>{message}</div>}
+          {message && <div role="status" style={{padding:14,borderRadius:12,background:'#f8fafc',fontSize:14,color:'#475569'}}>{message}</div>}
         </form>
       </div>
     </section>
   )
 }
 
-export default function AddProfilePage({ type }) {
+export default function AddProfilePage({ type: propType }) {
+  const urlType = new URLSearchParams(window.location.search).get('profile')
+  const initialType = propType === 'creative' || propType === 'business' ? propType : (urlType === 'creative' || urlType === 'business' ? urlType : '')
+  const [selectedType,setSelectedType] = useState(initialType)
   const [session,setSession]=useState(null)
   const [loading,setLoading]=useState(true)
 
@@ -139,9 +169,19 @@ export default function AddProfilePage({ type }) {
 
   useEffect(()=>{if(session?.user?.id){supabase.rpc('claim_profile_for_current_user').catch(()=>{})}},[session?.user?.id])
 
+  function chooseType(next){
+    setSelectedType(next)
+    window.history.replaceState({},'',`${window.location.pathname}?profile=${next}`)
+  }
+
   if(loading) return <div style={{textAlign:'center',padding:30,color:'#777'}}>Checking member access…</div>
-  if(!session) return <MemberAccess type={type} />
-  if(type==='creative') return <ProfileForm isBusiness={false} session={session} />
-  if(type==='business') return <ProfileForm isBusiness={true} session={session} />
-  return <div style={{width:'100%'}}><ProfileForm isBusiness={false} session={session}/><ProfileForm isBusiness={true} session={session}/></div>
+
+  if(!session){
+    if(!selectedType) return <TypeChooser onChoose={chooseType} />
+    return <MemberAccess type={selectedType} onBack={()=>{setSelectedType('');window.history.replaceState({},'',window.location.pathname)}} />
+  }
+
+  if(selectedType==='creative') return <ProfileForm isBusiness={false} session={session} />
+  if(selectedType==='business') return <ProfileForm isBusiness={true} session={session} />
+  return <TypeChooser onChoose={chooseType} />
 }
