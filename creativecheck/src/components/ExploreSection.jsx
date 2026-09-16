@@ -31,6 +31,34 @@ function ProfileCard({profile,onOpen,member}){
   </article>
 }
 
+function CommunityAccessBox(){
+  const [email,setEmail]=useState(''),[sent,setSent]=useState(false),[loading,setLoading]=useState(false),[message,setMessage]=useState('')
+  async function sendLink(e){
+    e.preventDefault()
+    const clean=email.trim().toLowerCase()
+    if(!clean)return
+    setLoading(true);setMessage('')
+    const {error}=await supabase.auth.signInWithOtp({email:clean,options:{emailRedirectTo:`${window.location.origin}${window.location.pathname}`,shouldCreateUser:false}})
+    if(error){setMessage('Please enter the email address you used to register.');setLoading(false);return}
+    setSent(true);setLoading(false)
+  }
+  return <div style={{maxWidth:760,margin:'0 0 28px',padding:'20px',border:'1px solid rgba(17,19,24,.12)',background:'#f7f4ee'}}>
+    <strong style={{display:'block',fontFamily:'Georgia,serif',fontSize:21,fontWeight:400}}>Discover the CreativeCheck Community</strong>
+    <p style={{margin:'7px 0 14px',color:'#6b675f',lineHeight:1.6}}>Explore the people and businesses shaping today&apos;s creative world.</p>
+    <div style={{display:'flex',flexWrap:'wrap',alignItems:'center',gap:12}}>
+      <a href="#profile-choice" style={{display:'inline-block',padding:'11px 15px',background:'#203b88',color:'#fff',fontSize:10,letterSpacing:'.12em',textTransform:'uppercase'}}>Create Your Profile →</a>
+      <span style={{fontSize:12,color:'#6b675f'}}>or</span>
+      {!sent?<form onSubmit={sendLink} style={{display:'flex',flexWrap:'wrap',gap:8,alignItems:'center',flex:1,minWidth:260}}>
+        <label htmlFor="community-registered-email" style={{fontSize:11,color:'#4f4b45'}}>If you are already registered, please enter your email address to see the community members.</label>
+        <input id="community-registered-email" value={email} onChange={e=>setEmail(e.target.value)} type="email" required placeholder="Registered email address" autoComplete="email" style={{flex:'1 1 220px',minWidth:200,padding:'11px 12px',border:'1px solid rgba(17,19,24,.18)',background:'#fff'}}/>
+        <button type="submit" disabled={loading} style={{padding:'11px 15px',background:'#111318',color:'#fff',border:0,fontSize:10,letterSpacing:'.1em',textTransform:'uppercase',cursor:'pointer'}}>{loading?'Sending…':'See Community Members →'}</button>
+      </form>:<div style={{fontSize:12,color:'#3158c7'}}>Your secure magic link has been sent to <strong>{email}</strong>.</div>}
+    </div>
+    {message&&<p style={{margin:'10px 0 0',fontSize:12,color:'#9a3f3f'}}>{message}</p>}
+    <p style={{margin:'14px 0 0',fontSize:11,color:'#6b675f'}}><strong style={{fontSize:13,color:'#111318'}}>FREE</strong> — Create your professional profile and join CreativeCheck.</p>
+  </div>
+}
+
 export default function ExploreSection({searchQuery=''}){
   const[profiles,setProfiles]=useState([]),[loading,setLoading]=useState(true),[selectedProfile,setSelectedProfile]=useState(null),[filter,setFilter]=useState('all'),[member,setMember]=useState(false)
   useEffect(()=>{loadProfiles();const{data:listener}=supabase.auth.onAuthStateChange(()=>loadProfiles());return()=>listener.subscription.unsubscribe()},[])
@@ -48,12 +76,12 @@ export default function ExploreSection({searchQuery=''}){
   }
   const filtered=useMemo(()=>profiles.filter(profile=>{const q=searchQuery.toLowerCase().trim();if(!q)return true;return[profile.full_name,profile.profession,profile.category,profile.city,profile.country,profile.bio].filter(Boolean).join(' ').toLowerCase().includes(q)}),[profiles,searchQuery])
   const creatives=filtered.filter(p=>!isBusiness(p)),businesses=filtered.filter(isBusiness),visible=filter==='creatives'?creatives:filter==='businesses'?businesses:filtered
-  return <section style={{maxWidth:1280,margin:'0 auto',padding:'0 5.5vw 45px'}}>
+  return <section id="members" style={{maxWidth:1280,margin:'0 auto',padding:'0 5.5vw 45px'}}>
     <div style={{display:'flex',justifyContent:'space-between',alignItems:'end',gap:20,borderBottom:'1px solid rgba(17,19,24,.13)',paddingBottom:16,marginBottom:18}}>
       <div><div style={{fontSize:10,letterSpacing:'.22em',fontWeight:800,color:'#3158c7'}}>03 / OUR CREATIVE COMMUNITY</div><h2 style={{fontFamily:'Georgia,serif',fontSize:'clamp(42px,5vw,68px)',lineHeight:.9,fontWeight:400,letterSpacing:'-.05em',margin:'10px 0 0'}}>Meet the<br/><em style={{color:'#3158c7'}}>community.</em></h2></div>
       <div style={{display:'flex',gap:4,border:'1px solid rgba(17,19,24,.14)',padding:3}}>{[['all','All'],['creatives','Creatives'],['businesses','Creative Businesses']].map(([key,label])=><button key={key} onClick={()=>setFilter(key)} style={{padding:'9px 12px',fontSize:10,textTransform:'uppercase',letterSpacing:'.1em',background:filter===key?'#203b88':'transparent',color:filter===key?'#fbfaf7':'#66625b',cursor:'pointer'}}>{label}</button>)}</div>
     </div>
-    <div style={{maxWidth:760,margin:'0 0 28px',padding:'18px 20px',border:'1px solid rgba(17,19,24,.12)',background:'#f7f4ee'}}><strong style={{display:'block',fontFamily:'Georgia,serif',fontSize:21,fontWeight:400}}>Discover the CreativeCheck community</strong><p style={{margin:'7px 0 12px',color:'#6b675f',lineHeight:1.6}}>Explore the people and businesses shaping today’s creative world. Create your free CreativeCheck profile to discover more and become part of the community.</p>{!member&&<a href="#add-profile-form" style={{display:'inline-block',padding:'11px 15px',background:'#203b88',color:'#fff',fontSize:10,letterSpacing:'.12em',textTransform:'uppercase'}}>Create Your Profile →</a>}</div>
+    <CommunityAccessBox/>
     {loading&&<div style={{padding:'25px 0',fontFamily:'Georgia,serif',fontSize:22,color:'#77736b'}}>Loading the creative community…</div>}
     {!loading&&visible.length===0&&<div style={{padding:'25px 0',borderTop:'1px solid rgba(17,19,24,.1)',color:'#77736b'}}>No approved profiles match this search yet.</div>}
     {!loading&&visible.length>0&&<>{filter==='all'?<>{creatives.length>0&&<MemberGroup title="Creatives" count={creatives.length} profiles={creatives} onOpen={setSelectedProfile} member={member}/>} {businesses.length>0&&<MemberGroup title="Creative Businesses" count={businesses.length} profiles={businesses} onOpen={setSelectedProfile} member={member}/>}</>:<MemberGroup title={filter==='businesses'?'Creative Businesses':'Creatives'} count={visible.length} profiles={visible} onOpen={setSelectedProfile} member={member}/>}</>}
