@@ -25,6 +25,6 @@ export default function AddProfilePage(){
   useEffect(()=>{supabase.auth.getSession().then(({data})=>setSession(data.session));const{data:listener}=supabase.auth.onAuthStateChange((_event,next)=>setSession(next));return()=>listener.subscription.unsubscribe()},[])
   useEffect(()=>{if(!session?.user?.id)return;const pendingId=sessionStorage.getItem('creativecheck_pending_profile');if(!pendingId)return;supabase.rpc('claim_profile_for_current_user',{p_profile_id:pendingId}).then(({error})=>{if(!error)sessionStorage.removeItem('creativecheck_pending_profile')})},[session?.user?.id])
   if(submittedProfileId)return <EmailAccess profileId={submittedProfileId}/>
-  if(!type)return <TypeChoice onChoose={next=>{setType(next);window.setTimeout(()=>document.getElementById('add-profile-form')?.scrollIntoView({behavior:'smooth',block:'start'}),0)}}/>
+  if(!type)return <TypeChoice onChoose={next=>setType(next)}/>
   return <ProfileForm isBusiness={type==='business'} onBack={()=>setType(null)} onSubmitted={id=>setSubmittedProfileId(id)}/>
 }
