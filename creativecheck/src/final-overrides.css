@@ -21,6 +21,10 @@
 .member-profession{font-size:14px!important;line-height:1.15!important}
 .member-location{font-size:10px!important}
 .member-links a,.member-bio-button{font-size:9px!important}
+.member-bio-teaser{font-size:11px!important;line-height:1.3!important;color:#77736b!important;margin:3px 0 0!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
+.member-lock-label{display:inline-block!important;margin-top:4px!important;font-size:9px!important;letter-spacing:.04em!important;color:#203b88!important;text-transform:uppercase!important}
+.member-card-teaser{cursor:default!important}
+.member-card-full{cursor:pointer!important}
 .roadmap-section{background:linear-gradient(135deg,#23408f 0%,#3158c7 55%,#5c6fd0 100%)!important;padding-top:42px!important;padding-bottom:40px!important;color:#fff!important}
 .roadmap-top{margin-bottom:22px!important}
 .roadmap-top h2{font-size:clamp(52px,5.4vw,82px)!important;color:#fff!important}
