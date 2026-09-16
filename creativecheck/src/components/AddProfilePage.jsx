@@ -2,32 +2,6 @@ import { useRef, useState } from 'react'
 import { supabase } from '../supabase'
 import { track } from '../analytics'
 
-function CommunityIntro(){
-  const [email,setEmail]=useState(''),[sent,setSent]=useState(false),[loading,setLoading]=useState(false),[message,setMessage]=useState('')
-  async function sendLink(e){
-    e.preventDefault();setLoading(true);setMessage('')
-    const clean=email.trim().toLowerCase()
-    const {error}=await supabase.auth.signInWithOtp({email:clean,options:{emailRedirectTo:`${window.location.origin}${window.location.pathname}`,shouldCreateUser:false}})
-    if(error){setMessage('Please check that this is the email you registered with.');setLoading(false);return}
-    setSent(true);setLoading(false)
-  }
-  return <section className="community-intro-card">
-    <span className="section-label">MEET THE COMMUNITY</span>
-    <h2>Discover the CreativeCheck Community.</h2>
-    <p>Explore the people and businesses shaping today&apos;s creative world.</p>
-    <div className="community-actions">
-      <a className="primary-button" href="#members">Explore the Community <span>→</span></a>
-      <a className="text-link" href="#profile-choice">Create Your Profile <span>→</span></a>
-    </div>
-    <div className="community-member-access">
-      <div className="community-member-copy"><strong>Already registered?</strong><span>Check the profiles with your registered email.</span></div>
-      {sent?<div className="community-sent">Your secure magic link has been sent to <strong>{email}</strong>.</div>:<form onSubmit={sendLink} className="community-access-form"><input value={email} onChange={e=>setEmail(e.target.value)} type="email" required placeholder="Enter your registered email" autoComplete="email"/><button type="submit" disabled={loading}>{loading?'Sending…':'Send Magic Link →'}</button></form>}
-      {message&&<p className="community-error">{message}</p>}
-    </div>
-    <p className="community-free-note"><strong>FREE</strong> — Create your professional profile and join CreativeCheck.</p>
-  </section>
-}
-
 function TypeChoice({onChoose}){
   return <section id="profile-choice" className="profile-type-card">
     <div className="profile-type-head"><span className="section-label light">JOIN CREATIVECHECK</span><h2>Create your profile.</h2><p>Choose one option to create your profile.</p></div>
@@ -56,5 +30,5 @@ export default function AddProfilePage({type}){
   const[selectedType,setSelectedType]=useState(null),[submitted,setSubmitted]=useState(false)
   if(type==='business')return null
   if(submitted)return <section className="profile-success-card"><span className="section-label">PROFILE SUBMITTED</span><h2>Thank you. Your profile is now with CreativeCheck.</h2><p>We&apos;ll review your profile before publication. Once approved, you&apos;ll be able to access the community. If you return later, use your registered email to receive a secure magic link.</p></section>
-  return <div className="signup-flow"><CommunityIntro/>{!selectedType?<TypeChoice onChoose={next=>setSelectedType(next)}/>:<ProfileForm isBusiness={selectedType==='business'} onBack={()=>setSelectedType(null)} onSubmitted={()=>setSubmitted(true)}/>}</div>
+  return <div className="signup-flow"><TypeChoice onChoose={next=>setSelectedType(next)}/>{selectedType&&<ProfileForm isBusiness={selectedType==='business'} onBack={()=>setSelectedType(null)} onSubmitted={()=>setSubmitted(true)}/>}</div>
 }
