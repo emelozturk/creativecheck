@@ -6,14 +6,18 @@ function isBusiness(profile){ return profile.profile_type === 'business' }
 
 function publicName(profile){
   const full=String(profile.full_name || 'Creative').trim() || 'Creative'
-  if(isBusiness(profile)) return full
-  return full.split(/\s+/)[0] || 'Creative'
+  const parts=full.split(/\s+/).filter(Boolean)
+  if(parts.length<=1)return parts[0] || 'Creative'
+  const first=parts[0]
+  const surnameInitials=parts.slice(1).map(part=>part.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ]/g,'').charAt(0).toUpperCase()).filter(Boolean)
+  return surnameInitials.length ? `${first} ${surnameInitials.join('-')}` : first
 }
 
 function initialsFor(profile){
   const full=String(profile.full_name || 'Creative').trim() || 'Creative'
-  if(isBusiness(profile)) return full.split(/\s+/).slice(0,2).map(x=>x[0]?.toUpperCase()).join('') || 'B'
-  return full.charAt(0).toUpperCase() || 'C'
+  const parts=full.split(/\s+/).filter(Boolean)
+  if(parts.length<=1)return full.charAt(0).toUpperCase() || 'C'
+  return `${parts[0].charAt(0).toUpperCase()}${parts[parts.length-1].charAt(0).toUpperCase()}`
 }
 
 function ProfileCard({profile,onOpen,member}){
