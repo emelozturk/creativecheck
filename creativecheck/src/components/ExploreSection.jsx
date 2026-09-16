@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../supabase'
 import { track } from '../analytics'
 
+const AUTH_REDIRECT_URL = 'https://creativecheck.app/'
+
 function isBusiness(profile){ return profile.profile_type === 'business' }
 
 function publicName(profile){
@@ -42,7 +44,7 @@ function CommunityAccessBox(){
     const clean=email.trim().toLowerCase()
     if(!clean)return
     setLoading(true);setMessage('')
-    const {error}=await supabase.auth.signInWithOtp({email:clean,options:{emailRedirectTo:`${window.location.origin}${window.location.pathname}`,shouldCreateUser:false}})
+    const {error}=await supabase.auth.signInWithOtp({email:clean,options:{emailRedirectTo:AUTH_REDIRECT_URL,shouldCreateUser:false}})
     if(error){setMessage('Please enter the email address you used to register.');setLoading(false);return}
     setSent(true);setLoading(false)
   }
