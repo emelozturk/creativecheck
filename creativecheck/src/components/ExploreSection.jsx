@@ -43,9 +43,20 @@ function CommunityAccessBox(){
     e.preventDefault()
     const clean=email.trim().toLowerCase()
     if(!clean)return
-    setLoading(true);setMessage('')
+    setLoading(true);setMessage('');setSent(false)
     const {error}=await supabase.auth.signInWithOtp({email:clean,options:{emailRedirectTo:AUTH_REDIRECT_URL,shouldCreateUser:false}})
-    if(error){setMessage('Please enter the email address you used to register.');setLoading(false);return}
+    if(error){
+      console.error('CreativeCheck magic link error:',error)
+      const raw=String(error.message||'').toLowerCase()
+      if(raw.includes('rate limit') || raw.includes('60 seconds') || raw.includes('too many')){
+        setMessage('Please wait a minute before requesting another sign-in link.')
+      }else if(raw.includes('not found') || raw.includes('signup is disabled') || raw.includes('signups not allowed')){
+        setMessage('This email address is not registered with CreativeCheck.')
+      }else{
+        setMessage('We could not send the sign-in link. Please try again in a moment.')
+      }
+      setLoading(false);return
+    }
     setSent(true);setLoading(false)
   }
   return <div style={{maxWidth:760,margin:'0 0 28px',padding:'20px',border:'1px solid rgba(17,19,24,.12)',background:'#f7f4ee'}}>
