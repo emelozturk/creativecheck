@@ -193,3 +193,83 @@
   .cc-site .cc-hero-premium .cc-hero-art-premium:before,
   .cc-site .cc-hero-premium .hero-mantra span:after{animation:none!important}
 }
+
+/* Explicit 3D scene objects: intentionally visible, while preserving all page copy and structure. */
+.cc-site .cc-hero-art-premium .hero-3d-scene{
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  pointer-events:none!important;
+  perspective:1200px!important;
+  transform-style:preserve-3d!important;
+  overflow:hidden!important;
+}
+.cc-site .cc-hero-art-premium .hero-3d-disc{
+  position:absolute!important;
+  width:270px!important;height:270px!important;
+  right:17%!important;top:13%!important;
+  border-radius:50%!important;
+  border:2px solid rgba(235,208,158,.62)!important;
+  background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.20),rgba(219,181,111,.08) 34%,rgba(10,16,24,.28) 66%,rgba(255,255,255,.04))!important;
+  box-shadow:inset -30px -35px 70px rgba(0,0,0,.38),0 0 80px rgba(218,183,108,.17)!important;
+  transform:translateZ(90px) rotateX(16deg) rotateY(-22deg)!important;
+  animation:cc3d-disc 9s ease-in-out infinite alternate!important;
+}
+.cc-site .cc-hero-art-premium .hero-3d-frame{
+  position:absolute!important;
+  width:190px!important;height:125px!important;
+  border:1px solid rgba(255,255,255,.36)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.025))!important;
+  box-shadow:18px 28px 45px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.18)!important;
+  backdrop-filter:blur(5px)!important;
+  transform-style:preserve-3d!important;
+}
+.cc-site .cc-hero-art-premium .hero-3d-frame-a{
+  right:12%!important;bottom:17%!important;
+  transform:translateZ(150px) rotateX(52deg) rotateY(-20deg) rotateZ(-7deg)!important;
+}
+.cc-site .cc-hero-art-premium .hero-3d-frame-b{
+  right:31%!important;bottom:9%!important;
+  width:135px!important;height:90px!important;
+  transform:translateZ(70px) rotateX(58deg) rotateY(16deg) rotateZ(9deg)!important;
+}
+.cc-site .cc-hero-art-premium .hero-3d-orb{
+  position:absolute!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle at 30% 25%,#fff 0 3%,rgba(239,210,151,.95) 7%,rgba(107,79,43,.8) 25%,rgba(10,15,22,.95) 70%)!important;
+  box-shadow:0 0 35px rgba(222,188,113,.28),20px 28px 35px rgba(0,0,0,.4)!important;
+}
+.cc-site .cc-hero-art-premium .hero-3d-orb-a{
+  width:64px!important;height:64px!important;right:8%!important;top:16%!important;
+  transform:translateZ(220px)!important;
+  animation:cc3d-float-a 5s ease-in-out infinite!important;
+}
+.cc-site .cc-hero-art-premium .hero-3d-orb-b{
+  width:34px!important;height:34px!important;right:42%!important;top:22%!important;
+  transform:translateZ(130px)!important;
+  animation:cc3d-float-b 6s ease-in-out infinite!important;
+}
+.cc-site .cc-hero-art-premium .hero-3d-line{
+  position:absolute!important;
+  width:360px!important;height:1px!important;
+  right:7%!important;top:58%!important;
+  background:linear-gradient(90deg,transparent,rgba(231,199,132,.7),transparent)!important;
+  box-shadow:0 0 16px rgba(226,190,111,.3)!important;
+  transform:translateZ(80px) rotate(-16deg)!important;
+}
+.cc-site .cc-hero-art-premium .hero-mantra{z-index:5!important}
+@keyframes cc3d-disc{from{transform:translateZ(80px) rotateX(13deg) rotateY(-16deg)}to{transform:translateZ(130px) rotateX(19deg) rotateY(-29deg)}}
+@keyframes cc3d-float-a{0%,100%{margin-top:0;transform:translateZ(210px)}50%{margin-top:-18px;transform:translateZ(250px)}}
+@keyframes cc3d-float-b{0%,100%{margin-top:0;transform:translateZ(130px)}50%{margin-top:12px;transform:translateZ(155px)}}
+@media(max-width:900px){
+ .cc-site .cc-hero-art-premium .hero-3d-disc{width:190px!important;height:190px!important;right:10%!important;top:10%!important}
+ .cc-site .cc-hero-art-premium .hero-3d-frame-a{right:7%!important;bottom:10%!important;width:145px!important;height:95px!important}
+ .cc-site .cc-hero-art-premium .hero-3d-frame-b{right:30%!important;bottom:5%!important;width:100px!important;height:68px!important}
+ .cc-site .cc-hero-art-premium .hero-3d-orb-a{right:5%!important;top:10%!important;width:45px!important;height:45px!important}
+ .cc-site .cc-hero-art-premium .hero-3d-line{width:250px!important;right:3%!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .cc-site .cc-hero-art-premium .hero-3d-disc,
+ .cc-site .cc-hero-art-premium .hero-3d-orb-a,
+ .cc-site .cc-hero-art-premium .hero-3d-orb-b{animation:none!important}
+}
