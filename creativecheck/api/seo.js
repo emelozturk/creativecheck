@@ -10,7 +10,7 @@ const safeUrl=value=>{try{const u=new URL(String(value||'').trim());return ['htt
 const profileUrl=p=>`${BASE}/profile/${slugify(p.full_name||'creative-profile')}-${p.id}`
 
 async function getProfiles(){
-  const r=await fetch(`${SUPABASE_URL}/rest/v1/profiles?status=eq.approved&select=id,full_name,profession,category,city,country,website,instagram,portfolio_url,bio,avatar_url,status,verified,created_at,updated_at,discipline_id,profile_type&order=created_at.desc&limit=1000`,{headers:{apikey:SUPABASE_KEY,Authorization:`Bearer ${SUPABASE_KEY}`}})
+  const r=await fetch(`${SUPABASE_URL}/rest/v1/profiles?status=eq.approved&select=id,full_name,profession,category,city,country,website,instagram,portfolio_url,bio,avatar_url,status,verified,created_at,discipline_id,profile_type&order=created_at.desc&limit=1000`,{headers:{apikey:SUPABASE_KEY,Authorization:`Bearer ${SUPABASE_KEY}`}})
   if(!r.ok) throw new Error(`profiles ${r.status}`)
   const data=await r.json();if(!Array.isArray(data)) throw new Error('invalid profiles response');return data
 }
