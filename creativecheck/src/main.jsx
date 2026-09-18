@@ -12,6 +12,7 @@ import './pastel-navy-final.css'
 import './footer-social-fix.css'
 import './hero-final-fix.css'
 import './form-dup-fix.css'
+import './3d-creativecheck.css'
 
 function Root(){
   const seoPage=SeoRouter()
