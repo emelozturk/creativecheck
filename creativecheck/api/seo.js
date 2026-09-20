@@ -3,6 +3,54 @@ const SUPABASE_KEY='sb_publishable_-sTc8wYEmrNKb-gtHc_qHA_cxq9M5lS'
 const BASE='https://creativecheck.app'
 
 const categories={photographers:{title:'Photographers',intro:'Discover photographers and photography professionals through CreativeCheck.',ids:[1]},filmmakers:{title:'Filmmakers',intro:'Discover filmmakers, directors, producers and film professionals through CreativeCheck.',ids:[2]},designers:{title:'Designers',intro:'Discover designers and design professionals through CreativeCheck.',ids:[3,8,11,12]},artists:{title:'Artists',intro:'Discover artists and visual arts professionals through CreativeCheck.',ids:[4]},musicians:{title:'Musicians',intro:'Discover musicians, composers and music professionals through CreativeCheck.',ids:[6]},'creative-businesses':{title:'Creative Businesses',intro:'Discover creative businesses, studios, agencies and production companies through CreativeCheck.',ids:[13,14,15]}}
+
+const resources={
+  'find-creative-talent':{
+    title:'How to Find Creative Talent for a Project',
+    description:'A practical guide to finding photographers, filmmakers, designers, artists and other creative professionals for projects.',
+    intro:'Finding the right creative person is easier when you start with a clear brief, the right discipline and a professional way to compare relevant portfolios.',
+    sections:[
+      ['Start with the creative requirement','Define the role, deliverables, location, dates, budget range and the type of creative expertise you actually need. A focused brief makes discovery more useful for everyone.'],
+      ['Search by discipline and location','Use CreativeCheck category pages to explore photographers, filmmakers, designers, artists and musicians, then narrow your search by location where relevant.'],
+      ['Review the professional presence','Look at the person’s published biography, discipline, location and links to their existing website or portfolio. CreativeCheck is designed to help you discover people and then explore the work they already publish elsewhere.'],
+      ['Make contact with a clear brief','When you reach out, explain the project, expected contribution, timing and next step. Good creative collaborations start with enough context for both sides to decide whether the opportunity is suitable.']
+    ]
+  },
+  'creative-portfolio-guide':{
+    title:'How to Build a Strong Creative Professional Profile',
+    description:'Practical guidance for photographers, filmmakers, designers, artists and other creatives building a professional online presence.',
+    intro:'A strong creative profile should make it easy for someone to understand who you are, what you do and where they can see your work.',
+    sections:[
+      ['Lead with a clear professional identity','Use the name and discipline you want people to remember. A concise description is more useful than a long list of unrelated services.'],
+      ['Connect your existing work','You do not need to rebuild your entire online presence. Link the website, portfolio, Instagram, Vimeo or other professional platforms where your work already lives.'],
+      ['Add context that helps people decide','Location, experience, specialisms and a focused biography can help potential collaborators understand whether your work is relevant to their project.'],
+      ['Keep it current','Review your profile when your portfolio, location, discipline or professional links change. Accurate public information makes discovery more useful.']
+    ]
+  },
+  'creative-production-network':{
+    title:'Creative Production Network: Photographers, Filmmakers, Studios and More',
+    description:'Explore how a connected creative network can help professionals and businesses discover collaborators, projects and specialist services.',
+    intro:'Creative production rarely happens in isolation. Projects often require a combination of photographers, filmmakers, designers, artists, producers, studios and specialist businesses.',
+    sections:[
+      ['One project can require many disciplines','A campaign, film, editorial or brand project may involve several creative roles. Being able to discover different disciplines from one ecosystem can make the first stage of a project more efficient.'],
+      ['Professional discovery matters','Public professional profiles give collaborators a starting point for understanding someone’s discipline, location and existing online work.'],
+      ['Businesses need the network too','Studios, agencies, production companies and creative businesses can use a public profile to explain what they do and make it easier for relevant professionals to discover them.'],
+      ['Build relationships beyond a single project','The value of a creative network is not limited to one brief. Strong professional connections can lead to future collaborations, referrals and opportunities.']
+    ]
+  },
+  'creative-career-networking':{
+    title:'Creative Career Networking: A Practical Guide',
+    description:'A practical guide to building professional connections across the creative industries without relying on one platform or one type of opportunity.',
+    intro:'Creative networking is most useful when it is specific, professional and based on real work rather than simply collecting contacts.',
+    sections:[
+      ['Make your professional identity easy to understand','Your name, discipline, location and a concise description should tell another professional what you do without requiring them to search through multiple platforms.'],
+      ['Show the work you already have','Link to your existing portfolio and professional channels so people can move from discovery to evidence of your work.'],
+      ['Network around genuine relevance','Look for people whose disciplines, projects or services genuinely overlap with what you are building. A smaller set of relevant connections can be more useful than a large generic list.'],
+      ['Keep your presence active and accurate','Update outdated links, descriptions and locations. Professional discovery works best when the information people find is current.']
+    ]
+  }
+}
+
 const terms={photographers:['photographer','photography'],filmmakers:['filmmaker','film maker','director','producer','film production'],designers:['designer','design'],artists:['artist','illustrator','fine art','visual artist'],musicians:['musician','composer','music','singer'],'creative-businesses':['agency','studio','production company','creative company','creative business','brand','organisation','organization']}
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))
 const slugify=value=>String(value||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')
@@ -28,6 +76,21 @@ export default async function handler(req,res){
   try{
     if(path==='/creatives'){
       const profiles=await getProfiles();const body=`<h1>Creative Professionals</h1><p>Discover photographers, filmmakers, designers, artists, musicians and other creative professionals through CreativeCheck.</p><h2>Explore creative categories</h2><ul><li><a href="/photographers">Photographers</a></li><li><a href="/filmmakers">Filmmakers</a></li><li><a href="/designers">Designers</a></li><li><a href="/artists">Artists</a></li><li><a href="/musicians">Musicians</a></li><li><a href="/creative-businesses">Creative Businesses</a></li></ul><h2>Featured profiles</h2><ul>${profiles.slice(0,50).map(profileCard).join('')}</ul>`;const canonical=`${BASE}/creatives`;const jsonld={'@context':'https://schema.org','@type':'CollectionPage',name:'Creative Professionals',url:canonical,mainEntity:itemList(profiles),breadcrumb:breadcrumbList([{name:'CreativeCheck',url:BASE},{name:'Creative Professionals',url:canonical}])};send(res,200,layout({title:'Creative Professionals | CreativeCheck',description:'Discover creative professionals worldwide on CreativeCheck.',canonical,body,jsonld}));return
+    }
+
+    const resourceMatch=path.match(/^\/resources\/([^/]+)$/)
+    if(resourceMatch && resources[resourceMatch[1]]){
+      const r=resources[resourceMatch[1]]
+      const canonical=`${BASE}/resources/${resourceMatch[1]}`
+      const body=`<article><p><a href="/resources">CreativeCheck Resources</a></p><h1>${esc(r.title)}</h1><p>${esc(r.intro)}</p>${r.sections.map(([h,t])=>`<section><h2>${esc(h)}</h2><p>${esc(t)}</p></section>`).join('')}<p><a href="/creatives">Explore creative professionals</a> · <a href="/creative-businesses">Explore creative businesses</a> · <a href="/?join=1">Create your free profile</a></p></article>`
+      const jsonld={'@context':'https://schema.org','@type':'Article','headline':r.title,'description':r.description,'url':canonical,'author':{'@type':'Organization','name':'CreativeCheck','url':BASE},'publisher':{'@type':'Organization','name':'CreativeCheck','url':BASE},'mainEntityOfPage':canonical}
+      send(res,200,layout({title:`${r.title} | CreativeCheck`,description:r.description,canonical,body,jsonld}));return
+    }
+    if(path==='/resources'){
+      const canonical=`${BASE}/resources`
+      const body=`<h1>Creative Resources</h1><p>Practical guides for creative professionals and creative businesses covering professional visibility, creative discovery and networking.</p><ul>${Object.entries(resources).map(([slug,r])=>`<li><a href="/resources/${slug}">${esc(r.title)}</a><p>${esc(r.description)}</p></li>`).join('')}</ul><p><a href="/creatives">Explore creative professionals</a> · <a href="/creative-businesses">Explore creative businesses</a></p>`
+      const jsonld={'@context':'https://schema.org','@type':'CollectionPage','name':'Creative Resources','description':'Practical guides for creative professionals and creative businesses.','url':canonical,'mainEntity':{'@type':'ItemList','itemListElement':Object.entries(resources).map(([slug,r],i)=>({'@type':'ListItem','position':i+1,'name':r.title,'url':`${BASE}/resources/${slug}`}))}}
+      send(res,200,layout({title:'Creative Resources | CreativeCheck',description:'Practical guides for creative professionals and creative businesses.',canonical,body,jsonld}));return
     }
     const match=path.match(/^\/(photographers|filmmakers|designers|artists|musicians|creative-businesses)(?:\/([^/]+))?$/)
     if(match){const key=match[1],locationSlug=match[2],c=categories[key],profiles=await getProfiles();let results=profiles.filter(p=>matchesCategory(p,key));const location=locationSlug?decodeURIComponent(locationSlug).replace(/-/g,' '):'';if(location)results=results.filter(p=>String(p.city||'').trim().toLowerCase()===location.toLowerCase());if(location&&results.length<2){send(res,404,'<!doctype html><html lang="en"><head><meta name="robots" content="noindex,nofollow"><title>Location not found | CreativeCheck</title></head><body><h1>No matching profiles found</h1><p><a href="/creatives">Explore CreativeCheck</a></p></body></html>','no-store');res.setHeader('X-Robots-Tag','noindex');return}const nice=location.replace(/\b\w/g,c=>c.toUpperCase()),name=location?`${c.title} in ${nice}`:c.title,canonical=`${BASE}/${key}${locationSlug?`/${locationSlug}`:''}`,description=location?`Discover ${c.title.toLowerCase()} in ${nice} on CreativeCheck. Explore public professional profiles and creative connections.`:c.intro,list=results.length?`<h2>Profiles</h2><ul>${results.slice(0,100).map(profileCard).join('')}</ul>`:'<p>Explore CreativeCheck to discover approved creative professionals and businesses.</p>',const locations=locationLinks(profiles,key);const locationSection=!locationSlug&&locations?`<h2>Explore by location</h2><p>Find ${esc(c.title.toLowerCase())} in locations with multiple approved profiles.</p><ul>${locations}</ul>`:'';const related=Object.entries(categories).filter(([k])=>k!==key).map(([k,v])=>`<li><a href="/${k}">${esc(v.title)}</a></li>`).join('');body=`<h1>${esc(name)}</h1><p>${esc(description)}</p><p>CreativeCheck is a public discovery platform for creative professionals and creative businesses.</p>${list}${locationSection}<h2>Explore related creative categories</h2><ul>${related}</ul><p><a href="/creatives">Explore all creative professionals</a></p>`,crumbs=[{name:'CreativeCheck',url:BASE},{name:c.title,url:`${BASE}/${key}`}];if(location)crumbs.push({name:nice,url:canonical});const jsonld={'@context':'https://schema.org','@type':'CollectionPage',name,description,url:canonical,mainEntity:itemList(results),breadcrumb:breadcrumbList(crumbs)};send(res,200,layout({title:`${name} | CreativeCheck`,description,canonical,body,jsonld}));return}
