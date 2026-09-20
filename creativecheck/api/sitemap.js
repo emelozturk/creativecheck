@@ -23,7 +23,7 @@ function matchesCategory(p,key){
 
 export default async function handler(req,res){
   try{
-    const response=await fetch(`${SUPABASE_URL}/rest/v1/profiles?status=eq.approved&select=id,full_name,profession,category,city,country,discipline_id,profile_type,created_at,updated_at&order=created_at.desc&limit=1000`,{headers:{apikey:SUPABASE_KEY,Authorization:`Bearer ${SUPABASE_KEY}`}})
+    const response=await fetch(`${SUPABASE_URL}/rest/v1/profiles?status=eq.approved&select=id,full_name,profession,category,city,country,discipline_id,profile_type,created_at&order=created_at.desc&limit=1000`,{headers:{apikey:SUPABASE_KEY,Authorization:`Bearer ${SUPABASE_KEY}`}})
     if(!response.ok) throw new Error(`profiles ${response.status}`)
     const profiles=await response.json()
     if(!Array.isArray(profiles)) throw new Error('invalid profiles response')
@@ -35,7 +35,7 @@ export default async function handler(req,res){
     profiles.forEach(p=>{
       if(!p.id) return
       const slug=`${slugify(p.full_name||'creative-profile')}-${p.id}`
-      urls.push({loc:`${BASE}/profile/${slug}`,priority:'0.7',changefreq:'monthly',lastmod:p.updated_at||p.created_at||undefined})
+      urls.push({loc:`${BASE}/profile/${slug}`,priority:'0.7',changefreq:'monthly',lastmod:p.created_at||undefined})
       Object.keys(categoryTerms).forEach(k=>{
         if(matchesCategory(p,k) && String(p.city||'').trim()){ const key=`${k}|${slugify(p.city)}`; locationCounts.set(key,(locationCounts.get(key)||0)+1) }
       })
