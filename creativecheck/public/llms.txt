@@ -26,6 +26,16 @@ CreativeCheck is developing additional tools and services, including:
 
 These are future features and are not represented as currently available.
 
+## Resources
+
+CreativeCheck publishes practical resources for creative professionals and creative businesses:
+
+- https://creativecheck.app/resources
+- https://creativecheck.app/resources/find-creative-talent
+- https://creativecheck.app/resources/creative-portfolio-guide
+- https://creativecheck.app/resources/creative-production-network
+- https://creativecheck.app/resources/creative-career-networking
+
 ## Main directories
 
 - https://creativecheck.app/creatives
