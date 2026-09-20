@@ -27,6 +27,8 @@
     { "source": "/artists/:location", "destination": "/api/seo?path=/artists/:location" },
     { "source": "/musicians/:location", "destination": "/api/seo?path=/musicians/:location" },
     { "source": "/creative-businesses/:location", "destination": "/api/seo?path=/creative-businesses/:location" },
+    { "source": "/resources", "destination": "/api/seo?path=/resources" },
+    { "source": "/resources/:slug", "destination": "/api/seo?path=/resources/:slug" },
     { "source": "/profile/:slug", "destination": "/api/seo?path=/profile/:slug" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
