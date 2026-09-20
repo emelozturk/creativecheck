@@ -80,11 +80,13 @@ export default async function handler(req,res){
 
     const resourceMatch=path.match(/^\/resources\/([^/]+)$/)
     if(resourceMatch && resources[resourceMatch[1]]){
-      const r=resources[resourceMatch[1]]
-      const canonical=`${BASE}/resources/${resourceMatch[1]}`
-      const body=`<article><p><a href="/resources">CreativeCheck Resources</a></p><h1>${esc(r.title)}</h1><p>${esc(r.intro)}</p>${r.sections.map(([h,t])=>`<section><h2>${esc(h)}</h2><p>${esc(t)}</p></section>`).join('')}<p><a href="/creatives">Explore creative professionals</a> · <a href="/creative-businesses">Explore creative businesses</a> · <a href="/?join=1">Create your free profile</a></p></article>`
-      const jsonld={'@context':'https://schema.org','@type':'Article','headline':r.title,'description':r.description,'url':canonical,'author':{'@type':'Organization','name':'CreativeCheck','url':BASE},'publisher':{'@type':'Organization','name':'CreativeCheck','url':BASE},'mainEntityOfPage':canonical}
-      send(res,200,layout({title:`${r.title} | CreativeCheck`,description:r.description,canonical,body,jsonld}));return
+      const resource=resources[resourceMatch[1]]
+      const canonical=BASE+'/resources/'+resourceMatch[1]
+      const sections=resource.sections.map(function(section){ return '<section><h2>'+esc(section[0])+'</h2><p>'+esc(section[1])+'</p></section>' }).join('')
+      const body='<article><p><a href="/resources">CreativeCheck Resources</a></p><h1>'+esc(resource.title)+'</h1><p>'+esc(resource.intro)+'</p>'+sections+'<p><a href="/creatives">Explore creative professionals</a> · <a href="/creative-businesses">Explore creative businesses</a> · <a href="/?join=1">Create your free profile</a></p></article>'
+      const jsonld={'@context':'https://schema.org','@type':'Article','headline':resource.title,'description':resource.description,'url':canonical,'author':{'@type':'Organization','name':'CreativeCheck','url':BASE},'publisher':{'@type':'Organization','name':'CreativeCheck','url':BASE},'mainEntityOfPage':canonical}
+      send(res,200,layout({title:resource.title+' | CreativeCheck',description:resource.description,canonical,body,jsonld}))
+      return
     }
     if(path==='/resources'){
       const canonical=`${BASE}/resources`
