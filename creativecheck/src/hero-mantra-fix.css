@@ -53,3 +53,31 @@
 .hero-mantra span{font-size:clamp(28px,3.2vw,48px)!important;line-height:1!important;letter-spacing:.06em!important;text-align:center!important}
 .hero-mantra span:first-child{color:#183c62!important;text-shadow:none!important}
 .hero-mantra span:nth-child(2),.hero-mantra span:nth-child(3){color:#183c62!important}
+
+/* Hero mantra refinement — softer editorial palette and typography. */
+.cc-hero-art-premium{
+  background:#eeece7!important;
+}
+.hero-mantra{
+  gap:8px!important;
+  align-items:center!important;
+  width:min(100%,460px)!important;
+}
+.hero-mantra span{
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-weight:500!important;
+  font-size:clamp(30px,3.45vw,50px)!important;
+  line-height:.98!important;
+  letter-spacing:.035em!important;
+  text-transform:uppercase!important;
+  text-align:center!important;
+}
+.hero-mantra span:first-child{
+  color:#20364d!important;
+}
+.hero-mantra span:nth-child(2){
+  color:#786879!important;
+}
+.hero-mantra span:nth-child(3){
+  color:#5f756d!important;
+}
