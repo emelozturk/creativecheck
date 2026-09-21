@@ -266,3 +266,57 @@
   .cc-hero-art-premium .hero-mantra{padding:0 8%!important}
   .cc-hero-art-premium .hero-mantra span{font-size:clamp(40px,12vw,62px)!important}
 }
+
+
+/* FINAL HERO-RIGHT TYPOGRAPHY — mirror the main "Discover Creatives. with Confidence." treatment. */
+.cc-hero-art-premium{
+  background:#174a72!important;
+  border-left:0!important;
+  box-shadow:none!important;
+}
+.cc-hero-art-premium .hero-mantra{
+  width:min(100%,560px)!important;
+  padding:0 8%!important;
+  gap:2px!important;
+  align-items:flex-start!important;
+}
+.cc-hero-art-premium .hero-mantra span{
+  font-family:'Playfair Display',Georgia,'Times New Roman',serif!important;
+  display:block!important;
+  width:100%!important;
+  font-size:clamp(42px,4.8vw,66px)!important;
+  line-height:.98!important;
+  letter-spacing:-.035em!important;
+  text-transform:none!important;
+  text-align:left!important;
+  border:0!important;
+  padding:0!important;
+  margin:0!important;
+  text-shadow:none!important;
+  font-weight:600!important;
+}
+.cc-hero-art-premium .hero-mantra span:first-child{
+  color:#f5eee2!important;
+  font-style:normal!important;
+  font-weight:600!important;
+}
+.cc-hero-art-premium .hero-mantra span:nth-child(2){
+  color:#b9e2dc!important;
+  font-style:italic!important;
+  font-weight:500!important;
+  padding-left:7%!important;
+}
+.cc-hero-art-premium .hero-mantra span:nth-child(3){
+  color:#d49b32!important;
+  font-style:italic!important;
+  font-weight:500!important;
+  padding-left:14%!important;
+}
+.cc-hero-art-premium .hero-mantra span::after{
+  display:none!important;
+}
+@media(max-width:900px){
+  .cc-hero-art-premium{background:#174a72!important}
+  .cc-hero-art-premium .hero-mantra{padding:0!important;width:min(100%,520px)!important}
+  .cc-hero-art-premium .hero-mantra span{font-size:clamp(38px,11vw,58px)!important}
+}
