@@ -450,3 +450,69 @@
   margin-left:auto!important;
   margin-right:auto!important;
 }
+
+
+/* PREVIEW — creative visual motif behind Discover / Connect / Grow. */
+.cc-hero-art-premium{
+  position:relative!important;
+  overflow:hidden!important;
+  background:#102f52!important;
+}
+.cc-hero-art-premium .creative-field{
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  opacity:.95!important;
+}
+.cc-hero-art-premium .creative-field-lines{
+  position:absolute!important;
+  inset:5% 2%!important;
+  width:96%!important;
+  height:90%!important;
+  overflow:visible!important;
+}
+.cc-hero-art-premium .creative-field-lines path{
+  fill:none!important;
+  stroke:rgba(245,238,226,.22)!important;
+  stroke-width:1.2!important;
+}
+.cc-hero-art-premium .creative-frame{
+  position:absolute!important;
+  border:1px solid rgba(245,238,226,.42)!important;
+  transform:rotate(-8deg)!important;
+  background:rgba(245,238,226,.025)!important;
+}
+.cc-hero-art-premium .frame-a{
+  width:190px!important;height:132px!important;
+  left:9%!important;top:13%!important;
+}
+.cc-hero-art-premium .frame-b{
+  width:145px!important;height:185px!important;
+  right:9%!important;bottom:12%!important;
+  transform:rotate(9deg)!important;
+}
+.cc-hero-art-premium .creative-frame span{
+  position:absolute!important;
+  inset:12px!important;
+  border:1px solid rgba(185,226,220,.28)!important;
+}
+.cc-hero-art-premium .creative-orb{
+  position:absolute!important;
+  border-radius:50%!important;
+  border:1px solid rgba(212,155,50,.6)!important;
+}
+.cc-hero-art-premium .orb-a{
+  width:18px!important;height:18px!important;left:18%!important;bottom:19%!important;
+  background:rgba(212,155,50,.14)!important;
+}
+.cc-hero-art-premium .orb-b{
+  width:10px!important;height:10px!important;right:24%!important;top:21%!important;
+  background:rgba(185,226,220,.18)!important;
+}
+.cc-hero-art-premium .creative-star{
+  position:absolute!important;
+  right:16%!important;top:13%!important;
+  color:#d49b32!important;font-size:28px!important;
+  line-height:1!important;
+}
+.cc-hero-art-premium .hero-mantra{position:relative!important;z-index:2!important}
