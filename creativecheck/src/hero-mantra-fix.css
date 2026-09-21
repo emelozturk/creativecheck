@@ -368,3 +368,36 @@
 .cc-hero-copy .hero-proof{
   justify-content:center!important;
 }
+
+
+/* FINAL HERO — only the main "Discover Creatives. with Confidence." headline remains. */
+.cc-hero-premium{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:620px!important;
+  background:var(--paper)!important;
+}
+.cc-hero-art-premium{
+  display:none!important;
+}
+.cc-hero-copy{
+  width:100%!important;
+  max-width:1100px!important;
+  margin:0 auto!important;
+  padding:80px 40px!important;
+  text-align:center!important;
+  display:block!important;
+}
+.cc-hero-copy .eyebrow,
+.cc-hero-copy .cc-hero-desc,
+.cc-hero-copy .hero-actions,
+.cc-hero-copy .cc-search,
+.cc-hero-copy .hero-proof{
+  display:none!important;
+}
+.cc-hero-copy h1{
+  margin:0 auto!important;
+  text-align:center!important;
+  max-width:1000px!important;
+}
