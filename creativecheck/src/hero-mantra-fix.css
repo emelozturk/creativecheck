@@ -401,3 +401,52 @@
   text-align:center!important;
   max-width:1000px!important;
 }
+
+
+/* FINAL CORRECTION — remove only the right Discover/Connect/Grow panel; keep all hero information and center the original hero content. */
+.cc-hero-premium{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:620px!important;
+  background:var(--paper)!important;
+}
+.cc-hero-art-premium{display:none!important}
+.cc-hero-copy{
+  width:100%!important;
+  max-width:1100px!important;
+  margin:0 auto!important;
+  padding:80px 40px!important;
+  text-align:center!important;
+  display:block!important;
+}
+.cc-hero-copy .eyebrow,
+.cc-hero-copy .cc-hero-desc,
+.cc-hero-copy .hero-actions,
+.cc-hero-copy .cc-search,
+.cc-hero-copy .hero-proof{
+  display:block!important;
+}
+.cc-hero-copy .hero-actions{
+  display:flex!important;
+  justify-content:center!important;
+}
+.cc-hero-copy .hero-proof{
+  display:flex!important;
+  justify-content:center!important;
+}
+.cc-hero-copy .cc-search{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.cc-hero-copy h1{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+}
+.cc-hero-copy .eyebrow,
+.cc-hero-copy .cc-hero-desc{
+  text-align:center!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
