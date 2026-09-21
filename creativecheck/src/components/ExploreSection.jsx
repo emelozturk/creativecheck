@@ -6,6 +6,24 @@ const AUTH_REDIRECT_URL = 'https://creativecheck.app/'
 
 function isBusiness(profile){ return profile.profile_type === 'business' }
 
+function CommunityStats(){
+  const [stats,setStats]=useState({professionals:0,businesses:0,countries:0,continents:0})
+  useEffect(()=>{
+    let active=true
+    async function load(){
+      const {data,error}=await supabase.from('profiles').select('profile_type,country_code').eq('status','approved').eq('verified',true)
+      if(error||!Array.isArray(data)||!active)return
+      const continentMap={GB:'Europe',IN:'Asia',US:'North America',IT:'Europe',AE:'Asia',AU:'Oceania',CA:'North America',ID:'Asia',IR:'Asia',JO:'Asia',UG:'Africa',KE:'Africa',TR:'Europe'}
+      const countries=new Set(data.map(p=>p.country_code).filter(Boolean))
+      const continents=new Set(data.map(p=>continentMap[String(p.country_code||'').toUpperCase()]).filter(Boolean))
+      setStats({professionals:data.filter(p=>p.profile_type!=='business').length,businesses:data.filter(p=>p.profile_type==='business').length,countries:countries.size,continents:continents.size})
+    }
+    load(); return()=>{active=false}
+  },[])
+  const items=[['professionals','Creative Professionals','20+'],['businesses','Creative Businesses','5+'],['countries','Countries','10+'],['continents','Continents','5']]
+  return <div className="community-stats" aria-label="CreativeCheck community statistics"><div className="community-stats-grid">{items.map(([key,label,display])=><article key={key}><strong>{display}</strong><span>{label}</span></article>)}</div></div>
+}
+
 function publicName(profile){
   const full=String(profile.full_name || 'Creative').trim() || 'Creative'
   const parts=full.split(/\s+/).filter(Boolean)
@@ -99,6 +117,7 @@ export default function ExploreSection({searchQuery=''}){
       <div style={{display:'flex',gap:4,border:'1px solid rgba(17,19,24,.14)',padding:3}}>{[['all','All'],['creatives','Creatives'],['businesses','Creative Businesses']].map(([key,label])=><button key={key} onClick={()=>setFilter(key)} style={{padding:'9px 12px',fontSize:10,textTransform:'uppercase',letterSpacing:'.1em',background:filter===key?'#203b88':'transparent',color:filter===key?'#fbfaf7':'#66625b',cursor:'pointer'}}>{label}</button>)}</div>
     </div>
     <CommunityAccessBox/>
+    <CommunityStats/>
     {loading&&<div style={{padding:'25px 0',fontFamily:'Georgia,serif',fontSize:22,color:'#77736b'}}>Loading the creative community…</div>}
     {!loading&&visible.length===0&&<div style={{padding:'25px 0',borderTop:'1px solid rgba(17,19,24,.1)',color:'#77736b'}}>No approved profiles match this search yet.</div>}
     {!loading&&visible.length>0&&<>{filter==='all'?<>{creatives.length>0&&<MemberGroup title="Creatives" count={creatives.length} profiles={creatives} onOpen={setSelectedProfile} member={member}/>} {businesses.length>0&&<MemberGroup title="Creative Businesses" count={businesses.length} profiles={businesses} onOpen={setSelectedProfile} member={member}/>}</>:<MemberGroup title={filter==='businesses'?'Creative Businesses':'Creatives'} count={visible.length} profiles={visible} onOpen={setSelectedProfile} member={member}/>}</>}
