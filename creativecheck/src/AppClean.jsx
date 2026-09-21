@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ExploreSection from './components/ExploreSection'
 import AddProfilePage from './components/AddProfilePage'
+import { supabase } from './supabase'
 import './index.css'
 import './reference-art.css'
 import './final-overrides.css'
