@@ -44,3 +44,12 @@
   #about > .founder-copy > .section-label,
   #about .founder-copy > span.section-label{font-size:25px!important;letter-spacing:.1em!important;margin-bottom:16px!important}
 }
+/* Keep the hero's right side typography-only: remove the decorative artwork. */
+.cc-hero-art-premium{background:#f4f1eb!important;min-height:420px!important}
+.cc-hero-art-premium:before,.cc-hero-art-premium:after,
+.cc-hero-art-premium .paint-swipe,.cc-hero-art-premium .art-canvas,
+.cc-hero-art-premium [class*="shape"],.cc-hero-art-premium [class*="blob"]{display:none!important}
+.hero-mantra{width:auto!important;gap:12px!important;align-items:center!important}
+.hero-mantra span{font-size:clamp(28px,3.2vw,48px)!important;line-height:1!important;letter-spacing:.06em!important;text-align:center!important}
+.hero-mantra span:first-child{color:#183c62!important;text-shadow:none!important}
+.hero-mantra span:nth-child(2),.hero-mantra span:nth-child(3){color:#183c62!important}
