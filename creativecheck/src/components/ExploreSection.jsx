@@ -112,12 +112,14 @@ export default function ExploreSection({searchQuery=''}){
   const filtered=useMemo(()=>profiles.filter(profile=>{const q=searchQuery.toLowerCase().trim();if(!q)return true;return[profile.full_name,profile.profession,profile.category,profile.city,profile.country,profile.bio].filter(Boolean).join(' ').toLowerCase().includes(q)}),[profiles,searchQuery])
   const creatives=filtered.filter(p=>!isBusiness(p)),businesses=filtered.filter(isBusiness),visible=filter==='creatives'?creatives:filter==='businesses'?businesses:filtered
   return <section id="members" style={{maxWidth:1280,margin:'0 auto',padding:'0 5.5vw 45px'}}>
-    <div style={{display:'flex',justifyContent:'space-between',alignItems:'end',gap:20,borderBottom:'1px solid rgba(17,19,24,.13)',paddingBottom:16,marginBottom:18}}>
-      <div><div style={{fontSize:10,letterSpacing:'.22em',fontWeight:800,color:'#3158c7'}}>03 / OUR CREATIVE COMMUNITY</div><h2 style={{fontFamily:'Georgia,serif',fontSize:'clamp(42px,5vw,68px)',lineHeight:.9,fontWeight:400,letterSpacing:'-.05em',margin:'10px 0 0'}}>Meet the<br/><em style={{color:'#3158c7'}}>community.</em></h2></div>
-      <div style={{display:'flex',gap:4,border:'1px solid rgba(17,19,24,.14)',padding:3}}>{[['all','All'],['creatives','Creatives'],['businesses','Creative Businesses']].map(([key,label])=><button key={key} onClick={()=>setFilter(key)} style={{padding:'9px 12px',fontSize:10,textTransform:'uppercase',letterSpacing:'.1em',background:filter===key?'#203b88':'transparent',color:filter===key?'#fbfaf7':'#66625b',cursor:'pointer'}}>{label}</button>)}</div>
+    <div className="community-header-integrated">
+      <div className="community-heading-row">
+        <div><div style={{fontSize:10,letterSpacing:'.22em',fontWeight:800,color:'#3158c7'}}>03 / OUR CREATIVE COMMUNITY</div><h2 style={{fontFamily:'Georgia,serif',fontSize:'clamp(42px,5vw,68px)',lineHeight:.9,fontWeight:400,letterSpacing:'-.05em',margin:'10px 0 0'}}>Meet the<br/><em style={{color:'#3158c7'}}>community.</em></h2></div>
+        <div className="community-filters">{[['all','All'],['creatives','Creatives'],['businesses','Creative Businesses']].map(([key,label])=><button key={key} onClick={()=>setFilter(key)} style={{padding:'9px 12px',fontSize:10,textTransform:'uppercase',letterSpacing:'.1em',background:filter===key?'#203b88':'transparent',color:filter===key?'#fbfaf7':'#66625b',cursor:'pointer'}}>{label}</button>)}</div>
+      </div>
+      <CommunityStats/>
     </div>
     <CommunityAccessBox/>
-    <CommunityStats/>
     {loading&&<div style={{padding:'25px 0',fontFamily:'Georgia,serif',fontSize:22,color:'#77736b'}}>Loading the creative community…</div>}
     {!loading&&visible.length===0&&<div style={{padding:'25px 0',borderTop:'1px solid rgba(17,19,24,.1)',color:'#77736b'}}>No approved profiles match this search yet.</div>}
     {!loading&&visible.length>0&&<>{filter==='all'?<>{creatives.length>0&&<MemberGroup title="Creatives" count={creatives.length} profiles={creatives} onOpen={setSelectedProfile} member={member}/>} {businesses.length>0&&<MemberGroup title="Creative Businesses" count={businesses.length} profiles={businesses} onOpen={setSelectedProfile} member={member}/>}</>:<MemberGroup title={filter==='businesses'?'Creative Businesses':'Creatives'} count={visible.length} profiles={visible} onOpen={setSelectedProfile} member={member}/>}</>}
