@@ -329,3 +329,42 @@
 @media(max-width:900px){
   .cc-hero-art-premium{background:#102f52!important}
 }
+
+
+/* FINAL HERO LAYOUT — remove right Discover/Connect/Grow panel; center main hero copy only. */
+.cc-hero-premium{
+  display:block!important;
+  min-height:auto!important;
+}
+.cc-hero-art-premium{
+  display:none!important;
+}
+.cc-hero-copy{
+  width:100%!important;
+  max-width:none!important;
+  margin:0 auto!important;
+  text-align:center!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+}
+.cc-hero-copy h1,
+.cc-hero-copy .cc-hero-desc,
+.cc-hero-copy .cc-search,
+.cc-hero-copy .hero-actions,
+.cc-hero-copy .hero-proof{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.cc-hero-copy h1{
+  text-align:center!important;
+}
+.cc-hero-copy .cc-hero-desc{
+  text-align:center!important;
+}
+.cc-hero-copy .hero-actions{
+  justify-content:center!important;
+}
+.cc-hero-copy .hero-proof{
+  justify-content:center!important;
+}
