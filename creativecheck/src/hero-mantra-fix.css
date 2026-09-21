@@ -320,3 +320,12 @@
   .cc-hero-art-premium .hero-mantra{padding:0!important;width:min(100%,520px)!important}
   .cc-hero-art-premium .hero-mantra span{font-size:clamp(38px,11vw,58px)!important}
 }
+
+
+/* NAVY BLUE — right Discover / Connect / Grow panel only */
+.cc-hero-art-premium{
+  background:#102f52!important;
+}
+@media(max-width:900px){
+  .cc-hero-art-premium{background:#102f52!important}
+}
