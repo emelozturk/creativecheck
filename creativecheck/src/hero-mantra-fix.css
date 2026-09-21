@@ -81,3 +81,34 @@
 .hero-mantra span:nth-child(3){
   color:#5f756d!important;
 }
+
+/* Clear hero mantra redesign — intentionally visible difference. */
+.cc-hero-art-premium{
+  background:#e8edf1!important;
+  border-left:1px solid rgba(24,60,98,.08)!important;
+}
+.hero-mantra{
+  gap:5px!important;
+  width:min(100%,480px)!important;
+}
+.hero-mantra span{
+  font-family:"Plus Jakarta Sans",Arial,sans-serif!important;
+  font-weight:600!important;
+  font-size:clamp(31px,3.6vw,52px)!important;
+  line-height:1.02!important;
+  letter-spacing:.045em!important;
+  text-transform:uppercase!important;
+  text-align:center!important;
+}
+.hero-mantra span:first-child,
+.hero-mantra span:nth-child(2),
+.hero-mantra span:nth-child(3){
+  color:#294b6b!important;
+  text-shadow:none!important;
+}
+.hero-mantra span:nth-child(2){
+  color:#3e5f7d!important;
+}
+.hero-mantra span:nth-child(3){
+  color:#56758a!important;
+}
