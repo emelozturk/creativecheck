@@ -2,6 +2,8 @@ import { useRef, useState } from 'react'
 import { supabase } from '../supabase'
 import { track } from '../analytics'
 
+const AUTH_REDIRECT_URL = 'https://creativecheck.app/'
+
 function TypeChoice({onChoose}){
   return <section id="profile-choice" className="profile-type-card">
     <div className="profile-type-head"><span className="section-label light">JOIN CREATIVECHECK</span><h2>Create your free professional account.</h2><p>Join CreativeCheck and see the community members.</p></div>
@@ -19,6 +21,25 @@ function ProfileForm({isBusiness,onBack,onSubmitted}){
     e.preventDefault();const form=e.currentTarget;setLoading(true);setMessage('')
     const cleanEmail=form.email.value.trim().toLowerCase();const hasPublicLink=form.website.value.trim()||form.instagram.value.trim()||form.portfolio_url.value.trim()
     if(!hasPublicLink){setMessage('Please add at least one public link: website, Instagram or work link.');setLoading(false);return}
+
+    // Ensure the submitted profile has a corresponding Supabase Auth account.
+    // The magic link is sent here and can also be requested again later from
+    // the community access box.
+    const {error:authError}=await supabase.auth.signInWithOtp({
+      email:cleanEmail,
+      options:{shouldCreateUser:true,emailRedirectTo:AUTH_REDIRECT_URL}
+    })
+    if(authError){
+      console.error('CreativeCheck auth setup error:',authError)
+      const raw=String(authError.message||'').toLowerCase()
+      if(raw.includes('rate limit') || raw.includes('60 seconds') || raw.includes('too many')){
+        setMessage('Please wait a minute before requesting another sign-in link.')
+      }else{
+        setMessage('We could not set up your secure sign-in. Please try again in a moment.')
+      }
+      setLoading(false);return
+    }
+
     const {data,error}=await supabase.rpc('submit_profile',{p_full_name:isBusiness?form.company_name.value:form.full_name.value,p_email:cleanEmail,p_profession:isBusiness?form.business_type.value:form.profession.value,p_category:isBusiness?form.industry.value:form.category.value,p_city:form.city.value,p_country:form.country.value,p_website:form.website.value,p_instagram:form.instagram.value,p_portfolio_url:form.portfolio_url.value,p_bio:form.bio.value,p_profile_type:isBusiness?'business':'creative'})
     if(error){setMessage(error.message||'Something went wrong. Please try again.');setLoading(false);return}
     track('signup_completed',{query:isBusiness?'business':'creative'});onSubmitted(data);setLoading(false)
