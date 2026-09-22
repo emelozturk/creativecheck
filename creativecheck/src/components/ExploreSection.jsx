@@ -62,7 +62,7 @@ function CommunityAccessBox(){
     const clean=email.trim().toLowerCase()
     if(!clean)return
     setLoading(true);setMessage('');setSent(false)
-    const {error}=await supabase.auth.signInWithOtp({email:clean,options:{emailRedirectTo:AUTH_REDIRECT_URL,shouldCreateUser:false}})
+    const {error}=await supabase.auth.signInWithOtp({email:clean,options:{emailRedirectTo:AUTH_REDIRECT_URL,shouldCreateUser:true}})
     if(error){
       console.error('CreativeCheck magic link error:',error)
       const raw=String(error.message||'').toLowerCase()
