@@ -7,7 +7,7 @@ const PLANS = {
   creative: {
     code: 'premium_monthly',
     label: 'INDIVIDUAL PREMIUM',
-    title: 'Premium for Creatives',
+    title: 'Individual Premium',
     price: '£6',
     description: 'Build your presence. Connect globally. Get discovered.',
     features: [
@@ -16,13 +16,12 @@ const PLANS = {
       'Global Reach',
       'Increased Visibility',
       'Promote Your Profile',
-      'Professional Image'
     ]
   },
   business: {
     code: 'business_monthly',
     label: 'BUSINESS PREMIUM',
-    title: 'Premium for Creative Businesses',
+    title: 'Business Premium',
     price: '£39',
     description: 'Discover creative talent. Build your business presence. Reach further.',
     features: [
@@ -145,26 +144,5 @@ export default function MembershipPage(){
       <p>Be part of a global creative network built for professional connections and discovery.</p>
     </div>
 
-    <div className="membership-dashboard">
-      <div className="membership-dashboard-copy">
-        <span className="section-label">{activePlan.label}</span>
-        <h3>{activePlan.title}</h3>
-        <p>{activePlan.description}</p>
-        <ul className="membership-selected-features">{activePlan.features.map(feature=><li key={feature}>{feature}</li>)}</ul>
-        <div className="membership-owner">{profile?.full_name||'Your CreativeCheck profile'}<span>{selectedType==='business'?'Creative Business':'Creative Professional'}</span></div>
-        <label className="membership-upload-button">
-          {uploading?'Uploading…':'Choose image'}
-          <input type="file" accept="image/jpeg,image/png,image/webp" onChange={uploadImage} disabled={!premium||uploading}/>
-        </label>
-        {message&&<p className="membership-message">{message}</p>}
-      </div>
-      <div className="membership-preview-card">
-        <div className="membership-preview-label">PROFILE PREVIEW</div>
-        <div className="membership-preview-media"><PremiumImage src={previewImage||profile?.avatar_url}/></div>
-        <div className="membership-preview-name">{profile?.full_name||'Your Creative Profile'}</div>
-        <div className="membership-preview-role">{selectedType==='business'?'Creative Business':'Creative Professional'}</div>
-        <span className="membership-premium-tag">PREMIUM · {activePlan.price}/MONTH</span>
-      </div>
-    </div>
   </section>
 }
