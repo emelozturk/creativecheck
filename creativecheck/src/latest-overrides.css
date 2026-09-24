@@ -1,5 +1,76 @@
-/* Keep the founder portrait in “Built from the inside of the industry.” */
-.founder-section:before{content:''!important;display:block!important;grid-column:1!important;grid-row:1!important;width:100%!important;aspect-ratio:4/5!important;border-radius:6px!important;background-image:url('./assets/founder-original.jpg')!important;background-size:cover!important;background-position:center top!important;box-shadow:0 22px 55px rgba(31,52,120,.2)!important;z-index:1!important;}
-.founder-section{grid-template-columns:minmax(300px,380px) minmax(0,1fr)!important;gap:54px!important;}
-@media(max-width:1000px){.founder-section{grid-template-columns:280px 1fr!important;gap:32px!important;}}
-@media(max-width:680px){.founder-section{grid-template-columns:1fr!important;}.founder-section:before{grid-column:1!important;grid-row:1!important;width:min(100%,340px)!important;justify-self:start!important;}.founder-section .founder-copy{grid-row:2!important;}}
+/* Final visual corrections for the preview branch. */
+
+/* ABOUT — use the real founder image element only; never create a duplicate pseudo-image. */
+.founder-section:before{content:none!important;display:none!important;background:none!important;box-shadow:none!important}
+.founder-section{grid-template-columns:minmax(280px,380px) minmax(0,1fr)!important;gap:54px!important}
+.founder-image{display:block!important;width:100%!important;aspect-ratio:4/5!important;height:auto!important;overflow:hidden!important;border-radius:6px!important}
+.founder-image img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center top!important}
+
+/* SIGN-UP — clean, editorial form instead of the old compressed layout. */
+.profile-form-anchor{padding:88px 5.5vw!important;background:#f4f7ff!important;scroll-margin-top:90px!important}
+.signup-flow{width:100%!important;max-width:1120px!important;margin:0 auto!important}
+.profile-type-card,.profile-form-card,.profile-success-card{width:100%!important;background:#fff!important;border:1px solid rgba(32,59,136,.14)!important;box-shadow:0 18px 50px rgba(32,59,136,.08)!important}
+.profile-type-card{padding:52px!important}
+.profile-type-head{max-width:760px!important;margin:0 auto 34px!important;text-align:center!important}
+.profile-type-head .section-label{display:block!important;color:#3158c7!important;font-size:9px!important;letter-spacing:.22em!important}
+.profile-type-head h2{font-family:'Playfair Display',Georgia,serif!important;font-size:clamp(38px,4.5vw,62px)!important;line-height:.98!important;font-weight:500!important;letter-spacing:-.045em!important;color:#18213b!important;margin:15px 0 14px!important}
+.profile-type-head p{margin:0!important;color:#68728a!important;font-size:14px!important;line-height:1.7!important}
+.profile-type-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:16px!important;max-width:900px!important;margin:0 auto!important}
+.profile-type-grid>button{min-height:220px!important;padding:30px!important;background:#f7f9ff!important;border:1px solid rgba(49,88,199,.18)!important;text-align:left!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:10px!important;color:#18213b!important;transition:.2s ease!important}
+.profile-type-grid>button:hover{border-color:#3158c7!important;transform:translateY(-2px)!important;box-shadow:0 14px 32px rgba(49,88,199,.10)!important}
+.profile-type-grid>button:nth-child(2){background:#f4f1ff!important;border-color:rgba(102,84,184,.2)!important}
+.type-kicker{font-size:9px!important;letter-spacing:.18em!important;font-weight:800!important;color:#3158c7!important}
+.profile-type-grid strong{font-family:'Playfair Display',Georgia,serif!important;font-size:30px!important;line-height:1.05!important;font-weight:500!important;margin-top:8px!important}
+.profile-type-grid button>span:not(.type-kicker){font-size:12px!important;line-height:1.6!important;color:#68728a!important;max-width:390px!important}
+.profile-type-grid button>b{margin-top:auto!important;font-size:10px!important;letter-spacing:.1em!important;text-transform:uppercase!important;color:#203b88!important}
+.profile-form-card{max-width:960px!important;margin:28px auto 0!important;overflow:hidden!important}
+.profile-form-head{padding:42px 48px 30px!important;background:#172f4f!important;color:#fff!important}
+.profile-form-head .section-label{color:#cbd7e4!important}
+.profile-form-head h2{font-family:'Playfair Display',Georgia,serif!important;font-size:clamp(36px,4vw,54px)!important;line-height:1!important;font-weight:500!important;margin:14px 0 12px!important}
+.profile-form-head p{margin:0!important;color:#d9e2ec!important;font-size:13px!important;line-height:1.6!important}
+.profile-form-body{padding:34px 48px 44px!important;background:#fff!important}
+.back-link{display:inline-flex!important;margin:0 0 25px!important;padding:0!important;color:#3158c7!important;font-size:10px!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+.profile-form{display:grid!important;grid-template-columns:1fr 1fr!important;gap:16px!important}
+.profile-form>input,.profile-form>textarea,.profile-form>.profile-two-col,.profile-form>.profile-note,.profile-form>.profile-confirm,.profile-form>.profile-submit,.profile-form>.profile-message{grid-column:1/-1!important}
+.profile-form>input,.profile-form>textarea,.profile-two-col input{width:100%!important;border:1px solid #d5dbea!important;background:#fbfcff!important;color:#18213b!important;border-radius:2px!important;padding:14px 15px!important;outline:none!important;font-size:13px!important;transition:.18s ease!important}
+.profile-form>input:focus,.profile-form>textarea:focus,.profile-two-col input:focus{border-color:#3158c7!important;box-shadow:0 0 0 3px rgba(49,88,199,.08)!important;background:#fff!important}
+.profile-form>input::placeholder,.profile-two-col input::placeholder,.profile-form>textarea::placeholder{color:#8b93a5!important;opacity:1!important}
+.profile-form>textarea{min-height:135px!important;resize:vertical!important;line-height:1.6!important}
+.profile-two-col{display:grid!important;grid-template-columns:1fr 1fr!important;gap:16px!important}
+.profile-note{padding:12px 14px!important;background:#f4f7ff!important;border-left:3px solid #3158c7!important;color:#68728a!important;font-size:11px!important;line-height:1.5!important}
+.profile-confirm{display:flex!important;align-items:flex-start!important;gap:10px!important;padding:4px 0!important;color:#59647d!important;font-size:11px!important;line-height:1.5!important}
+.profile-confirm input{margin-top:2px!important;accent-color:#3158c7!important}
+.profile-submit{padding:15px 20px!important;background:#203b88!important;color:#fff!important;border:0!important;border-radius:2px!important;font-size:10px!important;font-weight:800!important;letter-spacing:.12em!important;text-transform:uppercase!important;cursor:pointer!important}
+.profile-submit:hover{background:#3158c7!important}
+.profile-submit:disabled{opacity:.6!important;cursor:wait!important}
+.profile-message{padding:12px 14px!important;background:#fff5f3!important;color:#8d4138!important;font-size:11px!important;line-height:1.5!important}
+.profile-success-card{max-width:960px!important;margin:0 auto!important;padding:55px!important}
+.profile-success-card h2{font-family:'Playfair Display',Georgia,serif!important;font-size:48px!important;line-height:1!important;font-weight:500!important;color:#18213b!important;margin:15px 0}
+.profile-success-card p{max-width:650px!important;color:#68728a!important;line-height:1.7!important}
+
+/* FOOTER — keep the social links explicit and visible. */
+.cc-footer-premium .footer-social{display:flex!important;align-items:center!important;gap:10px!important;margin-top:18px!important;flex-wrap:wrap!important}
+.cc-footer-premium .footer-social a{display:inline-flex!important;align-items:center!important;padding:9px 13px!important;border:1px solid rgba(255,255,255,.35)!important;border-radius:20px!important;color:#fff!important;font-size:11px!important;font-weight:700!important;line-height:1!important;opacity:1!important;visibility:visible!important}
+.cc-footer-premium .footer-social a:hover{background:rgba(255,255,255,.12)!important}
+.cc-footer-premium .footer-contact-button{visibility:visible!important;opacity:1!important}
+
+@media(max-width:900px){
+  .profile-form-anchor{padding:70px 22px!important}
+  .profile-type-card{padding:34px 22px!important}
+  .profile-type-grid{grid-template-columns:1fr!important}
+  .profile-type-grid>button{min-height:190px!important}
+  .profile-form-head{padding:34px 26px 26px!important}
+  .profile-form-body{padding:28px 26px 34px!important}
+  .profile-form{grid-template-columns:1fr!important}
+  .profile-two-col{grid-template-columns:1fr!important}
+  .profile-success-card{padding:36px 26px!important}
+}
+@media(max-width:600px){
+  .profile-form-anchor{padding:55px 16px!important}
+  .profile-type-head h2{font-size:38px!important}
+  .profile-type-grid strong{font-size:27px!important}
+  .profile-form-head h2{font-size:36px!important}
+  .profile-form-body{padding:24px 18px 28px!important}
+  .profile-form>input,.profile-form>textarea,.profile-two-col input{padding:13px 12px!important}
+  .profile-submit{width:100%!important}
+}
