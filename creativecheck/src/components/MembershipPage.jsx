@@ -14,7 +14,7 @@ const PLANS = [
       'Connect your existing professional links'
     ],
     button: 'Create Your Free Account',
-    href: '#profile-choice'
+    href: '#free-account'
   },
   {
     key: 'individual',
@@ -29,7 +29,7 @@ const PLANS = [
       'Increased Visibility',
       'Promote Your Profile'
     ],
-    button: 'Choose Premium Individual'
+    button: 'Create Free Account → Premium'
   },
   {
     key: 'business',
@@ -62,7 +62,7 @@ function PlanCard({plan,onAction}){
       <span className="membership-price">{plan.price}{plan.key !== 'free' && <span>/month</span>}</span>
       {plan.href
         ? <a className="membership-button" href={plan.href}>{plan.button}</a>
-        : <button type="button" className="membership-button" onClick={()=>onAction(plan.key)}>{plan.button}</button>}
+        : <a className="membership-button" href={plan.key==='business'?'#business-profile-form':'#free-account'}>{plan.button}</a>}
     </div>
     {plan.key !== 'free' && <small className="membership-note">Payments are not connected yet — this is a product preview.</small>}
   </article>
