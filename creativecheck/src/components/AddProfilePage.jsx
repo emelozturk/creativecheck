@@ -49,6 +49,7 @@ function ProfileForm({isBusiness,onBack,onSubmitted}){
 
 export default function AddProfilePage({type}){
   const[selectedType,setSelectedType]=useState(null),[submitted,setSubmitted]=useState(false)
+  useEffect(()=>{\n    const chooseFromHash=()=>{const h=window.location.hash;if(h==='#business-profile-form'||h==='#business-account')setSelectedType('business');else if(h==='#free-account'||h==='#creative-profile')setSelectedType('creative')}\n    chooseFromHash(); window.addEventListener('hashchange',chooseFromHash); return()=>window.removeEventListener('hashchange',chooseFromHash)\n  },[])
   if(type==='business')return null
   if(submitted)return <section className="profile-success-card"><span className="section-label">PROFILE SUBMITTED</span><h2>Thank you. Your profile is now with CreativeCheck.</h2><p>We&apos;ll review your profile before publication. Once approved, you&apos;ll be able to access the community. If you return later, use your registered email to receive a secure magic link.</p></section>
   return <div className="signup-flow"><TypeChoice onChoose={next=>setSelectedType(next)}/>{selectedType&&<ProfileForm isBusiness={selectedType==='business'} onBack={()=>setSelectedType(null)} onSubmitted={()=>setSubmitted(true)}/>}</div>
