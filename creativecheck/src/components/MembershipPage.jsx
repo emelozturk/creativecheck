@@ -19,7 +19,7 @@ const PLANS = [
   {
     key: 'individual',
     label: 'INDIVIDUAL PREMIUM',
-    title: 'Upgrade for £6/month',
+    title: 'Premium Individual · £6/month',
     price: '£6',
     description: 'Build your presence. Connect globally. Get discovered.',
     features: [
@@ -29,12 +29,12 @@ const PLANS = [
       'Increased Visibility',
       'Promote Your Profile'
     ],
-    button: 'Upgrade for £6/month'
+    button: 'Choose Premium Individual'
   },
   {
     key: 'business',
     label: 'BUSINESS PREMIUM',
-    title: 'Upgrade for £39/month',
+    title: 'Premium Business · £39/month',
     price: '£39',
     description: 'Discover creative talent. Build your business presence. Reach further.',
     features: [
@@ -45,7 +45,7 @@ const PLANS = [
       'Increased Visibility',
       'Promote Your Business'
     ],
-    button: 'Upgrade for £39/month'
+    button: 'Choose Premium Business'
   }
 ]
 
