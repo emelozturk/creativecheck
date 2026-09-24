@@ -1,0 +1,3 @@
+/* Keep the founder portrait in the About CreativeCheck section; remove only the decorative pseudo-image that was added to the old preview. */
+.founder-section:before{display:block!important;content:""!important;background-image:none!important;}
+.founder-section{grid-template-columns:1fr 1fr!important;}
