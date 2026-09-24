@@ -46,7 +46,7 @@ function CommunitySignupPrompt({onClose}){return <div role="dialog" aria-modal="
   const bio=String(profile.bio||'').trim()
   function openProfile(){track('profile_card_clicked',{profile_id:profile.id});if(onOpen)onOpen(member?profile:'__signup__')}
   return <article className={`member-compact-card ${member?'member-card-full':'member-card-teaser'}`} onClick={openProfile} role={member?'button':undefined} tabIndex={member?0:undefined} onKeyDown={e=>{if(member&&(e.key==='Enter'||e.key===' '))openProfile()}}>
-    <div className="member-card-top">{profile.avatar_url?<img className="member-avatar-image" src={profile.avatar_url} alt="" />:<span className="member-initials">{initials}</span>}{profile.verified&&<span className="member-verified">Reviewed</span>}</div>
+    <div className="member-card-top"><span className="member-initials">{initials}</span>{profile.verified&&<span className="member-verified">Reviewed</span>}</div>
     <h4 style={{display:'block',visibility:'visible',opacity:1,color:'#111318',fontSize:'19px',lineHeight:1.1,margin:'8px 0 3px',fontWeight:600}}>{displayName}</h4>
     <p className="member-profession"><strong>{profile.profession||'Creative Professional'}</strong></p>
     <p className="member-location">{[profile.city,profile.country].filter(Boolean).join(', ')||profile.category||'Creative'}</p>
