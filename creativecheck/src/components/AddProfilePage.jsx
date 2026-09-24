@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../supabase'
 import { track } from '../analytics'
 
@@ -8,7 +8,7 @@ function TypeChoice({onChoose}){
   return <section id="profile-choice" className="profile-type-card">
     <div className="profile-type-head"><span className="section-label light">JOIN CREATIVECHECK</span><h2>Create your free professional account.</h2><p>Join CreativeCheck and see the community members.</p></div>
     <div className="profile-type-grid">
-      <button type="button" onClick={()=>onChoose('creative')}><span className="type-kicker">FOR INDIVIDUALS</span><strong>Creatives</strong><span>Create your <b>FREE</b> CreativeCheck profile.</span><b>Create Creative Profile →</b></button>
+      <button type="button" data-account-choice="creative" onClick={()=>onChoose('creative')}><span className="type-kicker">FOR INDIVIDUALS</span><strong>Create Free Account</strong><span>Create your <b>FREE</b> CreativeCheck profile.</span><b>Create Creative Profile →</b></button>
       <button type="button" onClick={()=>onChoose('business')}><span className="type-kicker">FOR ORGANISATIONS</span><strong>Business Creative Account</strong><span>Create your <b>FREE</b> CreativeCheck business profile.</span><b>Create Business Profile →</b></button>
     </div>
   </section>
