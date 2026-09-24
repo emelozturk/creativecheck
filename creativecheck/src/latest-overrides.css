@@ -22,3 +22,8 @@ html,body,#root,.cc-site{max-width:100%!important;width:100%!important;overflow-
 .roadmap-grid article:nth-child(n+7){display:grid!important}
 .roadmap-grid:after{content:none!important;display:none!important}
 .roadmap-grid article p{font-size:11px!important;line-height:1.45!important;overflow-wrap:anywhere!important}
+
+
+/* Simplify About section: remove founder portrait from preview */
+.founder-section:before{display:none!important;content:none!important;background-image:none!important;}
+.founder-section{grid-template-columns:1fr!important;}
