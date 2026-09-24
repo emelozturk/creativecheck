@@ -14,7 +14,7 @@ const PLANS = [
       'Connect your existing professional links'
     ],
     button: 'Create Your Free Account',
-    href: '#add-profile-form'
+    href: '#profile-choice'
   },
   {
     key: 'individual',
@@ -33,8 +33,8 @@ const PLANS = [
   },
   {
     key: 'business',
-    label: 'BUSINESS PREMIUM',
-    title: 'Premium Business · £39/month',
+    label: 'BUSINESS CREATIVE ACCOUNT',
+    title: 'Business Creative Account · £39/month',
     price: '£39',
     description: 'Discover creative talent. Build your business presence. Reach further.',
     features: [
@@ -45,7 +45,7 @@ const PLANS = [
       'Increased Visibility',
       'Promote Your Business'
     ],
-    button: 'Choose Premium Business'
+    button: 'Create Business Creative Account'
   }
 ]
 
