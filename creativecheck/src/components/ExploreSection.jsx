@@ -20,7 +20,7 @@ function CommunityStats(){
     }
     load(); return()=>{active=false}
   },[])
-  const items=[['professionals','Creative Professionals','25+'],['businesses','Creative Businesses','6+'],['countries','Countries','14+'],['continents','Continents','5']]
+  const items=[['professionals','Creative Professionals','26+'],['businesses','Creative Businesses','6+'],['countries','Countries','14+'],['continents','Continents','5']]
   return <div className="community-stats" aria-label="CreativeCheck community statistics"><div className="community-stats-grid">{items.map(([key,label,display])=><article key={key}><strong>{display}</strong><span>{label}</span></article>)}</div></div>
 }
 
