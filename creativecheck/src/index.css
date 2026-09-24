@@ -25,3 +25,39 @@
 .community-stats-grid article span{display:block!important;font-size:9px!important;line-height:1.2!important;letter-spacing:.08em!important;text-transform:uppercase;color:#162a46!important;visibility:visible!important;opacity:1!important}
 .community-stats-grid article:last-child{border-right:0}
 .community-stats-foot{display:none}
+
+/* PREMIUM MEMBERSHIP V1 */
+.membership-shell{padding:110px 5.5vw;background:#f5eee2;border-top:1px solid rgba(23,21,26,.12)}
+.membership-intro{max-width:760px;margin-bottom:45px}
+.membership-intro h2{font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(46px,5vw,76px);line-height:.95;letter-spacing:-.055em;margin:16px 0 20px}
+.membership-intro h2 em{font-style:italic;color:var(--cobalt)}
+.membership-intro p{font-size:14px;line-height:1.8;color:#6b665e;max-width:650px}
+.membership-preview-banner{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:14px 18px;margin-bottom:18px;border:1px solid rgba(23,21,26,.15);background:#e4dccf;font-size:11px;color:#5f5a52}
+.membership-preview-banner strong{color:var(--cobalt);letter-spacing:.1em;text-transform:uppercase;font-size:9px}
+.membership-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(23,21,26,.15)}
+.membership-card{background:#fbf7ef;padding:36px;min-height:330px;display:flex;flex-direction:column}
+.membership-card.premium{background:#172f4f;color:#fff}
+.membership-card-topline{display:flex;justify-content:space-between;gap:20px}
+.membership-kicker{font-size:9px;letter-spacing:.2em;font-weight:800;color:#746d64}
+.membership-card.premium .membership-kicker{color:#cbd7e4}
+.membership-status{font-size:8px;letter-spacing:.14em;color:#e0bd72}
+.membership-card h3{font-family:'Playfair Display',Georgia,serif;font-size:34px;font-weight:500;margin:22px 0 10px}
+.membership-card p{font-size:12px;line-height:1.7;color:#746e66;max-width:440px}
+.membership-card.premium p{color:#d5dde6}
+.membership-card ul{list-style:none;padding:0;margin:20px 0 25px;display:grid;gap:10px;font-size:11px;color:#57524c}
+.membership-card.premium ul{color:#eef3f8}
+.membership-card li:before{content:'✓';color:var(--coral);margin-right:9px}
+.membership-action-row{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:auto}
+.membership-price{font-family:'Playfair Display',Georgia,serif;font-size:27px}.membership-price span{font-family:'DM Sans',sans-serif;font-size:10px;color:#777067;margin-left:4px}
+.membership-card.premium .membership-price span{color:#cbd7e4}
+.membership-button{padding:13px 17px;background:#fbf7ef;color:#111318;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.membership-button:disabled{opacity:.45;cursor:not-allowed}
+.membership-note{font-size:10px;color:#cbd7e4;margin-top:10px}
+.membership-dashboard{margin-top:1px;display:grid;grid-template-columns:1fr .8fr;gap:1px;background:rgba(23,21,26,.15)}
+.membership-dashboard-copy,.membership-preview-card{background:#e9dfd0;padding:38px}
+.membership-dashboard-copy h3{font-family:'Playfair Display',Georgia,serif;font-size:34px;font-weight:500;margin:16px 0 10px}.membership-dashboard-copy p{font-size:12px;line-height:1.7;color:#6b655d;max-width:520px}
+.membership-owner{font-family:'Playfair Display',Georgia,serif;font-size:25px;margin:25px 0}.membership-owner span{display:block;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#777067;margin-top:5px}
+.membership-upload-button{display:inline-flex;align-items:center;padding:13px 17px;background:#111318;color:#fff;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}.membership-upload-button input{display:none}
+.membership-message{margin-top:14px!important;color:#3158c7!important;font-size:11px!important}
+.membership-preview-card{background:#172f4f;color:#fff}.membership-preview-label{font-size:8px;letter-spacing:.2em;color:#bfcbd7;margin-bottom:15px}.membership-preview-media{aspect-ratio:4/3;background:#263c56;display:grid;place-items:center;overflow:hidden}.membership-profile-image{width:100%;height:100%;object-fit:cover;display:block}.membership-image-placeholder{height:100%;width:100%;display:grid;place-items:center;align-content:center;gap:6px;color:#aebdca;text-align:center}.membership-image-placeholder span{font-size:8px;letter-spacing:.2em}.membership-image-placeholder strong{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:500;color:#fff}.membership-preview-name{font-family:'Playfair Display',Georgia,serif;font-size:27px;margin-top:18px}.membership-preview-role{font-size:10px;color:#cbd7e4;margin-top:5px}.membership-premium-tag{display:inline-block;margin-top:16px;border:1px solid rgba(224,189,114,.5);color:#e0bd72;padding:5px 7px;font-size:7px;letter-spacing:.18em}
+.member-avatar-image{width:44px;height:44px;border-radius:50%;object-fit:cover;display:block}.member-card-top{display:flex;align-items:center;gap:9px}
+@media(max-width:800px){.membership-shell{padding:80px 18px}.membership-grid,.membership-dashboard{grid-template-columns:1fr}.membership-card,.membership-dashboard-copy,.membership-preview-card{padding:28px}.membership-preview-banner{display:block}.membership-preview-banner span{display:block;margin-top:6px}.membership-action-row{align-items:flex-start;flex-direction:column}}
