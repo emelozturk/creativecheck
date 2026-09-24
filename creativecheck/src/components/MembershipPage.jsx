@@ -3,9 +3,60 @@ import { supabase } from '../supabase'
 
 const BUCKET = 'premium-profile-images'
 
-function PremiumImage({src, preview=false}){
+const PLANS = {
+  creative: {
+    code: 'premium_monthly',
+    label: 'INDIVIDUAL PREMIUM',
+    title: 'Premium for Creatives',
+    price: '£6',
+    description: 'Build your presence. Connect globally. Get discovered.',
+    features: [
+      'Professional Profile',
+      'Professional Connections',
+      'Global Reach',
+      'Increased Visibility',
+      'Promote Your Profile',
+      'Professional Image'
+    ]
+  },
+  business: {
+    code: 'business_monthly',
+    label: 'BUSINESS PREMIUM',
+    title: 'Premium for Creative Businesses',
+    price: '£39',
+    description: 'Discover creative talent. Build your business presence. Reach further.',
+    features: [
+      'Business Profile',
+      'Creative Talent Discovery',
+      'Creative Connections',
+      'Global Reach',
+      'Increased Visibility',
+      'Promote Your Business'
+    ]
+  }
+}
+
+function PremiumImage({src}){
   if(!src) return <div className="membership-image-placeholder"><span>PREMIUM</span><strong>Add your image</strong></div>
   return <img className="membership-profile-image" src={src} alt="Premium profile preview" />
+}
+
+function PlanCard({type,previewMode,onSelect}){
+  const plan=PLANS[type]
+  return <article className={`membership-card premium membership-card-${type}`}>
+    <div className="membership-card-topline">
+      <span className="membership-kicker">{plan.label}</span>
+      <span className="membership-status">{previewMode?'PREVIEW':'PREMIUM'}</span>
+    </div>
+    <h3>{plan.title}</h3>
+    <p>{plan.description}</p>
+    <ul>{plan.features.map(feature=><li key={feature}>{feature}</li>)}</ul>
+    <div className="membership-action-row">
+      <span className="membership-price">{plan.price}<span>/month</span></span>
+      <button type="button" className="membership-button" onClick={()=>onSelect(type)}>Explore Premium</button>
+    </div>
+    <small className="membership-note">Payments are not connected yet.</small>
+  </article>
 }
 
 export default function MembershipPage(){
@@ -16,20 +67,26 @@ export default function MembershipPage(){
   const [uploading,setUploading]=useState(false)
   const [message,setMessage]=useState('')
   const [previewImage,setPreviewImage]=useState('')
+  const [selectedType,setSelectedType]=useState('creative')
   const previewMode=new URLSearchParams(window.location.search).get('premium_preview')==='1'
   const premium=previewMode || ['active','trialing'].includes(subscription?.status)
+  const currentType=profile?.profile_type==='business'?'business':'creative'
+  const activePlan=PLANS[selectedType]
 
   async function load(){
     setLoading(true)
     const {data:{session:current}}=await supabase.auth.getSession()
     setSession(current)
     if(current?.user?.id){
-      const [{data:sub},{data:ownedProfile}]=await Promise.all([
-        supabase.from('subscriptions').select('plan_code,status,current_period_end,cancel_at_period_end').eq('user_id',current.user.id).eq('plan_code','premium_monthly').in('status',['active','trialing']).order('created_at',{ascending:false}).limit(1).maybeSingle(),
+      const [{data:subs},{data:ownedProfile}]=await Promise.all([
+        supabase.from('subscriptions').select('plan_code,status,current_period_end,cancel_at_period_end').eq('user_id',current.user.id).in('plan_code',['premium_monthly','business_monthly']).in('status',['active','trialing']).order('created_at',{ascending:false}).limit(1),
         supabase.from('profiles_private').select('id,full_name,profile_type,avatar_url').eq('user_id',current.user.id).maybeSingle()
       ])
-      setSubscription(sub||null)
+      const sub=subs?.[0]||null
+      setSubscription(sub)
       setProfile(ownedProfile||null)
+      if(sub?.plan_code==='business_monthly') setSelectedType('business')
+      else if(ownedProfile?.profile_type==='business') setSelectedType('business')
     }
     setLoading(false)
   }
@@ -70,41 +127,31 @@ export default function MembershipPage(){
 
   return <section className="membership-shell" id="membership">
     <div className="membership-intro">
-      <span className="section-label">MEMBERSHIP · V1</span>
-      <h2>Make your profile<br/><em>stand out.</em></h2>
-      <p>Free profiles stay exactly as they are. Premium adds a visual profile image and, next, promotional visibility.</p>
+      <span className="section-label">MEMBERSHIP · PREMIUM</span>
+      <h2>Choose your<br/><em>creative presence.</em></h2>
+      <p>Free profiles stay exactly as they are. Premium is designed around the different needs of creative professionals and creative businesses.</p>
     </div>
 
     {previewMode && <div className="membership-preview-banner"><strong>Premium Preview Mode</strong><span>This is a safe product preview before payments are connected.</span></div>}
 
-    <div className="membership-grid">
-      <article className="membership-card free">
-        <span className="membership-kicker">FREE PROFILE</span>
-        <h3>Stay discoverable.</h3>
-        <p>Your existing CreativeCheck profile remains free and unchanged.</p>
-        <ul><li>Professional identity</li><li>Public discovery</li><li>Professional links</li><li>No profile image in V1</li></ul>
-        <span className="membership-price">£0</span>
-      </article>
+    <div className="membership-grid membership-grid-two">
+      <PlanCard type="creative" previewMode={previewMode} onSelect={setSelectedType}/>
+      <PlanCard type="business" previewMode={previewMode} onSelect={setSelectedType}/>
+    </div>
 
-      <article className="membership-card premium">
-        <div className="membership-card-topline"><span className="membership-kicker">PREMIUM</span><span className="membership-status">{premium?'PREMIUM ACCESS':'NEXT STEP'}</span></div>
-        <h3>Show your work.</h3>
-        <p>Premium gives creative professionals and businesses a visual profile presence.</p>
-        <ul><li>Upload a profile / featured image</li><li>Premium profile presentation</li><li>Promote your profile — coming next</li><li>Insights — coming next</li></ul>
-        <div className="membership-action-row">
-          <span className="membership-price">£6<span>/month</span></span>
-          <button type="button" className="membership-button" disabled={!previewMode && !premium}>Upgrade to Premium</button>
-        </div>
-        {!premium && <small className="membership-note">Payments are not connected yet.</small>}
-      </article>
+    <div className="membership-community">
+      <span className="section-label">CREATIVECHECK COMMUNITY</span>
+      <h3>Discover. Connect. Grow.</h3>
+      <p>Be part of a global creative network built for professional connections and discovery.</p>
     </div>
 
     <div className="membership-dashboard">
       <div className="membership-dashboard-copy">
-        <span className="section-label">YOUR PREMIUM PROFILE</span>
-        <h3>{premium?'Add your image':'Premium image area'}</h3>
-        <p>{premium?'Choose one strong image for your CreativeCheck profile. This is the first Premium feature we are testing.':'The image uploader will become available when Premium is active.'}</p>
-        {profile?.full_name&&<div className="membership-owner">{profile.full_name}<span>{profile.profile_type==='business'?'Business':'Creative Professional'}</span></div>}
+        <span className="section-label">{activePlan.label}</span>
+        <h3>{activePlan.title}</h3>
+        <p>{activePlan.description}</p>
+        <ul className="membership-selected-features">{activePlan.features.map(feature=><li key={feature}>{feature}</li>)}</ul>
+        <div className="membership-owner">{profile?.full_name||'Your CreativeCheck profile'}<span>{selectedType==='business'?'Creative Business':'Creative Professional'}</span></div>
         <label className="membership-upload-button">
           {uploading?'Uploading…':'Choose image'}
           <input type="file" accept="image/jpeg,image/png,image/webp" onChange={uploadImage} disabled={!premium||uploading}/>
@@ -115,8 +162,8 @@ export default function MembershipPage(){
         <div className="membership-preview-label">PROFILE PREVIEW</div>
         <div className="membership-preview-media"><PremiumImage src={previewImage||profile?.avatar_url}/></div>
         <div className="membership-preview-name">{profile?.full_name||'Your Creative Profile'}</div>
-        <div className="membership-preview-role">{profile?.profile_type==='business'?'Creative Business':'Creative Professional'}</div>
-        <span className="membership-premium-tag">PREMIUM</span>
+        <div className="membership-preview-role">{selectedType==='business'?'Creative Business':'Creative Professional'}</div>
+        <span className="membership-premium-tag">PREMIUM · {activePlan.price}/MONTH</span>
       </div>
     </div>
   </section>
