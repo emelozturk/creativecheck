@@ -1,35 +1,164 @@
 {
   "redirects": [
-    { "source": "/creatives/", "destination": "/creatives", "permanent": true },
-    { "source": "/creatives/photographers", "destination": "/photographers", "permanent": true },
-    { "source": "/creatives/filmmakers", "destination": "/filmmakers", "permanent": true },
-    { "source": "/creatives/designers", "destination": "/designers", "permanent": true },
-    { "source": "/creatives/artists", "destination": "/artists", "permanent": true },
-    { "source": "/creatives/musicians", "destination": "/musicians", "permanent": true },
-    { "source": "/creatives/photographers/", "destination": "/photographers", "permanent": true },
-    { "source": "/creatives/filmmakers/", "destination": "/filmmakers", "permanent": true },
-    { "source": "/creatives/designers/", "destination": "/designers", "permanent": true },
-    { "source": "/creatives/artists/", "destination": "/artists", "permanent": true },
-    { "source": "/creatives/musicians/", "destination": "/musicians", "permanent": true }
+    {
+      "source": "/creatives/",
+      "destination": "/creatives",
+      "permanent": true
+    },
+    {
+      "source": "/creatives/photographers",
+      "destination": "/photographers",
+      "permanent": true
+    },
+    {
+      "source": "/creatives/filmmakers",
+      "destination": "/filmmakers",
+      "permanent": true
+    },
+    {
+      "source": "/creatives/designers",
+      "destination": "/designers",
+      "permanent": true
+    },
+    {
+      "source": "/creatives/artists",
+      "destination": "/artists",
+      "permanent": true
+    },
+    {
+      "source": "/creatives/musicians",
+      "destination": "/musicians",
+      "permanent": true
+    },
+    {
+      "source": "/creatives/photographers/",
+      "destination": "/photographers",
+      "permanent": true
+    },
+    {
+      "source": "/creatives/filmmakers/",
+      "destination": "/filmmakers",
+      "permanent": true
+    },
+    {
+      "source": "/creatives/designers/",
+      "destination": "/designers",
+      "permanent": true
+    },
+    {
+      "source": "/creatives/artists/",
+      "destination": "/artists",
+      "permanent": true
+    },
+    {
+      "source": "/creatives/musicians/",
+      "destination": "/musicians",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/api/sitemap" },
-    { "source": "/creatives", "destination": "/api/seo?path=/creatives" },
-    { "source": "/photographers", "destination": "/api/seo?path=/photographers" },
-    { "source": "/filmmakers", "destination": "/api/seo?path=/filmmakers" },
-    { "source": "/designers", "destination": "/api/seo?path=/designers" },
-    { "source": "/artists", "destination": "/api/seo?path=/artists" },
-    { "source": "/musicians", "destination": "/api/seo?path=/musicians" },
-    { "source": "/creative-businesses", "destination": "/api/seo?path=/creative-businesses" },
-    { "source": "/photographers/:location", "destination": "/api/seo?path=/photographers/:location" },
-    { "source": "/filmmakers/:location", "destination": "/api/seo?path=/filmmakers/:location" },
-    { "source": "/designers/:location", "destination": "/api/seo?path=/designers/:location" },
-    { "source": "/artists/:location", "destination": "/api/seo?path=/artists/:location" },
-    { "source": "/musicians/:location", "destination": "/api/seo?path=/musicians/:location" },
-    { "source": "/creative-businesses/:location", "destination": "/api/seo?path=/creative-businesses/:location" },
-    { "source": "/resources", "destination": "/api/seo?path=/resources" },
-    { "source": "/resources/:slug", "destination": "/api/seo?path=/resources/:slug" },
-    { "source": "/profile/:slug", "destination": "/api/seo?path=/profile/:slug" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    },
+    {
+      "source": "/creatives",
+      "destination": "/api/seo?path=/creatives"
+    },
+    {
+      "source": "/photographers",
+      "destination": "/api/seo?path=/photographers"
+    },
+    {
+      "source": "/filmmakers",
+      "destination": "/api/seo?path=/filmmakers"
+    },
+    {
+      "source": "/designers",
+      "destination": "/api/seo?path=/designers"
+    },
+    {
+      "source": "/artists",
+      "destination": "/api/seo?path=/artists"
+    },
+    {
+      "source": "/musicians",
+      "destination": "/api/seo?path=/musicians"
+    },
+    {
+      "source": "/creative-businesses",
+      "destination": "/api/seo?path=/creative-businesses"
+    },
+    {
+      "source": "/photographers/:location",
+      "destination": "/api/seo?path=/photographers/:location"
+    },
+    {
+      "source": "/filmmakers/:location",
+      "destination": "/api/seo?path=/filmmakers/:location"
+    },
+    {
+      "source": "/designers/:location",
+      "destination": "/api/seo?path=/designers/:location"
+    },
+    {
+      "source": "/artists/:location",
+      "destination": "/api/seo?path=/artists/:location"
+    },
+    {
+      "source": "/musicians/:location",
+      "destination": "/api/seo?path=/musicians/:location"
+    },
+    {
+      "source": "/creative-businesses/:location",
+      "destination": "/api/seo?path=/creative-businesses/:location"
+    },
+    {
+      "source": "/resources",
+      "destination": "/api/seo?path=/resources"
+    },
+    {
+      "source": "/resources/:slug",
+      "destination": "/api/seo?path=/resources/:slug"
+    },
+    {
+      "source": "/profile/:slug",
+      "destination": "/api/seo?path=/profile/:slug"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://gnqrakuhmzchwherombt.supabase.co wss://gnqrakuhmzchwherombt.supabase.co; media-src 'self' https:; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(self)"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        }
+      ]
+    }
   ]
 }
