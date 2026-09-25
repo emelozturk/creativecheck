@@ -104,7 +104,7 @@ export default function ExploreSection({searchQuery=''}){
     try{
       const {data:fullData,error:fullError}=await supabase.rpc('get_member_profiles')
       if(!fullError && Array.isArray(fullData)){setProfiles(fullData);setMember(true);return}
-      const {data,error}=await supabase.from('profiles').select('*').eq('status','approved').order('created_at',{ascending:false})
+      const {data,error}=await supabase.from('profiles').select('id,full_name,profession,category,city,country,country_code,bio,website,instagram,portfolio_url,profile_type,verified,created_at').eq('status','approved').order('created_at',{ascending:false})
       if(error)throw error
       setProfiles(Array.isArray(data)?data:[]);setMember(false)
     }catch(error){console.error('Profile fetch error:',error);setProfiles([]);setMember(false)}finally{setLoading(false)}
