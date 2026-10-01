@@ -11,12 +11,11 @@ function CommunityStats(){
   useEffect(()=>{
     let active=true
     async function load(){
-      const {data,error}=await supabase.from('profiles').select('profile_type,country').eq('status','approved').eq('verified',true)
+      const {data,error}=await supabase.from('profiles').select('profile_type,country_code').eq('status','approved').eq('verified',true)
       if(error||!Array.isArray(data)||!active)return
-      const countryToContinent={australia:'Oceania',canada:'North America',ghana:'Africa',india:'Asia',indonesia:'Asia',iran:'Asia',italia:'Europe',italy:'Europe',jordan:'Asia',kenya:'Africa',nigeria:'Africa',türkiye:'Europe',turkey:'Europe',uganda:'Africa',uae:'Asia','united arab emirates':'Asia',uk:'Europe','united kingdom':'Europe','united states':'North America','united states of america':'North America'}
-      const normalised=data.map(p=>String(p.country||'').trim().toLowerCase()).filter(Boolean)
-      const countries=new Set(normalised)
-      const continents=new Set(normalised.map(country=>countryToContinent[country]).filter(Boolean))
+      const continentMap={GB:'Europe',IN:'Asia',US:'North America',IT:'Europe',AE:'Asia',AU:'Oceania',CA:'North America',ID:'Asia',IR:'Asia',JO:'Asia',UG:'Africa',KE:'Africa',TR:'Europe'}
+      const countries=new Set(data.map(p=>p.country_code).filter(Boolean))
+      const continents=new Set(data.map(p=>continentMap[String(p.country_code||'').toUpperCase()]).filter(Boolean))
       setStats({professionals:data.filter(p=>p.profile_type!=='business').length,businesses:data.filter(p=>p.profile_type==='business').length,countries:countries.size,continents:continents.size})
     }
     load(); return()=>{active=false}
@@ -113,7 +112,7 @@ export default function ExploreSection({searchQuery=''}){
     setLoading(true)
     try{
       const {data:fullData,error:fullError}=await supabase.rpc('get_member_profiles')
-      if(!fullError && Array.isArray(fullData)){setProfiles(fullData.map(({email,...profile})=>profile));setMember(true);return}
+      if(!fullError && Array.isArray(fullData)){setProfiles(fullData);setMember(true);return}
       const {data,error}=await supabase.from('profiles').select('id,full_name,profession,category,city,country,country_code,bio,website,instagram,portfolio_url,profile_type,verified,created_at').eq('status','approved').order('created_at',{ascending:false})
       if(error)throw error
       setProfiles(Array.isArray(data)?data:[]);setMember(false)
