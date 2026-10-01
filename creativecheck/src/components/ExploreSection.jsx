@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../supabase'
 import { track } from '../analytics'
+import AddProfilePage from './AddProfilePage'
 
 const AUTH_REDIRECT_URL = 'https://creativecheck.app/'
 
@@ -65,7 +66,7 @@ function ProfileCard({profile,onOpen,member}){
   </article>
 }
 function CommunityAccessBox(){
-  const [email,setEmail]=useState(''),[sent,setSent]=useState(false),[loading,setLoading]=useState(false),[message,setMessage]=useState('')
+  const [email,setEmail]=useState(''),[sent,setSent]=useState(false),[loading,setLoading]=useState(false),[message,setMessage]=useState(''),[showProfileForm,setShowProfileForm]=useState(false)
   async function sendLink(e){
     e.preventDefault()
     const clean=email.trim().toLowerCase()
@@ -90,7 +91,7 @@ function CommunityAccessBox(){
     <strong style={{display:'block',fontFamily:'Georgia,serif',fontSize:21,fontWeight:400}}>Discover the CreativeCheck Community</strong>
     <p style={{margin:'7px 0 14px',color:'#6b675f',lineHeight:1.6}}>Explore the people and businesses shaping today&apos;s creative world.</p>
     <div style={{display:'flex',flexWrap:'wrap',alignItems:'center',gap:12}}>
-      <a href="#profile-choice" style={{display:'inline-block',padding:'11px 15px',background:'#203b88',color:'#fff',fontSize:10,letterSpacing:'.12em',textTransform:'uppercase'}}>Create Your Profile →</a>
+      <button type="button" onClick={()=>setShowProfileForm(true)} style={{display:'inline-block',padding:'11px 15px',background:'#203b88',color:'#fff',fontSize:10,letterSpacing:'.12em',textTransform:'uppercase',border:0,cursor:'pointer'}}>Create Your Profile →</button>
       <span style={{fontSize:12,color:'#6b675f'}}>or</span>
       {!sent?<form onSubmit={sendLink} style={{display:'flex',flexWrap:'wrap',gap:8,alignItems:'center',flex:1,minWidth:260}}>
         <label htmlFor="community-registered-email" style={{fontSize:11,color:'#4f4b45'}}>If you are already registered, please enter your email address to see the community members.</label>
@@ -100,6 +101,12 @@ function CommunityAccessBox(){
     </div>
     {message&&<p style={{margin:'10px 0 0',fontSize:12,color:'#9a3f3f'}}>{message}</p>}
     <p style={{margin:'14px 0 0',fontSize:11,color:'#6b675f'}}><strong style={{fontSize:13,color:'#111318'}}>FREE</strong> — Create your free professional account to see the community and join CreativeCheck.</p>
+    {showProfileForm&&<div role="dialog" aria-modal="true" aria-label="Create your CreativeCheck profile" onClick={()=>setShowProfileForm(false)} style={{position:'fixed',inset:0,zIndex:200,background:'rgba(17,19,24,.72)',backdropFilter:'blur(8px)',display:'grid',placeItems:'center',padding:'24px',overflowY:'auto'}}>
+      <div onClick={e=>e.stopPropagation()} style={{position:'relative',width:'min(980px,100%)',maxHeight:'92vh',overflowY:'auto',background:'#f4f1eb'}}>
+        <button type="button" onClick={()=>setShowProfileForm(false)} aria-label="Close profile form" style={{position:'sticky',top:14,marginLeft:'calc(100% - 58px)',zIndex:2,width:40,height:40,border:0,background:'#111318',color:'#fff',fontSize:26,lineHeight:1,cursor:'pointer'}}>×</button>
+        <AddProfilePage type="creative"/>
+      </div>
+    </div>}
   </div>
 }
 
