@@ -1,13 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { supabase } from '../supabase'
 import { track } from '../analytics'
+
+const AUTH_REDIRECT_URL = 'https://creativecheck.app/'
 
 function TypeChoice({onChoose}){
   return <section id="profile-choice" className="profile-type-card">
     <div className="profile-type-head"><span className="section-label light">JOIN CREATIVECHECK</span><h2>Create your free professional account.</h2><p>Join CreativeCheck and see the community members.</p></div>
     <div className="profile-type-grid">
-      <button type="button" data-account-choice="creative" onClick={()=>onChoose('creative')}><span className="type-kicker">FOR INDIVIDUALS</span><strong>Create Free Account</strong><span>Create your <b>FREE</b> CreativeCheck profile.</span><b>Create Creative Profile →</b></button>
-      <button type="button" onClick={()=>onChoose('business')}><span className="type-kicker">FOR ORGANISATIONS</span><strong>Business Creative Account</strong><span>Create your <b>FREE</b> CreativeCheck business profile.</span><b>Create Business Profile →</b></button>
+      <button type="button" onClick={()=>onChoose('creative')}><span className="type-kicker">FOR INDIVIDUALS</span><strong>Creatives</strong><span>Create your <b>FREE</b> CreativeCheck profile.</span><b>Create Creative Profile →</b></button>
+      <button type="button" onClick={()=>onChoose('business')}><span className="type-kicker">FOR ORGANISATIONS</span><strong>Business Creatives</strong><span>Create your <b>FREE</b> CreativeCheck business profile.</span><b>Create Business Profile →</b></button>
     </div>
   </section>
 }
@@ -20,7 +22,22 @@ function ProfileForm({isBusiness,onBack,onSubmitted}){
     const cleanEmail=form.email.value.trim().toLowerCase();const hasPublicLink=form.website.value.trim()||form.instagram.value.trim()||form.portfolio_url.value.trim()
     if(!hasPublicLink){setMessage('Please add at least one public link: website, Instagram or work link.');setLoading(false);return}
 
-    // Keep profile submission independent from optional authentication linking.\n    const {data,error}=await supabase.rpc('submit_profile',{p_full_name:isBusiness?form.company_name.value:form.full_name.value,p_email:cleanEmail,p_profession:isBusiness?form.business_type.value:form.profession.value,p_category:isBusiness?form.industry.value:form.category.value,p_city:form.city.value,p_country:form.country.value,p_website:form.website.value,p_instagram:form.instagram.value,p_portfolio_url:form.portfolio_url.value,p_bio:form.bio.value,p_profile_type:isBusiness?'business':'creative'})
+    const {error:authError}=await supabase.auth.signInWithOtp({
+      email:cleanEmail,
+      options:{shouldCreateUser:true,emailRedirectTo:AUTH_REDIRECT_URL}
+    })
+    if(authError){
+      console.error('CreativeCheck auth setup error:',authError)
+      const raw=String(authError.message||'').toLowerCase()
+      if(raw.includes('rate limit') || raw.includes('60 seconds') || raw.includes('too many')){
+        setMessage('Please wait a minute before requesting another sign-in link.')
+      }else{
+        setMessage('We could not set up your secure sign-in. Please try again in a moment.')
+      }
+      setLoading(false);return
+    }
+
+    const {data,error}=await supabase.rpc('submit_profile',{p_full_name:isBusiness?form.company_name.value:form.full_name.value,p_email:cleanEmail,p_profession:isBusiness?form.business_type.value:form.profession.value,p_category:isBusiness?form.industry.value:form.category.value,p_city:form.city.value,p_country:form.country.value,p_website:form.website.value,p_instagram:form.instagram.value,p_portfolio_url:form.portfolio_url.value,p_bio:form.bio.value,p_profile_type:isBusiness?'business':'creative'})
     if(error){setMessage(error.message||'Something went wrong. Please try again.');setLoading(false);return}
     track('signup_completed',{query:isBusiness?'business':'creative'});onSubmitted(data);setLoading(false)
   }
@@ -29,10 +46,6 @@ function ProfileForm({isBusiness,onBack,onSubmitted}){
 
 export default function AddProfilePage({type}){
   const[selectedType,setSelectedType]=useState(null),[submitted,setSubmitted]=useState(false)
-  useEffect(()=>{
-    const chooseFromHash=()=>{const h=window.location.hash;if(h==='#business-profile-form'||h==='#business-account')setSelectedType('business');else if(h==='#free-account'||h==='#creative-profile')setSelectedType('creative')}
-    chooseFromHash(); window.addEventListener('hashchange',chooseFromHash); return()=>window.removeEventListener('hashchange',chooseFromHash)
-  },[])
   if(type==='business')return null
   if(submitted)return <section className="profile-success-card"><span className="section-label">PROFILE SUBMITTED</span><h2>Thank you. Your profile is now with CreativeCheck.</h2><p>We&apos;ll review your profile before publication. Once approved, you&apos;ll be able to access the community. If you return later, use your registered email to receive a secure magic link.</p></section>
   return <div className="signup-flow"><TypeChoice onChoose={next=>setSelectedType(next)}/>{selectedType&&<ProfileForm isBusiness={selectedType==='business'} onBack={()=>setSelectedType(null)} onSubmitted={()=>setSubmitted(true)}/>}</div>
