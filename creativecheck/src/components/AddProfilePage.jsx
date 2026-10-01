@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../supabase'
 import { track } from '../analytics'
 
@@ -45,8 +45,29 @@ function ProfileForm({isBusiness,onBack,onSubmitted}){
 }
 
 export default function AddProfilePage({type}){
-  const[selectedType,setSelectedType]=useState(null),[submitted,setSubmitted]=useState(false)
+  const[selectedType,setSelectedType]=useState(null),[submitted,setSubmitted]=useState(false),[open,setOpen]=useState(false)
+  useEffect(()=>{
+    function handleClick(e){
+      const link=e.target.closest?.('a[href="#add-creative-profile-form"],a[href="#add-business-profile-form"]')
+      if(!link)return
+      e.preventDefault()
+      setSelectedType(null)
+      setSubmitted(false)
+      setOpen(true)
+    }
+    document.addEventListener('click',handleClick)
+    return()=>document.removeEventListener('click',handleClick)
+  },[])
   if(type==='business')return null
-  if(submitted)return <section className="profile-success-card"><span className="section-label">PROFILE SUBMITTED</span><h2>Thank you. Your profile is now with CreativeCheck.</h2><p>We&apos;ll review your profile before publication. Once approved, you&apos;ll be able to access the community. If you return later, use your registered email to receive a secure magic link.</p></section>
-  return <div className="signup-flow"><TypeChoice onChoose={next=>setSelectedType(next)}/>{selectedType&&<ProfileForm isBusiness={selectedType==='business'} onBack={()=>setSelectedType(null)} onSubmitted={()=>setSubmitted(true)}/>}</div>
+  return <>
+    <div className="signup-flow" aria-hidden="true" style={{display:'none'}}><TypeChoice onChoose={()=>{}}/></div>
+    {open&&<div role="dialog" aria-modal="true" aria-label="Create your CreativeCheck profile" onClick={()=>setOpen(false)} style={{position:'fixed',inset:0,zIndex:300,background:'rgba(17,19,24,.72)',backdropFilter:'blur(8px)',display:'grid',placeItems:'center',padding:'24px',overflowY:'auto'}}>
+      <div onClick={e=>e.stopPropagation()} style={{position:'relative',width:'min(980px,100%)',maxHeight:'92vh',overflowY:'auto',background:'#f4f1eb'}}>
+        <button type="button" onClick={()=>setOpen(false)} aria-label="Close profile form" style={{position:'sticky',top:14,marginLeft:'calc(100% - 58px)',zIndex:2,width:40,height:40,border:0,background:'#111318',color:'#fff',fontSize:26,lineHeight:1,cursor:'pointer'}}>×</button>
+        {!selectedType&&!submitted&&<TypeChoice onChoose={next=>setSelectedType(next)}/>}
+        {selectedType&&!submitted&&<ProfileForm isBusiness={selectedType==='business'} onBack={()=>setSelectedType(null)} onSubmitted={()=>setSubmitted(true)}/>}
+        {submitted&&<section className="profile-success-card"><span className="section-label">PROFILE SUBMITTED</span><h2>Thank you. Your profile is now with CreativeCheck.</h2><p>We&apos;ll review your profile before publication. Once approved, you&apos;ll be able to access the community. If you return later, use your registered email to receive a secure magic link.</p></section>}
+      </div>
+    </div>}
+  </>
 }
