@@ -11,7 +11,7 @@ function CommunityStats(){
   useEffect(()=>{
     let active=true
     async function load(){
-      const {data,error}=await supabase.from('profiles').select('profile_type,country_code').eq('status','approved').eq('verified',true)
+      const {data,error}=await supabase.from('profiles').select('profile_type,country_code').eq('status','approved')
       if(error||!Array.isArray(data)||!active)return
       const continentMap={GB:'Europe',IN:'Asia',US:'North America',IT:'Europe',AE:'Asia',AU:'Oceania',CA:'North America',ID:'Asia',IR:'Asia',JO:'Asia',UG:'Africa',KE:'Africa',TR:'Europe'}
       const countries=new Set(data.map(p=>p.country_code).filter(Boolean))
@@ -20,7 +20,7 @@ function CommunityStats(){
     }
     load(); return()=>{active=false}
   },[])
-  const items=[['professionals','Creative Professionals','26+'],['businesses','Creative Businesses','6+'],['countries','Countries','14+'],['continents','Continents','5']]
+  const items=[['professionals','Creative Professionals',`${stats.professionals}+`],['businesses','Creative Businesses',`${stats.businesses}+`],['countries','Countries',`${stats.countries}+`],['continents','Continents',`${stats.continents}`]]
   return <div className="community-stats" aria-label="CreativeCheck community statistics"><div className="community-stats-grid">{items.map(([key,label,display])=><article key={key}><strong>{display}</strong><span>{label}</span></article>)}</div></div>
 }
 
@@ -102,11 +102,17 @@ export default function ExploreSection({searchQuery=''}){
   async function loadProfiles(){
     setLoading(true)
     try{
+      // Public discovery must remain visible without requiring membership.
+      // Members then receive the fuller private profile payload when available.
+      const {data:publicData,error:publicError}=await supabase.from('profiles').select('*').eq('status','approved').order('created_at',{ascending:false})
+      if(publicError)throw publicError
+      setProfiles(Array.isArray(publicData)?publicData:[])
+      setMember(false)
       const {data:fullData,error:fullError}=await supabase.rpc('get_member_profiles')
-      if(!fullError && Array.isArray(fullData)){setProfiles(fullData);setMember(true);return}
-      const {data,error}=await supabase.from('profiles').select('*').eq('status','approved').order('created_at',{ascending:false})
-      if(error)throw error
-      setProfiles(Array.isArray(data)?data:[]);setMember(false)
+      if(!fullError && Array.isArray(fullData)){
+        setProfiles(fullData)
+        setMember(true)
+      }
     }catch(error){console.error('Profile fetch error:',error);setProfiles([]);setMember(false)}finally{setLoading(false)}
   }
   const filtered=useMemo(()=>profiles.filter(profile=>{const q=searchQuery.toLowerCase().trim();if(!q)return true;return[profile.full_name,profile.profession,profile.category,profile.city,profile.country,profile.bio].filter(Boolean).join(' ').toLowerCase().includes(q)}),[profiles,searchQuery])
